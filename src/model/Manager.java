@@ -16,11 +16,11 @@ import dao.BaseDaoImpl;
 import dao.BorrowrecordDao;
 import dao.ReaderDao;
 
-
+//hhh
 
 /**
  * @author
- * @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ22ÈÕ ÉÏÎç11:33:14
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½22ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½11:33:14
  * 
  */
 public class Manager {
@@ -42,7 +42,7 @@ public class Manager {
 		borrowrecordDao.setSessionFactory(factory);
 	
 		List<Borrowrecord> borrowrecords = borrowrecordDao.findAll();
-		System.out.println("¿ªÊ¼µü´úÊä³ö");
+		System.out.println("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		for (Iterator iterator = borrowrecords.iterator(); iterator.hasNext();) {
 			Borrowrecord borrowrecord =(Borrowrecord)iterator.next();
 			System.out.print(borrowrecord.getRecordID()+" ");
