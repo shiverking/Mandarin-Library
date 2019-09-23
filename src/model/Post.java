@@ -4,7 +4,7 @@ public class Post {
 	private String PostID;
 	private String Title;
 	private String Content;
-	private Librarian librarian;//图书馆馆员，此记录用于图书馆管理员向主页post
+	private Librarian librarian;//post
 	public Post() {
 		// TODO Auto-generated constructor stub
 	}
