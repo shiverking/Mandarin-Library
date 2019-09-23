@@ -1,7 +1,7 @@
 package dao;
 /**
 * @author 
-* @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ23ÈÕ ÏÂÎç1:57:18
+* @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½23ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1:57:18
 * 
 */
 
@@ -38,7 +38,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 	}
 
-	@Override
 	public void save(TEntity entity) {
 		Session session = this.getSession();
 		Transaction tx = null;
@@ -72,7 +71,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 	}
 
-	@Override
 	public void delete(TEntity entity) {
 		Session session = this.getSession();
 		Transaction tx = null;
@@ -90,14 +88,12 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		
 	}
 
-	@Override
 	public void delete(int id) {
 		TEntity entity = get(id);
 		delete(entity);
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<TEntity> findAll(String cond) {
 		if (cond != null) {
 			cond = " order by " + cond;
@@ -108,7 +104,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-	@Override
 	public List<TEntity> findAll() {
 		return this.findAll(null);
 	}
@@ -126,7 +121,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-	@Override
 	public List<TEntity> findBy(String propertyName, Object propertyValue) {
 		return findBy(propertyName, propertyValue, null);
 	}
@@ -139,7 +133,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public TEntity get(int id) {
 		Session session = this.getSession();
 		session.beginTransaction();
@@ -149,7 +142,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entity;
 	}
 
-	@Override
 	public TEntity getSingle(String propertyName, Object propertyValue) {
 		List<TEntity> entities = findBy(propertyName, propertyValue);
 		if (entities != null && entities.size() > 0) {
