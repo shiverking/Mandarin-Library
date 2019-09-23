@@ -1,5 +1,8 @@
 package action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.Borrowrecord;
 
 import service.BorrowrecordService;
@@ -10,5 +13,15 @@ import service.BorrowrecordService;
 * 
 */
 public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordService>{
+private List<Borrowrecord> borrowrecords=new ArrayList<Borrowrecord>();
+
+public List<Borrowrecord> getBorrowrecords() {
+	return borrowrecords;
+}
+
+public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
+	this.borrowrecords = borrowrecords;
+}
+
 
 }

@@ -1,5 +1,8 @@
 package action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.Book;
 import service.BookService;
 
@@ -9,5 +12,14 @@ import service.BookService;
 * 
 */
 public class BookAction extends BaseAction<Book, BookService>{
+private List<Book> books=new ArrayList<Book>();
+
+public List<Book> getBooks() {
+	return books;
+}
+
+public void setBooks(List<Book> books) {
+	this.books = books;
+}
 
 }
