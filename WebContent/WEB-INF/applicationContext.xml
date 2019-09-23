@@ -18,17 +18,16 @@
     	<property name="service" ref="adminService"/>
     	<property name="model" ref="admin"/>
     </bean>
-    
-     <!-- ReaderDao 数据操作对象 -->
+   <!-- ReaderDao 数据操作对象 -->
     <bean id="readerDao" class="dao.ReaderDao">
     <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     <!-- ReaderService用户操作业务对象 -->
-    <bean id="readerService" class="service.ReaderService">
-    <property name="dao" ref="adminDao"></property>
+    <bean id="readerService" class="service.ReaderServiceImpl">
+    <property name="dao" ref="readerDao"></property>
     </bean>
     <bean id="reader" class="model.Reader" scope="prototype"/>
-    <bean id="readerAction" class="action.readerAction" scope="prototype">
+    <bean id="readerAction" class="action.ReaderAction" scope="prototype">
     	<property name="service" ref="readerService"/>
     	<property name="model" ref="reader"/>
     </bean>
