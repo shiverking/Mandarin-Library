@@ -3,5 +3,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-           
+    <!-- 生成sessionFactory -->
+    <bean id="sessionFactory" class="util.HibernateHelper" factory-method="getSessionFactory"/> 
+    <!-- AdminDao 数据操作对象 -->
+    <bean id="adminDao" class="dao.AdminDao">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!-- adminService用户操作业务对象 -->
+    <bean id="adminService" class="service.AdminServiceImpl">
+    <property name="dao" ref="adminDao"></property>
+    </bean>
+    <bean id="admin" class="model.Admin" scope="prototype"/>
+    <bean id="adminAction" class="action.AdminAction" scope="prototype">
+    	<property name="service" ref="adminService"/>
+    	<property name="model" ref="admin"/>
+    </bean>
 </beans>
