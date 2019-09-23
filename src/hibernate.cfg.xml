@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- 数据库连接配置 -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/mandarin-library?useUnicode=true&amp;characterEncoding=UTF8</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		<property name="connection.pool_size">5</property>
+		<!-- SQL方言 -->
+		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<!-- 自动根据映射文件重新生成数据库模式 -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- 是否显示及格式化输出SQL -->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+
+		<!-- 是否自动关闭会话 -->
+		<property name="transaction.auto_close_session">false</property>
+		<!-- 当前会话上下文类为线程 -->
+		<property name="current_session_context_class">thread</property>
+
+
+
+		<!-- 映射文件资源 -->
+		<mapping resource="model/Admin.hbm.xml" />
+		<mapping resource="model/Book.hbm.xml" />
+		<mapping resource="model/Borrowrecord.hbm.xml" />
+		<mapping resource="model/Deleterecord.hbm.xml" />
+		<mapping resource="model/Librarian.hbm.xml" />
+		<mapping resource="model/Payrecord.hbm.xml" />
+		<mapping resource="model/Post.hbm.xml" />
+		<mapping resource="model/Reader.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

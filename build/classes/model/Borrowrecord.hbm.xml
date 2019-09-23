@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="model">
+	<class name="Borrowrecord">
+		<id name="RecordID" type="integer">
+			<generator class="native" />
+		</id>
+		<property name="ReaderID"  not-null="true" />
+		<property name="BookID" type="integer" not-null="true" />
+		<property name="BorrowingDate"  type="date" not-null="true" />
+		<property name="ReturnDate" type="date" not-null="true" />
+		<property name="isReturn"  type="boolean" />
+		<property name="isPayfine" type="boolean" />
+		<property name="Fine"  type="integer" />
+	</class>
+</hibernate-mapping>

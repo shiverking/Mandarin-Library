@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="model">
+	<class name="Reader">
+		<id name="ReaderID" type="int">
+			<generator class="native" />
+		</id>
+		<property name="ReaderName" not-null="true" />
+		<property name="Password" not-null="true"/>
+		<property name="Email" not-null="true"/>
+		<property name="Money" type="int" not-null="true"/>
+		<property name="PhoneNumber" type="string" length="11" not-null="true"/>
+	  </class>
+</hibernate-mapping>

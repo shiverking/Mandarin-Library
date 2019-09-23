@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="model">
+	<class name="Deleterecord">
+		<id name="LibrationID" type="integer">
+			<generator class="native" />
+		</id>
+		<property name="Date" type="date" not-null="true" />
+		<property name="BookID" not-null="true"/>
+		<property name="BookName" not-null="true"/>
+	</class>
+</hibernate-mapping>
