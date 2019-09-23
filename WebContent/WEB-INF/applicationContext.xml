@@ -31,4 +31,32 @@
     	<property name="service" ref="readerService"/>
     	<property name="model" ref="reader"/>
     </bean>
+    
+    <!-- BookDao 数据操作对象 -->
+    <bean id="bookDao" class="dao.BookDao">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!-- BookService用户操作业务对象 -->
+    <bean id="bookService" class="service.BookServiceImpl">
+    <property name="dao" ref="bookDao"></property>
+    </bean>
+    <bean id="book" class="model.Book" scope="prototype"/>
+    <bean id="bookAction" class="action.BookAction" scope="prototype">
+    	<property name="service" ref="bookService"/>
+    	<property name="model" ref="book"/>
+    </bean>
+    
+     <!-- BorrowrecordDao 数据操作对象 -->
+    <bean id="borrowrecordDao" class="dao.BorrowrecordDao">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!-- BorrowrecordService用户操作业务对象 -->
+    <bean id="borrowrecordService" class="service.BookServiceImpl">
+    <property name="dao" ref="borrowrecordDao"></property>
+    </bean>
+    <bean id="borrowrecord" class="model.Borrowrecord" scope="prototype"/>
+    <bean id="borrowrecordAction" class="action.BorrowrecordAction" scope="prototype">
+    	<property name="service" ref="borrowrecordService"/>
+    	<property name="model" ref="borrowrecord"/>
+    </bean>
 </beans>
