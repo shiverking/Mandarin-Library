@@ -8,23 +8,23 @@ import model.Admin;
 import service.AdminService;
 
 public class AdminAction extends BaseAction<Admin,AdminService> {
-	private Admin tmpAdmin;//´´½¨ÁÙÊ±Admin
-	/*µÇÂ½¹¦ÄÜ*/
+	private Admin tmpAdmin;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Admin
+	/*ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½*/
 	public String signin() throws Exception{
-		String AdminName =this.getModel().getAdminName();//»ñÈ¡AdminName
-		String Password  =this.getModel().getPassword();//»ñÈ¡ÊäÈëµÄÃÜÂë
+		String AdminName =this.getModel().getAdminName();//ï¿½ï¿½È¡AdminName
+		String Password  =this.getModel().getPassword();//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if(AdminName==null) {
 			this.errorMessage="You must input an AdminName!";
-			return INPUT;//·µ»ØµÇÂ¼Ò³Ãæ
+			return INPUT;//ï¿½ï¿½ï¿½Øµï¿½Â¼Ò³ï¿½ï¿½
 		}
 		if(Password==null) {
 			this.errorMessage="You must input the Password!";
-			return INPUT;//·µ»ØµÇÂ¼Ò³Ãæ
+			return INPUT;//ï¿½ï¿½ï¿½Øµï¿½Â¼Ò³ï¿½ï¿½
 		}
 		Admin admin = this.getService().verify(AdminName, Password);
 		if(admin!=null) {
 			Map<String, Object> session = ActionContext.getContext().getSession();
-			session.put("admin", admin);//½«admin´æÈësession
+			session.put("admin", admin);//ï¿½ï¿½adminï¿½ï¿½ï¿½ï¿½session
 			tmpAdmin = admin ;
 			return SUCCESS;
 		}
