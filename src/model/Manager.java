@@ -16,7 +16,6 @@ import dao.BaseDaoImpl;
 import dao.BorrowrecordDao;
 import dao.ReaderDao;
 
-//hhh
 
 /**
  * @author
@@ -27,7 +26,7 @@ public class Manager {
 	private static SessionFactory factory;
 
 	public static void main(String[] args) {
-
+		int a;
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
 		} catch (Exception e) {
