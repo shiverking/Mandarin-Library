@@ -6,5 +6,23 @@
 	<constant name="struts.objectFactory" value="spring" />
 
 	<package name="default" extends="struts-default">
+	<action name="search" class = "search" method="search">
+			<result name="input">/login.jsp</result>
+			<result name="none" type="chain">
+				<param name="actionName">getThemeTable</param>
+			</result>
+			<result name="isuser" type="chain">
+				<param name="actionName">getThemesToProfile</param>
+			</result>
+			<result name="istheme" type="chain">
+				<param name="actionName">searchTheme</param>
+			</result>
+		</action>
+		
+		<action name="searchTheme" class="themeAction" method="searchTheme">
+			<result name="success" type="chain" >
+				<param name="actionName">getPostNumToIndex</param>
+			</result>
+		</action>
 	</package>
 </struts>
