@@ -11,5 +11,15 @@
 			<result name="success">/Login_success.jsp</result>
 			<result name="input">/Admin_login.jsp</result>
 		</action>
+		<!-- User搜索界面 -->
+		<action name="search" class = "readerAction" method="search">
+			<result name="input">/Admin_login.jsp</result>
+			<result name="isBook" type="chain">
+				<param name="actionName">searchBook</param>
+			</result>
+		</action>
+		<action name="searchBook" class="bookAction" method="searchBook">
+			<result name="success">/search.jsp</result>		
+		</action>
 	</package>
 </struts>
