@@ -11,7 +11,7 @@ public class AdminAction extends BaseAction<Admin,AdminService> {
 	private Admin tmpAdmin;//������ʱAdmin
 	/*��½����*/
 	public String signin() throws Exception{
-		String AdminName =this.getModel().getAdminName();//��ȡAdminName
+		
 		String Password  =this.getModel().getPassword();//��ȡ���������
 		if(AdminName==null) {
 			this.errorMessage="You must input an AdminName!";
