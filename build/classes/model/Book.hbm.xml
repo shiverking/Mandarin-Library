@@ -13,5 +13,6 @@
 		<property name="ReturnPeriod" />
 		<property name="FineValue" />
 		<property name="isBorrowed" type="boolean" not-null="true"/>
+		<property name="category" type="string" not-null="true"/>
 	</class>
 </hibernate-mapping>

@@ -1,43 +1,48 @@
 package model;
 import java.util.Date;
 public class Deleterecord {
-	private int LibrationID;
+	private int DeleterecordID;
+	private Librarian librarian;
 	private Date Date;
-	private int BookID;
-	private String BookName;
+	private Book book;
 	public Deleterecord() {
 		
 	}
 	
-	public Deleterecord(int librationID, java.util.Date date, int bookID, String bookName) {
-		//super();
-		LibrationID = librationID;
+	public Deleterecord(Date date) {
+		super();
 		Date = date;
-		BookID = bookID;
-		BookName = bookName;
 	}
-	public int getLibrationID() {
-		return LibrationID;
+	
+	public int getDeleterecordID() {
+		return DeleterecordID;
 	}
-	public void setLibrationID(int librationID) {
-		LibrationID = librationID;
+
+	public void setDeleterecordID(int deleterecordID) {
+		DeleterecordID = deleterecordID;
 	}
+
 	public Date getDate() {
 		return Date;
 	}
+
 	public void setDate(Date date) {
 		Date = date;
 	}
-	public int getBookID() {
-		return BookID;
+
+	public Book getBook() {
+		return book;
 	}
-	public void setBookID(int bookID) {
-		BookID = bookID;
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
-	public String getBookName() {
-		return BookName;
+
+	public Librarian getLibrarian() {
+		return librarian;
 	}
-	public void setBookName(String bookName) {
-		BookName = bookName;
+
+	public void setLibrarian(Librarian librarian) {
+		this.librarian = librarian;
 	}
 }
