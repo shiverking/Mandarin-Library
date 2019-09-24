@@ -8,39 +8,37 @@ import model.Borrowrecord;
 import service.BookService;
 
 /**
-* @author 
-* @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ24ÈÕ ÉÏÎç2:12:32
-* 
-*/
-public class BookAction extends BaseAction<Book, BookService>{
-private List<Book> books=new ArrayList<Book>();
-private List<Borrowrecord> borrowrecords;
+ * @author
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½24ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½2:12:32
+ * 
+ */
+public class BookAction extends BaseAction<Book, BookService> {
+	private List<Book> books = new ArrayList<Book>();
+	private List<Borrowrecord> borrowrecords;
 
-
-
-public String getBooksbyBorrwrecords() {
-	List<Book> books=new ArrayList<Book>();
-	for (Borrowrecord borrowrecord:borrowrecords) {
-		books.add(this.getService().getBookByBorrowrecord(borrowrecord));
+	public String getBooksbyBorrwrecords() {
+		List<Book> books = new ArrayList<Book>();
+		for (Borrowrecord borrowrecord : borrowrecords) {
+			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
+		}
+		this.books = books;
+		return SUCCESS;
 	}
-	this.books=books;
-	return SUCCESS;
-}
 
-public List<Borrowrecord> getBorrowrecords() {
-	return borrowrecords;
-}
+	public List<Borrowrecord> getBorrowrecords() {
+		return borrowrecords;
+	}
 
+	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
+		this.borrowrecords = borrowrecords;
+	}
 
-public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
-	this.borrowrecords=borrowrecords;
-}
-public List<Book> getBooks() {
-	return books;
-}
+	public List<Book> getBooks() {
+		return books;
+	}
 
-public void setBooks(List<Book> books) {
-	this.books = books;
-}
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
 
 }
