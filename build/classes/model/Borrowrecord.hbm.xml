@@ -9,9 +9,9 @@
 		<property name="ReaderID"  not-null="true" />
 		<property name="BookID" type="integer" not-null="true" />
 		<property name="BorrowingDate"  type="date" not-null="true" />
-		<property name="ReturnDate" type="date" not-null="true" />
-		<property name="isReturn"  type="boolean" />
-		<property name="isPayfine" type="boolean" />
-		<property name="Fine"  type="integer" />
+		<property name="ReturnDate" type="date" not-null="true"/>
+		<property name="isReturn"  type="boolean" not-null="true" />
+		<property name="isPayfine" type="boolean" not-null="true" />
+		<property name="Fine"  type="integer" not-null="true"/>
 	</class>
 </hibernate-mapping>

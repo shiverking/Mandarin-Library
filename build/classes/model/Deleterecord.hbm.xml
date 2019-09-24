@@ -7,7 +7,7 @@
 			<generator class="native" />
 		</id>
 		<property name="Date" type="date" not-null="true" />
-		<one-to-one name="book"></one-to-one>
-		<many-to-one name="librarian"></many-to-one>
+		<many-to-one name="book" not-null="true"></many-to-one>
+		<many-to-one name="librarian" not-null="true"></many-to-one>
 	</class>
 </hibernate-mapping>

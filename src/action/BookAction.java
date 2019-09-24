@@ -13,13 +13,14 @@ import service.BookService;
 * 
 */
 public class BookAction extends BaseAction<Book, BookService>{
-private List<Book> books=new ArrayList<Book>();
+private List<Book> books;
 private List<Borrowrecord> borrowrecords;
 
 
 
 public String getBooksbyBorrwrecords() {
-	List<Book> books=new ArrayList<Book>();
+	books=new ArrayList<Book>();
+	
 	for (Borrowrecord borrowrecord:borrowrecords) {
 		books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 	}
