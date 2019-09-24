@@ -17,6 +17,12 @@
 		<result name="success">/Reader_borrowed.jsp</result>
 		</action>
 		<action name="getAllBorrowrecord" class="borrowrecordAction" method="getAllBorrowrecord">
+		<result name="success" type="chain"><param name="actionName">getBooksbyBorrwrecords</param></result>
+		</action>
+		<action name="getBooksbyBorrwrecords" class="bookAction" method="getBooksbyBorrwrecords">
+		<result name="success" type="chain"><param name="actionName">getRecordBookName</param></result>
+		</action>
+		<action name="getRecordBookName" class="borrowrecordAction" method="getRecordBookName">
 		<result name="success">/Reader_borrowed.jsp</result>
 		</action>
 	</package>

@@ -16,6 +16,8 @@ public class BookAction extends BaseAction<Book, BookService>{
 private List<Book> books=new ArrayList<Book>();
 private List<Borrowrecord> borrowrecords;
 
+
+
 public String getBooksbyBorrwrecords() {
 	List<Book> books=new ArrayList<Book>();
 	for (Borrowrecord borrowrecord:borrowrecords) {
@@ -24,6 +26,11 @@ public String getBooksbyBorrwrecords() {
 	this.books=books;
 	return SUCCESS;
 }
+
+public List<Borrowrecord> getBorrowrecords() {
+	return borrowrecords;
+}
+
 
 public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
 	this.borrowrecords=borrowrecords;
