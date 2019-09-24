@@ -8,21 +8,21 @@ import model.Borrowrecord;
 import service.BookService;
 
 /**
- * @author
- * @version ����ʱ�䣺2019��9��24�� ����2:12:32
- * 
- */
-public class BookAction extends BaseAction<Book, BookService> {
-	private List<Book> books = new ArrayList<Book>();
-	private List<Borrowrecord> borrowrecords;
+* @author 
+* @version ����ʱ�䣺2019��9��24�� ����2:12:32
+* 
+*/
+public class BookAction extends BaseAction<Book, BookService>{
+private List<Book> books;
+private List<Borrowrecord> borrowrecords;
 
-	public String getBooksbyBorrwrecords() {
-		List<Book> books = new ArrayList<Book>();
-		for (Borrowrecord borrowrecord : borrowrecords) {
-			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
-		}
-		this.books = books;
-		return SUCCESS;
+
+
+public String getBooksbyBorrwrecords() {
+	books=new ArrayList<Book>();
+	
+	for (Borrowrecord borrowrecord:borrowrecords) {
+		books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 	}
 
 	public List<Borrowrecord> getBorrowrecords() {

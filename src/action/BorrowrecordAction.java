@@ -15,16 +15,18 @@ import service.BorrowrecordService;
  * 
  */
 public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordService> {
-	private List<Borrowrecord> borrowrecords = new ArrayList<Borrowrecord>();
+	private List<Borrowrecord> borrowrecords ;
 	private Reader tempReader;
 	private List<Book> books;
 	private List<String> booknameList;
 
 	public String getBorrowrecordByReader(Reader reader) {
+		
 		borrowrecords=this.getService().getBorrowrecordsbyReader(reader);
 		return SUCCESS;
 	}
 	public String getAllBorrowrecord() {
+		
 		this.borrowrecords = this.getService().getAllBorrowrecords();
 
 		return SUCCESS;
