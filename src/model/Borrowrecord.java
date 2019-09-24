@@ -8,9 +8,9 @@ public class Borrowrecord {
 	private int BookID;
 	private Date BorrowingDate;
 	private Date ReturnDate;
-	private boolean isReturn;
-	private boolean isPayfine;
-	private int Fine;
+	private Boolean isReturn;
+	private Boolean isPayfine;
+	private Integer Fine;
 	
 	public Borrowrecord() {
 		
@@ -24,7 +24,7 @@ public class Borrowrecord {
 		ReturnDate = returnDate;
 		this.isReturn = false;//初始状态设置为未归还
 		this.isPayfine = false;//初始状态设置为未缴纳罚款
-		Fine = 0;//初始罚款为零
+		Fine = null;//初始罚款为零
 	}
 	public int getRecordID() {
 		return RecordID;
@@ -56,28 +56,29 @@ public class Borrowrecord {
 	public void setReturnDate(Date returnDate) {
 		ReturnDate = returnDate;
 	}
-	public boolean isReturn() {
+	public Boolean isReturn() {
 		return isReturn;
 	}
-	public boolean getIsReturn() {
+	public Boolean getIsReturn() {
 		return isReturn;
 	}
-	public void setIsReturn(boolean isReturn) {
+	public void setIsReturn(Boolean isReturn) {
 		this.isReturn = isReturn;
 	}
-	public boolean isPayfine() {
+	public Boolean isPayfine() {
 		return isPayfine;
 	}
-	public boolean getIsPayfine() {
+	public Boolean getIsPayfine() {
 		return isPayfine;
 	}
-	public void setIsPayfine(boolean isPayfine) {
+	public void setIsPayfine(Boolean isPayfine) {
 		this.isPayfine = isPayfine;
 	}
-	public int getFine() {
+	public Integer getFine() {
 		return Fine;
 	}
-	public void setFine(int fine) {
+	public void setFine(Integer fine) {
 		Fine = fine;
 	}
+	
 }	

@@ -36,4 +36,13 @@ private Reader tempReader;
 		}
 	}
 
+
+public Reader getTempReader() {
+	return tempReader;
+}
+
+public void setTempReader(Reader tempReader) {
+	this.tempReader = tempReader;
+}
+
 }
