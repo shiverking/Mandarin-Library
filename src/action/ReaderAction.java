@@ -9,7 +9,7 @@ import service.ReaderService;
 * 
 */
 public class ReaderAction extends BaseAction<Reader, ReaderService>{
-private Reader temReader;
+private Reader tempReader;
 
 
 
