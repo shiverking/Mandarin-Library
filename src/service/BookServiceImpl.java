@@ -47,13 +47,12 @@ public class BookServiceImpl extends BaseService<Book>implements BookService{
 	}
 
 	@Override
-	public Book getBooksByBorrowrecord(Borrowrecord borrowrecord) {
+	public Book getBookByBorrowrecord(Borrowrecord borrowrecord) {
 	int id=borrowrecord.getBookID();
 	return this.getBookById(id);
 	}
 
-	@Override
-	public List<Book> getThemesBySubString(String cond) {
+	public List<Book> getBooksByBookName(String cond){
 		// TODO Auto-generated method stub
 
 		return this.getDao().findBySubString("BookName", cond);

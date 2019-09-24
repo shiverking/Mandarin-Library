@@ -5,11 +5,20 @@
 <struts>
 	<constant name="struts.objectFactory" value="spring" />
 
-	<package name="default" extends="struts-default">
+	<package name="default" extends="struts-default" namespace="/">
 		<!-- Admin登录界面 -->
 		<action name="adminlogin" class="adminAction" method="signin">
 			<result name="success">/Login_success.jsp</result>
 			<result name="input">/Admin_login.jsp</result>
 		</action>
+		
+		<!-- Reader界面 -->
+		<action name="getBorrowrecordByReader" class="borrowrecordAction" method="getBorrowrecordByReader">
+		<result name="success">/Reader_borrowed.jsp</result>
+		</action>
+		<action name="getAllBorrowrecord" class="borrowrecordAction" method="getAllBorrowrecord">
+		<result name="success">/Reader_borrowed.jsp</result>
+		</action>
 	</package>
+	
 </struts>

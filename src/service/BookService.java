@@ -17,7 +17,7 @@ public interface BookService {
 	public void mergeBook(Book book);
 	
 	public Book getBookById(int id);
-	public Book getBooksByBorrowrecord(Borrowrecord borrowrecord);
-	public List<Book> getThemesBySubString(String cond);
+	public Book getBookByBorrowrecord(Borrowrecord borrowrecord);
+	public List<Book> getBooksByBookName(String cond);
 	public void deleteBookById(int id);
 }

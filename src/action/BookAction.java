@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Book;
+import model.Borrowrecord;
 import service.BookService;
 
 /**
@@ -13,7 +14,20 @@ import service.BookService;
 */
 public class BookAction extends BaseAction<Book, BookService>{
 private List<Book> books=new ArrayList<Book>();
+private List<Borrowrecord> borrowrecords;
 
+public String getBooksbyBorrwrecords() {
+	List<Book> books=new ArrayList<Book>();
+	for (Borrowrecord borrowrecord:borrowrecords) {
+		books.add(this.getService().getBookByBorrowrecord(borrowrecord));
+	}
+	this.books=books;
+	return SUCCESS;
+}
+
+public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
+	this.borrowrecords=borrowrecords;
+}
 public List<Book> getBooks() {
 	return books;
 }

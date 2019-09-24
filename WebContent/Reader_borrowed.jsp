@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <title>login</title>
+
 </head>
 <body>
 	<div class="row">
@@ -18,11 +20,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<s:iterator value="Borrwedtable" status="L">
+				<s:iterator value="borrowrecords" status="L">
 					<tr>
-						<td><s:property value="title" /></td>
-						<td class="reply-cell"><s:property value="replyNum[#L.index]" /></td>
-						<td class="timeline-cell"><s:property value="createTime" /></td>
+						<td><s:property value="bookID" /></td>
+					
+						<td class="reply-cell"><s:property value="borrowingDate" /></td>
+						
 					</tr>
 				</s:iterator>
 			</tbody>
