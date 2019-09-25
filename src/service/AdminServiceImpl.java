@@ -13,4 +13,11 @@ public class AdminServiceImpl extends BaseService<Admin>implements AdminService{
 		}
 		return null;
 	}
+	public String changePassword(String AdminName,String NewPassword)
+	{
+		Admin admin=this.getDao().getSingle("AdminName", AdminName);//获取欲修改对象
+		admin.setPassword(NewPassword);
+		this.getDao().merge(admin);
+		return "success";
+	}
 }

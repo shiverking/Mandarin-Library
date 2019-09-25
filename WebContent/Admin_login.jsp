@@ -10,7 +10,7 @@
 <form action="adminlogin" method="post">
     Admin<input type="text" name="AdminName"><br>
     Password<input type="password" name="Password"><br>
-    <button type="submit" value="login"/>
+    <button type="submit" value="login">login</button>
 </form>
 </body>
 </html>

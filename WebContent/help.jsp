@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- ldh的测试用例，请自行忽略或删除 -->
+<form action="getAllBorrowrecord">
+  
+    <button >asdf</button>
+</form>
+</body>
+</html>

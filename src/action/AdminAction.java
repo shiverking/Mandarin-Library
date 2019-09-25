@@ -1,38 +1,69 @@
 package action;
 
 import java.util.Map;
-
+import javax.servlet.http.HttpServletRequest;
 import com.opensymphony.xwork2.ActionContext;
+import org.apache.struts2.ServletActionContext;
 
 import model.Admin;
 import service.AdminService;
 
 public class AdminAction extends BaseAction<Admin,AdminService> {
-	private Admin tmpAdmin;//´´½¨ÁÙÊ±Admin
-	/*µÇÂ½¹¦ÄÜ*/
+	private Admin tmpAdmin;//åˆ›å»ºä¸´æ—¶Admin
+	/*ç™»é™†åŠŸèƒ½*/
 	public String signin() throws Exception{
-		String AdminName =this.getModel().getAdminName();//»ñÈ¡AdminName
-		String Password  =this.getModel().getPassword();//»ñÈ¡ÊäÈëµÄÃÜÂë
+		String AdminName =this.getModel().getAdminName();//è·å–AdminName
+		String Password  =this.getModel().getPassword();//è·å–è¾“å…¥çš„å¯†ç 
 		if(AdminName==null) {
 			this.errorMessage="You must input an AdminName!";
-			return INPUT;//·µ»ØµÇÂ¼Ò³Ãæ
+			return INPUT;//è¿”å›ç™»å½•é¡µé¢
 		}
 		if(Password==null) {
 			this.errorMessage="You must input the Password!";
-			return INPUT;//·µ»ØµÇÂ¼Ò³Ãæ
+			return INPUT;//è¿”å›ç™»å½•é¡µé¢
 		}
 		Admin admin = this.getService().verify(AdminName, Password);
 		if(admin!=null) {
 			Map<String, Object> session = ActionContext.getContext().getSession();
-			session.put("admin", admin);//½«admin´æÈësession
+			session.put("admin", admin);//å°†adminå­˜å…¥session
 			tmpAdmin = admin ;
 			return SUCCESS;
 		}
 		this.errorMessage="Your name or password is wrong, please try again !";
 		return INPUT;
 	}
-	public String signup() throws Exception{
-		
-		return INPUT;
+	public String changePassword()
+	{
+		String Password  =this.getModel().getPassword();//è·å–Password
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		this.tmpAdmin= (Admin) session.get("admin");
+		if(this.tmpAdmin==null)//ç¡®è®¤ç”¨æˆ·æ˜¯å¦åœ¨ç™»å½•çŠ¶å†µ
+		{
+			return  LOGIN;
+		}
+		else if(this.getService().verify(tmpAdmin.getAdminName(), Password)!=null)//ç¡®è®¤å¯†ç æ˜¯å¦ä¸ç”¨æˆ·ç›¸ç­‰
+		{
+			 HttpServletRequest request=ServletActionContext.getRequest();
+			 String NewPassword=request.getParameter("NewPassword");//è·å–æ–°çš„å¯†ç 
+			 System.out.println(this.getService().changePassword(tmpAdmin.getAdminName(),NewPassword));
+			return this.getService().changePassword(tmpAdmin.getAdminName(),NewPassword);
+		}
+		else //å¯†ç é”™è¯¯é‡æ–°è¾“å…¥
+		{
+			return INPUT;
+		}
+	}
+	public String logout()//æ³¨é”€è´¦å·
+	{
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		if(session==null)
+		{
+			return "failure";
+		}
+		else
+		{
+			session.clear();
+			return "success";
+		}
 	}
 }
