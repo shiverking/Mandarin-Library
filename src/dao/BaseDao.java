@@ -58,6 +58,7 @@ public interface BaseDao<TEntity> {
 	List<TEntity> findBy(String propertyName, Object propertyValue);
 	List<TEntity> findBy(String propertyName, Object propertyValue,String cond);
 	List<TEntity> findBySubString(String propertyName, String cond);
-	
+	//拓展的对数据库双属性查询
+	List<TEntity> findByTwoProperty(String propertyName1,String propertyName2, String cond1, String cond2);
 	
 }
