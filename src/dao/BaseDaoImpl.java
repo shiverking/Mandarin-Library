@@ -132,6 +132,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 
 	public List<TEntity> findBySubString(String propertyName, String cond) {
+		
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName + " like '%" + cond + "%'";
 		List<TEntity> entities = this.getSession().createQuery(queryString).list();
@@ -156,5 +157,12 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 			return entities.get(0);
 		}
 		return null;
+	}
+	//拓展的对数据库双属性查询
+	public	List<TEntity> findByTwoProperty(String propertyName1,String propertyName2, String cond1, String cond2){
+		String queryString = "from " + entityClass.getSimpleName() + " e ";
+		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" +" or e." +propertyName2+" like '%" + cond1 + "%'";
+		List<TEntity> entities = this.getSession().createQuery(queryString).list();
+		return entities;
 	}
 }

@@ -1,29 +1,22 @@
 package service;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import model.Book;
 import model.Borrowrecord;
 
-/**
-* @author 
-* @version 创建时间：2019年9月24日 上午2:14:36
-* 
-*/
-public class BookServiceImpl extends BaseService<Book>implements BookService{
+public class BookServiceImpl extends BaseService<Book> implements BookService {
 
 	@Override
 	public List<Book> getAllBooks() {
 		// TODO Auto-generated method stub
-		List<Book> books=this.getDao().findAll();
+		List<Book> books = this.getDao().findAll();
 		return books;
 	}
 
 	@Override
 	public List<Book> getAllBooks(String cond) {
 		// TODO Auto-generated method stub
-		List<Book> books=this.getDao().findAll(cond);
+		List<Book> books = this.getDao().findAll(cond);
 		return books;
 	}
 
@@ -42,21 +35,28 @@ public class BookServiceImpl extends BaseService<Book>implements BookService{
 	@Override
 	public Book getBookById(int id) {
 		// TODO Auto-generated method stub
-		Book book=this.getDao().get(id);
+		Book book = this.getDao().get(id);
 		return book;
 	}
 
 	@Override
 	public Book getBookByBorrowrecord(Borrowrecord borrowrecord) {
-	int id=borrowrecord.getBookID();
-	return this.getBookById(id);
+		int id = borrowrecord.getBookID();
+		return this.getBookById(id);
 	}
 
-	public List<Book> getBooksByBookName(String cond){
+	public List<Book> getBookByISBN(String cond) {
+		// TODO Auto-generated method stub
+
+		return this.getDao().findBySubString("ISBN", cond);
+
+	}
+
+	public List<Book> getBooksByBookName(String cond) {
 		// TODO Auto-generated method stub
 
 		return this.getDao().findBySubString("BookName", cond);
-		
+
 	}
 
 	@Override
@@ -64,5 +64,18 @@ public class BookServiceImpl extends BaseService<Book>implements BookService{
 		// TODO Auto-generated method stub
 		this.getDao().delete(id);
 	}
+
+	@Override
+	public List<Book> getBookByNameOrISBN(String cond) {
+		// TODO Auto-generated method stub
+		return this.getDao().findByTwoProperty("BookName", "ISBN", cond, cond);
+	}
+
+	
+
+
+
+
+
 
 }

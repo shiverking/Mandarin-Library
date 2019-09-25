@@ -11,20 +11,45 @@
 			<result name="success">/Login_success.jsp</result>
 			<result name="input">/Admin_login.jsp</result>
 		</action>
+		<!-- 搜索界面 -->
+		<action name="search" class="bookAction" method="search">
+			<result name="none">/Search_result.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">searchBook</param>
+			</result>
+		</action>
+		<action name="searchBook" class="bookAction"
+			method="searchBook">
+			<result name="success">/Search_result.jsp
+			</result>
+	
+		</action>
 		
+		
+
 		<!-- Reader界面 -->
-		<action name="getBorrowrecordByReader" class="borrowrecordAction" method="getBorrowrecordByReader">
-		<result name="success" type="chain"><param name="actionName">getBooksbyBorrwrecords</param></result>
+		<action name="getBorrowrecordByReader"
+			class="borrowrecordAction" method="getBorrowrecordByReader">
+			<result name="success" type="chain">
+				<param name="actionName">getBooksbyBorrwrecords</param>
+			</result>
 		</action>
-		<action name="getAllBorrowrecord" class="borrowrecordAction" method="getAllBorrowrecord">
-		<result name="success" type="chain"><param name="actionName">getBooksbyBorrwrecords</param></result>
+		<action name="getAllBorrowrecord" class="borrowrecordAction"
+			method="getAllBorrowrecord">
+			<result name="success" type="chain">
+				<param name="actionName">getBooksbyBorrwrecords</param>
+			</result>
 		</action>
-		<action name="getBooksbyBorrwrecords" class="bookAction" method="getBooksbyBorrwrecords">
-		<result name="success" type="chain"><param name="actionName">getRecordBookName</param></result>
+		<action name="getBooksbyBorrwrecords" class="bookAction"
+			method="getBooksbyBorrwrecords">
+			<result name="success" type="chain">
+				<param name="actionName">getRecordBookName</param>
+			</result>
 		</action>
-		<action name="getRecordBookName" class="borrowrecordAction" method="getRecordBookName">
-		<result name="success">/Reader_borrowed.jsp</result>
+		<action name="getRecordBookName" class="borrowrecordAction"
+			method="getRecordBookName">
+			<result name="success">/Reader_borrowed.jsp</result>
 		</action>
 	</package>
-	
+
 </struts>
