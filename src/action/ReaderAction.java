@@ -34,6 +34,11 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		return INPUT;
 	}
 	
+	public String signout() throws Exception {
+		ActionContext.getContext().getSession().clear();
+		return SUCCESS;
+	}
+	
 	public Reader getTempReader() {
 		return tempReader;
 	}
