@@ -31,4 +31,8 @@ public class AdminAction extends BaseAction<Admin,AdminService> {
 		this.errorMessage="Your name or password is wrong, please try again !";
 		return INPUT;
 	}
+	public String signup() throws Exception{
+		
+		return INPUT;
+	}
 }
