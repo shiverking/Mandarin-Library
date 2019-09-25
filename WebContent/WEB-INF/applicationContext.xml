@@ -18,4 +18,17 @@
     	<property name="service" ref="adminService"/>
     	<property name="model" ref="admin"/>
     </bean>
+    <!-- Librarian数据操作对象 -->
+    <bean id="librarianDao" class="dao.LibrarianDao">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!-- librarianService图书馆馆员操作业务对象 -->
+    <bean id="librarianService" class="service.LibrarianServicelmpl">
+    <property name="dao" ref="librarianDao"></property>
+    </bean>
+    <bean id="librarian" class="model.Librarian" scope="prototype"/>
+    <bean id="librarianAction" class="action.LibrarianAction" scope="prototype">
+    	<property name="service" ref="librarianService"></property>
+    	<property name="model" ref="librarian"></property>
+    </bean>
 </beans>

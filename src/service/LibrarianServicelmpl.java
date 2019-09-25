@@ -13,4 +13,13 @@ public class LibrarianServicelmpl extends BaseService<Librarian>implements Libra
 		}
 		return null;
 	}
+
+	@Override
+	public void register(Librarian librarian) {
+		// TODO Auto-generated method stub
+		if(librarian.getPassword()=="") {
+			librarian.setPassword("00010001");
+		}
+		this.getDao().save(librarian);
+	}
 }
