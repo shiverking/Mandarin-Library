@@ -9,7 +9,7 @@ import service.BookService;
 
 /**
  * @author
- * @version ����ʱ�䣺2019��9��24�� ����2:12:32
+ * @version 锟斤拷锟斤拷时锟戒：2019锟斤拷9锟斤拷24锟斤拷 锟斤拷锟斤拷2:12:32
  * 
  */
 public class BookAction extends BaseAction<Book, BookService> {
@@ -22,11 +22,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		for (Borrowrecord borrowrecord : borrowrecords) {
 			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 		}
-		this.books = books;
 		return SUCCESS;
-	}
-
-	return SUCCESS;
 }
 
 	public List<Borrowrecord> getBorrowrecords() {
