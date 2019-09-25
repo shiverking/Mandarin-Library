@@ -26,6 +26,9 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
+	return SUCCESS;
+}
+
 	public List<Borrowrecord> getBorrowrecords() {
 		return borrowrecords;
 	}
