@@ -3,17 +3,6 @@ package service;
 import java.util.List;
 
 import model.Book;
-<<<<<<< HEAD
-import model.Reader;
-
-public interface BookService {
-	public List<Book> getAllBooks();
-
-	public List<Book> getAllBooks(String cond);
-
-	public List<Book> getThemesBySubString(String cond);
-
-=======
 import model.Borrowrecord;
 
 /**
@@ -29,7 +18,7 @@ public interface BookService {
 	
 	public Book getBookById(int id);
 	public Book getBookByBorrowrecord(Borrowrecord borrowrecord);
+	public List<Book> getBookByISBN(String cond);
 	public List<Book> getBooksByBookName(String cond);
 	public void deleteBookById(int id);
->>>>>>> LDH
 }

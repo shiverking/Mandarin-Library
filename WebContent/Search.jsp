@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="search" method="post">
-    Search<input type="text" name="BookName"><br>
+    Search<input type="text" name="searchContent"><br>
     <button type="submit" value="Search"/>
 </form>
 </body>
