@@ -14,8 +14,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private List<Book> books;
 	private List<Borrowrecord> borrowrecords;
 	private String searchContent;
-	private List<String> results1;
-	private List<String> results2;
+
 
 	public String getBooksbyBorrwrecords() {
 		books = new ArrayList<Book>();
