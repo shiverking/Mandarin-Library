@@ -1,10 +1,9 @@
 package service;
-import model.Admin;
 import model.Librarian;
-public class LibrarianServicelmpl extends BaseService<Librarian> implements LibrarianService{
+public class LibrarianServicelmpl extends BaseService<Librarian>implements LibrarianService{
 	@Override
 	public Librarian verify(String LibrarianName, String Password) {
-		Librarian librarian = this.getDao().getSingle("Libriarian", LibrarianName);//获取用户名为AdminName的对象
+		Librarian librarian = this.getDao().getSingle("LibrarianName",LibrarianName);
 		if(librarian == null) {
 			return null;//如果没有这个用户，则返回空值
 		}
