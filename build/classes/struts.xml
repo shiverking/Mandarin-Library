@@ -11,6 +11,11 @@
 			<result name="success">/Login_success.jsp</result>
 			<result name="input">/Admin_login.jsp</result>
 		</action>
+		<!-- 注册Librarian界面 -->
+		<action name="librariansignup" class="librarianAction" method="signup">
+			<result name="success">/Librarian_success.jsp</result>
+			<result name="input">/Admin_login.jsp</result>
+		</action>
 		<!-- Admin 修改密码 -->
 		<action name="changePassword" class="adminAction" method="changePassword">
 			<result name="success">/Change_Success.jsp</result>
