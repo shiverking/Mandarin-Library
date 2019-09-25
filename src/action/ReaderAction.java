@@ -28,7 +28,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		Reader reader = this.getService().verify(ReaderName,Password);
 		if (reader != null) {
 			Map<String,Object> session = ActionContext.getContext().getSession();
-			session.put("Reader", reader);
+			session.put("reader", reader);
 			tempReader = reader;
 			return SUCCESS;
 		}

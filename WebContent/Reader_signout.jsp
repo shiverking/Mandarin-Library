@@ -8,5 +8,8 @@
 </head>
 <body>
 	<p>Welcom!</p>
+	<form action="readersignout">
+		<button type = "submit">退出登录</button>
+	</form>
 </body>
 </html>

@@ -55,6 +55,9 @@
 			<result name="success">/Reader_signout.jsp</result>
 			<result name="input">/Reader_signin.jsp</result>
 		</action>
+		<action name="readersignout" class="readerAction" method="signout">
+			<result name="success">/Reader_signin.jsp</result>
+		</action>
 	</package>
 
 </struts>

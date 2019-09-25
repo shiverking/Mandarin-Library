@@ -152,8 +152,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 
 	@Override
 	public TEntity getSingle(String propertyName, Object propertyValue) {
-		System.out.println("lllllllllllllllllllllllllllllllllllllllllllllllll");
-		System.out.println(propertyValue);
 		List<TEntity> entities = findBy(propertyName, propertyValue);
 		if (entities != null && entities.size() > 0) {
 			return entities.get(0);
