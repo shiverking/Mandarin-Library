@@ -12,8 +12,6 @@ import service.BookService;
 
 public class BookAction extends BaseAction<Book, BookService> {
 	private List<Book> books;
-	private List<Book> books1;
-	private List<Book> books2;
 	private List<Borrowrecord> borrowrecords;
 	private String searchContent;
 	private List<String> results1;
@@ -45,29 +43,15 @@ public class BookAction extends BaseAction<Book, BookService> {
 		this.books = books;
 	}
 
-	public List<Book> getBooks1() {
-		return books1;
-	}
-
-	public void setBooks1(List<Book> books1) {
-		this.books1 = books1;
-	}
-
-	public List<Book> getBooks2() {
-		return books2;
-	}
-
-	public void setBooks2(List<Book> books2) {
-		this.books2 = books2;
-	}
+	
 
 	public String search() {
-		if (this.searchContent == null) {
+		if (searchContent.isEmpty()) {
 			return NONE;
 		} else
 
 		{
-			return "isbook";
+			return SUCCESS;
 		}
 	}
 
@@ -80,27 +64,13 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public String searchBook() {
-		books1 = this.getService().getBookByISBN(searchContent);
-		books2 = this.getService().getBooksByBookName(searchContent);
-		if (books2 == null)
-			return "isisbn";
-		else
-			return "isname";
-	}
-
-	public String getResult1() {
-		results1 = new ArrayList<String>();
-		for (Book book : books1) {
-			results1.add(book.getISBN());
+		books = new ArrayList<Book>();
+		books = this.getService().getBookByNameOrISBN(searchContent);
+		if (books.isEmpty()) {
+			return NONE;
 		}
 		return SUCCESS;
 	}
 
-	public String getResult2() {
-		results2 = new ArrayList<String>();
-		for (Book book : books2) {
-			results2.add(book.getBookName());
-		}
-		return SUCCESS;
-	}
+	
 }

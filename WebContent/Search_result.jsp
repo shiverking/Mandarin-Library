@@ -13,7 +13,7 @@
 		<table class="table container table-hover main-contents mt-4">
 			<tbody>
 
-				<s:iterator value="books1" status="L">
+				<s:iterator value="books" status="L">
 
 					<tr>
 						<td><s:property value="bookID" /></td>
@@ -21,14 +21,7 @@
 					</tr>
 
 				</s:iterator>
-				<s:iterator value="books2" status="L">
-
-					<tr>
-						<td><s:property value="bookID" /></td>
-						<td><s:property value="bookName" /></td>
-					</tr>
-
-				</s:iterator>
+				
 			</tbody>
 		</table>
 	</div>

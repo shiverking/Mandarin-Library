@@ -65,6 +65,12 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 		this.getDao().delete(id);
 	}
 
+	@Override
+	public List<Book> getBookByNameOrISBN(String cond) {
+		// TODO Auto-generated method stub
+		return this.getDao().findByTwoProperty("BookName", "ISBN", cond, cond);
+	}
+
 	
 
 
