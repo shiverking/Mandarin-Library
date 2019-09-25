@@ -4,13 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Sign in</title>
 </head>
 <body>
 	<form action="readersignin" method="post">
-		Admin<input type="text" name="AdminName"><br> 
+		ReaderName<input type="text" name="ReaderName"><br> 
 		Password<input type="password" name="Password"><br>
-		<button type="submit" value="login" >登录</button>
+		<button type="submit" value="login"/>
+		<!--  
+		<button type="submit" value="signin" ></button>
+		-->
 	</form>
 </body>
 </html>

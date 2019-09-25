@@ -11,6 +11,7 @@
 			<result name="success">/Login_success.jsp</result>
 			<result name="input">/Admin_login.jsp</result>
 		</action>
+		
 		<!-- 搜索界面 -->
 		<action name="search" class="bookAction" method="search">
 			<result name="none">/Search_result.jsp</result>
@@ -24,7 +25,7 @@
 			</result>
 	
 		</action>
-		
+
 		
 
 		<!-- Reader界面 -->
@@ -49,6 +50,10 @@
 		<action name="getRecordBookName" class="borrowrecordAction"
 			method="getRecordBookName">
 			<result name="success">/Reader_borrowed.jsp</result>
+		</action>
+		<action name="readersignin" class="readerAction" method="signin">
+			<result name="success">/Reader_signout.jsp</result>
+			<result name="input">/Reader_signin.jsp</result>
 		</action>
 	</package>
 
