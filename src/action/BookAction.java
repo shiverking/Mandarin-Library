@@ -24,7 +24,7 @@ public String getBooksbyBorrwrecords() {
 	for (Borrowrecord borrowrecord:borrowrecords) {
 		books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 	}
-	this.books=books;
+
 	return SUCCESS;
 }
 
