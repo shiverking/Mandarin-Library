@@ -22,7 +22,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		for (Borrowrecord borrowrecord : borrowrecords) {
 			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 		}
-		this.books = books;
+		
 		return SUCCESS;
 	}
 
@@ -63,11 +63,9 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public String searchBook() {
-		books = new ArrayList<Book>();
+		
 		books = this.getService().getBookByNameOrISBN(searchContent);
-		if (books.isEmpty()) {
-			return NONE;
-		}
+
 		return SUCCESS;
 	}
 
