@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,7 @@
 <form action="adminlogin" method="post">
     Admin<input type="text" name="AdminName"><br>
     Password<input type="password" name="Password"><br>
-    <button type="submit" value="login"/>
+    <button type="submit" value="login">login</button>
 </form>
 </body>
 </html>
