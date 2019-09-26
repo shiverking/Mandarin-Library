@@ -29,13 +29,29 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		if (reader != null) {
 			Map<String,Object> session = ActionContext.getContext().getSession();
 			session.put("reader", reader);
-			tempReader = reader;
+			this.tempReader = (Reader) session.get("reader");
 			return SUCCESS;
 		}
 		this.errorMessage="Your name or password is wrong, please try again !";
 		return INPUT;
 	}
 	
+	public String getSearchContent() {
+		return searchContent;
+	}
+
+	public void setSearchContent(String searchContent) {
+		this.searchContent = searchContent;
+	}
+
+	public List<Reader> getReaders() {
+		return readers;
+	}
+
+	public void setReaders(List<Reader> readers) {
+		this.readers = readers;
+	}
+
 	public String signout() throws Exception {
 		ActionContext.getContext().getSession().clear();
 		return SUCCESS;

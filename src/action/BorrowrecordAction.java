@@ -3,6 +3,9 @@ package action;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
 
 import model.Book;
 import model.Borrowrecord;
@@ -20,9 +23,10 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	private List<Book> books;
 	private List<String> booknameList;
 
-	public String getBorrowrecordByReader(Reader reader) {
-		
-		borrowrecords=this.getService().getBorrowrecordsbyReader(reader);
+	public String getBorrowrecordByReader() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		this.tempReader = (Reader) session.get("reader");
+		borrowrecords=this.getService().getBorrowrecordsbyReader(tempReader);
 		return SUCCESS;
 	}
 	public String getAllBorrowrecord() {
