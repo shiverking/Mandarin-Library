@@ -4,9 +4,18 @@ import model.Reader;
 
 /**
 * @author 
-* @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ24ÈÕ ÉÏÎç12:23:00
+* @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½24ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½12:23:00
 * 
 */
 public class ReaderServiceImpl extends BaseService<Reader>implements ReaderService {
-
+	public Reader verify(String ReaderName,String Password) {
+		Reader reader = this.getDao().getSingle("ReaderName",ReaderName);
+		if (reader == null) {
+			return null;
+		}
+		if (reader.getPassword().equals(Password)) {
+			return reader;
+		}
+		return null;
+	}
 }
