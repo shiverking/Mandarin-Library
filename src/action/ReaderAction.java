@@ -9,14 +9,14 @@ import model.Reader;
 import service.ReaderService;
 
 public class ReaderAction extends BaseAction<Reader, ReaderService> {
-	private Reader tempReader;
+	private Reader tempReader = new Reader();
 	private String searchContent;
 	private List<Reader> readers;
-	
+
 	public String signin() throws Exception {
 		String ReaderName = this.getModel().getReaderName();
 		String Password = this.getModel().getPassword();
-		
+
 		if (ReaderName == null) {
 			this.errorMessage = "You must input your readerName!";
 			return INPUT;
@@ -25,17 +25,27 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			this.errorMessage = "You must input your password!";
 			return INPUT;
 		}
-		Reader reader = this.getService().verify(ReaderName,Password);
+		Reader reader = this.getService().verify(ReaderName, Password);
 		if (reader != null) {
-			Map<String,Object> session = ActionContext.getContext().getSession();
+			Map<String, Object> session = ActionContext.getContext().getSession();
 			session.put("reader", reader);
-			this.tempReader = (Reader) session.get("reader");
+			this.tempReader = reader;
 			return SUCCESS;
 		}
-		this.errorMessage="Your name or password is wrong, please try again !";
+		this.errorMessage = "Your name or password is wrong, please try again !";
 		return INPUT;
 	}
-	
+
+	// 获取用户的状态
+	public String getReaderStatu() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		this.tempReader = (Reader) session.get("reader");
+		if (tempReader == null) {
+			return NONE;
+		}
+		return SUCCESS;
+	}
+
 	public String getSearchContent() {
 		return searchContent;
 	}
@@ -56,14 +66,13 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		ActionContext.getContext().getSession().clear();
 		return SUCCESS;
 	}
-	
 
-public Reader getTempReader() {
-	return tempReader;
-}
+	public Reader getTempReader() {
+		return tempReader;
+	}
 
-public void setTempReader(Reader tempReader) {
-	this.tempReader = tempReader;
-}
+	public void setTempReader(Reader tempReader) {
+		this.tempReader = tempReader;
+	}
 
 }

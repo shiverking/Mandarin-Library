@@ -24,7 +24,7 @@
 
 	<div class="container">
 		<s:include value="Reader_Navbar.jsp" />
-
+   
 		<div class="row">
 			<div class="col-2 mt-8 ">
 				<div class="nav flex-column nav-pills " id="v-pills-tab"
@@ -62,7 +62,7 @@
 									<s:if test="isReturn==0">
 										<tr>
 											<td><s:property value="bookID" /></td>
-											<td><s:property value="booknameList[#L.index]" /></td>
+											<td><s:property value="books[#L.index].BookName" /></td>
 											<td><s:property value="borrowingDate" /></td>
 											<td><s:property value="books[#L.index].Category" /></td>
 										</tr>

@@ -12,12 +12,13 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <title>RESULT</title>
+
 </head>
 
 <body>
 <div class="container">
-	<s:include value="Reader_Navbar.jsp" />
-
+<s:include value="Reader_Navbar.jsp" />
+<s:property value="tempReader.ReaderID" />
 	<div class="row">
 		<table
 			class="table container table-hover main-contents table-responsive-sm mt-8">
@@ -46,6 +47,7 @@
 		</table>
 	</div>
 	</div>
+	
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

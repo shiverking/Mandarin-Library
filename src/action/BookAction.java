@@ -15,15 +15,26 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private List<Borrowrecord> borrowrecords;
 	private String searchContent;
 
+	public String searchBook() {
+		books = new ArrayList<Book>();
+		books = this.getService().getBookByNameOrISBN(searchContent);
+		return SUCCESS;
+	}
 
 	public String getBooksbyBorrwrecords() {
 		books = new ArrayList<Book>();
-
 		for (Borrowrecord borrowrecord : borrowrecords) {
 			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 		}
-		
 		return SUCCESS;
+	}
+
+	public String getSearchContent() {
+		return searchContent;
+	}
+
+	public void setSearchContent(String searchContent) {
+		this.searchContent = searchContent;
 	}
 
 	public List<Borrowrecord> getBorrowrecords() {
@@ -42,32 +53,4 @@ public class BookAction extends BaseAction<Book, BookService> {
 		this.books = books;
 	}
 
-	
-
-	public String search() {
-		if (searchContent.isEmpty()) {
-			return NONE;
-		} else
-
-		{
-			return SUCCESS;
-		}
-	}
-
-	public String getSearchContent() {
-		return searchContent;
-	}
-
-	public void setSearchContent(String searchContent) {
-		this.searchContent = searchContent;
-	}
-
-	public String searchBook() {
-		
-		books = this.getService().getBookByNameOrISBN(searchContent);
-
-		return SUCCESS;
-	}
-
-	
 }

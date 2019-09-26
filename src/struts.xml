@@ -3,6 +3,7 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+  
 	<constant name="struts.objectFactory" value="spring" />
 
 	<package name="default" extends="struts-default" namespace="/">
@@ -12,66 +13,79 @@
 			<result name="input">/Admin_login.jsp</result>
 		</action>
 		<!-- 注册Librarian界面 -->
-		<action name="librariansignup" class="librarianAction" method="signup">
+		<action name="librariansignup" class="librarianAction"
+			method="signup">
 			<result name="success">/Librarian_success.jsp</result>
 			<result name="input">/Admin_login.jsp</result>
 		</action>
 		<!-- Admin 修改密码 -->
-		<action name="changePassword" class="adminAction" method="changePassword">
+		<action name="changePassword" class="adminAction"
+			method="changePassword">
 			<result name="success">/Change_Success.jsp</result>
 			<result name="input">/Login_success.jsp</result>
 			<result name="login">/Admin_login.jsp</result>
 		</action>
 		<action name="logout" class="adminAction" method="logout">
-		<result name="success">/Admin_login.jsp</result>
-		<result name="failure">/Admin_login.jsp</result>
-		</action>
-		
-		<!-- 搜索界面 -->
-		<action name="search" class="bookAction" method="search">
-			<result name="none">/Search_result.jsp</result>
-			<result name="success" type="chain">
-				<param name="actionName">searchBook</param>
-			</result>
-		</action>
-		<action name="searchBook" class="bookAction"
-			method="searchBook">
-			<result name="success">/Search_result.jsp
-			</result>
-	
+			<result name="success">/Admin_login.jsp</result>
+			<result name="failure">/Admin_login.jsp</result>
 		</action>
 
-		
 
-		<!-- Reader界面 -->
+
+
+
+		<!-- Reader功能 -->
+		<!-- 登录登出 -->
+		<action name="readersignin" class="readerAction"
+			method="signin">
+			<result name="success" type="chain"><!--登录成功后跳转到借阅记录界面，后期需要更改  -->
+				<param name="actionName">getBorrowrecordByReader</param>
+			</result>
+			<result name="input">/Reader_signin.jsp</result>
+		</action>
+		<action name="readersignout" class="readerAction"
+			method="signout"><!--登出后跳转到登录界面，后期需要更改  -->
+			<result name="success">/Reader_signin.jsp</result>
+		</action>
+
+		<!-- 获取借阅记录 -->
+		<action name="getReaderStatuForRecord" class="readerAction"
+			method="getReaderStatu"><!--获取用户信息 -->
+			<result name="success" type="chain"><!--若读者已经登录，获取借阅记录 -->
+				<param name="actionName">getBorrowrecordByReader</param>
+			</result>
+			<result name="none">/Reader_signin.jsp</result><!--若读者未登录，跳转到登录界面 -->
+		</action>
 		<action name="getBorrowrecordByReader"
-			class="borrowrecordAction" method="getBorrowrecordByReader">
+			class="borrowrecordAction" method="getBorrowrecordByReader"><!--依赖读者账户获取借阅记录 -->
 			<result name="success" type="chain">
 				<param name="actionName">getBooksbyBorrwrecords</param>
 			</result>
 		</action>
 		<action name="getAllBorrowrecord" class="borrowrecordAction"
-			method="getAllBorrowrecord">
+			method="getAllBorrowrecord"><!-- 直接取得所有借阅记录 -->
 			<result name="success" type="chain">
 				<param name="actionName">getBooksbyBorrwrecords</param>
 			</result>
 		</action>
 		<action name="getBooksbyBorrwrecords" class="bookAction"
-			method="getBooksbyBorrwrecords">
-			<result name="success" type="chain">
-				<param name="actionName">getRecordBookName</param>
+			method="getBooksbyBorrwrecords"><!-- 依赖借阅记录获取对应的书籍信息 -->
+			<result name="success">/Reader_borrowed.jsp</result><!--结束action，返回借阅记录界面 -->
+		</action>
+
+		<!-- 搜索书籍 -->
+		<action name="getReaderStatuForSearch" class="readerAction"
+			method="getReaderStatu"><!--获取用户信息 -->
+			<result name="success" type="chain"><!--不论用户是否登录，跳转执行searchBook -->
+				<param name="actionName">searchBook</param>
+			</result>
+			<result name="none" type="chain"><!--不论用户是否登录，跳转执行searchBook -->
+				<param name="actionName">searchBook</param>
 			</result>
 		</action>
-		<action name="getRecordBookName" class="borrowrecordAction"
-			method="getRecordBookName">
-			<result name="success">/Reader_borrowed.jsp</result>
-		</action>
-		<action name="readersignin" class="readerAction" method="signin">
-			<result name="success">/Reader_signout.jsp</result>
-			<result name="input">/Reader_signin.jsp</result>
-		</action>
-		<action name="readersignout" class="readerAction" method="signout">
-			<result name="success">/Reader_signin.jsp</result>
+		<action name="searchBook" class="bookAction"
+			method="searchBook">
+			<result name="success">/Search_result.jsp</result>
 		</action>
 	</package>
 
