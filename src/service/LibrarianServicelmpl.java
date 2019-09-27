@@ -3,6 +3,7 @@ import model.Librarian;
 public class LibrarianServicelmpl extends BaseService<Librarian>implements LibrarianService{
 	@Override
 	public Librarian verify(String LibrarianName, String Password) {
+		if(Password==null) {Password="00010001";}
 		Librarian librarian = this.getDao().getSingle("LibrarianName",LibrarianName);
 		if(librarian == null) {
 			return null;//如果没有这个用户，则返回空值

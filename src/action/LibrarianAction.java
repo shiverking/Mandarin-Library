@@ -45,14 +45,8 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			i++;*/
 			return INPUT;//·µ»Ø×¢²á½çÃæ
 		}
-		if(Password==null) {
-			Password="00010001";
-		}
 		Librarian librarian = this.getService().verify(LibrarianName, Password);
-		if(NewPassword == null) {
-			Password="00010001";
-		}
-		if(!NewPassword.equals(Password)&&i == 0) {
+		if(Password==null||NewPassword==null||!NewPassword.equals(Password)) {
 			/*request.setAttribute("tipMessage", "The two passwords you entered do not match!");
 			i++;*/
 			return INPUT;
