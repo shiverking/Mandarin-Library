@@ -22,7 +22,7 @@
 
 		<form action="searchBook" class="form-inline my-2 my-lg-0">
 
-			<input class="form-control mr-sm-2" type="text" name="searchContent" required=""
+			<input class="form-control mr-sm-2" type="text" name="searchContent"
 				placeholder="Search by title or ISBN" aria-label="Search">
 			<div class="input-group-append"><button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button></div>
 		</form>

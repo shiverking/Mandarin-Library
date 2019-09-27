@@ -15,25 +15,25 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private String errorMessage;
 
 	public String signin() throws Exception {
-		String ReaderName = this.getModel().getReaderName();
+		String Email = this.getModel().getEmail();
 		String Password = this.getModel().getPassword();
 
-		if (ReaderName.isEmpty()) {
-			this.errorMessage = "You must input your readerName!";
+		if (Email.isEmpty()) {
+			this.errorMessage = "You must input your Email!";
 			return INPUT;
 		}
 		if (Password.isEmpty()) {
 			this.errorMessage = "You must input your password!";
 			return INPUT;
 		}
-		Reader reader = this.getService().verify(ReaderName, Password);
+		Reader reader = this.getService().verify(Email, Password);
 		if (reader != null) {
 			Map<String, Object> session = ActionContext.getContext().getSession();
 			session.put("reader", reader);
 			this.tempReader = reader;
 			return SUCCESS;
 		}
-		this.errorMessage = "Your name or password is wrong!";
+		this.errorMessage = "Your email or password is wrong!";
 		return INPUT;
 	}
 

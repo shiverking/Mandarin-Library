@@ -17,9 +17,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public String searchBook() {
 		books = new ArrayList<Book>();
-		if (!searchContent.isEmpty()) {
-			books = this.getService().getBookByNameOrISBN(searchContent);
-		}
+		books = this.getService().getBookByNameOrISBN(searchContent);
 		return SUCCESS;
 	}
 
