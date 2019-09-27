@@ -11,15 +11,22 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<title>带验证的登录表单form</title>
+<title>sign_in</title>
 <link rel="stylesheet" href="style/style.css">
 </head>
 <body class="bg-secondary">
+	<div id="toast">
+		<div id="img">
+			<i class="fas fa-exclamation-circle"></i>
+		</div>
+		<p id="desc"></p>
+	</div>
 
 	<div class="container">
 		<div class="loginBox">
 			<div class="userImage">
-				<img src="https://avatars3.githubusercontent.com/u/31076337?s=460&v=4">
+				<img
+					src="https://avatars3.githubusercontent.com/u/31076337?s=460&v=4">
 			</div>
 			<form id="loginForm" action="readersignin" method="post">
 				<label>Name:</label> <input type="text" class="input-wrapper"
@@ -29,8 +36,29 @@
 			</form>
 		</div>
 	</div>
+	<script>
+		function launch_toast() {
+			var x = document.getElementById("toast")
+			x.className = "show";
+			var desc = document.getElementById("desc");
+			desc.innerHTML = "<s:property value="errorMessage"></s:property>";
+			setTimeout(function() {
+				x.className = x.className.replace("show", "");
+			}, 2900);
+		};
+
+		(function() {
+			// your page initialization code here
+			// the DOM will be available here
+			if ("<s:property value="errorMessage"></s:property>" == "") {
+				console.log("no error");
+			} else {
+				launch_toast();
+			}
+		})();
+	</script>
 	<!-- partial -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script

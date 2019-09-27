@@ -12,16 +12,17 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private Reader tempReader = new Reader();
 	private String searchContent;
 	private List<Reader> readers;
+	private String errorMessage;
 
 	public String signin() throws Exception {
 		String ReaderName = this.getModel().getReaderName();
 		String Password = this.getModel().getPassword();
 
-		if (ReaderName == null) {
+		if (ReaderName.isEmpty()) {
 			this.errorMessage = "You must input your readerName!";
 			return INPUT;
 		}
-		if (Password == null) {
+		if (Password.isEmpty()) {
 			this.errorMessage = "You must input your password!";
 			return INPUT;
 		}
@@ -32,7 +33,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			this.tempReader = reader;
 			return SUCCESS;
 		}
-		this.errorMessage = "Your name or password is wrong, please try again !";
+		this.errorMessage = "Your name or password is wrong!";
 		return INPUT;
 	}
 
@@ -73,6 +74,14 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 
 	public void setTempReader(Reader tempReader) {
 		this.tempReader = tempReader;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
 }

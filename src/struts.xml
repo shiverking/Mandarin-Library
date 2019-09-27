@@ -74,15 +74,7 @@
 		</action>
 
 		<!-- 搜索书籍 -->
-		<action name="getReaderStatuForSearch" class="readerAction"
-			method="getReaderStatu"><!--获取用户信息 -->
-			<result name="success" type="chain"><!--不论用户是否登录，跳转执行searchBook -->
-				<param name="actionName">searchBook</param>
-			</result>
-			<result name="none" type="chain"><!--不论用户是否登录，跳转执行searchBook -->
-				<param name="actionName">searchBook</param>
-			</result>
-		</action>
+
 		<action name="searchBook" class="bookAction"
 			method="searchBook">
 			<result name="success">/Search_result.jsp</result>
