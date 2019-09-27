@@ -15,16 +15,17 @@
 
 </head>
 
-<body>
+<body class="bg-secondary">
 <div class="container">
 <s:include value="Reader_Navbar.jsp" />
-<s:property value="tempReader.ReaderID" />
+
 	<div class="row">
+	<div class="col-12">
 		<table
-			class="table container table-hover main-contents table-responsive-sm mt-8">
+			class="table container table-hover bg-light main-contents table-responsive-sm mt-8 ">
 			<thead class="thead-light">
 				<tr>
-					<th class="table-title" scope="col">BookID</th>
+					<th class="table-title" scope="col">ISBN</th>
 					<th class="table-title" scope="col">BookName</th>
 					<th class="table-title" scope="col">Location</th>
 					<th class="table-title" scope="col">Category</th>
@@ -35,7 +36,7 @@
 					<s:if test="isBorrowed!=1">
 						<tr>
 						
-							<td><s:property value="bookID" /></td>
+							<td><s:property value="ISBN" /></td>
 							<td><s:property value="bookName" /></td>
 							<td><s:property value="Location" /></td>
 							<td><s:property value="Category" /></td>
@@ -45,6 +46,7 @@
 				</s:iterator>
 			</tbody>
 		</table>
+		</div>
 	</div>
 	</div>
 	

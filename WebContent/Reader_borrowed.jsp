@@ -20,14 +20,14 @@
 </style>
 </head>
 
-<body>
+<body class="bg-secondary">
 
 	<div class="container">
 		<s:include value="Reader_Navbar.jsp" />
    
 		<div class="row">
-			<div class="col-2 mt-8 ">
-				<div class="nav flex-column nav-pills " id="v-pills-tab"
+			<div class="col-2 mt-8" >
+				<div class="nav navbar flex-column nav-pills shadow p-3 mb-5 bg-white rounded" id="v-pills-tab"
 					role="tablist" aria-orientation="vertical">
 					<a class="nav-link active" id="v-pills-Current-tab"
 						data-toggle="pill" href="#v-pills-Current" role="tab"
@@ -44,11 +44,11 @@
 				</div>
 			</div>
 			<div class="col-10 mt-8">
-				<div class="tab-content" id="v-pills-tabContent">
+				<div class="tab-content bg-light" id="v-pills-tabContent rounded" >
 					<div class="tab-pane fade show active" id="v-pills-Current"
 						role="tabpanel" aria-labelledby="v-pills-Current-tab">
 						<table
-							class="table container table-hover main-contents table-responsive-sm mt-8">
+							class="table container table-hover main-contents table-responsive-sm mt-8 ">
 							<thead class="thead-light">
 								<tr>
 									<th class="table-title" scope="col">BookID</th>
@@ -91,7 +91,7 @@
 									<s:if test="isReturn!=0">
 										<tr>
 											<td><s:property value="bookID" /></td>
-											<td><s:property value="booknameList[#L.index]" /></td>
+											<td><s:property value="books[#L.index].BookName" /></td>
 											<td><s:property value="borrowingDate" /></td>
 											<td><s:property value="returnDate" /></td>
 											<td><s:property value="books[#L.index].Category" /></td>

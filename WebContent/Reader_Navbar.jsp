@@ -21,7 +21,7 @@
 		</ul>
 
 		<form action="getReaderStatuForSearch" class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="text" name="searchContent"
+			<input class="form-control mr-sm-2" type="text" name="searchContent" required=""
 				placeholder="Search by title or ISBN" aria-label="Search">
 			<button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
 		</form>
