@@ -28,7 +28,7 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord>implements
 	@Override
 	public List<Borrowrecord> getBorrowrecordsbyReader(Reader reader) {
 		// TODO Auto-generated method stub
-		return this.getDao().findBy("ReaderID", reader.getReaderID(), "BorrowingDate");
+		return this.getDao().findBy("ReaderID", reader.getReaderID(), "BorrowingDate desc");
 	}
 
 	@Override

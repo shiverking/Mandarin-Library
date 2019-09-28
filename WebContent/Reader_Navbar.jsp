@@ -36,7 +36,7 @@
 					<li class="divider dropdown-divider"></li>
 					<li><a href="#" class="dropdown-item">Setting</a></li>
 					<li class="divider dropdown-divider"></li>
-					<li><a href="readersignout.action" class="dropdown-item">Sign Out</a></li>
+					<li><a href="readersignout.action" class="dropdown-item">Logout</a></li>
 				</ul></li>
 		</ul>
 	</div>
