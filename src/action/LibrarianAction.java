@@ -1,6 +1,6 @@
 package action;
 
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +12,10 @@ import service.LibrarianService;
 
 public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	private Librarian tmpLibrarian;//创建临时Librarian
+	private List<Librarian> Librarains;
+	public List<Librarian> getLibrarains() {
+		return Librarains;
+	}
 	/*登陆*/
 	public String signin() throws Exception{
 		String LibrarianName =this.getModel().getLibrarianName();//获取LibrarianName
@@ -70,5 +74,10 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			}
 		}
 		return INPUT;
+	}
+	public String show()
+	{
+		this.Librarains=this.getService().show();
+		return SUCCESS;
 	}
 }

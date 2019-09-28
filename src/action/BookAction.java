@@ -6,42 +6,106 @@ import java.util.List;
 import model.Book;
 import model.Borrowrecord;
 import service.BookService;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionContext;
+import util.ISBNgenerator;
 
 /**
-* @author 
-* @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ24ÈÕ ÉÏÎç2:12:32
-* 
-*/
-public class BookAction extends BaseAction<Book, BookService>{
-private List<Book> books;
-private List<Borrowrecord> borrowrecords;
-
-
-
-public String getBooksbyBorrwrecords() {
-	books=new ArrayList<Book>();
+ * @author
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½24ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½2:12:32
+ * 
+ */
+public class BookAction extends BaseAction<Book, BookService> {
+	private static Book book;
+	private List<Book> books;
+	private List<Borrowrecord> borrowrecords;
+	private ISBNgenerator iSBNgenerator;
 	
-	for (Borrowrecord borrowrecord:borrowrecords) {
-		books.add(this.getService().getBookByBorrowrecord(borrowrecord));
+	public Book getBook() {
+		return book;
 	}
-	this.books=books;
-	return SUCCESS;
-}
 
-public List<Borrowrecord> getBorrowrecords() {
-	return borrowrecords;
-}
+	public void setBook(Book book) {
+		this.book = book;
+	}
 
+	public String getBooksbyBorrwrecords() {
+		books = new ArrayList<Book>();
 
-public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
-	this.borrowrecords=borrowrecords;
-}
-public List<Book> getBooks() {
-	return books;
-}
+		for (Borrowrecord borrowrecord : borrowrecords) {
+			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
+		}
+		this.books = books;
+		return SUCCESS;
+	}
 
-public void setBooks(List<Book> books) {
-	this.books = books;
-}
+	public List<Borrowrecord> getBorrowrecords() {
+		return borrowrecords;
+	}
 
+	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
+		this.borrowrecords = borrowrecords;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
+	public String addBook() throws Exception {//ï¿½ï¿½ï¿½ï¿½é¼®ï¿½ï¿½ï¿½ÜµÄ¼ï¿½Êµï¿½Ö£ï¿½Ä¿Ç°
+		// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ÐµÄ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ BookNameï¿½ï¿½Priceï¿½ï¿½Locationï¿½ï¿½Categoryï¿½ï¿½Number
+		HttpServletRequest PriceRequest =  ServletActionContext.getRequest();
+		HttpServletRequest NumRequest = ServletActionContext.getRequest();
+		String BookName = this.getModel().getBookName();
+		int Price = Integer.parseInt(PriceRequest.getParameter("Price"));
+		String Location = this.getModel().getLocation();
+		String Category = this.getModel().getCategory();
+		int Number = Integer.parseInt(NumRequest.getParameter("Num"));
+		this.getModel().setBookName(BookName);
+		this.getModel().setPrice(Price);
+		this.getModel().setLocation(Location);
+		this.getModel().setReturnPeriod(30);
+		this.getModel().setFineValue(1);
+		this.getModel().setIsBorrowed(false);
+		this.getModel().setCategory(Category);
+		for (int i = 0; i < Number; i++) {//Ã¿ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½é£¬ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½
+			this.getModel().setISBN(iSBNgenerator.generateISBN());
+			this.getService().saveBook(this.getModel());
+		}
+		return SUCCESS;
+	}
+	public String addBookPage() {//ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½é¼®ï¿½ï¿½ï¿½ï¿½
+		return SUCCESS;
+	}
+	public String display() {
+		this.books = this.getService().getAllBooks();//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ðµï¿½ï¿½é¼®
+		return SUCCESS;
+	}
+	public String deleteBook() {
+		this.getService().deleteBookById(book.getBookID());
+		return SUCCESS;
+	}
+	public String editBook() {
+		this.book = this.getService().getBookById(book.getBookID());
+		if(this.getModel().getBookName()!=null) {
+			book.setBookName(this.getModel().getBookName());
+		}
+		if(this.getModel().getPrice()>0) {
+			book.setPrice(this.getModel().getPrice());;
+		}
+		if(this.getModel().getLocation()!=null) {
+			book.setLocation(this.getModel().getLocation());
+		}
+		book.setIsBorrowed(this.getModel().getIsBorrowed());
+		if(this.getModel().getCategory()!=null) {
+			book.setCategory(this.getModel().getCategory());
+		}
+		this.getService().mergeBook(book);
+		return SUCCESS;
+	}
 }
