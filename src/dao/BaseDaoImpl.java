@@ -1,7 +1,7 @@
 package dao;
 /**
 * @author 
-* @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ23ÈÕ ÏÂÎç1:57:18
+* @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½23ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1:57:18
 * 
 */
 
@@ -132,6 +132,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 
 	public List<TEntity> findBySubString(String propertyName, String cond) {
+		
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName + " like '%" + cond + "%'";
 		List<TEntity> entities = this.getSession().createQuery(queryString).list();
@@ -156,5 +157,12 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 			return entities.get(0);
 		}
 		return null;
+	}
+	//ï¿½ï¿½Õ¹ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½Ë«ï¿½ï¿½ï¿½Ô²ï¿½Ñ¯
+	public	List<TEntity> findByTwoProperty(String propertyName1,String propertyName2, String cond1, String cond2){
+		String queryString = "from " + entityClass.getSimpleName() + " e ";
+		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" +" or e." +propertyName2+" like '%" + cond1 + "%'";
+		List<TEntity> entities = this.getSession().createQuery(queryString).list();
+		return entities;
 	}
 }
