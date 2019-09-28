@@ -29,8 +29,8 @@
 					src="https://avatars3.githubusercontent.com/u/31076337?s=460&v=4">
 			</div>
 			<form id="loginForm" action="readersignin" method="post">
-				<label>Name:</label> <input type="email" class="input-wrapper"
-					name="Email"> <label>Email:</label> <input
+				<label>Email:</label> <input type="email" class="input-wrapper"
+					name="Email" autofocus="autofocus" > <label>Password:</label> <input
 					type="password" class="input-wrapper" name="Password">
 				<button class="btn btn-primary btn-block" type="submit" value="登录">Login</button>
 			</form>
