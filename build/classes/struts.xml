@@ -26,7 +26,9 @@
 		<result name="success">/Admin_login.jsp</result>
 		<result name="failure">/Admin_login.jsp</result>
 		</action>
-		
+		<action name="edit" class="librarianAction" method="show">
+		<result name="success">/Librarian.jsp</result>
+		</action>
 		<!-- 搜索界面 -->
 		<action name="search" class="bookAction" method="search">
 			<result name="none">/Search_result.jsp</result>
@@ -38,11 +40,7 @@
 			method="searchBook">
 			<result name="success">/Search_result.jsp
 			</result>
-	
-		</action>
-
-		
-
+    </action>
 		<!-- Reader界面 -->
 		<action name="getBorrowrecordByReader"
 			class="borrowrecordAction" method="getBorrowrecordByReader">
@@ -72,6 +70,26 @@
 		</action>
 		<action name="readersignout" class="readerAction" method="signout">
 			<result name="success">/Reader_signin.jsp</result>
+		</action>
+		<!-- Librarian添加书籍-->
+		<action name="addBook" class="bookAction" method="addBook">
+		<result name="success" type="chain">displayBooks</result>
+		</action>
+		<!-- 跳转Librarian添加书籍界面-->
+		<action name="addBookPage" class="bookAction" method="addBookPage">
+		<result name="success">/AddBook.jsp</result>
+		</action>
+		<!-- Librarian查看书籍列表 -->
+		<action name="displayBooks" class="bookAction" method="display">
+		<result name="success">/BookList.jsp</result>
+		</action>
+		<!-- Librarian删除书籍 -->
+		<action name="deleteBook" class="bookAction" method="deleteBook">
+			<result name="success" type="chain">displayBooks</result>
+		</action>
+		<!-- Librarian修改书籍信息 -->
+		<action name="editBook" class="bookAction" method="editBook">
+			<result name="success">/EditBook.jsp</result>
 		</action>
 	</package>
 
