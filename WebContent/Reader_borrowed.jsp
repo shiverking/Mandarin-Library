@@ -16,6 +16,7 @@
 #v-pills-tab {
 	position: sticky;
 	top: 5.5rem;
+	
 }
 </style>
 </head>
@@ -26,9 +27,9 @@
 		<s:include value="Reader_Navbar.jsp" />
 
 		<div class="row">
-			<div class="col-2 mt-8">
+			<div class="col-12 col-sm-4 col-md-3 col-lg-2 mt-8">
 				<div
-					class="nav navbar flex-column nav-pills shadow p-3 mb-5 bg-white rounded"
+					class="nav flex-column nav-pills shadow p-3 mb-5 bg-white rounded text-center"
 					id="v-pills-tab" role="tablist" aria-orientation="vertical">
 					<a class="nav-link active" id="v-pills-Current-tab"
 						data-toggle="pill" href="#v-pills-Current" role="tab"
@@ -38,18 +39,18 @@
 						aria-controls="v-pills-History" aria-selected="false">Return
 						history </a> <a class="nav-link" id="v-pills-messages-tab"
 						data-toggle="pill" href="#v-pills-messages" role="tab"
-						aria-controls="v-pills-messages" aria-selected="false">Messages   </a>
-					<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
+						aria-controls="v-pills-messages" aria-selected="false">Messages
+					</a> <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
 						href="#v-pills-settings" role="tab"
 						aria-controls="v-pills-settings" aria-selected="false">Settings</a>
 				</div>
 			</div>
-			<div class="col-10 mt-8">
+			<div class="col-12 col-sm-8 col-md-9 col-lg-10 mt-8">
 				<div class="tab-content bg-light" id="v-pills-tabContent rounded">
 					<div class="tab-pane fade show active" id="v-pills-Current"
 						role="tabpanel" aria-labelledby="v-pills-Current-tab">
 						<table
-							class="table container table-hover main-contents table-responsive-sm mt-8 ">
+							class="table container table-hover main-contents table-responsive-md mt-8 ">
 							<thead class="thead-light">
 								<tr>
 									<th class="table-title" scope="col">BookID</th>
@@ -75,7 +76,7 @@
 					<div class="tab-pane fade" id="v-pills-History" role="tabpanel"
 						aria-labelledby="v-pills-History-tab">
 						<table
-							class="table container table-hover main-contents table-responsive-sm mt-8">
+							class="table container table-hover main-contents table-responsive-lg mt-8">
 							<thead class="thead-light">
 								<tr>
 									<th class="table-title" scope="col">BookID</th>
@@ -89,20 +90,19 @@
 							<tbody>
 
 								<s:iterator value="borrowrecords" status="L">
-									
-										<s:if test="isReturn!=0">
-											<tr>
-												<td><s:property value="bookID" /></td>
-												<td><s:property value="books[#L.index].BookName" /></td>
-												<td><s:property value="borrowingDate" /></td>
-												<td><s:property value="returnDate" /></td>
-												<td><s:property value="books[#L.index].Category" /></td>
-												<s:if test="fine!=0">
-													<td><s:property value="fine" /></td>
-												</s:if>
-											</tr>
-										</s:if>
-								
+
+									<s:if test="isReturn!=0">
+										<tr>
+											<td><s:property value="bookID" /></td>
+											<td><s:property value="books[#L.index].BookName" /></td>
+											<td><s:property value="borrowingDate" /></td>
+											<td><s:property value="returnDate" /></td>
+											<td><s:property value="books[#L.index].Category" /></td>
+											<td><s:if test="fine!=0">
+													<s:property value="fine" />¥</s:if></td>
+										</tr>
+									</s:if>
+
 								</s:iterator>
 							</tbody>
 						</table>
