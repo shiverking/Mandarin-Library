@@ -30,7 +30,8 @@
     <bean id="librarianAction" class="action.LibrarianAction" scope="prototype">
     	<property name="service" ref="librarianService"></property>
     	<property name="model" ref="librarian"></property>
-   <!-- ReaderDao 数据操作对象 -->
+    </bean>
+    <!-- ReaderDao 数据操作对象 -->
     <bean id="readerDao" class="dao.ReaderDao">
     <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
