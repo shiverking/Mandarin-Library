@@ -36,23 +36,6 @@ public class BookAction extends BaseAction<Book, BookService> {
 		this.books = books;
 		return SUCCESS;
 	}
-
-	public List<Borrowrecord> getBorrowrecords() {
-		return borrowrecords;
-	}
-
-	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
-		this.borrowrecords = borrowrecords;
-	}
-
-	public List<Book> getBooks() {
-		return books;
-	}
-
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}
-
 	public String addBook() throws Exception {
 		HttpServletRequest PriceRequest =  ServletActionContext.getRequest();
 		HttpServletRequest NumRequest = ServletActionContext.getRequest();
