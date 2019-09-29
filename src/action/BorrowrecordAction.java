@@ -23,8 +23,7 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	private List<Book> books;
 
 	public String getBorrowrecordByReader() {
-		Map<String, Object> session = ActionContext.getContext().getSession();
-		this.tempReader = (Reader) session.get("reader");
+		
 		borrowrecords = this.getService().getBorrowrecordsbyReader(tempReader);
 		return SUCCESS;
 	}

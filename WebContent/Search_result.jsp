@@ -22,7 +22,7 @@
 	<div class="row">
 	<div class="col-12">
 		<table
-			class="table container table-hover bg-light main-contents table-responsive-sm mt-8 ">
+			class="table container table-hover bg-light main-contents table-responsive-md mt-8 ">
 			<thead class="thead-light">
 				<tr>
 					<th class="table-title" scope="col">ISBN</th>
