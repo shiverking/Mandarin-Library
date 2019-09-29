@@ -8,10 +8,10 @@ public class LibrarianServicelmpl extends BaseService<Librarian>implements Libra
 		if(Password==null) {Password="00010001";}
 		Librarian librarian = this.getDao().getSingle("LibrarianName",LibrarianName);
 		if(librarian == null) {
-			return null;//Èç¹ûÃ»ÓĞÕâ¸öÓÃ»§£¬Ôò·µ»Ø¿ÕÖµ
+			return null;//ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ò·µ»Ø¿ï¿½Öµ
 		}
 		if(librarian.getPassword().equals(Password)) {
-			//Èç¹û¸ÃÓÃ»§µÄÃÜÂëµÈÓÚÊäÈëµÄÃÜÂë,Ôò·µ»Ø¸ÃÓÃ»§
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ò·µ»Ø¸ï¿½ï¿½Ã»ï¿½
 			return librarian;
 		}
 		return null;
@@ -28,5 +28,24 @@ public class LibrarianServicelmpl extends BaseService<Librarian>implements Libra
 	public List<Librarian> show()
 	{
 		return this.getDao().findAll();
+	}
+
+	@Override
+	public Librarian getLibrarianByID(int id) {
+		// TODO Auto-generated method stub
+		Librarian librarian=this.getDao().get(id);
+		return librarian;
+	}
+
+	@Override
+	public void mergeLibrarian(Librarian librarian) {
+		// TODO Auto-generated method stub
+		this.getDao().merge(librarian);
+	}
+
+	@Override
+	public void deleteLibrarianById(int librarianID) {
+		// TODO Auto-generated method stub
+		this.getDao().delete(librarianID);
 	}
 }

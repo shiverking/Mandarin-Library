@@ -11,15 +11,24 @@ import model.Librarian;
 import service.LibrarianService;
 
 public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
-	private Librarian tmpLibrarian;//´´½¨ÁÙÊ±Librarian
-	private List<Librarian> Librarains;
-	public List<Librarian> getLibrarains() {
-		return Librarains;
+	private static Librarian librarian;
+	private List<Librarian> Librarians;
+	public Librarian getLibrarian() {
+		return librarian;
 	}
-	/*µÇÂ½*/
+	public void setLibrarian(Librarian librarian) {
+		this.librarian = librarian;
+	}
+	public List<Librarian> getLibrarians() {
+		return Librarians;
+	}
+	public void setLibrarians(List<Librarian> librarians) {
+		Librarians = librarians;
+	}
+	/*ï¿½ï¿½Â½*/
 	public String signin() throws Exception{
-		String LibrarianName =this.getModel().getLibrarianName();//»ñÈ¡LibrarianName
-		String Password  =this.getModel().getPassword();//»ñÈ¡ÊäÈëµÄÃÜÂë
+		String LibrarianName =this.getModel().getLibrarianName();//ï¿½ï¿½È¡LibrarianName
+		String Password  =this.getModel().getPassword();//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if(LibrarianName==null) {
 			this.errorMessage="You must input the Name!";
 			return INPUT;
@@ -28,26 +37,26 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			this.errorMessage="You must input the Password!";
 			return INPUT;
 		}
-		Librarian librarian = this.getService().verify(LibrarianName, Password);
-		if(librarian!=null) {
+		Librarian Librarian = this.getService().verify(LibrarianName, Password);
+		if(Librarian!=null) {
 			Map<String, Object> session = ActionContext.getContext().getSession();
-			session.put("librarian", librarian);
-			tmpLibrarian = librarian;
+			session.put("librarian", Librarian);
+			librarian = Librarian;
 			return SUCCESS;
 		}
 		this.errorMessage="Your name or password is wrong, please try again !";
 		return INPUT;
 	}
 	public String signup() throws Exception{
-		String LibrarianName = this.getModel().getLibrarianName();//»ñÈ¡LibrarianName
-		String Password = this.getModel().getPassword();//»ñÈ¡ÊäÈëµÄÃÜÂë
+		String LibrarianName = this.getModel().getLibrarianName();//ï¿½ï¿½È¡LibrarianName
+		String Password = this.getModel().getPassword();//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String NewPassword=request.getParameter("ConfirmPassword");
 		int i=0;
 		if(LibrarianName==null&&i == 0) {
 			/*request.setAttribute("tipMessage", "You must input the Name!");
 			i++;*/
-			return INPUT;//·µ»Ø×¢²á½çÃæ
+			return INPUT;//ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 		Librarian librarian = this.getService().verify(LibrarianName, Password);
 		if(Password==null||NewPassword==null||!NewPassword.equals(Password)) {
@@ -62,7 +71,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 				}
 				catch (Exception ex){
 					/*this.addActionError(ex.getMessage());
-					return INPUT;*/     //Ò³ÃæÌáÊ¾ÐÅÏ¢Î´ÊµÏÖ
+					return INPUT;*/     //Ò³ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢Î´Êµï¿½ï¿½
 				}
 		    	return SUCCESS;
 			}
@@ -71,7 +80,22 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	}
 	public String show()
 	{
-		this.Librarains=this.getService().show();
+		this.Librarians=this.getService().show();
+		return SUCCESS;
+	}
+	public String editLibrarian() {
+		this.librarian=this.getService().getLibrarianByID(librarian.getLibrarianID());
+		if(this.getModel().getLibrarianName()!=null) {
+			librarian.setLibrarianName(this.getModel().getLibrarianName());
+		}
+		if(this.getModel().getPassword()!=null) {
+			librarian.setPassword(this.getModel().getPassword());
+		}
+		this.getService().mergeLibrarian(librarian);
+		return SUCCESS;
+	}
+	public String deleteLibrarian() {
+		this.getService().deleteLibrarianById(librarian.getLibrarianID());
 		return SUCCESS;
 	}
 }

@@ -9,4 +9,9 @@ public interface LibrarianService {
 
 	public void register(Librarian librarian);
 	public List<Librarian> show();
+	public Librarian getLibrarianByID(int id);
+
+	public void mergeLibrarian(Librarian librarian);
+
+	public void deleteLibrarianById(int librarianID);
 }
