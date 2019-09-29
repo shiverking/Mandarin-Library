@@ -1,4 +1,6 @@
 package service;
+import java.util.List;
+
 import model.Librarian;
 public class LibrarianServicelmpl extends BaseService<Librarian>implements LibrarianService{
 	@Override
@@ -22,5 +24,9 @@ public class LibrarianServicelmpl extends BaseService<Librarian>implements Libra
 			librarian.setPassword("00010001");
 		}
 		this.getDao().save(librarian);
+	}
+	public List<Librarian> show()
+	{
+		return this.getDao().findAll();
 	}
 }
