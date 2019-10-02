@@ -2,6 +2,10 @@ package dao;
 
 import java.util.List;
 
+
+
+
+
 /**
 * @author 
 * @version 创建时间：2019年9月23日 下午2:04:16
@@ -60,5 +64,7 @@ public interface BaseDao<TEntity> {
 	List<TEntity> findBySubString(String propertyName, String cond);
 	//拓展的对数据库双属性查询
 	List<TEntity> findByTwoProperty(String propertyName1,String propertyName2, String cond1, String cond2);
-	
+	//拓展分页查询
+	int  findTotalNum(String propertyName,Object propertyValue);
+	List<TEntity> findPageByQuery(String propertyName,Object propertyValue,String cond,int pageStart,int pageSize);
 }

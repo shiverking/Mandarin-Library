@@ -16,17 +16,24 @@
 #v-pills-tab {
 	position: sticky;
 	top: 5.5rem;
-	
 }
 </style>
+<script>
+	/* 实现分页页数接受和表单提交的函数 */
+	function topage(num) {
+		document.getElementById("pagenum").value = num;
+		document.getElementById("postPage").submit();
+	}
+	/* 实现分页页数接受和表单提交的函数 */
+</script>
 </head>
 
 <body class="bg-secondary">
-
-	<div class="container">
+	
 		<s:include value="Reader_Navbar.jsp" />
-
+<div class="container">
 		<div class="row">
+
 			<div class="col-12 col-sm-4 col-md-3 col-lg-2 mt-8">
 				<div
 					class="nav flex-column nav-pills shadow p-3 mb-5 bg-white rounded text-center"
@@ -60,6 +67,7 @@
 								</tr>
 							</thead>
 							<tbody>
+
 								<s:iterator value="borrowrecords" status="L">
 									<s:if test="isReturn==0">
 										<tr>
@@ -70,8 +78,25 @@
 										</tr>
 									</s:if>
 								</s:iterator>
+								<!-- 显示分页信息和触发分页功能的表格 -->
+								<tr>
+									<td align="center" colspan="4"><a
+										href="javascript:topage(1)">首页</a> <a
+										href="javascript:topage(${borrowPageBean.prePageNum})">上一页</a>
+										<a href="javascript:topage(${borrowPageBean.nextPageNum})">下一页</a>
+										<a href="javascript:topage(${borrowPageBean.totalPage})">末页</a>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										第${borrowPageBean.currentPage}页/共${borrowPageBean.totalPage}页
+									</td>
+								</tr>
+								<!-- 显示分页信息和触发分页功能的表格 -->
 							</tbody>
 						</table>
+						<!-- 用于提交页数的表单 -->
+						<form action="getReaderStatuForBorrowPage" method="post" id="postPage">
+							<s:hidden name="pageNum" type="int" value="" id="pagenum"></s:hidden>
+						</form>
+						<!-- 用于提交页数的表单 -->
 					</div>
 					<div class="tab-pane fade" id="v-pills-History" role="tabpanel"
 						aria-labelledby="v-pills-History-tab">
@@ -89,7 +114,7 @@
 							</thead>
 							<tbody>
 
-								<s:iterator value="borrowrecords" status="L">
+								<s:iterator value="borrowPageBean.dataList" status="L">
 
 									<s:if test="isReturn!=0">
 										<tr>
@@ -104,8 +129,10 @@
 									</s:if>
 
 								</s:iterator>
+
 							</tbody>
 						</table>
+
 					</div>
 					<div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
 						aria-labelledby="v-pills-messages-tab">...</div>
@@ -114,7 +141,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 	<!-- Optional JavaScript -->
