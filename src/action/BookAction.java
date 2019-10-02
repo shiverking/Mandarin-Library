@@ -14,7 +14,7 @@ import util.PageBean;
 public class BookAction extends BaseAction<Book, BookService> {
 	private List<Book> books;
 	private List<Borrowrecord> borrowrecords;
-	private PageBean<Borrowrecord> borrowPageBean;
+	private PageBean<Borrowrecord> borrowPage;
 	private String searchContent;
 
 	public String searchBook() {
@@ -25,7 +25,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public String getBooksbyBorrwrecords() {
 		books = new ArrayList<Book>();
-		for (Borrowrecord borrowrecord : borrowPageBean.getDataList()) {
+		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
 			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 		}
 		return SUCCESS;
@@ -55,13 +55,15 @@ public class BookAction extends BaseAction<Book, BookService> {
 		this.books = books;
 	}
 
-	public PageBean<Borrowrecord> getBorrowPageBean() {
-		return borrowPageBean;
+	public PageBean<Borrowrecord> getBorrowPage() {
+		return borrowPage;
 	}
 
-	public void setBorrowPageBean(PageBean<Borrowrecord> borrowPageBean) {
-		this.borrowPageBean = borrowPageBean;
+	public void setBorrowPage(PageBean<Borrowrecord> borrowPage) {
+		this.borrowPage = borrowPage;
 	}
+
+
 	
 
 }

@@ -23,9 +23,10 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	private Reader tempReader;
 	private List<Book> books;
 	private Integer pageNum;
-	private PageBean<Borrowrecord> borrowPageBean;
+	private PageBean<Borrowrecord> borrowPage;
+
 	public String getBorrowrecordByReader() {
-		
+
 		borrowrecords = this.getService().getBorrowrecordsbyReader(tempReader);
 		return SUCCESS;
 	}
@@ -36,18 +37,20 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 
 		return SUCCESS;
 	}
-public String getBorrowPageByReader() {
-		//TODO:分页查询
-		borrowPageBean=this.getService().findPageBean(tempReader, pageNum);
-		this.borrowrecords=borrowPageBean.getDataList();
+
+	public String getBorrowPageByReader() {
+		// TODO:分页查询
+		borrowPage = this.getService().findPageBean(tempReader, pageNum);
+		this.borrowrecords = borrowPage.getDataList();
 		return SUCCESS;
 	}
-	public PageBean<Borrowrecord> getBorrowPageBean() {
-		return borrowPageBean;
+
+	public PageBean<Borrowrecord> getBorrowPage() {
+		return borrowPage;
 	}
 
-	public void setBorrowPageBean(PageBean<Borrowrecord> borrowPageBean) {
-		this.borrowPageBean = borrowPageBean;
+	public void setBorrowPage(PageBean<Borrowrecord> borrowPage) {
+		this.borrowPage = borrowPage;
 	}
 
 	public List<Book> getBooks() {
