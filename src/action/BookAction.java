@@ -2,12 +2,14 @@ package action;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import com.opensymphony.xwork2.ActionContext;
+
+
+
+
 import model.Book;
 import model.Borrowrecord;
-import model.Reader;
+
 import service.BookService;
 import util.PageBean;
 
@@ -15,11 +17,15 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private List<Book> books;
 	private List<Borrowrecord> borrowrecords;
 	private PageBean<Borrowrecord> borrowPage;
+	private PageBean<Book> bookPage;
+	private Integer pageNum;
 	private String searchContent;
 
 	public String searchBook() {
-		books = new ArrayList<Book>();
-		books = this.getService().getBookByNameOrISBN(searchContent);
+		//TODO:·ÖÒ³ËÑË÷
+	
+		bookPage= this.getService().getPageBean(searchContent,pageNum);
+		
 		return SUCCESS;
 	}
 
@@ -62,6 +68,24 @@ public class BookAction extends BaseAction<Book, BookService> {
 	public void setBorrowPage(PageBean<Borrowrecord> borrowPage) {
 		this.borrowPage = borrowPage;
 	}
+
+	public PageBean<Book> getBookPage() {
+		return bookPage;
+	}
+
+	public void setBookPage(PageBean<Book> bookPage) {
+		this.bookPage = bookPage;
+	}
+
+	public Integer getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	
 
 
 	

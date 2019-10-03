@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.Book;
 import model.Borrowrecord;
+import util.PageBean;
 
 /**
 * @author 
@@ -22,4 +23,5 @@ public interface BookService {
 	public List<Book> getBooksByBookName(String cond);
 	public void deleteBookById(int id);
 	public List<Book> getBookByNameOrISBN(String cond1);
+	PageBean<Book> getPageBean(String cond,Integer pageNum);
 }

@@ -3,7 +3,6 @@ package util;
 import java.io.Serializable;
 import java.util.List;
 
-import model.Book;
 
 /**
  * @author
@@ -46,7 +45,6 @@ public class PageBean<T> implements Serializable {
 				endPageNum = totalPage;
 				beginPageNum = endPageNum - 6;
 			}
-
 		}
 	}
 

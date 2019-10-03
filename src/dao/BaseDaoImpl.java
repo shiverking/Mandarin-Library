@@ -55,7 +55,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		} finally {
 			session.close();
 		}
-		
+
 	}
 
 	public void merge(TEntity entity) {
@@ -89,7 +89,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		} finally {
 			session.close();
 		}
-		
+
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 
 	public List<TEntity> findBySubString(String propertyName, String cond) {
-		
+
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName + " like '%" + cond + "%'";
 		List<TEntity> entities = this.getSession().createQuery(queryString).list();
@@ -160,26 +160,44 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 		return null;
 	}
-	//ï¿½ï¿½Õ¹ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½Ë«ï¿½ï¿½ï¿½Ô²ï¿½Ñ¯
-	public	List<TEntity> findByTwoProperty(String propertyName1,String propertyName2, String cond1, String cond2){
+
+	// ï¿½ï¿½Õ¹ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½Ë«ï¿½ï¿½ï¿½Ô²ï¿½Ñ¯
+	public List<TEntity> findByTwoProperty(String propertyName1, String propertyName2, String cond1) {
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
-		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" +" or e." +propertyName2+" like '%" + cond1 + "%'";
+		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" + " or e." + propertyName2 + " like '%"
+				+ cond1 + "%'";
 		List<TEntity> entities = this.getSession().createQuery(queryString).list();
 		return entities;
 	}
-	//·ÖÒ³²éÑ¯ÊµÏÖ
-	public int findTotalNum(String propertyName,Object propertyValue) {
-		String namString=entityClass.getSimpleName();
-		if(entityClass.getSimpleName().equals("Borrowrecord"))namString="record";
-		
-		String queryString="SELECT COUNT("+namString+"ID) from "+ entityClass.getSimpleName()+" e ";
-		queryString += "where e." + propertyName + "=:propertyValue" ;
-		Query query = this.getSession().createQuery(queryString);
-		List<Long>list= query.setParameter("propertyValue", propertyValue).list();
-		return list.isEmpty()? 0:list.get(0).intValue();
-	}
+
+//ÍØÕ¹µÄIDÊý×é²éÑ¯
+	public List<TEntity> findByIDList(List<Integer> IDlist) {
 	
-	public List<TEntity> findPageByQuery(String propertyName,Object propertyValue,String cond,int pageStart,int pageSize) {
+		String namString = entityClass.getSimpleName();
+		if (entityClass.getSimpleName().equals("Borrowrecord"))
+			namString = "record";
+		String queryString = "from " + entityClass.getSimpleName() + " e ";
+		queryString += "where e." + namString + "ID IN (:IDlist)";
+		Query query = this.getSession().createQuery(queryString);
+		List<TEntity> list=query.setParameterList("IDlist",IDlist).list();
+		
+return list;
+	}
+
+	// ·ÖÒ³²éÑ¯ÊµÏÖ
+	public int findTotalNum(String propertyName, Object propertyValue) {
+		String namString = entityClass.getSimpleName();
+		if (entityClass.getSimpleName().equals("Borrowrecord"))
+			namString = "record";
+		String queryString = "SELECT COUNT(" + namString + "ID) from " + entityClass.getSimpleName() + " e ";
+		queryString += "where e." + propertyName + "=:propertyValue";
+		Query query = this.getSession().createQuery(queryString);
+		List<Long> list = query.setParameter("propertyValue", propertyValue).list();
+		return list.isEmpty() ? 0 : list.get(0).intValue();
+	}
+
+	public List<TEntity> findPageByQuery(String propertyName, Object propertyValue, String cond, int pageStart,
+			int pageSize) {
 		if (cond != null) {
 			cond = " order by " + cond;
 		} else {
@@ -192,6 +210,38 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		query.setFirstResult(pageStart);
 		query.setMaxResults(pageSize);
 		List<TEntity> results = query.list();
-		return results; 
+		return results;
+	}
+
+	public int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1) {
+		//TODO:·ÖÒ³ËÑË÷
+		String namString = entityClass.getSimpleName();
+		if (entityClass.getSimpleName().equals("Borrowrecord"))
+			namString = "record";
+		if (cond1==null) {
+			cond1="";
+		}
+		String queryString = "SELECT COUNT(" + namString + "ID) from " + entityClass.getSimpleName() + " e ";
+		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" + " or e." + propertyName2 + " like '%"
+				+ cond1 + "%'";
+		Query query = this.getSession().createQuery(queryString);
+		List<Long> list = query.list();
+		return list.isEmpty() ? 0 : list.get(0).intValue();
+	}
+
+	public List<TEntity> findPageByTwoProperty(String propertyName1, String propertyName2, String cond1, int pageStart,
+			int pageSize) {
+		//TODO:·ÖÒ³ËÑË÷
+		if (cond1==null) {
+			cond1="";
+		}
+		String queryString = "from " + entityClass.getSimpleName() + " e ";
+		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" + " or e." + propertyName2 + " like '%"
+				+ cond1 + "%'";
+		Query query = this.getSession().createQuery(queryString);
+		query.setFirstResult(pageStart);
+		query.setMaxResults(pageSize);
+		List<TEntity> results = query.list();
+		return results;
 	}
 }
