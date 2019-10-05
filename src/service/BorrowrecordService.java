@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.Borrowrecord;
 import model.Reader;
+import util.PageBean;
 
 /**
 * @author 
@@ -21,5 +22,6 @@ public Borrowrecord getBorrowrecordByid(int id);
 public void saveBorrowrecord(Borrowrecord borrowrecord);
 public void mergeBorrowrecord(Borrowrecord borrowrecord);
 
-
+//TODO:∑÷“≥≤È—Ø
+public PageBean<Borrowrecord> findPageBean(Reader reader,Integer pageNum);
 }

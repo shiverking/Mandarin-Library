@@ -20,10 +20,9 @@
 
 		</ul>
 
-		<form action="searchBook" class="form-inline my-2 my-lg-0">
-
-			<input class="form-control mr-sm-2" type="text" name="searchContent"
-				placeholder="Search by title or ISBN" aria-label="Search">
+		<form action="searchBook" class="form-inline my-2 my-lg-0 w-50" >
+			<input class="form-control mr-sm-2 w-75" type="text" name="searchContent"
+				placeholder="Search by title or ISBN" aria-label="Search" >
 			<div class="input-group-append"><button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button></div>
 		</form>
 		<ul class="nav navbar-nav ml-auto justify-content-end">
@@ -32,7 +31,7 @@
 					src="https://avatars3.githubusercontent.com/u/31076337?s=460&v=4"
 					class="avatar" alt="Avatar"></a>
 				<ul class="dropdown-menu dropdown-menu-right">
-					<li><a href="getReaderStatuForRecord.action" class="dropdown-item">Borrowing Record</a></li>
+					<li><a href="getReaderStatuForBorrowPage.action" class="dropdown-item">Borrowing Record</a></li>
 					<li class="divider dropdown-divider"></li>
 					<li><a href="#" class="dropdown-item">Setting</a></li>
 					<li class="divider dropdown-divider"></li>

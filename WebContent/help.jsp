@@ -16,7 +16,8 @@
    <button type="submit" class="btn btn-outline-primary" >Primary</button>
 
 </form>
-<s:property value="tempReader.ReaderID" />asdasd
+<s:property value="tempReader.ReaderID" />
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>

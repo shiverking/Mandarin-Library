@@ -11,6 +11,7 @@ import model.Book;
 import model.Borrowrecord;
 import model.Reader;
 import service.BorrowrecordService;
+import util.PageBean;
 
 /**
  * @author
@@ -21,7 +22,8 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	private List<Borrowrecord> borrowrecords;
 	private Reader tempReader;
 	private List<Book> books;
-
+	private Integer pageNum;
+	private PageBean<Borrowrecord> borrowPageBean;
 	public String getBorrowrecordByReader() {
 		
 		borrowrecords = this.getService().getBorrowrecordsbyReader(tempReader);
@@ -33,6 +35,19 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 		this.borrowrecords = this.getService().getAllBorrowrecords();
 
 		return SUCCESS;
+	}
+public String getBorrowPageByReader() {
+		//TODO:·ÖÒ³²éÑ¯
+		borrowPageBean=this.getService().findPageBean(tempReader, pageNum);
+		this.borrowrecords=borrowPageBean.getDataList();
+		return SUCCESS;
+	}
+	public PageBean<Borrowrecord> getBorrowPageBean() {
+		return borrowPageBean;
+	}
+
+	public void setBorrowPageBean(PageBean<Borrowrecord> borrowPageBean) {
+		this.borrowPageBean = borrowPageBean;
 	}
 
 	public List<Book> getBooks() {
@@ -57,6 +72,14 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 
 	public void setTempReader(Reader tempReader) {
 		this.tempReader = tempReader;
+	}
+
+	public Integer getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
 	}
 
 }

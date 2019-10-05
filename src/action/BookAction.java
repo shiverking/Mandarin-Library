@@ -9,10 +9,12 @@ import model.Book;
 import model.Borrowrecord;
 import model.Reader;
 import service.BookService;
+import util.PageBean;
 
 public class BookAction extends BaseAction<Book, BookService> {
 	private List<Book> books;
 	private List<Borrowrecord> borrowrecords;
+	private PageBean<Borrowrecord> borrowPageBean;
 	private String searchContent;
 
 	public String searchBook() {
@@ -23,7 +25,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public String getBooksbyBorrwrecords() {
 		books = new ArrayList<Book>();
-		for (Borrowrecord borrowrecord : borrowrecords) {
+		for (Borrowrecord borrowrecord : borrowPageBean.getDataList()) {
 			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 		}
 		return SUCCESS;
@@ -52,5 +54,14 @@ public class BookAction extends BaseAction<Book, BookService> {
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
+
+	public PageBean<Borrowrecord> getBorrowPageBean() {
+		return borrowPageBean;
+	}
+
+	public void setBorrowPageBean(PageBean<Borrowrecord> borrowPageBean) {
+		this.borrowPageBean = borrowPageBean;
+	}
+	
 
 }

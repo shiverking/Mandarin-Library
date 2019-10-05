@@ -13,6 +13,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+
 import org.hibernate.HibernateException;
 
 public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
@@ -164,5 +166,32 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" +" or e." +propertyName2+" like '%" + cond1 + "%'";
 		List<TEntity> entities = this.getSession().createQuery(queryString).list();
 		return entities;
+	}
+	//分页查询实现
+	public int findTotalNum(String propertyName,Object propertyValue) {
+		String namString=entityClass.getSimpleName();
+		if(entityClass.getSimpleName().equals("Borrowrecord"))namString="record";
+		
+		String queryString="SELECT COUNT("+namString+"ID) from "+ entityClass.getSimpleName()+" e ";
+		queryString += "where e." + propertyName + "=:propertyValue" ;
+		Query query = this.getSession().createQuery(queryString);
+		List<Long>list= query.setParameter("propertyValue", propertyValue).list();
+		return list.isEmpty()? 0:list.get(0).intValue();
+	}
+	
+	public List<TEntity> findPageByQuery(String propertyName,Object propertyValue,String cond,int pageStart,int pageSize) {
+		if (cond != null) {
+			cond = " order by " + cond;
+		} else {
+			cond = "";
+		}
+		String queryString = "from " + entityClass.getSimpleName() + " e ";
+		queryString += "where e." + propertyName + "=:propertyValue" + cond;
+		Query query = this.getSession().createQuery(queryString);
+		query.setParameter("propertyValue", propertyValue);
+		query.setFirstResult(pageStart);
+		query.setMaxResults(pageSize);
+		List<TEntity> results = query.list();
+		return results; 
 	}
 }
