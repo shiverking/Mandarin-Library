@@ -8,5 +8,5 @@ package service;
 import model.Reader;
 
 public interface ReaderService {
-	public Reader verify(String ReaderName, String Password);
+	public Reader verify(String Email, String Password);
 }

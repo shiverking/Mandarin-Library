@@ -1,6 +1,4 @@
-/action/
-/service/
 /model/
 /dao/
-/util/
-
+/service/
+/action/

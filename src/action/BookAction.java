@@ -2,23 +2,29 @@ package action;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import com.opensymphony.xwork2.ActionContext;
+
+
+
+
 import model.Book;
 import model.Borrowrecord;
-import model.Reader;
+
 import service.BookService;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import util.ISBNgenerator;
+import util.PageBean;
 
 public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
 	private List<Book> books;
 	private List<Borrowrecord> borrowrecords;
+	private PageBean<Borrowrecord> borrowPage;
+	private PageBean<Book> bookPage;
+	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
 	private String searchContent;
 	public Book getBook() {
@@ -26,6 +32,15 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 	public void setBook(Book book) {
 		this.book = book;
+	}
+	
+
+	public String searchBook() {
+		//TODO:·ÖÒ³ËÑË÷
+	
+		bookPage= this.getService().getPageBean(searchContent,pageNum);
+		
+		return SUCCESS;
 	}
 
 	public String getBooksbyBorrwrecords() {
@@ -87,6 +102,14 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
+	public String getSearchContent() {
+		return searchContent;
+	}
+
+	public void setSearchContent(String searchContent) {
+		this.searchContent = searchContent;
+	}
+
 	public List<Borrowrecord> getBorrowrecords() {
 		return borrowrecords;
 	}
@@ -102,28 +125,28 @@ public class BookAction extends BaseAction<Book, BookService> {
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
-	public String search() {
-		if (searchContent.isEmpty()) {
-			return NONE;
-		} else
 
-		{
-			return SUCCESS;
-		}
+	public PageBean<Borrowrecord> getBorrowPage() {
+		return borrowPage;
 	}
 
-	public String getSearchContent() {
-		return searchContent;
+	public void setBorrowPage(PageBean<Borrowrecord> borrowPage) {
+		this.borrowPage = borrowPage;
 	}
 
-	public void setSearchContent(String searchContent) {
-		this.searchContent = searchContent;
+	public PageBean<Book> getBookPage() {
+		return bookPage;
 	}
 
-	public String searchBook() {
-		
-		books = this.getService().getBookByNameOrISBN(searchContent);
+	public void setBookPage(PageBean<Book> bookPage) {
+		this.bookPage = bookPage;
+	}
 
-		return SUCCESS;
+	public Integer getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
 	}
 }

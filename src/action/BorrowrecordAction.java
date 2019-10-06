@@ -11,6 +11,7 @@ import model.Book;
 import model.Borrowrecord;
 import model.Reader;
 import service.BorrowrecordService;
+import util.PageBean;
 
 /**
  * @author
@@ -18,43 +19,46 @@ import service.BorrowrecordService;
  * 
  */
 public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordService> {
-	private List<Borrowrecord> borrowrecords ;
+	private List<Borrowrecord> borrowrecords;
 	private Reader tempReader;
 	private List<Book> books;
-	private List<String> booknameList;
+	private Integer pageNum;
+	private PageBean<Borrowrecord> borrowPage;
 
 	public String getBorrowrecordByReader() {
-		Map<String, Object> session = ActionContext.getContext().getSession();
-		this.tempReader = (Reader) session.get("reader");
-		borrowrecords=this.getService().getBorrowrecordsbyReader(tempReader);
+
+		borrowrecords = this.getService().getBorrowrecordsbyReader(tempReader);
 		return SUCCESS;
 	}
+
 	public String getAllBorrowrecord() {
-		
+
 		this.borrowrecords = this.getService().getAllBorrowrecords();
 
 		return SUCCESS;
 	}
-	public String getRecordBookName() {
-		booknameList = new ArrayList<String>();
-		for (Book book : books) {
-			booknameList.add(book.getBookName());
-		}
+
+	public String getBorrowPageByReader() {
+		// TODO:∑÷“≥≤È—Ø
+		borrowPage = this.getService().findPageBean(tempReader, pageNum);
+		this.borrowrecords = borrowPage.getDataList();
 		return SUCCESS;
+	}
+
+	public PageBean<Borrowrecord> getBorrowPage() {
+		return borrowPage;
+	}
+
+	public void setBorrowPage(PageBean<Borrowrecord> borrowPage) {
+		this.borrowPage = borrowPage;
 	}
 
 	public List<Book> getBooks() {
 		return books;
 	}
+
 	public void setBooks(List<Book> books) {
 		this.books = books;
-	}
-	public List<String> getBooknameList() {
-		return booknameList;
-	}
-
-	public void setBooknameList(List<String> booknameList) {
-		this.booknameList = booknameList;
 	}
 
 	public List<Borrowrecord> getBorrowrecords() {
@@ -71,6 +75,14 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 
 	public void setTempReader(Reader tempReader) {
 		this.tempReader = tempReader;
+	}
+
+	public Integer getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
 	}
 
 }

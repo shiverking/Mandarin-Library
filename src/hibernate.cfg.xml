@@ -28,6 +28,7 @@
 		<mapping resource="model/Admin.hbm.xml" />
 		<mapping resource="model/Book.hbm.xml" />
 		<mapping resource="model/Borrowrecord.hbm.xml" />
+		<mapping resource="model/CurrentRecord.hbm.xml" />
 		<mapping resource="model/Deleterecord.hbm.xml" />
 		<mapping resource="model/Librarian.hbm.xml" />
 		<mapping resource="model/Payrecord.hbm.xml" />

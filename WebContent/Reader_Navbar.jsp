@@ -20,10 +20,10 @@
 
 		</ul>
 
-		<form action="search" class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="text" name="searchContent"
-				placeholder="Search by title or ISBN" aria-label="Search">
-			<button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+		<form action="searchBook" class="form-inline my-2 my-lg-0 w-50" >
+			<input class="form-control mr-sm-2 w-75" type="text" name="searchContent"
+				placeholder="Search by title or ISBN" aria-label="Search" >
+			<div class="input-group-append"><button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button></div>
 		</form>
 		<ul class="nav navbar-nav ml-auto justify-content-end">
 			<li class="nav-item dropdown"><a href="#"
@@ -31,24 +31,13 @@
 					src="https://avatars3.githubusercontent.com/u/31076337?s=460&v=4"
 					class="avatar" alt="Avatar"></a>
 				<ul class="dropdown-menu dropdown-menu-right">
-					<li><a href="getAllBorrowrecord.action" class="dropdown-item">Borrowing Record</a></li>
+					<li><a href="getReaderStatuForBorrowPage.action" class="dropdown-item">Borrowing Record</a></li>
 					<li class="divider dropdown-divider"></li>
 					<li><a href="#" class="dropdown-item">Setting</a></li>
 					<li class="divider dropdown-divider"></li>
-					<li><a href="signout.action" class="dropdown-item">Sign Out</a></li>
+					<li><a href="readersignout.action" class="dropdown-item">Logout</a></li>
 				</ul></li>
 		</ul>
-		<!-- <div class="btn-group" role="group">
-			<button id="btnGroupDrop1" type="button"
-				class="btn btn-outline-info dropdown-toggle my-2 my-sm-0"
-				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
-			<div class="dropdown-menu dropdown-menu-right"
-				aria-labelledby="btnGroupDrop1">
-				<button class="dropdown-item" href="#">Dropdown link</button>
-				<div class="dropdown-divider"></div>
-				<button class="dropdown-item" href="#">Dropdown link</button>
-			</div>
-		</div> -->
 	</div>
 <style>
 .avatar{

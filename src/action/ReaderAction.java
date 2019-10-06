@@ -9,33 +9,44 @@ import model.Reader;
 import service.ReaderService;
 
 public class ReaderAction extends BaseAction<Reader, ReaderService> {
-	private Reader tempReader;
+	private Reader tempReader = new Reader();
 	private String searchContent;
 	private List<Reader> readers;
-	
+	private String errorMessage;
+
 	public String signin() throws Exception {
-		String ReaderName = this.getModel().getReaderName();
+		String Email = this.getModel().getEmail();
 		String Password = this.getModel().getPassword();
-		
-		if (ReaderName == null) {
-			this.errorMessage = "You must input your readerName!";
+
+		if (Email.isEmpty()) {
+			this.errorMessage = "You must input your Email!";
 			return INPUT;
 		}
-		if (Password == null) {
+		if (Password.isEmpty()) {
 			this.errorMessage = "You must input your password!";
 			return INPUT;
 		}
-		Reader reader = this.getService().verify(ReaderName,Password);
+		Reader reader = this.getService().verify(Email, Password);
 		if (reader != null) {
-			Map<String,Object> session = ActionContext.getContext().getSession();
+			Map<String, Object> session = ActionContext.getContext().getSession();
 			session.put("reader", reader);
-			this.tempReader = (Reader) session.get("reader");
+			this.tempReader = reader;
 			return SUCCESS;
 		}
-		this.errorMessage="Your name or password is wrong, please try again !";
+		this.errorMessage = "Your email or password is wrong!";
 		return INPUT;
 	}
-	
+
+	// 获取用户的状态
+	public String getReaderStatu() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		this.tempReader = (Reader) session.get("reader");
+		if (tempReader == null) {
+			return NONE;
+		}
+		return SUCCESS;
+	}
+
 	public String getSearchContent() {
 		return searchContent;
 	}
@@ -56,14 +67,21 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		ActionContext.getContext().getSession().clear();
 		return SUCCESS;
 	}
-	
 
-public Reader getTempReader() {
-	return tempReader;
-}
+	public Reader getTempReader() {
+		return tempReader;
+	}
 
-public void setTempReader(Reader tempReader) {
-	this.tempReader = tempReader;
-}
+	public void setTempReader(Reader tempReader) {
+		this.tempReader = tempReader;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
 
 }

@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 import model.Book;
 import model.Borrowrecord;
+import util.PageBean;
 
 public class BookServiceImpl extends BaseService<Book> implements BookService {
 
@@ -67,14 +68,21 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 	@Override
 	public List<Book> getBookByNameOrISBN(String cond) {
 		// TODO Auto-generated method stub
-		return this.getDao().findByTwoProperty("BookName", "ISBN", cond, cond);
+		return this.getDao().findByTwoProperty("BookName", "ISBN", cond);
 	}
 
-	
-
-
-
-
-
+	@Override
+	public PageBean<Book> getPageBean(String cond, Integer pageNum) {
+		//TODO:·ÖÒ³ËÑË÷
+		int current = 1;
+		if (pageNum != null) {
+			current=pageNum;
+		}
+		int totalRecords = this.getDao().findTotalNumbyTwoSubstring("ISBN", "BookName", cond);
+		PageBean<Book> bookPageBean = new PageBean<Book>(totalRecords, current);
+		bookPageBean.setDataList(this.getDao().findPageByTwoProperty("ISBN", "BookName", cond,
+				bookPageBean.getStartIndex(), bookPageBean.getPageSize()));
+		return bookPageBean;
+	}
 
 }
