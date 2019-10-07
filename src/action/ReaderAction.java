@@ -37,7 +37,40 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		return INPUT;
 	}
 
-	// ��ȡ�û���״̬
+	public String signout() throws Exception {
+		ActionContext.getContext().getSession().clear();
+		return SUCCESS;
+	}
+	
+	public String gotoReaderSelfProfile() {
+//    	Map<String, Object> session = ActionContext.getContext().getSession();
+//    	this.tempReader = (Reader) session.get("reader");
+//    	if(tempReader==null) {
+//    		return INPUT;
+//    	}
+    	return SUCCESS;
+	}
+	
+	public String changeReaderName() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+    	tempReader = (Reader) session.get("reader");
+    	tempReader.setReaderName(this.getModel().getReaderName());
+    	this.getService().mergeReader(tempReader);
+    	return SUCCESS;
+	}
+	
+//	changeReaderPassword
+	public String changeReaderPassword() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+    	tempReader = (Reader) session.get("reader");
+//    	tempReader.setSalt(Encrypt.getSalt());
+    	tempReader.setPassword(this.getModel().getPassword());
+    	this.getService().mergeReader(tempReader);
+    	this.setErrorMessage("修改成功，请重新登录！");
+    	return SUCCESS;
+	}
+
+	// ��ȡ�û���״̬
 	public String getReaderStatu() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		this.tempReader = (Reader) session.get("reader");
@@ -46,7 +79,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		}
 		return SUCCESS;
 	}
-
+	
 	public String getSearchContent() {
 		return searchContent;
 	}
@@ -61,11 +94,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 
 	public void setReaders(List<Reader> readers) {
 		this.readers = readers;
-	}
-
-	public String signout() throws Exception {
-		ActionContext.getContext().getSession().clear();
-		return SUCCESS;
 	}
 
 	public Reader getTempReader() {

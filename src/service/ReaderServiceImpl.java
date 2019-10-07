@@ -4,7 +4,7 @@ import model.Reader;
 
 /**
 * @author 
-* @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ24ÈÕ ÉÏÎç12:23:00
+* @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½24ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½12:23:00
 * 
 */
 public class ReaderServiceImpl extends BaseService<Reader>implements ReaderService {
@@ -18,4 +18,10 @@ public class ReaderServiceImpl extends BaseService<Reader>implements ReaderServi
 		}
 		return null;
 	}
+	
+	public void mergeReader(Reader reader) {
+		// TODO Auto-generated method stub
+		this.getDao().merge(reader);
+	}
+
 }
