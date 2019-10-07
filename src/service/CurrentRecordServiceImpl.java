@@ -50,17 +50,5 @@ public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> impleme
 
 	}
 
-	@Override
-	public PageBean<CurrentRecord> findPageBean(Reader reader, Integer pageNum) {
-		int Num = 1;
-		if (pageNum != null) {
-			Num = pageNum;
-		}
-		int totalRecords = this.getDao().findTotalNum("ReaderID", reader.getReaderID());
-		PageBean<CurrentRecord> page = new PageBean<CurrentRecord>(totalRecords, Num);
-		page.setDataList(this.getDao().findPageByQuery("ReaderID", reader.getReaderID(), "BorrowingDate desc",
-				page.getStartIndex(), page.getPageSize()));
-		return page;
-	}
 
 }
