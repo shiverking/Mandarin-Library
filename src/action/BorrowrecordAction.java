@@ -19,9 +19,9 @@ import util.PageBean;
  * 
  */
 public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordService> {
-	private List<Borrowrecord> borrowrecords;
+	private List<Borrowrecord> borrowrecords;//可能被删除
 	private Reader tempReader;
-	private List<Book> books;
+	private List<Book> books;//可能被删除
 	private Integer pageNum;
 	private PageBean<Borrowrecord> borrowPage;
 
