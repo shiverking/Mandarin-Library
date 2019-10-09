@@ -1,5 +1,6 @@
 package service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import model.Borrowrecord;
@@ -64,6 +65,17 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		page.setDataList(this.getDao().findPageByQuery("ReaderID", reader.getReaderID(), "BorrowingDate desc",
 				page.getStartIndex(), page.getPageSize()));
 		return page;
+	}
+
+	@Override
+	public int getFine(int id) {
+		List<Borrowrecord> borrowrecords=this.getDao().getByTwoProperty("ReaderID", "isPayfine", id,false);
+		int fine=0;
+		for (Iterator iterator = borrowrecords.iterator(); iterator.hasNext();) {
+			Borrowrecord borrowrecord = (Borrowrecord) iterator.next();
+			fine+=borrowrecord.getFine();
+		}
+		return fine;
 	}
 
 }

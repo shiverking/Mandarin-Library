@@ -70,7 +70,8 @@ public interface BaseDao<TEntity> {
 
 	// 拓展的对数据库双属性查询
 	List<TEntity> findByTwoProperty(String propertyName1, String propertyName2, String cond1);
-
+	//拓展的双属性精准查询
+	List<TEntity> getByTwoProperty(String propertyName1, String propertyName2, Object Value1,Object Value2);
 	// 拓展ID数组查询
 	List<TEntity> findByIDList(List<Integer> IDlist);
 

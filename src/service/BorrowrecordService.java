@@ -24,4 +24,6 @@ public void mergeBorrowrecord(Borrowrecord borrowrecord);
 
 //TODO:分页查询
 public PageBean<Borrowrecord> findPageBean(Reader reader,Integer pageNum);
+//通过id获取未支付的罚金
+public int getFine(int id);
 }
