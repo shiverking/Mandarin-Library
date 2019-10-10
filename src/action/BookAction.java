@@ -16,20 +16,20 @@ import util.PageBean;
 
 public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
-	private List<Book> books;//¿ÉÄÜ±»bookPageÈ¡´ú£¬½¨ÒéÉÙÓÃ£¬ÈçÐèÊ¹ÓÃÇë¸Ä×¢ÊÍ
-	private List<Borrowrecord> borrowrecords;// ¿ÉÄÜ±»É¾³ý
-	private List<CurrentRecord> currentRecords;// Ö¸ÔÚ½èÊé¼®ºÍÔ¤Ô¼Êé¼®µÄÐÅÏ¢
-	private PageBean<Borrowrecord> borrowPage;// ÒÑ¹é»¹µÄÊé¼®ÐÅÏ¢
+	private List<Book> books;//ï¿½ï¿½ï¿½Ü±ï¿½bookPageÈ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½
+	private List<Borrowrecord> borrowrecords;// ï¿½ï¿½ï¿½Ü±ï¿½É¾ï¿½ï¿½
+	private List<CurrentRecord> currentRecords;// Ö¸ï¿½Ú½ï¿½ï¿½é¼®ï¿½ï¿½Ô¤Ô¼ï¿½é¼®ï¿½ï¿½ï¿½ï¿½Ï¢
+	private PageBean<Borrowrecord> borrowPage;// ï¿½Ñ¹é»¹ï¿½ï¿½ï¿½é¼®ï¿½ï¿½Ï¢
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
 	private String searchContent;
 
-	// ÒÔÏÂÊÇ¾ßÌåÊ¹ÓÃµÄ¹¦ÄÜº¯Êý
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½Ê¹ï¿½ÃµÄ¹ï¿½ï¿½Üºï¿½ï¿½ï¿½
 
-	// readerÐèÒªÊ¹ÓÃµÄº¯Êý¡ý¡ý¡ý¡ý¡ý¡ý¡ý
+	// readerï¿½ï¿½ÒªÊ¹ï¿½ÃµÄºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String searchBook() {
-		// TODO:·ÖÒ³ËÑË÷
+		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 		bookPage = this.getService().getPageBean(searchContent, pageNum);
 		return SUCCESS;
 	}
@@ -43,14 +43,14 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public String getBooksbycurrentRecords() {
-		//TODO:¿ÉÄÜ¸ÄÓÃpagabeanÊµÏÖ
+		//TODO:ï¿½ï¿½ï¿½Ü¸ï¿½ï¿½ï¿½pagabeanÊµï¿½ï¿½
 		books = new ArrayList<Book>();
 		for (CurrentRecord currentRecord : currentRecords) {
 			books.add(this.getService().getBookById(currentRecord.getBookID()));
 		}
 		return SUCCESS;
 	}
-	// readerÐèÒªÊ¹ÓÃµÄº¯Êý¡ü¡ü¡ü¡ü¡ü¡ü¡ü
+	// readerï¿½ï¿½ÒªÊ¹ï¿½ÃµÄºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	public String addBook() throws Exception {
 		HttpServletRequest PriceRequest = ServletActionContext.getRequest();
@@ -108,7 +108,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
-//ÒÔÏÂÊÇgetºÍsetº¯Êý
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½getï¿½ï¿½setï¿½ï¿½ï¿½ï¿½
 	public Book getBook() {
 		return book;
 	}
@@ -171,6 +171,20 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public void setCurrentRecords(List<CurrentRecord> currentRecords) {
 		this.currentRecords = currentRecords;
+	}
+	
+//adminä¿®æ”¹é€¾æœŸç½šé‡‘å’Œå½’è¿˜æœŸé™
+	public String adminEditBook() {
+		this.book = this.getService().getBookById(book.getBookID());
+		if (this.getModel().getReturnPeriod() > 0) {
+			book.setReturnPeriod(this.getModel().getReturnPeriod());
+		}
+		if (this.getModel().getFineValue() > 0) {
+			book.setFineValue(this.getModel().getFineValue());
+			;
+		}
+		this.getService().mergeBook(book);
+		return SUCCESS;
 	}
 
 }
