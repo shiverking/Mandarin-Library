@@ -77,7 +77,7 @@
 		<!-- 搜索书籍 -->
 		<action name="searchBook" class="bookAction"
 			method="searchBook">
-			<result name="success">/Search_result.jsp</result>
+			<result name="success">/category.jsp</result>
 		</action>
 		<!-- 分页查询 -->
 		<action name="getReaderStatuForBorrowPage" class="readerAction"
