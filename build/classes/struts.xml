@@ -132,5 +132,13 @@
 		<action name="editLibrarian" class="librarianAction" method="editLibrarian">
 			<result name="success">/EditLibrarian.jsp</result>
 		</action>
+		<!-- Admin查看书籍列表 -->
+		<action name="adminDisplayBooks" class="bookAction" method="display">
+			<result name="success">/Admin_Display_Book.jsp</result>
+		</action>
+		<!-- Admin修改书籍逾期罚金和归还期限 -->
+		<action name="adminEditBook" class="bookAction" method="adminEditBook">
+			<result name="success">/AdminEditBook.jsp</result>
+		</action>
 	</package>
 </struts>
