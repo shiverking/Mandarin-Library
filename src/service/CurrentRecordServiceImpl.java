@@ -9,42 +9,36 @@ import util.PageBean;
 
 /**
  * @author
- * @version ´´½¨Ê±¼ä£º2019Äê10ÔÂ6ÈÕ ÏÂÎç3:37:01
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½10ï¿½ï¿½6ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½3:37:01
  * 
  */
 public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> implements CurrentRecordService {
 
-	@Override
 	public List<CurrentRecord> getAllCurrentRecords() {
 		return this.getDao().findAll();
 
 	}
 
-	@Override
 	public List<CurrentRecord> getAllCurrentRecords(String cond) {
 
 		return this.getDao().findAll(cond);
 	}
 
-	@Override
 	public List<CurrentRecord> getCurrentRecordsbyReader(Reader reader) {
 
 		return this.getDao().findBy("ReaderID", reader.getReaderID(), "BorrowingDate desc");
 	}
 
-	@Override
 	public CurrentRecord getCurrentRecordByid(int id) {
 
 		return this.getDao().get(id);
 	}
 
-	@Override
 	public void saveCurrentRecord(CurrentRecord currentRecord) {
 
 		this.saveCurrentRecord(currentRecord);
 	}
 
-	@Override
 	public void mergeCurrentRecord(CurrentRecord currentRecord) {
 		this.mergeCurrentRecord(currentRecord);
 

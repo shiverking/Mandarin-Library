@@ -5,13 +5,12 @@ import javax.servlet.ServletContextListener;
 
 /**
  * @author
- * @version ´´½¨Ê±¼ä£º2019Äê10ÔÂ3ÈÕ ÏÂÎç7:20:54
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½10ï¿½ï¿½3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½7:20:54
  * 
  */
 public class BackListener implements ServletContextListener {
 	private BackThread backThread;
 
-	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub
 		if (backThread != null && backThread.isInterrupted()) {
@@ -19,7 +18,6 @@ public class BackListener implements ServletContextListener {
 		}
 	}
 
-	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub
 		String string = null;

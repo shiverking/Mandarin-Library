@@ -39,7 +39,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 	}
 
-	@Override
 	public void save(TEntity entity) {
 		Session session = this.getSession();
 		Transaction tx = null;
@@ -73,7 +72,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 	}
 
-	@Override
 	public void delete(TEntity entity) {
 		Session session = this.getSession();
 		Transaction tx = null;
@@ -91,14 +89,12 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 
 	}
 
-	@Override
 	public void delete(int id) {
 		TEntity entity = get(id);
 		delete(entity);
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<TEntity> findAll(String cond) {
 		if (cond != null) {
 			cond = " order by " + cond;
@@ -109,7 +105,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-	@Override
 	public List<TEntity> findAll() {
 		return this.findAll(null);
 	}
@@ -127,7 +122,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-	@Override
 	public List<TEntity> findBy(String propertyName, Object propertyValue) {
 		return findBy(propertyName, propertyValue, null);
 	}
@@ -141,7 +135,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public TEntity get(int id) {
 		Session session = this.getSession();
 		session.beginTransaction();
@@ -151,7 +144,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entity;
 	}
 
-	@Override
 	public TEntity getSingle(String propertyName, Object propertyValue) {
 		List<TEntity> entities = findBy(propertyName, propertyValue);
 		if (entities != null && entities.size() > 0) {
@@ -169,7 +161,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-//ÍØÕ¹µÄIDÊý×é²éÑ¯
+//ï¿½ï¿½Õ¹ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
 	public List<TEntity> findByIDList(List<Integer> IDlist) {
 
 		String namString = entityClass.getSimpleName();
@@ -183,7 +175,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return list;
 	}
 
-	// ·ÖÒ³²éÑ¯ÊµÏÖ
+	// ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯Êµï¿½ï¿½
 	public int findTotalNum(String propertyName, Object propertyValue) {
 		String namString = entityClass.getSimpleName();
 		if (entityClass.getSimpleName().equals("Borrowrecord"))
@@ -213,7 +205,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 
 	public int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1) {
-		// TODO:·ÖÒ³ËÑË÷
+		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 		String namString = entityClass.getSimpleName();
 		if (entityClass.getSimpleName().equals("Borrowrecord"))
 			namString = "record";
@@ -230,7 +222,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 
 	public List<TEntity> findPageByTwoProperty(String propertyName1, String propertyName2, String cond1, int pageStart,
 			int pageSize) {
-		// TODO:·ÖÒ³ËÑË÷
+		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 		if (cond1 == null) {
 			cond1 = "";
 		}
@@ -244,7 +236,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return results;
 	}
 
-	// Ë«ÊôÐÔ¾«×¼²éÑ¯ÊµÏÖ
+	// Ë«ï¿½ï¿½ï¿½Ô¾ï¿½×¼ï¿½ï¿½Ñ¯Êµï¿½ï¿½
 	public List<TEntity> getByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2) {
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + "=:Value1" + " and e." + propertyName2 + "=:Value2";

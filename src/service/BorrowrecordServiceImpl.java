@@ -9,52 +9,45 @@ import util.PageBean;
 
 /**
  * @author
- * @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ24ÈÕ ÉÏÎç2:16:23
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½24ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½2:16:23
  * 
  */
 public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implements BorrowrecordService {
 
-	@Override
 	public List<Borrowrecord> getAllBorrowrecords() {
 		// TODO Auto-generated method stub
 
 		return this.getDao().findAll();
 	}
 
-	@Override
 	public List<Borrowrecord> getAllBorrowrecords(String cond) {
 		// TODO Auto-generated method stub
 		return this.getDao().findAll(cond);
 	}
 
-	@Override
 	public List<Borrowrecord> getBorrowrecordsbyReader(Reader reader) {
 		// TODO Auto-generated method stub
 		return this.getDao().findBy("ReaderID", reader.getReaderID(), "BorrowingDate desc");
 	}
 
-	@Override
 	public Borrowrecord getBorrowrecordByid(int id) {
 		// TODO Auto-generated method stub
 		return this.getDao().get(id);
 	}
 
-	@Override
 	public void saveBorrowrecord(Borrowrecord borrowrecord) {
 		this.getDao().save(borrowrecord);
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void mergeBorrowrecord(Borrowrecord borrowrecord) {
 		// TODO Auto-generated method stub
 		this.getDao().merge(borrowrecord);
 	}
 
-	@Override
 	public PageBean<Borrowrecord> findPageBean(Reader reader, Integer pageNum) {
-		// TODO ·ÖÒ³²éÑ¯
+		// TODO ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 		int Num = 1;
 		if (pageNum != null) {
 			Num = pageNum;
@@ -67,7 +60,6 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		return page;
 	}
 
-	@Override
 	public int getFine(int id) {
 		List<Borrowrecord> borrowrecords=this.getDao().getByTwoProperty("ReaderID", "isPayfine", id,false);
 		int fine=0;
