@@ -8,10 +8,9 @@ public class LibrarianServicelmpl extends BaseService<Librarian>implements Libra
 		if(Password==null) {Password="00010001";}
 		Librarian librarian = this.getDao().getSingle("LibrarianName",LibrarianName);
 		if(librarian == null) {
-			return null;//���û������û����򷵻ؿ�ֵ
+			return null;
 		}
 		if(librarian.getPassword().equals(Password)) {
-			//������û�������������������,�򷵻ظ��û�
 			return librarian;
 		}
 		return null;
@@ -47,5 +46,14 @@ public class LibrarianServicelmpl extends BaseService<Librarian>implements Libra
 	public void deleteLibrarianById(int librarianID) {
 		// TODO Auto-generated method stub
 		this.getDao().delete(librarianID);
+	}
+
+	@Override
+	public String findPassword(String LibrarianName) {
+		if(this.getDao().getSingle("LibrarianName", LibrarianName)!=null)
+		{
+			return this.getDao().getSingle("LibrarianName", LibrarianName).getPassword();
+		}
+		return null;
 	}
 }

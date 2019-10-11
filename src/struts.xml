@@ -33,7 +33,20 @@
 			method="show">
 			<result name="success">/Librarian.jsp</result>
 		</action>
-
+		<!-- Admin修改用户保障金 -->
+		<action name="modify" class="adminAction" method="modify">
+		<result name="input">/Modify_Deposit.jsp</result>
+		<result name="success">/Login_success.jsp</result>
+		</action>
+		<!-- 展示securityDeposit -->
+		<action name="dmodify" class="adminAction" method="dm">
+		<result name="success">/Modify_Deposit.jsp</result>
+		</action>
+		<!-- Admin 找回Librarian 密码 -->
+		<action name="findPassword" class="librarianAction" method="findPassword">
+		<result name="success">/Find_Success.jsp</result>
+		<result name="failure">/FindPassword.jsp</result>
+		</action>
 
 		<!-- Reader功能 -->
 		<!-- 登录登出 -->
