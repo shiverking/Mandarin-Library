@@ -33,6 +33,7 @@
 		<mapping resource="model/Librarian.hbm.xml" />
 		<mapping resource="model/Payrecord.hbm.xml" />
 		<mapping resource="model/Post.hbm.xml" />
+		
 		<mapping resource="model/Reader.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

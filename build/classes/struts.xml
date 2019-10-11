@@ -127,6 +127,10 @@
 		<action name="editBook" class="bookAction" method="editBook">
 			<result name="success">/EditBook.jsp</result>
 		</action>
+		<!-- Librarian PostNews -->>
+		<action name="postNews" class="PostAction" method="postNews">
+			<result name="success">PostNews.jsp</result>
+		</action>
 		<!-- Admin删除馆员 -->
 		<action name="deleteLibrarian" class="librarianAction"
 			method="deleteLibrarian">
