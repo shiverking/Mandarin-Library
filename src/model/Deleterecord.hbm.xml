@@ -3,11 +3,11 @@
 
 <hibernate-mapping package="model">
 	<class name="Deleterecord">
-		<id name="DeleterecordID" type="int">
+		<id name="LibrationID" type="integer">
 			<generator class="native" />
 		</id>
 		<property name="Date" type="date" not-null="true" />
-		<many-to-one name="book" not-null="true"></many-to-one>
-		<many-to-one name="librarian" not-null="true"></many-to-one>
+		<property name="BookID" not-null="true"/>
+		<property name="BookName" not-null="true"/>
 	</class>
 </hibernate-mapping>

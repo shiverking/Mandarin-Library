@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>Mandarin-Library</display-name>
 	<welcome-file-list>
-		<welcome-file>Admin_login.jsp</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
 	<!--<welcome-file>test.jsp</welcome-file>-->
 
 	</welcome-file-list>
@@ -21,12 +21,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<listener>
-		<listener-class>util.BackListener</listener-class>
-	</listener>
+	
 	<session-config>
 		<session-timeout>-1</session-timeout>
 	</session-config>
-	
 
 </web-app>

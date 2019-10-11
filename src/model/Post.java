@@ -1,26 +1,27 @@
 package model;
 
 public class Post {
-	private String PostID;
+	private int PostID;
 	private String Title;
 	private String Content;
-	private Librarian librarian;//post
+
 	public Post() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Post(String title, String content) {
+
+	public Post(Integer id, String title, String content) {
 		// super();
+		this.PostID = id;
 		Title = title;
 		Content = content;
 	}
-	
-	public String getPostID() {
-		return PostID;
+
+	public void setPostID(int id) {
+		this.PostID = id;
 	}
-	
-	public void setPostID(String postID) {
-		PostID = postID;
+
+	public int getPostID() {
+		return this.PostID;
 	}
 
 	public String getTitle() {
@@ -37,14 +38,6 @@ public class Post {
 
 	public void setContent(String content) {
 		Content = content;
-	}
-
-	public Librarian getLibrarian() {
-		return librarian;
-	}
-
-	public void setLibrarian(Librarian librarian) {
-		this.librarian = librarian;
 	}
 
 }

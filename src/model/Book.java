@@ -9,15 +9,10 @@ public class Book {
 	private int ReturnPeriod;
 	private int FineValue;
 	private boolean isBorrowed;
-	private String category;
-	private String Author;
-	private String Introduction;
 	public Book() {
-		ReturnPeriod = 30;
-		FineValue = 1;
-		isBorrowed = false;
+		
 	}
-	public Book(int bookID, String bookName, String iSBN, int price, String location,String category
+	public Book(int bookID, String bookName, String iSBN, int price, String location 
 			) {
 		//super();
 		BookID = bookID;
@@ -28,7 +23,6 @@ public class Book {
 		ReturnPeriod = 30;
 		FineValue = 1;
 		isBorrowed = false; //≥ı º◊¥Ã¨…Ë÷√Œ™Œ¥ΩË‘ƒ
-		this.category=category;
 	}
 	public int getBookID() {
 		return BookID;
@@ -81,23 +75,4 @@ public class Book {
 	public void setIsBorrowed(boolean isBorrowed) {
 		this.isBorrowed = isBorrowed;
 	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public String getAuthor() {
-		return Author;
-	}
-	public void setAuthor(String author) {
-		Author = author;
-	}
-	public String getIntroduction() {
-		return Introduction;
-	}
-	public void setIntroduction(String introduction) {
-		Introduction = introduction;
-	}
-	
 }
