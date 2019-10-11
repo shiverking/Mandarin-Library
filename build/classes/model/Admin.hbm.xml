@@ -8,6 +8,6 @@
 		</id>
 		<property name="AdminName" not-null="true" />
 		<property name="Password" type="string" not-null="true" />
-		<property name="SecurityDeposite" />
+		<property name="SecurityDeposite" not-null="true"/>
 	</class>
 </hibernate-mapping>
