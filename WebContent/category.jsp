@@ -118,7 +118,7 @@
 							<div class="form-row justify-content-center">
 								<div class="form-group col-md-10 ">
 									<input type="text" class="form-control" name="searchContent"
-										id="inputLocation4" placeholder="Location">
+										id="inputLocation4" placeholder="Search by title or ISBN">
 								</div>
 								<div class="form-group col-md-2 ">
 									<button type="submit" class="btn btn-primary">Search
