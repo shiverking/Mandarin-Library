@@ -8,8 +8,8 @@
 	<package name="default" extends="struts-default">
 		<!-- Admin登录界面 -->
 		<action name="adminlogin" class="adminAction" method="signin">
-			<result name="success">/Login_success.jsp</result>
-			<result name="input">/Admin_login.jsp</result>
+			<result name="success">/Adminjsp/index.html</result>
+			<result name="input">/Adminjsp/pages/samples/AdminLogin.jsp</result>
 		</action>
 		<!-- Admin 修改密码 -->
 		<action name="changePassword" class="adminAction" method="changePassword">
