@@ -13,7 +13,7 @@ public void run() {
 	while (!this.isInterrupted()) {
 		todayDate=new Date();
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		}catch (InterruptedException e) {
 			
 		}
