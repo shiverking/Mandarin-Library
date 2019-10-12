@@ -10,8 +10,12 @@ public class Book {
 	private int FineValue;
 	private boolean isBorrowed;
 	private String category;
+	private String Author;
+	private String Introduction;
 	public Book() {
-		
+		ReturnPeriod = 30;
+		FineValue = 1;
+		isBorrowed = false;
 	}
 	public Book(int bookID, String bookName, String iSBN, int price, String location,String category
 			) {
@@ -83,4 +87,17 @@ public class Book {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	public String getAuthor() {
+		return Author;
+	}
+	public void setAuthor(String author) {
+		Author = author;
+	}
+	public String getIntroduction() {
+		return Introduction;
+	}
+	public void setIntroduction(String introduction) {
+		Introduction = introduction;
+	}
+	
 }

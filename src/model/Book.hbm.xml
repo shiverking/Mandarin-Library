@@ -10,9 +10,11 @@
 		<property name="ISBN" type="string" not-null="true" />
 		<property name="Price" not-null="true"/>
 		<property name="Location" not-null="true"/>
-		<property name="ReturnPeriod" />
-		<property name="FineValue" />
+		<property name="ReturnPeriod" not-null="true" />
+		<property name="FineValue" not-null="true"/>
 		<property name="isBorrowed" type="boolean" not-null="true"/>
 		<property name="category" type="string" not-null="true"/>
+		<property name="Author" type="string"/>
+		<property name="Introduction" type="string"/>
 	</class>
 </hibernate-mapping>

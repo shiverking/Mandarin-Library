@@ -16,5 +16,8 @@
 	<form action="logout" method="post">
 	<button type="submit" value="logout">logout</button>
 	</form>
+	<form action="edit" methos="post">
+	<button type="submit" value="edit">edit</button>
+	</form>
 </body>
 </html>

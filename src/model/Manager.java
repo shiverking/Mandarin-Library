@@ -14,20 +14,20 @@ import org.hibernate.persister.*;
 
 import dao.BaseDaoImpl;
 import dao.BorrowrecordDao;
+import dao.CurrentRecordDao;
 import dao.ReaderDao;
-
 
 
 /**
  * @author
- * @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ22ÈÕ ÉÏÎç11:33:14
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½22ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½11:33:14
  * 
  */
 public class Manager {
 	private static SessionFactory factory;
 
 	public static void main(String[] args) {
-
+		int a;
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
 		} catch (Exception e) {
@@ -38,20 +38,15 @@ public class Manager {
 		ReaderDao readerDao=new ReaderDao();
 		BorrowrecordDao borrowrecordDao = new BorrowrecordDao();
 		readerDao.setSessionFactory(factory);
-		
+		CurrentRecordDao currentRecordDao=new CurrentRecordDao();
+		currentRecordDao.setSessionFactory(factory);
 		borrowrecordDao.setSessionFactory(factory);
 	
 		List<Borrowrecord> borrowrecords = borrowrecordDao.findAll();
-		System.out.println("¿ªÊ¼µü´úÊä³ö");
-		for (Iterator iterator = borrowrecords.iterator(); iterator.hasNext();) {
-			Borrowrecord borrowrecord =(Borrowrecord)iterator.next();
-			System.out.print(borrowrecord.getRecordID()+" ");
-			if (borrowrecord.getFine()>0) {
-				System.out.print(borrowrecord.getFine());
-			}
-			System.out.print(borrowrecord.getBorrowingDate()+" ");
-			System.out.println(borrowrecord.getReaderID());
-		}
+List<CurrentRecord> currentRecords=currentRecordDao.findAll();
+
+		borrowrecords.get(0).setBorrowingDate(currentRecords.get(0).getBorrowingDate());
+		borrowrecordDao.merge(borrowrecords.get(0));
 	}
 
 }
