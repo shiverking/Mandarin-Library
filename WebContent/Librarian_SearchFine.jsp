@@ -5,18 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>librarian</title>
+<title>librarian_SearchFine</title>
 </head>
 <body>
-		<s:if test="Librarians==null"><s:action  name="displayLibrarians" namespace="/" executeResult="true"></s:action></s:if>
-    	<s:if test="Librarians!=null">
-    	<form action="displayLibrarians"method="post">
+		<form action="displayreaderfine"method="post">
 		<table border="1" width="100%">
 				<tr>
-					<th>LibrarianID</th>
-					<th>LibradianName</th>
-					<th>Password</th>
-					<th>Operation</th>
+					<th>BookID</th>
+					<th>BookName</th>
+					<th>FineValue</th>
+					<th>Fine</th>
+					<th>isPayfine</th>
 				</tr>
 					<s:iterator value="Librarians">
 						<tr>
@@ -28,6 +27,5 @@
 					</s:iterator>
 		</table>
 		</form>
-		</s:if>
 </body>
 </html>
