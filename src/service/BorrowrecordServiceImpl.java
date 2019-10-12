@@ -14,45 +14,38 @@ import util.PageBean;
  */
 public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implements BorrowrecordService {
 
-	@Override
 	public List<Borrowrecord> getAllBorrowrecords() {
 		// TODO Auto-generated method stub
 
 		return this.getDao().findAll();
 	}
 
-	@Override
 	public List<Borrowrecord> getAllBorrowrecords(String cond) {
 		// TODO Auto-generated method stub
 		return this.getDao().findAll(cond);
 	}
 
-	@Override
 	public List<Borrowrecord> getBorrowrecordsbyReader(Reader reader) {
 		// TODO Auto-generated method stub
 		return this.getDao().findBy("ReaderID", reader.getReaderID(), "BorrowingDate desc");
 	}
 
-	@Override
 	public Borrowrecord getBorrowrecordByid(int id) {
 		// TODO Auto-generated method stub
 		return this.getDao().get(id);
 	}
 
-	@Override
 	public void saveBorrowrecord(Borrowrecord borrowrecord) {
 		this.getDao().save(borrowrecord);
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void mergeBorrowrecord(Borrowrecord borrowrecord) {
 		// TODO Auto-generated method stub
 		this.getDao().merge(borrowrecord);
 	}
 
-	@Override
 	public PageBean<Borrowrecord> findPageBean(Reader reader, Integer pageNum) {
 		// TODO ∑÷“≥≤È—Ø
 		int Num = 1;
@@ -67,7 +60,6 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		return page;
 	}
 
-	@Override
 	public int getFine(int id) {
 		List<Borrowrecord> borrowrecords=this.getDao().getByTwoProperty("ReaderID", "isPayfine", id,false);
 		int fine=0;
