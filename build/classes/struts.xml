@@ -26,7 +26,7 @@
 		<action name="librariansignup" class="librarianAction"
 			method="signup">
 			<result name="success">/Librarian_success.jsp</result>
-			<result name="input">/Admin_register.jsp</result>
+			<result name="input">/AdminJsp/pages/forms/basic_elements.jsp</result>
 		</action>
 		<!-- Admin 修改密码 -->
 		<action name="changePassword" class="adminAction"
@@ -46,7 +46,7 @@
 		<!-- Admin修改用户保障金 -->
 		<action name="modify" class="adminAction" method="modify">
 		<result name="input">/Modify_Deposit.jsp</result>
-		<result name="success">/Login_success.jsp</result>
+		<result name="success">/Modify_Deposit.jsp</result>
 		</action>
 		<!-- 展示securityDeposit -->
 		<action name="dmodify" class="adminAction" method="dm">
