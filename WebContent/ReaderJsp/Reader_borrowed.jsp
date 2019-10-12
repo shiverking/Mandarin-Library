@@ -23,7 +23,6 @@
 </head>
 
 <body class="bg-secondary">
-
 	<s:include value="Reader_Navbar.jsp" />
 	<div class="container">
 		<div class="row">

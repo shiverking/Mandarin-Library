@@ -13,7 +13,7 @@ import java.util.List;
 public class PageBean<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int pageSize = 8; // 每页显示多少条记录
+	private int pageSize = 6; // 每页显示多少条记录
 	private int currentPage; // 当前第几页数据
 	private int startIndex;// 开始的索引
 	private int totalRecord; // 一共多少条记录

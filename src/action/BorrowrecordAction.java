@@ -24,6 +24,7 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	private List<Book> books;//可能被删除
 	private Integer pageNum;
 	private PageBean<Borrowrecord> borrowPage;
+	private Integer totalFine;
 
 	public String getBorrowrecordByReader() {
 
@@ -38,10 +39,15 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 		return SUCCESS;
 	}
 
+	public String getReaderFine() {
+		totalFine=this.getService().getFine(tempReader.getReaderID());//TODO:增加了开销，后期可能修改算法
+		return SUCCESS;
+	}
 	public String getBorrowPageByReader() {
 		// TODO:分页查询
 		borrowPage = this.getService().findPageBean(tempReader, pageNum);
 		this.borrowrecords = borrowPage.getDataList();
+		if(totalFine==null)return "getfine";
 		return SUCCESS;
 	}
 
@@ -84,5 +90,14 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	public void setPageNum(Integer pageNum) {
 		this.pageNum = pageNum;
 	}
+
+	public Integer getTotalFine() {
+		return totalFine;
+	}
+
+	public void setTotalFine(Integer totalFine) {
+		this.totalFine = totalFine;
+	}
+
 
 }

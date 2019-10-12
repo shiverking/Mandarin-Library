@@ -14,7 +14,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-
 import org.hibernate.HibernateException;
 
 public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
@@ -172,16 +171,16 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 
 //拓展的ID数组查询
 	public List<TEntity> findByIDList(List<Integer> IDlist) {
-	
+
 		String namString = entityClass.getSimpleName();
 		if (entityClass.getSimpleName().equals("Borrowrecord"))
 			namString = "record";
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + namString + "ID IN (:IDlist)";
 		Query query = this.getSession().createQuery(queryString);
-		List<TEntity> list=query.setParameterList("IDlist",IDlist).list();
-		
-return list;
+		List<TEntity> list = query.setParameterList("IDlist", IDlist).list();
+
+		return list;
 	}
 
 	// 分页查询实现
@@ -214,12 +213,12 @@ return list;
 	}
 
 	public int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1) {
-		//TODO:分页搜索
+		// TODO:分页搜索
 		String namString = entityClass.getSimpleName();
 		if (entityClass.getSimpleName().equals("Borrowrecord"))
 			namString = "record";
-		if (cond1==null) {
-			cond1="";
+		if (cond1 == null) {
+			cond1 = "";
 		}
 		String queryString = "SELECT COUNT(" + namString + "ID) from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" + " or e." + propertyName2 + " like '%"
@@ -231,9 +230,9 @@ return list;
 
 	public List<TEntity> findPageByTwoProperty(String propertyName1, String propertyName2, String cond1, int pageStart,
 			int pageSize) {
-		//TODO:分页搜索
-		if (cond1==null) {
-			cond1="";
+		// TODO:分页搜索
+		if (cond1 == null) {
+			cond1 = "";
 		}
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" + " or e." + propertyName2 + " like '%"
@@ -243,5 +242,15 @@ return list;
 		query.setMaxResults(pageSize);
 		List<TEntity> results = query.list();
 		return results;
+	}
+
+	// 双属性精准查询实现
+	public List<TEntity> getByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2) {
+		String queryString = "from " + entityClass.getSimpleName() + " e ";
+		queryString += "where e." + propertyName1 + "=:Value1" + " and e." + propertyName2 + "=:Value2";
+		Query query = this.getSession().createQuery(queryString);
+		query.setParameter("Value1", Value1);
+		query.setParameter("Value2", Value2);
+		return query.list();
 	}
 }
