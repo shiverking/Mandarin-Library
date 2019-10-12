@@ -11,7 +11,9 @@ public class Book {
 	private boolean isBorrowed;
 	private String category;
 	public Book() {
-		
+		ReturnPeriod = 30;
+		FineValue = 1;
+		isBorrowed = false;
 	}
 	public Book(int bookID, String bookName, String iSBN, int price, String location,String category
 			) {

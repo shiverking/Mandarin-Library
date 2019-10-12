@@ -32,7 +32,6 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 		// TODO Auto-generated method stub
 		this.getDao().merge(book);
 	}
-
 	@Override
 	public Book getBookById(int id) {
 		// TODO Auto-generated method stub

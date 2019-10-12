@@ -14,6 +14,7 @@ import org.hibernate.persister.*;
 
 import dao.BaseDaoImpl;
 import dao.BorrowrecordDao;
+import dao.CurrentRecordDao;
 import dao.ReaderDao;
 
 
@@ -37,20 +38,15 @@ public class Manager {
 		ReaderDao readerDao=new ReaderDao();
 		BorrowrecordDao borrowrecordDao = new BorrowrecordDao();
 		readerDao.setSessionFactory(factory);
-		
+		CurrentRecordDao currentRecordDao=new CurrentRecordDao();
+		currentRecordDao.setSessionFactory(factory);
 		borrowrecordDao.setSessionFactory(factory);
 	
 		List<Borrowrecord> borrowrecords = borrowrecordDao.findAll();
-		System.out.println("��ʼ�������");
-		for (Iterator iterator = borrowrecords.iterator(); iterator.hasNext();) {
-			Borrowrecord borrowrecord =(Borrowrecord)iterator.next();
-			System.out.print(borrowrecord.getRecordID()+" ");
-			if (borrowrecord.getFine()>0) {
-				System.out.print(borrowrecord.getFine());
-			}
-			System.out.print(borrowrecord.getBorrowingDate()+" ");
-			System.out.println(borrowrecord.getReaderID());
-		}
+List<CurrentRecord> currentRecords=currentRecordDao.findAll();
+
+		borrowrecords.get(0).setBorrowingDate(currentRecords.get(0).getBorrowingDate());
+		borrowrecordDao.merge(borrowrecords.get(0));
 	}
 
 }

@@ -16,7 +16,6 @@ public interface BookService {
 	public List<Book> getAllBooks(String cond);
 	public void saveBook(Book book);
 	public void mergeBook(Book book);
-	
 	public Book getBookById(int id);
 	public Book getBookByBorrowrecord(Borrowrecord borrowrecord);
 	public List<Book> getBookByISBN(String cond);
