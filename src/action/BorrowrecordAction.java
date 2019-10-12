@@ -45,12 +45,16 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	}
 	public String getBorrowPageByReader() {
 		// TODO:分页查询
-		borrowPage = this.getService().findPageBean(tempReader, pageNum);
-		this.borrowrecords = borrowPage.getDataList();
+		borrowPage = this.getService().findPageBean(tempReader, pageNum,false);
 		if(totalFine==null)return "getfine";
 		return SUCCESS;
 	}
-
+	public String getReturnPageByReader() {
+		// TODO:分页查询
+		borrowPage = this.getService().findPageBean(tempReader, pageNum,true);
+		if(totalFine==null)return "getfine";
+		return SUCCESS;
+	}
 	public PageBean<Borrowrecord> getBorrowPage() {
 		return borrowPage;
 	}

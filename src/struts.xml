@@ -40,7 +40,7 @@
 		<action name="readersignin" class="readerAction"
 			method="signin">
 			<result name="success" type="chain"><!--登录成功后跳转到借阅记录界面，后期需要更改 -->
-				<param name="actionName">getCurrentRecordByReader</param>
+				<param name="actionName">getBorrowPageByReader</param>
 			</result>
 			<result name="input">/Reader_signin.jsp</result>
 		</action>
@@ -51,35 +51,13 @@
 			<result name="success">/Reader_signin.jsp</result>
 		</action>
 		<!-- 获取借阅记录 -->
-		<action name="getReaderStatuForRecord" class="readerAction"
-			method="getReaderStatu"><!--获取用户信息 -->
-			<result name="success" type="chain"><!--若读者已经登录，获取借阅记录 -->
-				<param name="actionName">getBorrowrecordByReader</param>
-			</result>
-			<result name="none">/Reader_signin.jsp</result><!--若读者未登录，跳转到登录界面 -->
-		</action>
-		<action name="getBorrowrecordByReader"
-			class="borrowrecordAction" method="getBorrowrecordByReader"><!--依赖读者账户获取借阅记录 -->
-			<result name="success" type="chain">
-				<param name="actionName">getBooksbyBorrwrecords</param><!-- 若成功则去书籍信息 -->
-			</result>
-		</action>
-		<action name="getAllBorrowrecord" class="borrowrecordAction"
-			method="getAllBorrowrecord"><!-- 直接取得所有借阅记录 -->
-			<result name="success" type="chain">
-				<param name="actionName">getBooksbyBorrwrecords</param>
-			</result>
-		</action>
-		<action name="getBooksbyBorrwrecords" class="bookAction"
-			method="getBooksbyBorrwrecords"><!-- 依赖借阅记录获取对应的书籍信息 -->
-			<result name="success">/Reader_borrowed.jsp</result><!--结束action，返回借阅记录界面 -->
-		</action>
+
 		<!-- 搜索书籍 -->
 		<action name="searchBook" class="bookAction"
 			method="searchBook">
 			<result name="success">/category.jsp</result>
 		</action>
-		<!-- 还书记录分页查询 -->
+		<!-- 当前借阅记录分页查询 -->
 		<action name="getReaderStatuForBorrowPage" class="readerAction"
 			method="getReaderStatu"><!--获取用户信息 -->
 			<result name="success" type="chain"><!--若读者已经登录，获取借阅记录 -->
@@ -90,7 +68,7 @@
 		<action name="getBorrowPageByReader" class="borrowrecordAction"
 			method="getBorrowPageByReader">
 			<result name="success" type="chain">
-				<param name="actionName">getBooksbyBorrwrecords</param>
+				<param name="actionName">getBooksbyBorrowPage</param>
 			</result>
 			<result name="getfine" type="chain">
 				<param name="actionName">getReaderFine</param><!-- 若fine为空，去取fine -->
@@ -100,8 +78,13 @@
 		<action name="getReaderFine" class="borrowrecordAction"
 			method="getReaderFine">
 			<result name="success" type="chain">
-				<param name="actionName">getBooksbyBorrwrecords</param>
+				<param name="actionName">getBooksbyBorrowPage</param>
 			</result>
+		</action>
+		<!--获取书籍信息 -->
+		<action name="getBooksbyBorrowPage" class="bookAction"
+			method="getBooksbyBorrowPage"><!-- 依赖借阅记录获取对应的书籍信息 -->
+			<result name="success">/Reader_dashboard.jsp</result><!--结束action，返回借阅记录界面 -->
 		</action>
 		<!--查询当前借阅记录和预约记录 -->
 		<action name="getReaderStatuForCurrent" class="readerAction"
