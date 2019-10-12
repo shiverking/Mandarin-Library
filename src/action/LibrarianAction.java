@@ -52,16 +52,13 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		String Password = this.getModel().getPassword();//��ȡ���������
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String NewPassword=request.getParameter("ConfirmPassword");
-		int i=0;
-		if(LibrarianName==null&&i == 0) {
-			/*request.setAttribute("tipMessage", "You must input the Name!");
-			i++;*/
-			return INPUT;//����ע�����
+		if(LibrarianName.isEmpty()) {
+			this.errorMessage="You must input the Name!";
+			return INPUT;
 		}
 		Librarian librarian = this.getService().verify(LibrarianName, Password);
-		if(Password==null||NewPassword==null||!NewPassword.equals(Password)) {
-			/*request.setAttribute("tipMessage", "The two passwords you entered do not match!");
-			i++;*/
+		if(!NewPassword.equals(Password)) {
+			this.errorMessage="Both passwords must be the same!";
 			return INPUT;
 		}
 		if(librarian == null) {
@@ -70,12 +67,13 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 					this.getService().register(this.getModel());
 				}
 				catch (Exception ex){
-					/*this.addActionError(ex.getMessage());
-					return INPUT;*/     //ҳ����ʾ��Ϣδʵ��
+					this.addActionError(ex.getMessage());
+					return INPUT;
 				}
 		    	return SUCCESS;
 			}
 		}
+		this.errorMessage="Your name or password is wrong, please try again !";
 		return INPUT;
 	}
 	public String show()
