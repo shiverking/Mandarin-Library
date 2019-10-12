@@ -47,7 +47,29 @@ public class PageBean<T> implements Serializable {
 			}
 		}
 	}
+	public PageBean(int totalRecords, int current,int size) {
+		pageSize=size;
+		totalRecord = totalRecords;
+		this.currentPage = current;
+		startIndex = (current - 1) * pageSize;
+		totalPage = totalRecord % pageSize == 0 ? totalRecord / pageSize : totalRecord / pageSize + 1;
 
+		if (totalPage < 7) {
+			beginPageNum = 1;
+			endPageNum = totalPage;
+		} else {
+			beginPageNum = currentPage - 3;
+			endPageNum = currentPage + 3;
+			if (beginPageNum < 1) {
+				beginPageNum = 1;
+				endPageNum = beginPageNum + 6;
+			}
+			if (endPageNum > totalPage) {
+				endPageNum = totalPage;
+				beginPageNum = endPageNum - 6;
+			}
+		}
+	}
 	public int getStartIndex() {
 		return startIndex;
 	}

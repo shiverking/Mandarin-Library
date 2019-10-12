@@ -16,10 +16,9 @@ import util.PageBean;
 
 public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
-	private List<Book> books;//ï¿½ï¿½ï¿½Ü±ï¿½bookPageÈ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½
-	private List<Borrowrecord> borrowrecords;// ï¿½ï¿½ï¿½Ü±ï¿½É¾ï¿½ï¿½
-	private List<CurrentRecord> currentRecords;// Ö¸ï¿½Ú½ï¿½ï¿½é¼®ï¿½ï¿½Ô¤Ô¼ï¿½é¼®ï¿½ï¿½ï¿½ï¿½Ï¢
-	private PageBean<Borrowrecord> borrowPage;// ï¿½Ñ¹é»¹ï¿½ï¿½ï¿½é¼®ï¿½ï¿½Ï¢
+	private List<Book> books;
+	private List<CurrentRecord> currentRecords;// Ö¸ÔÚ½èÊé¼®ºÍÔ¤Ô¼Êé¼®µÄÐÅÏ¢
+	private PageBean<Borrowrecord> borrowPage;// ½èÔÄ¼ÇÂ¼ÐÅÏ¢
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
@@ -34,16 +33,16 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
-	public String getBooksbyBorrwrecords() {
+	public String getBooksbyBorrowPage() {
 		books = new ArrayList<Book>();
-		for (Borrowrecord borrowrecord : borrowrecords) {
+		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
 			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 		}
 		return SUCCESS;
 	}
 
 	public String getBooksbycurrentRecords() {
-		//TODO:ï¿½ï¿½ï¿½Ü¸ï¿½ï¿½ï¿½pagabeanÊµï¿½ï¿½
+		// TODO:¿ÉÄÜ¸ÄÓÃpagabeanÊµÏÖ
 		books = new ArrayList<Book>();
 		for (CurrentRecord currentRecord : currentRecords) {
 			books.add(this.getService().getBookById(currentRecord.getBookID()));
@@ -123,14 +122,6 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public void setSearchContent(String searchContent) {
 		this.searchContent = searchContent;
-	}
-
-	public List<Borrowrecord> getBorrowrecords() {
-		return borrowrecords;
-	}
-
-	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
-		this.borrowrecords = borrowrecords;
 	}
 
 	public List<Book> getBooks() {
