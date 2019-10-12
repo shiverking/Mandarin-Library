@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d6221230-aebf-4a9a-9ca1-4697cb65bbb2" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-703">
+              <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/forms/basic_elements.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="220" column="14" lean-forward="true" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/forms/basic_elements.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="204" column="49" selection-start-line="204" selection-start-column="49" selection-end-line="204" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/tables/basic-table.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2584">
+              <caret line="136" column="28" selection-start-line="136" selection-start-column="28" selection-end-line="136" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/pages/icons/themify.html" />
+        <option value="$PROJECT_DIR$/pages/charts/chartjs.html" />
+        <option value="$PROJECT_DIR$/pages/ui-features/buttons.html" />
+        <option value="$PROJECT_DIR$/pages/ui-features/typography.html" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/pages/tables/basic-table.html" />
+        <option value="$PROJECT_DIR$/pages/forms/basic_elements.jsp" />
+        <option value="$PROJECT_DIR$/pages/forms/basic_elements.html" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="85" />
+    <option name="y" value="25" />
+    <option name="width" value="1750" />
+    <option name="height" value="980" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="AdminJsp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AdminJsp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AdminJsp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AdminJsp" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AdminJsp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AdminJsp" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="forms" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.basic_elements.html (1)">
+    <configuration name="basic-table.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/RoyalUI-Admin-master/pages/tables/basic-table.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="basic_elements.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/AdminJsp/pages/forms/basic_elements.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="basic_elements.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/RoyalUI-Admin-master/pages/forms/basic_elements.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/AdminJsp/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/RoyalUI-Admin-master/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.basic_elements.html (1)" />
+        <item itemvalue="JavaScript Debug.index.html (1)" />
+        <item itemvalue="JavaScript Debug.basic_elements.html" />
+        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.basic-table.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d6221230-aebf-4a9a-9ca1-4697cb65bbb2" name="Default Changelist" comment="" />
+      <created>1570878959917</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570878959917</updated>
+      <workItem from="1570878961826" duration="7913000" />
+      <workItem from="1570887726351" duration="3704000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="11617000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966975" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3286119" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="uml://JavaScript-modules-diagram/D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/vendors/chart.js/Chart.min.js</node>
+            <node x="" y="">$PROJECT_DIR$/partials/_navbar.html</node>
+            <node x="" y="">$PROJECT_DIR$/pages/tables/basic-table.html</node>
+            <node x="" y="">$PROJECT_DIR$/pages/forms/basic_elements.html</node>
+            <node x="" y="">$PROJECT_DIR$/pages/ui-features/buttons.html</node>
+            <node x="" y="">$PROJECT_DIR$/js/chart.js</node>
+            <node x="" y="">$PROJECT_DIR$/pages/charts/chartjs.html</node>
+            <node x="" y="">$PROJECT_DIR$/js/dashboard.js</node>
+            <node x="" y="">$PROJECT_DIR$/documentation/documentation.html</node>
+            <node x="" y="">$PROJECT_DIR$/js/documentation.js</node>
+            <node x="" y="">$PROJECT_DIR$/images/faces/face1.jpg</node>
+            <node x="" y="">$PROJECT_DIR$/images/faces/face13.jpg</node>
+            <node x="" y="">$PROJECT_DIR$/images/faces/face2.jpg</node>
+            <node x="" y="">$PROJECT_DIR$/images/faces/face28.jpg</node>
+            <node x="" y="">$PROJECT_DIR$/images/faces/face3.jpg</node>
+            <node x="" y="">$PROJECT_DIR$/images/faces/face4.jpg</node>
+            <node x="" y="">$PROJECT_DIR$/images/faces/face5.jpg</node>
+            <node x="" y="">$PROJECT_DIR$/images/faces/face6.jpg</node>
+            <node x="" y="">$PROJECT_DIR$/images/faces/face7.jpg</node>
+            <node x="" y="">$PROJECT_DIR$/images/favicon.png</node>
+            <node x="" y="">$PROJECT_DIR$/js/file-upload.js</node>
+            <node x="" y="">$PROJECT_DIR$/gulpfile.js#browserSync#60;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/gulpfile.js#concat#412;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/gulpfile.js#del#168;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/gulpfile.js#gulp#18;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/gulpfile.js#inject#330;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/gulpfile.js#injectPartials#276;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/gulpfile.js#merge#449;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/gulpfile.js#rename#131;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/gulpfile.js#replace#237;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/gulpfile.js#runSequence#194;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/gulpfile.js#sass#98;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/gulpfile.js#sourcemaps#367;</node>
+            <node x="" y="">$PROJECT_DIR$/js/hoverable-collapse.js</node>
+            <node x="" y="">$PROJECT_DIR$/index.html</node>
+            <node x="" y="">$PROJECT_DIR$/pages/samples/lock-screen.html</node>
+            <node x="" y="">$PROJECT_DIR$/pages/samples/login-2.html</node>
+            <node x="" y="">$PROJECT_DIR$/pages/samples/login.html</node>
+            <node x="" y="">$PROJECT_DIR$/images/logo-mini.svg</node>
+            <node x="" y="">$PROJECT_DIR$/images/logo.svg</node>
+            <node x="" y="">$PROJECT_DIR$/js/off-canvas.js</node>
+            <node x="" y="">$PROJECT_DIR$/pages/samples/register-2.html</node>
+            <node x="" y="">$PROJECT_DIR$/pages/samples/register.html</node>
+            <node x="" y="">$PROJECT_DIR$/css/style.css</node>
+            <node x="" y="">$PROJECT_DIR$/js/template.js</node>
+            <node x="" y="">$PROJECT_DIR$/vendors/ti-icons/css/themify-icons.css</node>
+            <node x="" y="">$PROJECT_DIR$/pages/icons/themify.html</node>
+            <node x="" y="">$PROJECT_DIR$/js/todolist.js</node>
+            <node x="" y="">$PROJECT_DIR$/pages/ui-features/typography.html</node>
+            <node x="" y="">$PROJECT_DIR$/vendors/base/vendor.bundle.base.css</node>
+            <node x="" y="">$PROJECT_DIR$/vendors/base/vendor.bundle.base.js#jquery#107982;D:/web开发/Mandarin-Library/WebContent/RoyalUI-Admin-master/vendors/base/vendor.bundle.base.js#popper.js#108000;</node>
+            <node x="" y="">create;</node>
+            <node x="" y="">del</node>
+            <node x="" y="">gulp</node>
+            <node x="" y="">gulp-concat</node>
+            <node x="" y="">gulp-inject</node>
+            <node x="" y="">gulp-inject-partials</node>
+            <node x="" y="">gulp-rename</node>
+            <node x="" y="">gulp-replace</node>
+            <node x="" y="">gulp-sass</node>
+            <node x="" y="">gulp-sourcemaps</node>
+            <node x="" y="">images/faces/face2.jpg</node>
+            <node x="" y="">images/faces/face28.jpg</node>
+            <node x="" y="">images/faces/face3.jpg</node>
+            <node x="" y="">images/faces/face4.jpg</node>
+            <node x="" y="">images/logo-mini.svg</node>
+            <node x="" y="">images/logo.svg</node>
+            <node x="" y="">jquery</node>
+            <node x="" y="">merge-stream</node>
+            <node x="" y="">popper.js</node>
+            <node x="" y="">run-sequence</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.3741379310344828" x="755.0" y="860.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="20889" column="11" selection-start-line="20889" selection-start-column="11" selection-end-line="20889" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/icons/themify.html" />
+    <entry file="file://$PROJECT_DIR$/pages/charts/chartjs.html" />
+    <entry file="file://$PROJECT_DIR$/vendors/ti-icons/css/themify-icons.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="697" column="1" selection-start-line="697" selection-start-column="1" selection-end-line="697" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/ui-features/buttons.html" />
+    <entry file="file://$PROJECT_DIR$/pages/ui-features/typography.html" />
+    <entry file="file://$PROJECT_DIR$/pages/tables/basic-table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2584">
+          <caret line="136" column="28" selection-start-line="136" selection-start-column="28" selection-end-line="136" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/forms/basic_elements.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="204" column="49" selection-start-line="204" selection-start-column="49" selection-end-line="204" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/forms/basic_elements.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="220" column="14" lean-forward="true" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-703">
+          <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
