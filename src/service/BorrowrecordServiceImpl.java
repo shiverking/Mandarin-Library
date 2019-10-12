@@ -16,8 +16,8 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 
 	public List<Borrowrecord> getAllBorrowrecords() {
 		// TODO Auto-generated method stub
-
-		return this.getDao().findAll();
+		List<Borrowrecord> records = this.getDao().findAll();
+		return records;
 	}
 
 	public List<Borrowrecord> getAllBorrowrecords(String cond) {
@@ -30,6 +30,11 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		return this.getDao().findBy("ReaderID", reader.getReaderID(), "BorrowingDate desc");
 	}
 
+	public List<Borrowrecord> getBorrowrecordsbyReaderId(int readerId) {
+		// TODO Auto-generated method stub
+		return this.getDao().findBy("ReaderID", readerId, "BorrowingDate desc");
+	}
+	
 	public Borrowrecord getBorrowrecordByid(int id) {
 		// TODO Auto-generated method stub
 		return this.getDao().get(id);

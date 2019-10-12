@@ -144,6 +144,14 @@
 		<action name="editBook" class="bookAction" method="editBook">
 			<result name="success">/EditBook.jsp</result>
 		</action>
+		<!-- Librarian查看所有用户的借书列表 -->
+		<action name="displayBorrowrecord" class="borrowrecordAction" method="getAllBorrowrecord">
+			<result name="success">/BorrowList.jsp</result>
+		</action>
+		<!-- Librarian查找特定用户Id的结束列表 -->
+		<action name="findBRByReader" class="borrowrecordAction" method="getBorrowrecordByReaderId">
+			<result name="success">/BorrowList.jsp</result>
+		</action>
 		<!-- Admin删除馆员 -->
 		<action name="deleteLibrarian" class="librarianAction"
 			method="deleteLibrarian">

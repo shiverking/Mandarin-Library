@@ -15,13 +15,13 @@ import util.PageBean;
 
 /**
  * @author
- * @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ24ÈÕ ÉÏÎç2:12:54
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½24ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½2:12:54
  * 
  */
 public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordService> {
-	private List<Borrowrecord> borrowrecords;//¿ÉÄÜ±»É¾³ý
+	private List<Borrowrecord> borrowrecords;//ï¿½ï¿½ï¿½Ü±ï¿½É¾ï¿½ï¿½
 	private Reader tempReader;
-	private List<Book> books;//¿ÉÄÜ±»É¾³ý
+	private List<Book> books;//ï¿½ï¿½ï¿½Ü±ï¿½É¾ï¿½ï¿½
 	private Integer pageNum;
 	private PageBean<Borrowrecord> borrowPage;
 	private Integer totalFine;
@@ -35,16 +35,20 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	public String getAllBorrowrecord() {
 
 		this.borrowrecords = this.getService().getAllBorrowrecords();
-
+		return SUCCESS;
+	}
+	
+	public String getBorrowrecordByReaderId(){
+		borrowrecords = this.getService().getBorrowrecordsbyReaderId(this.getModel().getReaderID());
 		return SUCCESS;
 	}
 
 	public String getReaderFine() {
-		totalFine=this.getService().getFine(tempReader.getReaderID());//TODO:Ôö¼ÓÁË¿ªÏú£¬ºóÆÚ¿ÉÄÜÐÞ¸ÄËã·¨
+		totalFine=this.getService().getFine(tempReader.getReaderID());//TODO:ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ã·¨
 		return SUCCESS;
 	}
 	public String getBorrowPageByReader() {
-		// TODO:·ÖÒ³²éÑ¯
+		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 		borrowPage = this.getService().findPageBean(tempReader, pageNum);
 		this.borrowrecords = borrowPage.getDataList();
 		if(totalFine==null)return "getfine";
