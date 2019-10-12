@@ -2,6 +2,11 @@ package action;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
 
 import com.opensymphony.xwork2.ActionContext;
 
@@ -41,34 +46,35 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		ActionContext.getContext().getSession().clear();
 		return SUCCESS;
 	}
-	
+
 	public String gotoReaderSelfProfile() {
 //    	Map<String, Object> session = ActionContext.getContext().getSession();
 //    	this.tempReader = (Reader) session.get("reader");
 //    	if(tempReader==null) {
 //    		return INPUT;
 //    	}
-    	return SUCCESS;
+		return SUCCESS;
 	}
-	
+
 	public String changeReaderName() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
-    	tempReader = (Reader) session.get("reader");
-    	tempReader.setReaderName(this.getModel().getReaderName());
-    	this.getService().mergeReader(tempReader);
-    	return SUCCESS;
+		tempReader = (Reader) session.get("reader");
+		tempReader.setReaderName(this.getModel().getReaderName());
+		this.getService().mergeReader(tempReader);
+		return SUCCESS;
 	}
-	
+
 //	changeReaderPassword
 	public String changeReaderPassword() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
-    	tempReader = (Reader) session.get("reader");
+		tempReader = (Reader) session.get("reader");
 //    	tempReader.setSalt(Encrypt.getSalt());
-    	tempReader.setPassword(this.getModel().getPassword());
-    	this.getService().mergeReader(tempReader);
-    	this.setErrorMessage("修改成功，请重新登录！");
-    	return SUCCESS;
+		tempReader.setPassword(this.getModel().getPassword());
+		this.getService().mergeReader(tempReader);
+		this.setErrorMessage("修改成功，请重新登录！");
+		return SUCCESS;
 	}
+
 
 	// ��ȡ�û���״̬
 	public String getReaderStatu() {
@@ -79,7 +85,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		}
 		return SUCCESS;
 	}
-	
+
 	public String getSearchContent() {
 		return searchContent;
 	}
@@ -111,5 +117,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-
+	
+	
 }

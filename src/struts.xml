@@ -71,10 +71,10 @@
 		</action>
 		<action name="changeReaderPassword" class="readerAction"
 			method="changeReaderPassword">
-			<!-- changeReaderPassword-->
 			<result name="success">/Reader_signin.jsp</result>
 		</action>
 
+		
 		<!-- 获取借阅记录 -->
 		<action name="getReaderStatuForRecord" class="readerAction"
 			method="getReaderStatu"><!--获取用户信息 -->

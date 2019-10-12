@@ -43,10 +43,9 @@ public class Manager {
 		borrowrecordDao.setSessionFactory(factory);
 	
 		List<Borrowrecord> borrowrecords = borrowrecordDao.findAll();
-List<CurrentRecord> currentRecords=currentRecordDao.findAll();
+		List<CurrentRecord> currentRecords=currentRecordDao.findAll();
 
 		borrowrecords.get(0).setBorrowingDate(currentRecords.get(0).getBorrowingDate());
 		borrowrecordDao.merge(borrowrecords.get(0));
 	}
-
 }
