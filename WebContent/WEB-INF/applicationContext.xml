@@ -35,19 +35,20 @@
 		<property name="service" ref="librarianService"></property>
 		<property name="model" ref="librarian"></property>
 	</bean>
-	<!-- librarianService图书馆馆员操作业务对象 -->
-	<bean id="PostService" class="service.LibrarianServicelmpl">
-		<property name="dao" ref="librarianDao"></property>
-	</bean>
-	<bean id="post" class="model.Post" scope="prototype" />
-	<bean id="PostAction" class="action.PostAction"
-		scope="prototype">
-		<property name="service" ref="PostService"></property>
-<property name="model" ref="Post																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														"></property>
-	</bean>
 	<!-- Librarian_Post数据操作对象 -->
-	<bean id="PostDao" class="dao.PostDao">
+	<bean id="postDao" class="dao.PostDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="post" class="model.Post" scope="prototype"  >
+		<property name="librarian" ref="librarian"></property>
+	</bean>
+		<!-- PostService用户操作业务对象 -->
+	<bean id="postService" class="service.PostServiceImpl">
+		<property name="dao" ref="postDao"></property>
+	</bean>
+	<bean id="postAction" class="action.PostAction" scope="prototype">
+		<property name="service" ref="postService"></property>
+		<property name="model" ref="post"></property>
 	</bean>
 	
 	<!-- ReaderDao 数据操作对象 -->

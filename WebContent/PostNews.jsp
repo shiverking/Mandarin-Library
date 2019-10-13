@@ -8,7 +8,7 @@
 </head>
 <body>
  <table border="1" name="AddBook">
-      <form action="update" method = "post" textarea rows="10" cols="30">
+      <form action="PostNews" method = "post" textarea rows="10" cols="30">
         Title:<input name="Title" required="required"><br>
         Content:<br> <textarea rows="10" cols="30" name="Content" required="required"/></textarea>
        <br> <button type="submit" value="update">Update Post</button>
