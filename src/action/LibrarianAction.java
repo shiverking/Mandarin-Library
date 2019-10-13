@@ -50,11 +50,16 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	}
 	public String signup() throws Exception{
 		String LibrarianName = this.getModel().getLibrarianName();//锟斤拷取LibrarianName
+		String Email = this.getModel().getEmail();//获取邮箱
 		String Password = this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String NewPassword=request.getParameter("ConfirmPassword");
 		if(LibrarianName.isEmpty()) {
 			this.errorMessage="You must input the Name!";
+			return INPUT;
+		}
+		if(Email.isEmpty()) {
+			this.errorMessage="You must input the Email!";
 			return INPUT;
 		}
 		Librarian librarian = this.getService().verify(LibrarianName, Password);
