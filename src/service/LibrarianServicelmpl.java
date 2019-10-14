@@ -49,11 +49,11 @@ public class LibrarianServicelmpl extends BaseService<Librarian>implements Libra
 	}
 
 	@Override
-	public String findPassword(String LibrarianName) {
+	public int findID(String LibrarianName) {
 		if(this.getDao().getSingle("LibrarianName", LibrarianName)!=null)
 		{
-			return this.getDao().getSingle("LibrarianName", LibrarianName).getPassword();
+			return this.getDao().getSingle("LibrarianName", LibrarianName).getLibrarianID();
 		}
-		return null;
+		return 0;
 	}
 }
