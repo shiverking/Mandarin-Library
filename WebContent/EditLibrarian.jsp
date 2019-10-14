@@ -13,6 +13,7 @@
     <tr>
 		<th>LibrarianID</th>
 		<th>LibradianName</th>
+		<th>Email</th>
 		<th>Password</th>
 		<th>Operation</th>      
     </tr>
@@ -20,6 +21,7 @@
     <tr>
       <td align="center"><s:property value="LibrarianID"/></td>
       <td align="center"><s:property value="LibrarianName"/></td>
+      <td align="center"><s:property value="Email"/></td>
       <td align="center"><s:property value="Password"/></td>
       <td><a href='deleteBook?book.BookID=<s:property value="BookID"/>'>Delete</a></td>
     </tr>
@@ -28,6 +30,7 @@
     <tr>
       <td align="center"><s:property value="LibrarianID"/></td>
       <td><input type="text" value="<s:property value="LibrarianName"/>" name="LibrarianName"/></td>
+      <td><input type="Email" value="<s:property value="Email"/>" name="Email"/></td>
       <td><input type="text" value="<s:property value="Password"/>" name="Password"/></td>
     </tr>
    </s:iterator>
