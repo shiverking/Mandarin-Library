@@ -1,9 +1,11 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import model.Book;
 import model.Borrowrecord;
 import model.Reader;
 import util.PageBean;
@@ -83,6 +85,58 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 			fine+=borrowrecord.getFine();
 		}
 		return fine;
+	}
+
+	public List<Borrowrecord> borrowBook(List<Reader> readers, List<Book> books) {
+		//初始化参数
+		Reader reader = readers.get(0);
+		Book book = books.get(0);
+		long returnPeriod = book.getReturnPeriod();
+		long currentTime = System.currentTimeMillis();
+		Date date = new Date();
+		System.out.println(returnPeriod * 24 * 60 * 60 * 1000);
+		Date returnDate =new Date(currentTime + returnPeriod * 24 * 60 * 60 * 1000);
+		//对borrowrecord数据操作
+		Borrowrecord borrowrecord = new Borrowrecord();
+		borrowrecord.setBookID(book.getBookID());
+		borrowrecord.setReaderID(reader.getReaderID());
+		borrowrecord.setFine(0);
+		borrowrecord.setIsPayfine(false);
+		borrowrecord.setBorrowingDate(date);
+		borrowrecord.setReturnDate(returnDate);
+		borrowrecord.setIsReturn(false);
+		this.getDao().save(borrowrecord);
+		List<Borrowrecord> borrowrecords = new ArrayList<Borrowrecord>();
+		borrowrecords.add(borrowrecord);
+		return borrowrecords;
+	}
+
+	public List<Borrowrecord> getBorrowrecordByBook(int id) {
+		// TODO Auto-generated method stub
+		if(!this.getDao().findBy("BookID", id, "BorrowingDate desc").isEmpty()){
+			Borrowrecord borrowrecord = new Borrowrecord();
+			List<Borrowrecord> borrowrecords = this.getDao().findBy("BookID", id, "BorrowingDate desc");
+			for (Iterator<Borrowrecord> iterator = borrowrecords.iterator(); iterator.hasNext();) {
+				borrowrecord = (Borrowrecord) iterator.next();
+				if(!iterator.hasNext()){
+					if(!borrowrecord.getIsReturn()){
+						borrowrecord.setIsReturn(true);
+						Date returnDate = new Date();
+						borrowrecord.setReturnDate(returnDate);
+						borrowrecord.setIsPayfine(true);
+						this.getDao().merge(borrowrecord);
+					}else{
+						return null;
+					}
+				}
+			}
+			borrowrecords = new ArrayList<Borrowrecord>();
+			borrowrecords.add(borrowrecord);
+			return borrowrecords;
+		}else{
+			return null;
+		}
+		
 	}
 
 

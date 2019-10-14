@@ -77,6 +77,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
+			
 			session.delete(entity);
 			tx.commit();
 		} catch (HibernateException e) {
@@ -94,6 +95,22 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		delete(entity);
 	}
 
+	public void deleteByLS(int id) {
+		Session session = this.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			TEntity entity = (TEntity) session.get(entityClass, id);
+			session.delete(entity);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
 	@SuppressWarnings("unchecked")
 	public List<TEntity> findAll(String cond) {
 		if (cond != null) {
@@ -245,4 +262,5 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		query.setParameter("Value2", Value2);
 		return query.list();
 	}
+	
 }

@@ -102,8 +102,14 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	}
 	
 	public String getReaderById(){
+		this.readers = new ArrayList<Reader>();
 		int id = this.getModel().getReaderID();
-		this.readers = this.getService().getReadersByID(id);
+		this.readers.add(this.getService().getReaderById(id));
+		if(this.readers.get(0) == null){
+			this.setErrorMessage("ReaderNotFoundError: Can't Find Reader by id:" + id);
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
 		return SUCCESS;
 	}
 	

@@ -21,5 +21,4 @@ public interface ReaderService {
 
 	public Reader getReaderByBorrowrecord(Borrowrecord borrowrecord);
 
-	public List<Reader> getReadersByID(int id);
 }

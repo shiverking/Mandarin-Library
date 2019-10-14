@@ -2,7 +2,7 @@ package service;
 
 import java.util.List;
 
-
+import model.Book;
 import model.Borrowrecord;
 import model.Reader;
 import util.PageBean;
@@ -28,4 +28,6 @@ public PageBean<Borrowrecord> findPageBean(Reader reader,Integer pageNum);
 //ͨ��id��ȡδ֧���ķ���
 public int getFine(int id);
 public List<Borrowrecord> getBorrowrecordsbyReaders(List<Reader> readers);
+public List<Borrowrecord> borrowBook(List<Reader> readers, List<Book> books);
+public List<Borrowrecord> getBorrowrecordByBook(int i);
 }

@@ -19,13 +19,14 @@ import util.PageBean;
  * 
  */
 public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordService> {
-	private List<Borrowrecord> borrowrecords;//���ܱ�ɾ��
+	private List<Borrowrecord> borrowrecords;// ���ܱ�ɾ��
 	private Reader tempReader;
-	private List<Book> books;//���ܱ�ɾ��
+	private List<Book> books;// ���ܱ�ɾ��
 	private Integer pageNum;
 	private PageBean<Borrowrecord> borrowPage;
 	private Integer totalFine;
 	private List<Reader> readers;
+	private String errorMessage;
 
 	public String getBorrowrecordByReader() {
 
@@ -33,33 +34,73 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 		return SUCCESS;
 	}
 
-	public String getBorrowrecordByReaders() {
+	public String borrowBook() {
+
+		if(this.readers == null){
+			this.setErrorMessage("ReaderNotFoundError: method(BorrowrecordAction.borrowBook) this.reader is null");
+			System.out.println(this.getErrorMessage());
+		}else if(this.books == null){
+			this.setErrorMessage("BookNotFoundError: method(BorrowrecordAction.borrowBook) this.Book is null");
+			System.out.println(this.getErrorMessage());
+		}else{
+			borrowrecords = this.getService().borrowBook(readers, books);
+		}
+		return SUCCESS;
 		
+	}
+	public String getBorrowrecordbyBook(){
+		if(this.books.get(0)!=null){
+			System.out.println(this.books.get(0).getBookID());
+			borrowrecords = this.getService().getBorrowrecordByBook(this.books.get(0).getBookID());
+			if(borrowrecords!=null){
+				return SUCCESS;
+			}else{
+				this.setErrorMessage("BorrowrecordNotFoundError: Can't Find the Borrowrecord");
+				System.out.println(this.getErrorMessage());
+				return ERROR;
+			}
+		}else{
+			this.setErrorMessage("BorrowrecordNotFoundError: Can't Find the book");
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}		
+	}
+
+	public String getBorrowrecordByReaders() {
+
 		borrowrecords = this.getService().getBorrowrecordsbyReaders(readers);
 		return SUCCESS;
 	}
-	
+
 	public String getAllBorrowrecord() {
 
 		this.borrowrecords = this.getService().getAllBorrowrecords();
 		return SUCCESS;
 	}
-	
-	public String getBorrowrecordByReaderId(){
+
+	public String getBorrowrecordByReaderId() {
 		borrowrecords = this.getService().getBorrowrecordsbyReaderId(this.getModel().getReaderID());
 		return SUCCESS;
 	}
 
 	public String getReaderFine() {
-		totalFine=this.getService().getFine(tempReader.getReaderID());//TODO:�����˿��������ڿ����޸��㷨
+		totalFine = this.getService().getFine(tempReader.getReaderID());// TODO:�����˿��������ڿ����޸��㷨
 		return SUCCESS;
 	}
+
 	public String getBorrowPageByReader() {
 		// TODO:��ҳ��ѯ
+		this.setErrorMessage(null);
 		borrowPage = this.getService().findPageBean(tempReader, pageNum);
 		this.borrowrecords = borrowPage.getDataList();
-		if(totalFine==null)return "getfine";
-		return SUCCESS;
+		if (totalFine == null)
+			return "getfine";
+		if(this.getErrorMessage()==null){
+			return SUCCESS;
+		}else{
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
 	}
 
 	public PageBean<Borrowrecord> getBorrowPage() {
@@ -109,15 +150,21 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	public void setTotalFine(Integer totalFine) {
 		this.totalFine = totalFine;
 	}
-	
+
 	public List<Reader> getReaders() {
 		return readers;
 	}
-	
+
 	public void setReaders(List<Reader> readers) {
 		this.readers = readers;
 	}
 	
+	public void setErrorMessager(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
 	
+	public String getErrorMessager() {
+		return errorMessage;
+	}
 
 }

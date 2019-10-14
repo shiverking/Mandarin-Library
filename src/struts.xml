@@ -144,36 +144,96 @@
 		<action name="editBook" class="bookAction" method="editBook">
 			<result name="success">/EditBook.jsp</result>
 		</action>
+		<!-- Librarian帮助用户完成借书操作 -->
+		<action name="borrowBookFindReader" class="readerAction" method="getReaderById">
+			<result name="success" type="chain">
+				<param name="actionName">borrowBookFindBook</param>
+			</result>
+			<result name="error">/Librarian_Borrow_Error.jsp</result>
+		</action>
+		<action name="borrowBookFindBook" class="bookAction" method="getBookById">
+			<result name="success" type="chain">
+				<param name="actionName">borrowBookFindOrder</param>
+			</result>
+			<result name="error">/Librarian_Borrow_Error.jsp</result>
+		</action>
+		<action name="borrowBookFindOrder" class="currentrecordAction" method="findBookIsOrder">
+			<result name="success" type="chain">
+				<param name="actionName">findBookCanBeBorrow</param>
+			</result>
+			<result name="error">/Librarian_Borrow_Error.jsp</result>
+		</action>
+		<action name="findBookCanBeBorrow" class="bookAction" method="findBookIsBorrowed">
+			<result name="success" type="chain">
+				<param name="actionName">borrowBook</param>
+			</result>
+			<result name="error">/Librarian_Borrow_Error.jsp</result>
+		</action>
+		<action name="borrowBook" class="bookAction" method="borrowBook">
+			<result name="success" type="chain">
+				<param name="actionName">borrorBookByReaderIDBookID</param>
+			</result>
+			<result name="error">/Librarian_Borrow_Error.jsp</result>
+		</action>
+		<action name="borrorBookByReaderIDBookID" class="borrowrecordAction" method="borrowBook">
+			<result name="success">/Librarian_Borrow_Success.jsp</result>
+			<result name="error">/Librarian_Borrow_Error.jsp</result>
+		</action>
+		<!-- Librarian帮助用户完成还书功能 -->
+		<action name="returnBookFindBook" class="bookAction" method="getBookById">
+			<result name="success" type="chain">
+				<param name="actionName">returnBook</param>
+			</result>
+			<result name="error">/Librarian_Borrow_Error.jsp</result>
+		</action>
+		<action name="returnBook" class="bookAction" method="returnBook">
+			<result name="success" type="chain">
+				<param name="actionName">getBorrowrecordbyBook</param>
+			</result>
+		</action>
+		<action name="getBorrowrecordbyBook" class="borrowrecordAction" method="getBorrowrecordbyBook">
+			<result name="success" type="chain">
+				<param name="actionName">getReadersbyBorrowrecords</param>
+			</result>
+			<result name="error">/Librarian_Borrow_Error.jsp</result>
+		</action>
+		<action name="getReadersbyBorrowrecords" class="readerAction"
+			method="getReadersbyBorrwrecords"><!-- 依赖借阅记录获取对应的读者信息 -->
+			<result name="success">/Librarian_Borrow_Success.jsp</result><!--结束action，返回借阅记录界面 -->
+		</action>
 		<!-- Librarian查看所有用户的借书列表 -->
 		<action name="displayBorrowrecord" class="borrowrecordAction" method="getAllBorrowrecord">
 			<result name="success" type="chain">
-				<param name="actionName">getBooksbyBorrwrecordsbyLibrarian</param>
+				<param name="actionName">getBooksbyBorrowrecordsbyLibrarian</param>
 			</result>
 		</action>
 		<!-- Librarian查找特定用户id的借书列表 -->
 		<action name="findBRByReader" class="readerAction" method="getReaderById">
 			<result name="success" type="chain">
-				<param name="actionName">getBorrwrecordsbyReaders</param>
+				<param name="actionName">getBorrowrecordsbyReaders</param>
 			</result>
 		</action>
 		<!-- Librarian查找特定名称的用户的借书列表 -->
 		<action name="findBRByReaderName" class="readerAction" method="getReaderByName">
 			<result name="success" type="chain">
-				<param name="actionName">getBorrwrecordsbyReaders</param>
+				<param name="actionName">getBorrowrecordsbyReaders</param>
 			</result>
 		</action>
-		<action name="getBorrwrecordsbyReaders" class="borrowrecordAction" method="getBorrowrecordByReaders">
+		<!--通过用户查找借书记录 -->
+		<action name="getBorrowrecordsbyReaders" class="borrowrecordAction" method="getBorrowrecordByReaders">
 			<result name="success" type="chain">
-				<param name="actionName">getBooksbyBorrwrecordsbyLibrarian</param>
+				<param name="actionName">getBooksbyBorrowrecordsbyLibrarian</param>
 			</result>
 		</action>
-		<action name="getBooksbyBorrwrecordsbyLibrarian" class="bookAction"
+		<!--通过记录查找书籍 -->
+		<action name="getBooksbyBorrowrecordsbyLibrarian" class="bookAction"
 			method="getBooksbyBorrwrecords"><!-- 依赖借阅记录获取对应的书籍信息 -->
 			<result name="success" type="chain">
-				<param name="actionName">getReadersbyBorrwrecordsbyLibrarian</param>
+				<param name="actionName">getReadersbyBorrowrecordsbyLibrarian</param>
 			</result>
 		</action>
-		<action name="getReadersbyBorrwrecordsbyLibrarian" class="readerAction"
+		<!--通过记录查找用户 -->
+		<action name="getReadersbyBorrowrecordsbyLibrarian" class="readerAction"
 			method="getReadersbyBorrwrecords"><!-- 依赖借阅记录获取对应的读者信息 -->
 			<result name="success">/BorrowList.jsp</result><!--结束action，返回借阅记录界面 -->
 		</action>

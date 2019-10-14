@@ -43,8 +43,4 @@ public class ReaderServiceImpl extends BaseService<Reader>implements ReaderServi
 		return this.getReaderById(id);
 	}
 
-	public List<Reader> getReadersByID(int id) {
-		// TODO Auto-generated method stub
-		return this.getDao().findBy("ReaderID", id, "ReaderID desc");
-	}
 }
