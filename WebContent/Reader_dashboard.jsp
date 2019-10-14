@@ -165,7 +165,6 @@
 								</tr>
 							</thead>
 							<tbody>
-
 								<s:iterator value="borrowPage.datalist" status="L">
 									<tr>
 										<td class="product-thumb text-center">${BookID}</td>
@@ -176,11 +175,12 @@
 													value="books[#L.index].ISBN" /></span> <span><strong>Borrowed
 													on: </strong> <time>${BorrowingDate}</time> </span> <span
 											class="status active"><strong>Status</strong> <s:if
-													test="DueDate==null">Reserve
-											</s:if> <s:else>Borrowing</s:else></span> <span class="location"><strong>Location</strong>
+													test="#ReturnDate.getTime()<#todayTime.getTime()">lihai
+												</s:if> <s:else>Borrowing</s:else></span> <span class="location"><strong>Location</strong>
 												<s:property value="books[#L.index].Location" /></span>
 										</td>
-										<td class="product-thumb">${DueDate}</td>
+									
+										<td class="product-thumb">${ReturnDate}</td>
 										<td class="product-category"><span class="categories"><s:property
 													value="books[#L.index].category" /></span></td>
 										<!-- <td class="action" data-title="Action">
@@ -203,7 +203,6 @@
 								</s:iterator>
 							</tbody>
 						</table>
-
 					</div>
 				</div>
 			</div>
