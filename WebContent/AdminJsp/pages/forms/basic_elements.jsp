@@ -27,7 +27,7 @@
   <!-- partial:partials/_navbar.html -->
   <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-      <a class="navbar-brand brand-logo mr-5" href="../../index.html"><img src="../../images/gen.svg" class="mr-2" alt="logo"/></a>
+      <a class="navbar-brand brand-logo mr-5" href="../../index.jsp"><img src="../../images/gen.svg" class="mr-2" alt="logo"/></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
       <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -169,25 +169,25 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../../index.html">
+            <a class="nav-link" href="../../index.jsp">
               <i class="ti-shield menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/forms/basic_elements.html">
+            <a class="nav-link" href="../../pages/forms/basic_elements.jsp">
               <i class="ti-layout-list-post menu-icon"></i>
               <span class="menu-title">Form elements</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/tables/basic-table.html">
+            <a class="nav-link" href="../../pages/tables/basic-table.jsp">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Tables</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../documentation/documentation.html">
+            <a class="nav-link" href="../../documentation/documentation.jsp">
               <i class="ti-write menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>
@@ -207,6 +207,10 @@
                     <div class="form-group">
                       <label for="exampleInputUsername1">Username</label>
                       <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username" name="LibrarianName">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputUsername1">Email</label>
+                      <input type="email" class="form-control" id="exampleInputUsername1" placeholder="Email" name="Email">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>

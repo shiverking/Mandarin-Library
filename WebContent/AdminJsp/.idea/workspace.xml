@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-703">
-              <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
+            <state relative-caret-position="342">
+              <caret line="192" column="77" lean-forward="true" selection-start-line="192" selection-start-column="77" selection-end-line="192" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -27,15 +27,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="475">
               <caret line="220" column="14" lean-forward="true" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/forms/basic_elements.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="204" column="49" selection-start-line="204" selection-start-column="49" selection-end-line="204" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -69,7 +60,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="85" />
     <option name="y" value="25" />
     <option name="width" value="1750" />
@@ -125,7 +116,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.basic_elements.html (1)">
+  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
     <configuration name="basic-table.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/RoyalUI-Admin-master/pages/tables/basic-table.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -143,8 +134,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.basic_elements.html (1)" />
         <item itemvalue="JavaScript Debug.index.html (1)" />
+        <item itemvalue="JavaScript Debug.basic_elements.html (1)" />
         <item itemvalue="JavaScript Debug.basic_elements.html" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.basic-table.html" />
@@ -162,16 +153,15 @@
       <option name="presentableId" value="Default" />
       <updated>1570878959917</updated>
       <workItem from="1570878961826" duration="7913000" />
-      <workItem from="1570887726351" duration="3704000" />
+      <workItem from="1570887726351" duration="4307000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11617000" />
+    <option name="totallyTimeSpent" value="12220000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966975" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -314,10 +304,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-703">
-          <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
+        <state relative-caret-position="342">
+          <caret line="192" column="77" lean-forward="true" selection-start-line="192" selection-start-column="77" selection-end-line="192" selection-end-column="77" />
         </state>
       </provider>
     </entry>
