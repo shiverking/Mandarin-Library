@@ -16,7 +16,7 @@
 		<action name="librariansignup" class="librarianAction"
 			method="signup">
 			<result name="success">/Librarian_success.jsp</result>
-			<result name="input">/Admin_login.jsp</result>
+			<result name="input">/Admin_register.jsp</result>
 		</action>
 		<!-- Admin 修改密码 -->
 		<action name="changePassword" class="adminAction"
@@ -33,7 +33,20 @@
 			method="show">
 			<result name="success">/Librarian.jsp</result>
 		</action>
-
+		<!-- Admin修改用户保障金 -->
+		<action name="modify" class="adminAction" method="modify">
+		<result name="input">/Modify_Deposit.jsp</result>
+		<result name="success">/Login_success.jsp</result>
+		</action>
+		<!-- 展示securityDeposit -->
+		<action name="dmodify" class="adminAction" method="dm">
+		<result name="success">/Modify_Deposit.jsp</result>
+		</action>
+		<!-- Admin 找回Librarian 密码 -->
+		<action name="findPassword" class="librarianAction" method="findPassword">
+		<result name="success">/Find_Success.jsp</result>
+		<result name="failure">/FindPassword.jsp</result>
+		</action>
 
 		<!-- Reader功能 -->
 		<!-- 登录登出 -->
@@ -51,35 +64,14 @@
 			<result name="success">/Reader_signin.jsp</result>
 		</action>
 		<!-- 获取借阅记录 -->
-		<action name="getReaderStatuForRecord" class="readerAction"
-			method="getReaderStatu"><!--获取用户信息 -->
-			<result name="success" type="chain"><!--若读者已经登录，获取借阅记录 -->
-				<param name="actionName">getBorrowrecordByReader</param>
-			</result>
-			<result name="none">/Reader_signin.jsp</result><!--若读者未登录，跳转到登录界面 -->
-		</action>
-		<action name="getBorrowrecordByReader"
-			class="borrowrecordAction" method="getBorrowrecordByReader"><!--依赖读者账户获取借阅记录 -->
-			<result name="success" type="chain">
-				<param name="actionName">getBooksbyBorrwrecords</param><!-- 若成功则去书籍信息 -->
-			</result>
-		</action>
-		<action name="getAllBorrowrecord" class="borrowrecordAction"
-			method="getAllBorrowrecord"><!-- 直接取得所有借阅记录 -->
-			<result name="success" type="chain">
-				<param name="actionName">getBooksbyBorrwrecords</param>
-			</result>
-		</action>
-		<action name="getBooksbyBorrwrecords" class="bookAction"
-			method="getBooksbyBorrwrecords"><!-- 依赖借阅记录获取对应的书籍信息 -->
-			<result name="success">/Reader_borrowed.jsp</result><!--结束action，返回借阅记录界面 -->
-		</action>
+
 		<!-- 搜索书籍 -->
 		<action name="searchBook" class="bookAction"
 			method="searchBook">
 			<result name="success">/category.jsp</result>
 		</action>
-		<!-- 还书记录分页查询 -->
+
+		<!-- 当前借阅记录分页查询 -->
 		<action name="getReaderStatuForBorrowPage" class="readerAction"
 			method="getReaderStatu"><!--获取用户信息 -->
 			<result name="success" type="chain"><!--若读者已经登录，获取借阅记录 -->
@@ -90,7 +82,7 @@
 		<action name="getBorrowPageByReader" class="borrowrecordAction"
 			method="getBorrowPageByReader">
 			<result name="success" type="chain">
-				<param name="actionName">getBooksbyBorrwrecords</param>
+				<param name="actionName">getBooksbyBorrowPage</param>
 			</result>
 			<result name="getfine" type="chain">
 				<param name="actionName">getReaderFine</param><!-- 若fine为空，去取fine -->
@@ -100,9 +92,10 @@
 		<action name="getReaderFine" class="borrowrecordAction"
 			method="getReaderFine">
 			<result name="success" type="chain">
-				<param name="actionName">getBooksbyBorrwrecords</param>
+				<param name="actionName">getBooksbyBorrowPage</param>
 			</result>
 		</action>
+
 		<!--查询当前借阅记录和预约记录 -->
 		<action name="getReaderStatuForCurrent" class="readerAction"
 			method="getReaderStatu"><!--获取用户信息 -->
@@ -166,6 +159,14 @@
 		<action name="editLibrarian" class="librarianAction"
 			method="editLibrarian">
 			<result name="success">/EditLibrarian.jsp</result>
+		</action>
+		<!-- Admin查看书籍列表 -->
+		<action name="adminDisplayBooks" class="bookAction" method="display">
+			<result name="success">/Admin_Display_Book.jsp</result>
+		</action>
+		<!-- Admin修改书籍逾期罚金和归还期限 -->
+		<action name="adminEditBook" class="bookAction" method="adminEditBook">
+			<result name="success">/AdminEditBook.jsp</result>
 		</action>
 	</package>
 </struts>

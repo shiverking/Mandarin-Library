@@ -16,41 +16,40 @@ import util.PageBean;
 
 public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
-	private List<Book> books;//¿ÉÄÜ±»bookPageÈ¡´ú£¬½¨ÒéÉÙÓÃ£¬ÈçĞèÊ¹ÓÃÇë¸Ä×¢ÊÍ
-	private List<Borrowrecord> borrowrecords;// ¿ÉÄÜ±»É¾³ı
+	private List<Book> books;
 	private List<CurrentRecord> currentRecords;// Ö¸ÔÚ½èÊé¼®ºÍÔ¤Ô¼Êé¼®µÄĞÅÏ¢
-	private PageBean<Borrowrecord> borrowPage;// ÒÑ¹é»¹µÄÊé¼®ĞÅÏ¢
+	private PageBean<Borrowrecord> borrowPage;// ½èÔÄ¼ÇÂ¼ĞÅÏ¢
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
 	private String searchContent;
 
-	// ÒÔÏÂÊÇ¾ßÌåÊ¹ÓÃµÄ¹¦ÄÜº¯Êı
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½Ê¹ï¿½ÃµÄ¹ï¿½ï¿½Üºï¿½ï¿½ï¿½
 
-	// readerĞèÒªÊ¹ÓÃµÄº¯Êı¡ı¡ı¡ı¡ı¡ı¡ı¡ı
+	// readerï¿½ï¿½ÒªÊ¹ï¿½ÃµÄºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String searchBook() {
-		// TODO:·ÖÒ³ËÑË÷
+		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 		bookPage = this.getService().getPageBean(searchContent, pageNum);
 		return SUCCESS;
 	}
 
-	public String getBooksbyBorrwrecords() {
+	public String getBooksbyBorrowPage() {
 		books = new ArrayList<Book>();
-		for (Borrowrecord borrowrecord : borrowrecords) {
+		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
 			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 		}
 		return SUCCESS;
 	}
 
 	public String getBooksbycurrentRecords() {
-		//TODO:¿ÉÄÜ¸ÄÓÃpagabeanÊµÏÖ
+		// TODO:¿ÉÄÜ¸ÄÓÃpagabeanÊµÏÖ
 		books = new ArrayList<Book>();
 		for (CurrentRecord currentRecord : currentRecords) {
 			books.add(this.getService().getBookById(currentRecord.getBookID()));
 		}
 		return SUCCESS;
 	}
-	// readerĞèÒªÊ¹ÓÃµÄº¯Êı¡ü¡ü¡ü¡ü¡ü¡ü¡ü
+	// readerï¿½ï¿½ÒªÊ¹ï¿½ÃµÄºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	public String addBook() throws Exception {
 		HttpServletRequest PriceRequest = ServletActionContext.getRequest();
@@ -108,7 +107,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
-//ÒÔÏÂÊÇgetºÍsetº¯Êı
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½getï¿½ï¿½setï¿½ï¿½ï¿½ï¿½
 	public Book getBook() {
 		return book;
 	}
@@ -123,14 +122,6 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public void setSearchContent(String searchContent) {
 		this.searchContent = searchContent;
-	}
-
-	public List<Borrowrecord> getBorrowrecords() {
-		return borrowrecords;
-	}
-
-	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
-		this.borrowrecords = borrowrecords;
 	}
 
 	public List<Book> getBooks() {
@@ -171,6 +162,20 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public void setCurrentRecords(List<CurrentRecord> currentRecords) {
 		this.currentRecords = currentRecords;
+	}
+	
+//adminä¿®æ”¹é€¾æœŸç½šé‡‘å’Œå½’è¿˜æœŸé™
+	public String adminEditBook() {
+		this.book = this.getService().getBookById(book.getBookID());
+		if (this.getModel().getReturnPeriod() > 0) {
+			book.setReturnPeriod(this.getModel().getReturnPeriod());
+		}
+		if (this.getModel().getFineValue() > 0) {
+			book.setFineValue(this.getModel().getFineValue());
+			;
+		}
+		this.getService().mergeBook(book);
+		return SUCCESS;
 	}
 
 }

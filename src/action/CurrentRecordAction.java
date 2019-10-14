@@ -11,7 +11,7 @@ import service.CurrentRecordService;
  * @version 创建时间：2019年10月6日 下午3:37:56
  * 
  */
-public class CurrentRecordActon extends BaseAction<CurrentRecord, CurrentRecordService> {
+public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecordService> {
 	private Reader tempReader;// 记录当前读者的信息
 
 	private List<CurrentRecord> currentRecords;// 记录在借书籍和预约书籍的信息
@@ -19,7 +19,7 @@ public class CurrentRecordActon extends BaseAction<CurrentRecord, CurrentRecordS
 //以下是具体使用的功能函数
 
 //取得读者当前借阅的书籍和预约的书籍记录
-	public String getCurrentPage() {
+	public String getCurrentRecord() {
 		currentRecords = this.getService().getCurrentRecordsbyReader(tempReader);
 		return SUCCESS;
 	}
