@@ -60,5 +60,4 @@ public class CurrentRecord {
 	public void setBorrowingDate(Date borrowingDate) {
 		BorrowingDate = borrowingDate;
 	}
-
 }
