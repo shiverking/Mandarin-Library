@@ -209,8 +209,8 @@
                       <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username" name="LibrarianName">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputUsername1">Email</label>
-                      <input type="email" class="form-control" id="exampleInputUsername1" placeholder="Email" name="Email">
+                      <label for="exampleInputEmail1">Email</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="Email">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
