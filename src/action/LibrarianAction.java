@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import model.Librarian;
 import service.LibrarianService;
+import util.Email;
 
 public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	private Librarian librarian;
@@ -50,11 +51,16 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	}
 	public String signup() throws Exception{
 		String LibrarianName = this.getModel().getLibrarianName();//锟斤拷取LibrarianName
+		String Email = this.getModel().getEmail();//获取邮箱
 		String Password = this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String NewPassword=request.getParameter("ConfirmPassword");
 		if(LibrarianName.isEmpty()) {
 			this.errorMessage="You must input the Name!";
+			return INPUT;
+		}
+		if(Email.isEmpty()) {
+			this.errorMessage="You must input the Email!";
 			return INPUT;
 		}
 		Librarian librarian = this.getService().verify(LibrarianName, Password);
@@ -98,16 +104,20 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		this.getService().deleteLibrarianById(librarian.getLibrarianID());
 		return SUCCESS;
 	}
-	public String findPassword()//admin 找回 librarian密码
+	public String findPassword() throws Exception//admin 找回 librarian密码
 	{
-		if(this.getService().findPassword(librarian.getLibrarianName())==null)
+		if(this.getService().findID(librarian.getLibrarianName())==0)
 		{
 			return "failure";
 		}
 		else {
-			HttpSession session=ServletActionContext.getRequest().getSession();//将密码存到session中，因为该方法极有可能需要跨jsp传递信息
+			/*HttpSession session=ServletActionContext.getRequest().getSession();//将密码存到session中，因为该方法极有可能需要跨jsp传递信息
 			session.setAttribute("Password", this.getService().findPassword(librarian.getLibrarianName()));
-			return "success";
+			return "success";*/
+			this.librarian=this.getService().getLibrarianByID(this.getService().findID(librarian.getLibrarianName()));			
+			Email email=new Email(librarian.getEmail());
+			email.sendEmail(librarian.getLibrarianName(),librarian.getPassword());
+			return SUCCESS;
 		}
 	}
 }

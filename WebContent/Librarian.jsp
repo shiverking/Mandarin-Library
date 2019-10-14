@@ -15,6 +15,7 @@
 				<tr>
 					<th>LibrarianID</th>
 					<th>LibradianName</th>
+					<th>Email</th>
 					<th>Password</th>
 					<th>Operation</th>
 				</tr>
@@ -22,6 +23,7 @@
 						<tr>
 						<td><s:property value="LibrarianID" /></td>
 						<td><s:property value="LibrarianName" /></td>
+						<td><s:property value="Email" /></td>
 						<td><s:property value="Password" /></td>
 						<td><a href='editLibrarian?librarian.LibrarianID=<s:property value="LibrarianID"/>'>Edit/</a><a  href='deleteLibrarian?librarian.LibrarianID=<s:property value="LibrarianID"/>'>Delete</a>
 						</tr>

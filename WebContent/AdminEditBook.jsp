@@ -33,8 +33,8 @@
       <td align="center"><s:property value="BookID"/></td>
       <td align="center"><s:property value="BookName"/></td>
       <td align="center"><s:property value="ISBN"/></td>
-      <td><input type="text" value="<s:property value="ReturnPeriod"/>" name="ReturnPeriod"/></td>
-      <td><input type="text" value="<s:property value="FineValue"/>" name="FineValue"/></td>
+      <td align="center"><input type="text" value="<s:property value="ReturnPeriod"/>" name="ReturnPeriod"/></td>
+      <td align="center"><input type="text" value="<s:property value="FineValue"/>" name="FineValue"/></td>
       </td>
     </tr>
    </s:iterator>
