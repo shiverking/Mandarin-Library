@@ -16,7 +16,7 @@ import util.PageBean;
 
 public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
-	private List<Book> books;//可能被bookPage取代，建议少用，如需使用请改注释
+	private List<Book> books;// 可能被bookPage取代，建议少用，如需使用请改注释
 	private List<Borrowrecord> borrowrecords;// 可能被删除
 	private List<CurrentRecord> currentRecords;// 指在借书籍和预约书籍的信息
 	private PageBean<Borrowrecord> borrowPage;// 已归还的书籍信息
@@ -43,7 +43,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public String getBooksbycurrentRecords() {
-		//TODO:可能改用pagabean实现
+		// TODO:可能改用pagabean实现
 		books = new ArrayList<Book>();
 		for (CurrentRecord currentRecord : currentRecords) {
 			books.add(this.getService().getBookById(currentRecord.getBookID()));
@@ -106,6 +106,17 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		this.getService().mergeBook(book);
 		return SUCCESS;
+	}
+
+	public String reserveBook() {
+		this.book = this.getService().getBookById(book.getBookID());
+		if (book.getIsBorrowed() != false) {
+			return ERROR;
+		} else {
+			book.setIsBorrowed(true);
+			this.getService().mergeBook(book);
+			return SUCCESS;
+		}
 	}
 
 //以下是get和set函数

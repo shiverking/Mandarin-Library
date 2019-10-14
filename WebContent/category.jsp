@@ -273,6 +273,7 @@
 												<p class="card-text">
 													<i class="fa fa-map-marker"></i> &nbsp;${Location}
 												</p>
+												<a href='reserveBook?book.BookID=<s:property value="BookID"/>'>Reserve</a>
 											</div>
 										</div>
 									</div>

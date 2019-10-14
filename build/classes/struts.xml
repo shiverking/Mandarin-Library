@@ -79,6 +79,30 @@
 			method="searchBook">
 			<result name="success">/category.jsp</result>
 		</action>
+		<!-- 预约书籍 -->
+		<action name="getReaderStatuForReserveBook" class="readerAction"
+			method="getReaderStatu"><!--获取用户信息 -->
+			<result name="success" type="chain">
+				<param name="actionName">reserveBook</param>
+			</result>
+			<result name="none">/Reader_signin.jsp</result><!--若读者未登录，跳转到登录界面 -->
+		</action>
+		<action name="reserveBook" class="bookAction"
+			method="reserveBook">
+			<result name="success" type="chain">
+				<param name="actionName">addRecord</param>
+			</result>
+			<result name="error">/Reserve_error.jsp</result>
+		</action>
+		<action name="addRecord" class="currentRecordAction"
+			method="addRecord">
+			<result name="success">
+				/Reserve_success.jsp
+			</result>
+		</action>
+
+		<!-- <action name="addRecord" class="currentRecordAction" method="addRecord"> 
+			<result name="success">/Reserve_success.jsp</result> </action> -->
 		<!-- 还书记录分页查询 -->
 		<action name="getReaderStatuForBorrowPage" class="readerAction"
 			method="getReaderStatu"><!--获取用户信息 -->
