@@ -25,6 +25,7 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	private Integer pageNum;
 	private PageBean<Borrowrecord> borrowPage;
 	private Integer totalFine;
+	private List<Reader> readers;
 
 	public String getBorrowrecordByReader() {
 
@@ -32,6 +33,12 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 		return SUCCESS;
 	}
 
+	public String getBorrowrecordByReaders() {
+		
+		borrowrecords = this.getService().getBorrowrecordsbyReaders(readers);
+		return SUCCESS;
+	}
+	
 	public String getAllBorrowrecord() {
 
 		this.borrowrecords = this.getService().getAllBorrowrecords();
@@ -102,6 +109,15 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	public void setTotalFine(Integer totalFine) {
 		this.totalFine = totalFine;
 	}
-
+	
+	public List<Reader> getReaders() {
+		return readers;
+	}
+	
+	public void setReaders(List<Reader> readers) {
+		this.readers = readers;
+	}
+	
+	
 
 }

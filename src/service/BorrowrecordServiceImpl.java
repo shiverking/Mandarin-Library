@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,7 +30,16 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		// TODO Auto-generated method stub
 		return this.getDao().findBy("ReaderID", reader.getReaderID(), "BorrowingDate desc");
 	}
-
+	
+	public List<Borrowrecord> getBorrowrecordsbyReaders(List<Reader> readers) {
+		// TODO Auto-generated method stub
+		List<Borrowrecord> borrowrecords = new ArrayList<Borrowrecord>();
+		for(Reader r : readers) {
+			borrowrecords.addAll(getBorrowrecordsbyReader(r));
+		}
+		return borrowrecords;
+	}
+	
 	public List<Borrowrecord> getBorrowrecordsbyReaderId(int readerId) {
 		// TODO Auto-generated method stub
 		return this.getDao().findBy("ReaderID", readerId, "BorrowingDate desc");
@@ -74,5 +84,7 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		}
 		return fine;
 	}
+
+
 
 }

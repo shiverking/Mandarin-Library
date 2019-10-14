@@ -26,7 +26,7 @@
       <th width="281" align="center">IsPayFine</th>
       <th width="281" align="center">Fine</th>
     </tr>
-    <s:iterator value="borrowrecords">
+    <s:iterator value="borrowrecords">     
     <tr>
       <td align="center"><s:property value="RecordID"/></td>
       <td align="center"><s:property value="ReaderID"/></td>
@@ -38,13 +38,34 @@
       <td align="center"><s:property value="Fine"/></td>
     </tr>
    </s:iterator>
-
+    <tr>
+      <th width="157" align="center">ReaderName</th>
+    </tr>
+	<s:iterator value="readers">  
+   	<tr>
+      <td align="center"><s:property value="ReaderName"/></td>
+    </tr>
+	</s:iterator>
+	<tr>
+      <th width="147" align="center">BookName</th>
+    </tr>
+	<s:iterator value="books">  
+   	<tr>
+      <td align="center"><s:property value="BookName"/></td>
+    </tr>
+	</s:iterator>
    </table>
    </form>  
  </div>
  <div style="margin:10px auto;text-align:center">
    <s:form action="findBRByReader" method="post">
-   <input type="text" value="Input the ReaderID" name="ReaderID"/>
+   <input type="text" placeholder="Input the ReaderID" name="ReaderID"/>
+   <input type="submit" value="Search"/>
+   </s:form>
+ </div> 
+  <div style="margin:10px auto;text-align:center">
+   <s:form action="findBRByReaderName" method="post">
+   <input type="text" placeholder="Input the ReaderName" name="ReaderName"/>
    <input type="submit" value="Search"/>
    </s:form>
  </div> 

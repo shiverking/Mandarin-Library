@@ -146,11 +146,36 @@
 		</action>
 		<!-- Librarian查看所有用户的借书列表 -->
 		<action name="displayBorrowrecord" class="borrowrecordAction" method="getAllBorrowrecord">
-			<result name="success">/BorrowList.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getBooksbyBorrwrecordsbyLibrarian</param>
+			</result>
 		</action>
-		<!-- Librarian查找特定用户Id的结束列表 -->
-		<action name="findBRByReader" class="borrowrecordAction" method="getBorrowrecordByReaderId">
-			<result name="success">/BorrowList.jsp</result>
+		<!-- Librarian查找特定用户id的借书列表 -->
+		<action name="findBRByReader" class="readerAction" method="getReaderById">
+			<result name="success" type="chain">
+				<param name="actionName">getBorrwrecordsbyReaders</param>
+			</result>
+		</action>
+		<!-- Librarian查找特定名称的用户的借书列表 -->
+		<action name="findBRByReaderName" class="readerAction" method="getReaderByName">
+			<result name="success" type="chain">
+				<param name="actionName">getBorrwrecordsbyReaders</param>
+			</result>
+		</action>
+		<action name="getBorrwrecordsbyReaders" class="borrowrecordAction" method="getBorrowrecordByReaders">
+			<result name="success" type="chain">
+				<param name="actionName">getBooksbyBorrwrecordsbyLibrarian</param>
+			</result>
+		</action>
+		<action name="getBooksbyBorrwrecordsbyLibrarian" class="bookAction"
+			method="getBooksbyBorrwrecords"><!-- 依赖借阅记录获取对应的书籍信息 -->
+			<result name="success" type="chain">
+				<param name="actionName">getReadersbyBorrwrecordsbyLibrarian</param>
+			</result>
+		</action>
+		<action name="getReadersbyBorrwrecordsbyLibrarian" class="readerAction"
+			method="getReadersbyBorrwrecords"><!-- 依赖借阅记录获取对应的读者信息 -->
+			<result name="success">/BorrowList.jsp</result><!--结束action，返回借阅记录界面 -->
 		</action>
 		<!-- Admin删除馆员 -->
 		<action name="deleteLibrarian" class="librarianAction"

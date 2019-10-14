@@ -27,4 +27,5 @@ public void mergeBorrowrecord(Borrowrecord borrowrecord);
 public PageBean<Borrowrecord> findPageBean(Reader reader,Integer pageNum);
 //ͨ��id��ȡδ֧���ķ���
 public int getFine(int id);
+public List<Borrowrecord> getBorrowrecordsbyReaders(List<Reader> readers);
 }

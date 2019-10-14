@@ -3,11 +3,10 @@
 
 <hibernate-mapping package="model">
 	<class name="Post" >
-		<id name="PostID" type="int">
+		<id name="postID" type="int" column="postID">
          <generator class="native"/>
       	</id>
 		<property name="Title" type="string" length="50" not-null="true" />
 		<property name="Content" type="string" length="500" not-null="true" />
-		<many-to-one name="librarian" not-null="true"></many-to-one>
 	</class>
 </hibernate-mapping>
