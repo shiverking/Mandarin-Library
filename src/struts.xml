@@ -39,8 +39,8 @@
 		<!-- 登录登出 -->
 		<action name="readersignin" class="readerAction"
 			method="signin">
-			<result name="success" type="chain"><!--登录成功后跳转到借阅记录界面，后期需要更改 -->
-				<param name="actionName">getCurrentRecordByReader</param>
+			<result name="success"><!--登录成功后跳转到主页界面 -->
+				/index.jsp
 			</result>
 			<result name="input">/Reader_signin.jsp</result>
 		</action>
@@ -80,8 +80,8 @@
 			<result name="success">/category.jsp</result>
 		</action>
 		<!-- 预约书籍 -->
-		<action name="getReaderStatuForReserveBook" class="readerAction"
-			method="getReaderStatu"><!--获取用户信息 -->
+		<action name="getReaderStatuForReserveBook"
+			class="readerAction" method="getReaderStatu"><!--获取用户信息 -->
 			<result name="success" type="chain">
 				<param name="actionName">reserveBook</param>
 			</result>
@@ -94,13 +94,12 @@
 			</result>
 			<result name="error">/Reserve_error.jsp</result>
 		</action>
-		<action name="addRecord" class="currentRecordAction"
+		<action name="addRecord" class="currentrecordAction"
 			method="addRecord">
 			<result name="success">
 				/Reserve_success.jsp
 			</result>
 		</action>
-
 		<!-- <action name="addRecord" class="currentRecordAction" method="addRecord"> 
 			<result name="success">/Reserve_success.jsp</result> </action> -->
 		<!-- 还书记录分页查询 -->

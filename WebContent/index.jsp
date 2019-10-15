@@ -46,8 +46,6 @@
 </head>
 
 <body class="body-wrapper">
-
-
 	<section>
 		<div class="container">
 			<div class="row">
@@ -482,7 +480,7 @@
 					<!-- About -->
 					<div class="block about">
 						<!-- footer logo -->
-						<img src="images/logo-footer.png" alt="">
+						<img src="images/MLA_logo_tagline.png" width="300px"alt="">
 						<!-- description -->
 						<p class="alt-color">Lorem ipsum dolor sit amet, consectetur
 							adipisicing elit, sed do eiusmod tempor incididunt ut labore et
@@ -561,7 +559,7 @@
 	</footer>
 
 	<!-- JAVASCRIPTS -->
-	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
