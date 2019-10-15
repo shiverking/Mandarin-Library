@@ -160,7 +160,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return null;
 	}
 
-	// ��չ�Ķ����ݿ�˫���Բ�ѯ
 	public List<TEntity> findByTwoProperty(String propertyName1, String propertyName2, String cond1) {
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" + " or e." + propertyName2 + " like '%"
@@ -252,5 +251,36 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		query.setParameter("Value1", Value1);
 		query.setParameter("Value2", Value2);
 		return query.list();
+	}
+
+	//
+	public int findTotalNumbyTwoProperty(String propertyName1, String propertyName2, Object value1, Object value2) {
+		String namString = entityClass.getSimpleName();
+		if (entityClass.getSimpleName().equals("Borrowrecord"))
+			namString = "record";
+		String queryString = "SELECT COUNT(" + namString + "ID) from " + entityClass.getSimpleName() + " e ";
+		queryString += "where e." + propertyName1 + "=:Value1" + " and e." + propertyName2 + "=:Value2";
+		Query query = this.getSession().createQuery(queryString);
+		query.setParameter("Value1", value1);
+		query.setParameter("Value2", value2);
+		List<Long> list = query.list();
+		return list.isEmpty() ? 0 : list.get(0).intValue();
+	}
+	//
+	public List<TEntity> getPageByTwoProperty(String propertyName1,String propertyName2, Object Value1, Object Value2, String cond, int pageStart, int pageSize){
+		if (cond != null) {
+			cond = " order by " + cond;
+		} else {
+			cond = "";
+		}
+		String queryString = "from " + entityClass.getSimpleName() + " e ";
+		queryString += "where e." + propertyName1 + "=:Value1" +" and e." + propertyName2 + "=:Value2"+ cond;
+		Query query = this.getSession().createQuery(queryString);
+		query.setParameter("Value1", Value1);
+		query.setParameter("Value2", Value2);
+		query.setFirstResult(pageStart);
+		query.setMaxResults(pageSize);
+		List<TEntity> results = query.list();
+		return results;
 	}
 }

@@ -21,7 +21,6 @@ import service.CurrentRecordService;
  */
 public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecordService> {
 	private Reader tempReader;// 记录当前读者的信息
-
 	private List<CurrentRecord> currentRecords;// 记录在借书籍和预约书籍的信息
 	private CurrentRecord currentRecord;
 	private Book book;
@@ -35,6 +34,7 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 	}
 	public String addRecord() throws Exception {
 		this.currentRecord = new CurrentRecord();
+		System.out.println(tempReader.getReaderID());
 		currentRecord.setReaderID(this.getTempReader().getReaderID());
 		currentRecord.setBookID(this.getBook().getBookID());
 		currentRecord.setBorrowingDate(this.getModel().getBorrowingDate());

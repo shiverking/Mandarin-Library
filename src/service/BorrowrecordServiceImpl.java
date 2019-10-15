@@ -53,17 +53,17 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 	}
 
 	@Override
-	public PageBean<Borrowrecord> findPageBean(Reader reader, Integer pageNum) {
+	public PageBean<Borrowrecord> getPageBean(Reader reader, Integer pageNum,boolean isreturn) {
 		// TODO ∑÷“≥≤È—Ø
 		int Num = 1;
 		if (pageNum != null) {
 			Num = pageNum;
 		}
-		int totalRecords = this.getDao().findTotalNum("ReaderID", reader.getReaderID());
+		int totalRecords = this.getDao().findTotalNumbyTwoProperty("ReaderID", "isReturn", reader.getReaderID(), isreturn);
 
-		PageBean<Borrowrecord> page = new PageBean<Borrowrecord>(totalRecords, Num);
-		page.setDataList(this.getDao().findPageByQuery("ReaderID", reader.getReaderID(), "BorrowingDate desc",
-				page.getStartIndex(), page.getPageSize()));
+		PageBean<Borrowrecord> page = new PageBean<Borrowrecord>(totalRecords, Num,5);
+		page.setDataList(this.getDao().getPageByTwoProperty("ReaderID", "isReturn", reader.getReaderID(), isreturn,
+				"BorrowingDate desc", page.getStartIndex(), page.getPageSize()));
 		return page;
 	}
 

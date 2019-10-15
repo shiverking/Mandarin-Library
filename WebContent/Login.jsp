@@ -13,9 +13,6 @@
 
 <!-- PLUGINS CSS STYLE -->
 <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-<!-- Bootstrap -->
-<link href="plugins/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet">
 <!-- Font Awesome -->
 <link href="plugins/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -32,7 +29,9 @@
 	rel="stylesheet">
 <!-- CUSTOM CSS -->
 <link href="css/style.css" rel="stylesheet">
-
+<!-- Bootstrap -->
+<link href="plugins/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- FAVICON -->
 <link href="img/favicon.png" rel="shortcut icon">
 
@@ -46,91 +45,98 @@
 </head>
 
 <body class="body-wrapper">
-
 	<s:include value="/Navbar.jsp"></s:include>
-	<!--==================================
-=            User Profile            =
-===================================-->
-	<section class="dashboard section">
-		<!-- Container Start -->
-		<div class="container">
-			<!-- Row Start -->
-			<div class="row">
-				<div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0">
-					<div class="sidebar">
-						<!-- User Widget -->
-						<div class="widget user-dashboard-profile">
-							<!-- User Image -->
-							<div class="profile-thumb">
-								<img src="images/user/user-thumb.jpg" alt=""
-									class="rounded-circle">
-							</div>
-							<!-- User Name -->
-							<h5 class="text-center">Samanta Doe</h5>
-							<p>Joined February 06, 2017</p>
-							<a href="user-profile.html" class="btn btn-main-sm">Edit
-								Profile</a>
-						</div>
-						<!-- Dashboard Links -->
-						<div class="widget user-dashboard-menu">
-							<ul>
-								<li ><a href="getReaderStatuForCurrent"><i class="fa fa-user"></i>
-										My Reservation</a></li>
-								<li class="active"><a href="getReaderStatuForBorrowPage"><i class="fa fa-bookmark-o"></i> Current
-										Record </a></li>
-								<li><a href="getReaderStatuForReturn"><i class="fa fa-file-archive-o"></i>
-										Return History </a></li>
-
-								<li><a href="readersignout"><i class="fa fa-cog"></i>
-										Logout</a></li>
-
-							</ul>
-						</div>
+	<!--===============================
+=           Login form Area            =
+================================-->
+	<script>
+		/*根据用户选择给与输入的提示信息*/
+		function selChange() {
+			var sel = document.getElementById("inputGroupSelect01").value;
+			if (sel == 1) {
+				document.getElementById("loginform").action = "readersignin";
+				document.getElementById("getPassword").action = "#";
+				document.getElementById("uName").innerHTML = "Email:";
+				document.getElementById("User").type = "email:";
+				document.getElementById("User").name = "Email";
+				document.getElementById("User").setAttribute('placeholder',
+						"Input Your Email");
+			} else {
+				document.getElementById("loginform").action = "#";
+				document.getElementById("getPassword").action = "#";
+				document.getElementById("uName").innerHTML = "Name:";
+				document.getElementById("User").type = "text";
+				document.getElementById("User").name = "LibrarianName";
+				document.getElementById("User").setAttribute('placeholder',
+						"Input Your UserName");
+			
+			}
+		}
+	</script>
+	<!--登录的输入表单-->
+	<section class="popular-deals section "
+		style="background-image: url(http://tushuguan.nwpu.edu.cn/images/2019/20191010A.jpg); background-size: 100%; background-position: center;">
+		<div class="row justify-content-center">
+			<div class="container form-group col-3 bg-shadow bg-white rounded ">
+				<form action="readersignin" id="loginform">
+					<label id="uName">Email:</label> <input
+						class="form-control bg-shadow" type="email"
+						placeholder="Input Your Email" Id="User" name="Email"> <label>Password</label>
+					<input class="form-control bg-shadow" type="password"
+						placeholder="Input Your Password" id="Password" name="Password">
+					<label></label>
+					<div class="row justify-content-center">
+						<select class="form-control form-control-lg col-4 bg-shadow"
+							id="inputGroupSelect01" onchange="selChange()">
+							<option value="1" selected>Reader</option>
+							<option value="2">Librarian</option>
+						</select>
+						<div class="col-2"></div>
+						<button class="btn btn-info col-5 bg-shadow" type="submit"
+							onclick="Login()">Login</button>
 					</div>
-				</div>
-				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
-					<!-- Recently Favorited -->
-					<div class="widget dashboard-container my-adslist">
-						<h3 class="widget-header">Unpaid fine: ${totalFine} <i class="fa fa-jpy" aria-hidden="true"></i></h3>
-						<table class="table table-responsive product-dashboard-table">
-							<thead>
-								<tr>
-									<th>BOOK INFORMATION</th>
-									<th class="text-center">Due Date</th>
-									<th class="text-center">Category</th>
-									
-								</tr>
-							</thead>
-							<tbody>
+				</form>
 
-								<s:iterator value="borrowPage.datalist" status="L">
-									<tr>
-										<td class="product-details">
-											<h3 class="title">
-												<s:property value="books[#L.index].BookName" />
-											</h3> <span class="add-id"><strong>Book ID:</strong>${BookID}</span>
-											<span><strong>ISBN:</strong><s:property value="books[#L.index].ISBN" /></span>
-											<span><strong>Posted on: </strong> <time>${BorrowingDate}</time>
-										</span>  <span class="location "><strong>Location:</strong>
-												<s:property value="books[#L.index].Location" /></span>
-										</td>
-										<td class="product-thumb text-center"><s:property
-													value="ReturnDate" /></td>
-										<td class="product-category"><span class="categories"><s:property
-													value="books[#L.index].category" /></span></td>
-							
-									</tr>
-								</s:iterator>
-							</tbody>
-						</table>
-
-					</div>
+				<div class="blockquote text-right">
+					<label><a href="#" data-toggle="modal"
+						data-target="#exampleModalCenter">Forget Password?</a></label>
 				</div>
 			</div>
-			<!-- Row End -->
 		</div>
-		<!-- Container End -->
 	</section>
+
+	<!--============================
+=            Forget Password           =
+=============================-->
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog " role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Enter your
+						Email to retrieve your password</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="" id="getPassword">
+					<div class="modal-body">
+
+						<input class="form-control bg-shadow" type="email"
+							placeholder="Input Your Email" name="Email">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	<!--============================
 =            Footer            =
 =============================-->
@@ -143,7 +149,7 @@
 					<!-- About -->
 					<div class="block about">
 						<!-- footer logo -->
-						<img src="images/logo-footer.png" alt="">
+						<img src="images/MLA_logo_tagline.png" width="300px" alt="">
 						<!-- description -->
 						<p class="alt-color">Lorem ipsum dolor sit amet, consectetur
 							adipisicing elit, sed do eiusmod tempor incididunt ut labore et
@@ -200,7 +206,7 @@
 				<div class="col-sm-6 col-12">
 					<!-- Copyright -->
 					<div class="copyright">
-						<p>Copyright Â© 2016. All Rights Reserved</p>
+						<p>Copyright Â© 2019. All Rights Reserved</p>
 					</div>
 				</div>
 				<div class="col-sm-6 col-12">
@@ -222,7 +228,7 @@
 	</footer>
 
 	<!-- JAVASCRIPTS -->
-	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
@@ -241,3 +247,6 @@
 </body>
 
 </html>
+
+
+

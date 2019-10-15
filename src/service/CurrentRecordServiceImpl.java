@@ -2,7 +2,6 @@ package service;
 
 import java.util.List;
 
-
 import model.CurrentRecord;
 import model.Reader;
 import util.PageBean;
@@ -41,14 +40,12 @@ public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> impleme
 	@Override
 	public void saveCurrentRecord(CurrentRecord currentRecord) {
 
-		this.saveCurrentRecord(currentRecord);
+		this.getDao().save(currentRecord);
 	}
 
 	@Override
 	public void mergeCurrentRecord(CurrentRecord currentRecord) {
-		this.mergeCurrentRecord(currentRecord);
-
+		this.getDao().merge(currentRecord);
 	}
-
 
 }

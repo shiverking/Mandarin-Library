@@ -41,7 +41,13 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return SUCCESS;
 	}
-
+	public String getBooksbyborrowPage() {
+		books = new ArrayList<Book>();
+		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
+			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
+		}
+		return SUCCESS;
+	}
 	public String getBooksbycurrentRecords() {
 		// TODO:可能改用pagabean实现
 		books = new ArrayList<Book>();

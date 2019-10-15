@@ -74,12 +74,12 @@
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
 							<ul>
-								<li ><a href="getReaderStatuForCurrent"><i class="fa fa-user"></i>
-										My Reservation</a></li>
-								<li class="active"><a href="getReaderStatuForBorrowPage"><i class="fa fa-bookmark-o"></i> Current
-										Record </a></li>
-								<li><a href="getReaderStatuForReturn"><i class="fa fa-file-archive-o"></i>
-										Return History </a></li>
+								<li><a href="getReaderStatuForCurrent"><i
+										class="fa fa-user"></i> My Reservation</a></li>
+								<li><a href="getReaderStatuForBorrowPage"><i
+										class="fa fa-bookmark-o"></i> Current Record </a></li>
+								<li class="active"><a href="getReaderStatuForReturn"><i
+										class="fa fa-file-archive-o"></i> Return History </a></li>
 
 								<li><a href="readersignout"><i class="fa fa-cog"></i>
 										Logout</a></li>
@@ -91,17 +91,20 @@
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
 					<div class="widget dashboard-container my-adslist">
-						<h3 class="widget-header">Unpaid fine: ${totalFine} <i class="fa fa-jpy" aria-hidden="true"></i></h3>
+						<h3 class="widget-header">
+							Unpaid fine: ${totalFine} <i class="fa fa-jpy" aria-hidden="true"></i>
+						</h3>
 						<table class="table table-responsive product-dashboard-table">
 							<thead>
 								<tr>
 									<th>BOOK INFORMATION</th>
-									<th class="text-center">Due Date</th>
+									<th>Return Date</th>
 									<th class="text-center">Category</th>
-									
+									<th class="text-center">Fine</th>
 								</tr>
 							</thead>
 							<tbody>
+
 
 								<s:iterator value="borrowPage.datalist" status="L">
 									<tr>
@@ -111,19 +114,68 @@
 											</h3> <span class="add-id"><strong>Book ID:</strong>${BookID}</span>
 											<span><strong>ISBN:</strong><s:property value="books[#L.index].ISBN" /></span>
 											<span><strong>Posted on: </strong> <time>${BorrowingDate}</time>
-										</span>  <span class="location "><strong>Location:</strong>
-												<s:property value="books[#L.index].Location" /></span>
+										</span> <span class="location"><strong>Location:</strong> <s:property
+													value="books[#L.index].Location" /></span>
 										</td>
-										<td class="product-thumb text-center"><s:property
-													value="ReturnDate" /></td>
+										<td class="product-thumb"><s:property value="ReturnDate" /></td>
 										<td class="product-category"><span class="categories"><s:property
 													value="books[#L.index].category" /></span></td>
-							
+										<s:if test="Fine>0">
+											<td class="product-category"><span class="categories"><s:property
+														value="Fine" /> <i class="fa fa-jpy" aria-hidden="true"></i></span></td>
+										</s:if>
 									</tr>
 								</s:iterator>
+
 							</tbody>
 						</table>
+						<div class="pagination justify-content-center">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+									<!--前往上一页的按钮-->
+									<li class="page-item"><a class="page-link"
+										href="getReaderStatuForReturn?pageNum=${borrowPage.prePageNum}"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+											<span class="sr-only">Previous</span>
+									</a></li>
+									<!--显示前往第一页的按钮-->
+									<s:if test="borrowPage.beginPageNum>1">
+										<li class="page-item"><a class="page-link"
+											href="getReaderStatuForReturn?pageNum=1">1</a></li>
+										<s:if test="borrowPage.beginPageNum>2">
+											<li class="page-item"><a class="page-link">....</a></li>
+										</s:if>
+									</s:if>
+									<!-- 显示以当前页为中心的7页 -->
+									<s:iterator begin="%{borrowPage.beginPageNum}"
+										end="%{borrowPage.endPageNum}" var="snum">
+										<s:if test="#snum == borrowPage.currentPage">
+											<li class="page-item active"><a class="page-link"
+												href="getReaderStatuForReturn?pageNum=${snum}">${snum}</a></li>
+										</s:if>
+										<s:else>
+											<li class="page-item"><a class="page-link"
+												href="getReaderStatuForReturn?pageNum=${snum}">${snum}</a></li>
+										</s:else>
+									</s:iterator>
+									<!-- 显示最后一页 -->
+									<s:if test="borrowPage.endPageNum<borrowPage.totalPage">
 
+										<s:if test="borrowPage.endPageNum+1<borrowPage.totalPage">
+											<li class="page-item"><a class="page-link">....</a></li>
+										</s:if>
+										<li class="page-item"><a class="page-link"
+											href="getReaderStatuForReturn?&pageNum=${borrowPage.totalPage}">${borrowPage.totalPage}</a></li>
+									</s:if>
+									<!-- 前往下一页的按钮-->
+									<li class="page-item"><a class="page-link"
+										href="getReaderStatuForReturn?pageNum=${borrowPage.nextPageNum}"
+										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+											<span class="sr-only">Next</span>
+									</a></li>
+								</ul>
+							</nav>
+						</div>
 					</div>
 				</div>
 			</div>
