@@ -52,7 +52,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<nav class="navbar navbar-expand-lg  navigation">
-						<a class="navbar-brand" href="index.jsp"> <img
+						<a class="navbar-brand" href="index.html"> <img
 							src="images/logo.png" alt="">
 						</a>
 						<button class="navbar-toggler" type="button"
@@ -94,15 +94,12 @@
 											class="dropdown-item" href="#">Something else here</a>
 									</div></li>
 							</ul>
-							<!-- 若读者已登录，隐藏 -->
-							<s:if test="#session.reader==null">
-								<ul class="navbar-nav ml-auto mt-10">
-									<li class="nav-item"><a class="nav-link login-button"
-										href="index.html">Login</a></li>
-									<li class="nav-item"><a class="nav-link add-button"
-										href="#"><i class="fa fa-plus-circle"></i> Add Listing</a></li>
-								</ul>
-							</s:if>
+							<ul class="navbar-nav ml-auto mt-10">
+								<li class="nav-item"><a class="nav-link login-button"
+									href="index.html">Login</a></li>
+								<li class="nav-item"><a class="nav-link add-button"
+									href="#"><i class="fa fa-plus-circle"></i> Add Listing</a></li>
+							</ul>
 						</div>
 					</nav>
 				</div>
@@ -135,8 +132,8 @@
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
 							<ul>
-								<li class="active"><a href="getReaderStatuForBorrowPage"><i
-										class="fa fa-user"></i> My current borrowing</a></li>
+								<li class="active"><a href=""><i class="fa fa-user"></i>
+										My Ads</a></li>
 								<li><a href=""><i class="fa fa-bookmark-o"></i>
 										Favourite Ads <span>5</span></a></li>
 								<li><a href=""><i class="fa fa-file-archive-o"></i>Archived
@@ -157,33 +154,30 @@
 						<table class="table table-responsive product-dashboard-table">
 							<thead>
 								<tr>
-									<th class="text-center">BookID</th>
-									<th>Book Title</th>
-									<th>Due Date</th>
+									<th>Image</th>
+									<th>Product Title</th>
 									<th class="text-center">Category</th>
-
+									<th class="text-center">Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<s:iterator value="borrowPage.datalist" status="L">
+
+								<s:iterator value="currentRecords" status="L">
 									<tr>
-										<td class="product-thumb text-center">${BookID}</td>
 										<td class="product-details">
 											<h3 class="title">
-												<i><s:property value="books[#L.index].BookName" /></i>
-											</h3> <span class="add-id"><strong>ISBN:</strong> <s:property
-													value="books[#L.index].ISBN" /></span> <span><strong>Borrowed
-													on: </strong> <time>${BorrowingDate}</time> </span> <span
-											class="status active"><strong>Status</strong> <s:if
-													test="#ReturnDate.getTime()<#todayTime.getTime()">lihai
-												</s:if> <s:else>Borrowing</s:else></span> <span class="location"><strong>Location</strong>
+												<s:property value="books[#L.index].BookName" />
+											</h3> <span class="add-id"><strong>Ad ID:</strong>${BookID}</span>
+											<span><strong>Posted on: </strong> <time>${BorrowingDate}</time>
+										</span> <span class="status active"><strong>Status</strong> <s:if
+													test="DueDate==null">Borrowing
+											</s:if> <s:else>Reserve</s:else></span> <span class="location"><strong>Location</strong>
 												<s:property value="books[#L.index].Location" /></span>
 										</td>
-									
-										<td class="product-thumb">${ReturnDate}</td>
+										<td class="product-thumb"></td>
 										<td class="product-category"><span class="categories"><s:property
 													value="books[#L.index].category" /></span></td>
-										<!-- <td class="action" data-title="Action">
+										<td class="action" data-title="Action">
 											<div class="">
 												<ul class="list-inline justify-content-center">
 													<li class="list-inline-item"><a data-toggle="tooltip"
@@ -198,11 +192,12 @@
 													</a></li>
 												</ul>
 											</div>
-										</td> -->
+										</td>
 									</tr>
 								</s:iterator>
 							</tbody>
 						</table>
+
 					</div>
 				</div>
 			</div>

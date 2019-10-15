@@ -80,10 +80,8 @@ public interface BaseDao<TEntity> {
 
 	List<TEntity> findPageByQuery(String propertyName, Object propertyValue, String cond, int pageStart, int pageSize);
 
-	List<TEntity> findPageByTwoSubstring(String propertyName1, String propertyName2, String cond1,String cond2, int pageStart,
+	List<TEntity> findPageByTwoProperty(String propertyName1, String propertyName2, String cond1, int pageStart,
 			int pageSize);
 
 	int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1);
-	int findTotalNumbyTwoProperty(String propertyName1, String propertyName2,Object value1,Object value2);
-	List<TEntity> findPageByTwoProperty(String propertyName1,String propertyName2, Object Value1, Object Value2, String cond, int pageStart, int pageSize);
 }
