@@ -171,6 +171,18 @@
 		<action name="adminDisplayBooks" class="bookAction" method="display">
 			<result name="success">/Admin_Display_Book.jsp</result>
 		</action>
+		<!-- Admin查看书籍数量 -->
+		<action name="admindisplayBooks" class="bookAction" method="display">
+			<result name="success">/AdminJsp/index.jsp</result>
+		</action>
+		<!-- Admin查看馆员数量  -->
+		<action name="librarianNumber" class="librarianAction" method="show">
+			<result name="success">/AdminJsp/index.jsp</result>
+		</action>
+		<!-- Admin查看读者数量 -->
+		<action name="readerNumber" class="readerAction" method="show">
+			<result name="success">/AdminJsp/index.jsp</result>
+		</action>
 		<!-- Admin修改书籍逾期罚金和归还期限 -->
 		<action name="adminEditBook" class="bookAction" method="adminEditBook">
 			<result name="success">/AdminEditBook.jsp</result>

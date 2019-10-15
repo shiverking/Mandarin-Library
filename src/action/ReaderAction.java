@@ -83,5 +83,8 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-
+	public String show() {
+		this.readers=this.getService().show();
+		return SUCCESS;
+	}
 }

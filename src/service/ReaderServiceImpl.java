@@ -1,5 +1,8 @@
 package service;
 
+import java.util.List;
+
+import model.Librarian;
 import model.Reader;
 
 /**
@@ -17,5 +20,9 @@ public class ReaderServiceImpl extends BaseService<Reader>implements ReaderServi
 			return reader;
 		}
 		return null;
+	}
+	public List<Reader> show()
+	{
+		return this.getDao().findAll();
 	}
 }

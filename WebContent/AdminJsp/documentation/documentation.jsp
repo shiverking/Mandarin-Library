@@ -30,7 +30,7 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-12 doc-header">
-                <a class="btn btn-success" href="../index.html"><i class="mdi mdi-home mr-2"></i>Back to home</a>
+                <a class="btn btn-success" href="../index.jsp"><i class="mdi mdi-home mr-2"></i>Back to home</a>
                 <h1 class="text-primary mt-4">Documentation</h1>
               </div>
             </div>
