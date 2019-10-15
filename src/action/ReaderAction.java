@@ -7,6 +7,10 @@ import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.SessionFactory;
 
 import com.opensymphony.xwork2.ActionContext;
 
@@ -71,12 +75,12 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 //    	tempReader.setSalt(Encrypt.getSalt());
 		tempReader.setPassword(this.getModel().getPassword());
 		this.getService().mergeReader(tempReader);
-		this.setErrorMessage("修改成功，请重新登录！");
+		this.setErrorMessage("淇敼鎴愬姛锛岃閲嶆柊鐧诲綍锛�");
 		return SUCCESS;
 	}
 
 
-	// ��ȡ�û���״̬
+	// 锟斤拷取锟矫伙拷锟斤拷状态
 	public String getReaderStatu() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		this.tempReader = (Reader) session.get("reader");
@@ -85,6 +89,20 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		}
 		return SUCCESS;
 	}
+	
+	public String forgetReaderPassword() throws Exception{
+//		HttpServletRequest PaswordRequest = ServletActionContext.getRequest();
+//		String email = PaswordRequest.getParameter("Email");
+		boolean a = this.getService().forgetReaderPassword(this.getModel().getEmail());
+		if (a == true) {
+			return SUCCESS;
+		}
+		else {
+			this.errorMessage = "Your email is wrong!";
+			return INPUT;
+		}
+	}
+	
 
 	public String getSearchContent() {
 		return searchContent;

@@ -1,5 +1,5 @@
 package util;
-
+ 
 import java.io.ObjectInputStream.GetField;
 import java.util.Date;
 import java.util.Properties;
@@ -14,7 +14,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.text.html.MinimalHTMLWriter;
  
-public class Email {
+public class Email_2 {
     //发件人地址
     public static String senderAddress = "chap_xwang314@163.com";
     //收件人地址
@@ -23,11 +23,12 @@ public class Email {
     public static String senderAccount = "chap_xwang314@163.com";
     //发件人账户密码
     public static String senderPassword = "abc123";
-    
-    public Email(String email) {
+
+    public Email_2 (String email) {
     	recipientAddress = email;
     }
-    public void sendEmail(String readerName,String bookName) throws Exception{
+
+    public void sendEmail(String password) throws Exception {
         //1、连接邮件服务器的参数配置
         Properties props = new Properties();
         //设置用户的认证方式
@@ -41,14 +42,14 @@ public class Email {
         //设置调试信息在控制台打印出来
         session.setDebug(true);
         //3、创建邮件的实例对象
-        Message msg = getMimeMessage(session,readerName,bookName);
+        Message msg = getMimeMessage(session,password);
         //4、根据session对象获取邮件传输对象Transport
         Transport transport = session.getTransport();
         //设置发件人的账户名和密码
         transport.connect(senderAccount, senderPassword);
         //发送邮件，并发送到所有收件人地址，message.getAllRecipients() 获取到的是在创建邮件对象时添加的所有收件人, 抄送人, 密送人
         transport.sendMessage(msg,msg.getAllRecipients());
-        
+         
         //如果只想发送给指定的人，可以如下写法
         //transport.sendMessage(msg, new Address[]{new InternetAddress("xxx@qq.com")});
          
@@ -63,7 +64,7 @@ public class Email {
      * @throws MessagingException
      * @throws AddressException
      */
-    public static MimeMessage getMimeMessage(Session session,String readerName,String bookName) throws Exception{
+    public static MimeMessage getMimeMessage(Session session,String password) throws Exception{
         //创建一封邮件的实例对象
         MimeMessage msg = new MimeMessage(session);
         //设置发件人地址
@@ -78,7 +79,7 @@ public class Email {
         //设置邮件主题
         msg.setSubject("邮件主题","UTF-8");
         //设置邮件正文
-        msg.setContent("尊敬的"+readerName+"："+"\n"+"  您借阅的《"+bookName+"》2天后将要到期，请及时归还到图书馆!", "text/html;charset=UTF-8");
+        msg.setContent("尊敬的用户："+"\n"+"您的密码是"+password, "text/html;charset=UTF-8");
         //设置邮件的发送时间,默认立即发送
         msg.setSentDate(new Date());
          

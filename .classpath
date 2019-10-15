@@ -10,7 +10,5 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5"/>
-	<classpathentry kind="lib" path="C:/Users/xiang wang/Desktop/javax.mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/xiang wang/Desktop/activation.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/Admin_login.jsp=UTF-8
+encoding//WebContent/ForgetReaderPassword.jsp=UTF-8
 encoding//WebContent/help.jsp=UTF-8
-
+encoding//src/action/ReaderAction.java=UTF-8
+encoding//src/util/BackThread.java=GBK

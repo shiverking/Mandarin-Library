@@ -10,4 +10,5 @@ import model.Reader;
 public interface ReaderService {
 	public Reader verify(String Email, String Password);
 	public void mergeReader(Reader reader);
+	public boolean forgetReaderPassword(String email);
 }

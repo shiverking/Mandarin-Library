@@ -73,6 +73,12 @@
 			method="changeReaderPassword">
 			<result name="success">/Reader_signin.jsp</result>
 		</action>
+		<!-- 忘记密码 -->
+		<action  name = "forgetReaderPassword" class = "readerAction"
+			method="forgetReaderPassword">
+			<result name="success">/Reader_signin.jsp</result>
+			<result name="input">/ForgetReaderPassword.jsp</result>
+		</action>
 
 		
 		<!-- 获取借阅记录 -->
