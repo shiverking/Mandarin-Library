@@ -2,7 +2,7 @@ package service;
 import java.util.List;
 
 import model.Librarian;
-public class LibrarianServicelmpl extends BaseService<Librarian>implements LibrarianService{
+public class LibrarianServiceImpl extends BaseService<Librarian>implements LibrarianService{
 	@Override
 	public Librarian verify(String LibrarianName, String Password) {
 		if(Password==null) {Password="00010001";}

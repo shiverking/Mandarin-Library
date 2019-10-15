@@ -14,27 +14,22 @@ import com.opensymphony.xwork2.ActionContext;
 public class PostAction extends BaseAction<Post,PostService> {
 
 	private static final long serialVersionUID = 1L;
-	private static Post post;
+	private Post post;
 	private List<Post> posts;
 	public String PostNews() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
-		post.setLibrarian((Librarian) session.get("librarain")); 
-		int PostID=this.getModel().getPostID();
-		String Title=this.getModel().getTitle();
-		String Content=this.getModel().getContent();
+		this.getModel().setLibrarian((Librarian) session.get("librarian")); 
+		System.out.println(this.getModel().getLibrarian().getLibrarianID());
 		//Librarian librarian=this.getModel().getLibrarian();
-		this.getModel().setContent(Content);;
-		this.getModel().setLibrarian(new Librarian (2,"123"));
-		this.getModel().setTitle(Title);
-		this.getModel().setPostID(PostID);;
 		this.getService().savePost(this.getModel());
 		return SUCCESS;
+		
 	}
-	public static Post getPost() {
+	public Post getPost() {
 		return post;
 	}
-	public static void setPost(Post post) {
-		PostAction.post = post;
+	public void setPost(Post post) {
+		this.post = post;
 	
 	}
 	public List<Post> getPosts() {

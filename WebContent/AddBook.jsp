@@ -16,6 +16,15 @@
         Number:<input name="Num" required="required"/><br>
         <button type="submit" value="add">Add Book</button>
       </form>
+      
+      </table>
+      <br>
+      <table border="2" name="AddBook">
+      <form action="addBookISBN" method = "post">
+        ISBN:<input name="ISBN" required="required"><br>
+        <button type="submit" value="add">Add Book BY ISBN</button>
+      </form>
+      
       </table>
 </body>
 </html>

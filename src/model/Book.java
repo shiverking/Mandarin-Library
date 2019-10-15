@@ -4,7 +4,7 @@ public class Book {
 	private int BookID;
 	private String BookName;
 	private String ISBN;
-	private int Price;
+	private String Price;
 	private String Location;
 	private int ReturnPeriod;
 	private int FineValue;
@@ -17,7 +17,7 @@ public class Book {
 		FineValue = 1;
 		isBorrowed = false;
 	}
-	public Book(int bookID, String bookName, String iSBN, int price, String location,String category
+	public Book(int bookID, String bookName, String iSBN, String price, String location,String category
 			) {
 		//super();
 		BookID = bookID;
@@ -27,7 +27,7 @@ public class Book {
 		Location = location;
 		ReturnPeriod = 30;
 		FineValue = 1;
-		isBorrowed = false; //³õÊ¼×´Ì¬ÉèÖÃÎªÎ´½èÔÄ
+		isBorrowed = false; //ï¿½ï¿½Ê¼×´Ì¬ï¿½ï¿½ï¿½ï¿½ÎªÎ´ï¿½ï¿½ï¿½ï¿½
 		this.category=category;
 	}
 	public int getBookID() {
@@ -48,11 +48,15 @@ public class Book {
 	public void setISBN(String iSBN) {
 		ISBN = iSBN;
 	}
-	public int getPrice() {
+
+	public String getPrice() {
 		return Price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		Price = price;
+	}
+	public void setBorrowed(boolean isBorrowed) {
+		this.isBorrowed = isBorrowed;
 	}
 	public String getLocation() {
 		return Location;

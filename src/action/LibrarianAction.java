@@ -31,6 +31,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		String LibrarianName =this.getModel().getLibrarianName();//锟斤拷取LibrarianName
 		String Password  =this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
 		if(LibrarianName==null) {
+			System.out.println(LibrarianName);
 			this.errorMessage="You must input the Name!";
 			return INPUT;
 		}
@@ -110,4 +111,5 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			return "success";
 		}
 	}
+	
 }
