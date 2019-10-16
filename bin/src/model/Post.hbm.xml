@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="model">
+	<class name="Post" >
+		<id name="postID" type="int" column="postID">
+         <generator class="native"/>
+      	</id>
+		<property name="Title" type="string" length="50" not-null="true" />
+		<property name="Content" type="string" length="500" not-null="true" />
+	</class>
+</hibernate-mapping>
