@@ -1,6 +1,7 @@
 package model;
 
 public class Book {
+
 	private int BookID;
 	private String BookName;
 	private String ISBN;
@@ -12,24 +13,27 @@ public class Book {
 	private String category;
 	private String Author;
 	private String Introduction;
-	public Book() {
-		ReturnPeriod = 30;
-		FineValue = 1;
-		isBorrowed = false;
-	}
-	public Book(int bookID, String bookName, String iSBN, String price, String location,String category
-			) {
-		//super();
+	public Book(int bookID, String bookName, String iSBN, String price, String location, int returnPeriod,
+			int fineValue, boolean isBorrowed, String category, String author, String introduction) {
+		super();
 		BookID = bookID;
 		BookName = bookName;
 		ISBN = iSBN;
 		Price = price;
 		Location = location;
+		ReturnPeriod = returnPeriod;
+		FineValue = fineValue;
+		this.isBorrowed = isBorrowed;
+		this.category = category;
+		Author = author;
+		Introduction = introduction;
+	}
+	public Book() {
 		ReturnPeriod = 30;
 		FineValue = 1;
-		isBorrowed = false; //��ʼ״̬����Ϊδ����
-		this.category=category;
+		isBorrowed = false;
 	}
+
 	public int getBookID() {
 		return BookID;
 	}

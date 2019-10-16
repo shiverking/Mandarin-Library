@@ -123,6 +123,9 @@
 		<action name="addBook" class="bookAction" method="addBook">
 			<result name="success" type="chain">displayBooks</result>
 		</action>
+		<action name="addBookISBN" class="bookAction" method="addBookISBN">
+			<result name="success" type="chain">displayBooks</result>
+		</action>
 		<!-- 跳转Librarian添加书籍界面 -->
 		<action name="addBookPage" class="bookAction"
 			method="addBookPage">

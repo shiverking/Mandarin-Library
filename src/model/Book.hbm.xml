@@ -6,15 +6,15 @@
 		<id name="BookID" type="integer">
 			<generator class="native" />
 		</id>
-		<property name="BookName" not-null="true" />
-		<property name="ISBN" type="string" not-null="true" />
-		<property name="Price" not-null="true"/>
-		<property name="Location" not-null="true"/>
-		<property name="ReturnPeriod" not-null="true" />
-		<property name="FineValue" not-null="true"/>
-		<property name="isBorrowed" type="boolean" not-null="true"/>
-		<property name="category" type="string" not-null="true"/>
-		<property name="Author" type="string"/>
-		<property name="Introduction" type="string"/>
+		<property name="BookName" not-null="false" />
+		<property name="ISBN" type="string" not-null="false" />
+		<property name="Price" not-null="false"/>
+		<property name="Location" not-null="false"/>
+		<property name="ReturnPeriod" not-null="false" />
+		<property name="FineValue" not-null="false"/>
+		<property name="isBorrowed" type="boolean" not-null="false"/>
+		<property name="category" type="string" not-null="false"/>
+		<property name="Author" type="string" not-null="false"/>
+		<property name="Introduction" type="string" not-null="false"/>
 	</class>
 </hibernate-mapping>

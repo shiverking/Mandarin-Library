@@ -23,7 +23,7 @@
         <td><s:property value="PostID"/></td>
         <td><s:property value="Title"/></td>
         <td><s:property value="Content"/></td>
-        <td><s:property value="librarian"/></td> 
+        <td><s:property value="librarian.librarianName"/></td> 
     </tr>
 	</s:iterator>
 	</s:if>

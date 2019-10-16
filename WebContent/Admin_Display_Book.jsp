@@ -16,6 +16,10 @@
       <th width="128" height="25" align="center">BookID</th>
       <th width="157" align="center">BookName</th>
       <th width="147" align="center">ISBN</th>
+      <th width="147" align="center">Author</th>
+      <th width="147" align="center">Price</th>
+      <th width="5000" align="center">Description</th>
+      <th width="147" align="center">Category</th>
       <th width="281" align="center">ReturnPeriod</th>
       <th width="281" align="center">FineValue</th>
       <th width="281" align="center">Operation</th>
@@ -25,6 +29,8 @@
       <td align="center"><s:property value="BookID"/></td>
       <td align="center"><s:property value="BookName"/></td>
       <td align="center"><s:property value="ISBN"/></td>
+      <td align="center"><s:property value="Author"/></td>
+      <td align="center"><s:property value="Description"/></td>
       <td align="center"><s:property value="ReturnPeriod"/></td>
       <td align="center"><s:property value="FineValue"/></td>
       <td align="center"><a href='adminEditBook?book.BookID=<s:property value="BookID"/>'>Edit</a>
