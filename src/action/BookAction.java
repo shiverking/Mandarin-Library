@@ -1,5 +1,7 @@
 package action;
-
+import java.io.*;
+import java.net.*;
+import java.util.regex.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +18,9 @@ import util.PageBean;
 
 public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
-	private List<Book> books;//���ܱ�bookPageȡ�����������ã�����ʹ�����ע��
-	private List<Borrowrecord> borrowrecords;// ���ܱ�ɾ��
+	private List<Book> books;
 	private List<CurrentRecord> currentRecords;// ָ�ڽ��鼮��ԤԼ�鼮����Ϣ
-	private PageBean<Borrowrecord> borrowPage;// �ѹ黹���鼮��Ϣ
+	private PageBean<Borrowrecord> borrowPage;// ���ļ�¼��Ϣ
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
@@ -34,16 +35,16 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
-	public String getBooksbyBorrwrecords() {
+	public String getBooksbyBorrowPage() {
 		books = new ArrayList<Book>();
-		for (Borrowrecord borrowrecord : borrowrecords) {
+		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
 			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 		}
 		return SUCCESS;
 	}
 
 	public String getBooksbycurrentRecords() {
-		//TODO:���ܸ���pagabeanʵ��
+		// TODO:���ܸ���pagabeanʵ��
 		books = new ArrayList<Book>();
 		for (CurrentRecord currentRecord : currentRecords) {
 			books.add(this.getService().getBookById(currentRecord.getBookID()));
@@ -56,12 +57,12 @@ public class BookAction extends BaseAction<Book, BookService> {
 		HttpServletRequest PriceRequest = ServletActionContext.getRequest();
 		HttpServletRequest NumRequest = ServletActionContext.getRequest();
 		String BookName = this.getModel().getBookName();
-		int Price = Integer.parseInt(PriceRequest.getParameter("Price"));
+		
 		String Location = this.getModel().getLocation();
 		String Category = this.getModel().getCategory();
 		int Number = Integer.parseInt(NumRequest.getParameter("Num"));
 		this.getModel().setBookName(BookName);
-		this.getModel().setPrice(Price);
+
 		this.getModel().setLocation(Location);
 		this.getModel().setReturnPeriod(30);
 		this.getModel().setFineValue(1);
@@ -73,7 +74,30 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return SUCCESS;
 	}
+	//根据ISBN加书
 
+	public String addBookISBN() throws Exception {
+		
+		/* HttpServletRequest PriceRequest = ServletActionContext.getRequest(); */
+		HttpServletRequest NumRequest = ServletActionContext.getRequest();
+		/* String BookName = this.getModel().getBookName(); */
+		/* int Price = Integer.parseInt(PriceRequest.getParameter("Price")); */
+		String Location = this.getModel().getLocation();
+		String Category = this.getModel().getCategory();
+		int Number = Integer.parseInt(NumRequest.getParameter("Num"));
+		
+		/*
+		 * this.getModel().setBookName(BookName); this.getModel().setPrice(Price);
+		 * this.getModel().setLocation(Location); this.getModel().setReturnPeriod(30);
+		 * this.getModel().setFineValue(1); this.getModel().setIsBorrowed(false);
+		 * this.getModel().setCategory(Category);
+		 */
+		for (int i = 0; i < Number; i++) {
+			/* this.getModel().setISBN(iSBNgenerator.generateISBN()); */
+			this.getService().saveBook(this.getModel());
+		}
+		return SUCCESS;
+	}
 	public String addBookPage() {
 		return SUCCESS;
 	}
@@ -123,14 +147,6 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public void setSearchContent(String searchContent) {
 		this.searchContent = searchContent;
-	}
-
-	public List<Borrowrecord> getBorrowrecords() {
-		return borrowrecords;
-	}
-
-	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
-		this.borrowrecords = borrowrecords;
 	}
 
 	public List<Book> getBooks() {

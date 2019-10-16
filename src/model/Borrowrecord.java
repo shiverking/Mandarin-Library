@@ -1,7 +1,6 @@
 package model;
 
 import java.util.Date;
-import java.text.SimpleDateFormat;
 
 public class Borrowrecord {
 	private int RecordID;

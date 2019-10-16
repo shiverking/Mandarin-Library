@@ -9,6 +9,5 @@
 		<property name="ReaderID"  not-null="true" />
 		<property name="BookID" type="integer" not-null="true" />
 		<property name="BorrowingDate"  type="timestamp" not-null="true" />
-		<property name="DueDate" type="date" />
 	</class>
 </hibernate-mapping>

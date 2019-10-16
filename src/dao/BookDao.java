@@ -8,5 +8,5 @@ import model.Book;
 * 
 */
 public class BookDao extends BaseDaoImpl<Book>{
-	
+
 }

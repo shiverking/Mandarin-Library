@@ -71,7 +71,7 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 		}
 		int totalRecords = this.getDao().findTotalNumbyTwoSubstring("ISBN", "BookName", cond);
 		PageBean<Book> bookPageBean = new PageBean<Book>(totalRecords, current);
-		bookPageBean.setDataList(this.getDao().findPageByTwoProperty("ISBN", "BookName", cond,
+		bookPageBean.setDataList(this.getDao().findPageByTwoSubstring("ISBN", "BookName", cond,cond,
 				bookPageBean.getStartIndex(), bookPageBean.getPageSize()));
 		return bookPageBean;
 	}
