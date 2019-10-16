@@ -46,7 +46,6 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		// TODO Auto-generated method stub
 		return this.getDao().findBy("ReaderID", readerId, "BorrowingDate desc");
 	}
-
 	public Borrowrecord getBorrowrecordByid(int id) {
 		// TODO Auto-generated method stub
 		return this.getDao().get(id);
@@ -64,7 +63,6 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 	}
 
 	public PageBean<Borrowrecord> findPageBean(Reader reader, Integer pageNum) {
-		// TODO ��ҳ��ѯ
 		int Num = 1;
 		if (pageNum != null) {
 			Num = pageNum;
@@ -74,6 +72,19 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		PageBean<Borrowrecord> page = new PageBean<Borrowrecord>(totalRecords, Num);
 		page.setDataList(this.getDao().findPageByQuery("ReaderID", reader.getReaderID(), "BorrowingDate desc",
 				page.getStartIndex(), page.getPageSize()));
+		return page;
+	}
+	public PageBean<Borrowrecord> findPageBean(Reader reader, Integer pageNum,Boolean isReturn) {
+		// TODO ��ҳ��ѯ
+		int Num = 1;
+		if (pageNum != null) {
+			Num = pageNum;
+		}
+		int totalRecords = this.getDao().findTotalNumbyTwoProperty("ReaderID", "isReturn", reader.getReaderID(), isReturn);
+
+		PageBean<Borrowrecord> page = new PageBean<Borrowrecord>(totalRecords, Num);
+		page.setDataList(this.getDao().findPageByTwoProperty("ReaderID", "isReturn", reader.getReaderID(), isReturn,
+				"BorrowingDate desc", page.getStartIndex(), page.getPageSize()));
 		return page;
 	}
 
@@ -88,7 +99,7 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 	}
 
 	public List<Borrowrecord> borrowBook(List<Reader> readers, List<Book> books) {
-		// 初始化参数
+		// 初始化参�?
 		Reader reader = readers.get(0);
 		Book book = books.get(0);
 		long returnPeriod = book.getReturnPeriod();

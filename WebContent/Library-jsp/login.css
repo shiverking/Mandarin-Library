@@ -1,0 +1,140 @@
+@CHARSET "UTF-8";
+
+body {
+    background-image: url("../images/login/login.png");
+	/*
+	*@author WuLiangxu
+	*@version 2019/9/23 21:48
+	*@description 让背景图片拉伸且占据整个屏幕
+	*/
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#login_frame {
+	/*
+	*@author WuLiangxu
+	*@version 2019/9/23 21:48
+	*@description 让一个div块在整个屏幕居中
+	*/
+    width: 400px;
+    height: 260px;
+    padding: 13px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -200px;
+ 	/*
+	*@author WuLiangxu
+	*@version 2019/9/23 21:48
+	*@description 设置背景颜色且加透明效果
+	*/
+    background-color: rgba(240, 255, 255, 0.5);
+
+    border-radius: 10px;
+    text-align: center;
+}
+/*
+*@author WuLiangxu
+*@version 2019/9/23 21:48
+*@description 让输入框和label对齐居中
+*/
+form p > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#image_logo {
+    margin-top: 20px;
+    width: 60px;
+    border-radius: 50%;
+}
+/*
+*@author WuLiangxu
+*@version 2019/9/23 21:48
+*@description 输入框格式
+*/
+.label_input {
+    font-size: 14px;
+    font-family: 宋体;
+
+    width: 65px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+
+    color: white;
+    background-color: #3CD8FF;
+    /*
+	*@author WuLiangxu
+	*@version 2019/9/23 21:48
+	*@description 设置边框圆角
+	*/
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.text_field {
+    width: 278px;
+    height: 28px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 0;
+}
+/*
+*@author WuLiangxu
+*@version 2019/9/23 21:48
+*@description 登陆按钮格式
+*/
+#btn_login {
+    font-size: 14px;
+    font-family: 宋体;
+
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+
+    color: white;
+    background-color: #3BD9FF;
+    border-radius: 6px;
+    border: 0;
+    
+    float: left;
+}
+
+#forget_pwd {
+    font-size: 12px;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    float: right;
+    top: 5px;
+}
+
+#forget_pwd:hover {
+    color: blue;
+/*
+*@author WuLiangxu
+*@version 2019/9/23 21:48
+*@description 去除下划线
+*/
+    text-decoration: underline;
+}
+
+#login_control {
+    width:270px;    /* 宽度 */
+    height:40px;	/* 高度 */
+    borer-width:0px;	/* 边框宽度 */
+    border-radius: 3px; /* 边框半径 */
+	background: #1E90FF; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	font-family: Microsoft YaHei; /* 设置字体 */
+	color: white; /* 字体颜色 */
+	font-size: 17px; /* 字体大小 */
+}
+#login_control:hover { /* 鼠标移入按钮范围时改变颜色 */
+	background: #5599FF;
+}

@@ -1,10 +1,11 @@
 package model;
 
 public class Book {
+
 	private int BookID;
 	private String BookName;
 	private String ISBN;
-	private int Price;
+	private String Price;
 	private String Location;
 	private int ReturnPeriod;
 	private int FineValue;
@@ -12,24 +13,27 @@ public class Book {
 	private String category;
 	private String Author;
 	private String Introduction;
-	public Book() {
-		ReturnPeriod = 30;
-		FineValue = 1;
-		isBorrowed = false;
-	}
-	public Book(int bookID, String bookName, String iSBN, int price, String location,String category
-			) {
-		//super();
+	public Book(int bookID, String bookName, String iSBN, String price, String location, int returnPeriod,
+			int fineValue, boolean isBorrowed, String category, String author, String introduction) {
+		super();
 		BookID = bookID;
 		BookName = bookName;
 		ISBN = iSBN;
 		Price = price;
 		Location = location;
+		ReturnPeriod = returnPeriod;
+		FineValue = fineValue;
+		this.isBorrowed = isBorrowed;
+		this.category = category;
+		Author = author;
+		Introduction = introduction;
+	}
+	public Book() {
 		ReturnPeriod = 30;
 		FineValue = 1;
-		isBorrowed = false; //≥ı º◊¥Ã¨…Ë÷√Œ™Œ¥ΩË‘ƒ
-		this.category=category;
+		isBorrowed = false;
 	}
+
 	public int getBookID() {
 		return BookID;
 	}
@@ -48,11 +52,15 @@ public class Book {
 	public void setISBN(String iSBN) {
 		ISBN = iSBN;
 	}
-	public int getPrice() {
+
+	public String getPrice() {
 		return Price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		Price = price;
+	}
+	public void setBorrowed(boolean isBorrowed) {
+		this.isBorrowed = isBorrowed;
 	}
 	public String getLocation() {
 		return Location;

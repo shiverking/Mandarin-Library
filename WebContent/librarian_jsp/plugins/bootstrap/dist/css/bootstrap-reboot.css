@@ -1,7 +1,13 @@
 /*!
+<<<<<<< HEAD
  * Bootstrap Reboot v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
+=======
+ * Bootstrap Reboot v4.0.0-beta.2 (https://getbootstrap.com)
+ * Copyright 2011-2017 The Bootstrap Authors
+ * Copyright 2011-2017 Twitter, Inc.
+>>>>>>> wlx
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)
  */
@@ -15,16 +21,33 @@ html {
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
+<<<<<<< HEAD
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+=======
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
+>>>>>>> wlx
   display: block;
 }
 
 body {
   margin: 0;
+<<<<<<< HEAD
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+=======
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+>>>>>>> wlx
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -34,7 +57,11 @@ body {
 }
 
 [tabindex="-1"]:focus {
+<<<<<<< HEAD
   outline: 0 !important;
+=======
+  outline: none !important;
+>>>>>>> wlx
 }
 
 hr {
@@ -57,11 +84,17 @@ abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
+<<<<<<< HEAD
   text-decoration: underline dotted;
   cursor: help;
   border-bottom: 0;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
+=======
+          text-decoration: underline dotted;
+  cursor: help;
+  border-bottom: 0;
+>>>>>>> wlx
 }
 
 address {
@@ -97,6 +130,13 @@ blockquote {
   margin: 0 0 1rem;
 }
 
+<<<<<<< HEAD
+=======
+dfn {
+  font-style: italic;
+}
+
+>>>>>>> wlx
 b,
 strong {
   font-weight: bolder;
@@ -126,6 +166,10 @@ a {
   color: #007bff;
   text-decoration: none;
   background-color: transparent;
+<<<<<<< HEAD
+=======
+  -webkit-text-decoration-skip: objects;
+>>>>>>> wlx
 }
 
 a:hover {
@@ -138,7 +182,11 @@ a:not([href]):not([tabindex]) {
   text-decoration: none;
 }
 
+<<<<<<< HEAD
 a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
+=======
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
+>>>>>>> wlx
   color: inherit;
   text-decoration: none;
 }
@@ -151,7 +199,11 @@ pre,
 code,
 kbd,
 samp {
+<<<<<<< HEAD
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+=======
+  font-family: monospace, monospace;
+>>>>>>> wlx
   font-size: 1em;
 }
 
@@ -159,6 +211,10 @@ pre {
   margin-top: 0;
   margin-bottom: 1rem;
   overflow: auto;
+<<<<<<< HEAD
+=======
+  -ms-overflow-style: scrollbar;
+>>>>>>> wlx
 }
 
 figure {
@@ -170,9 +226,27 @@ img {
   border-style: none;
 }
 
+<<<<<<< HEAD
 svg {
   overflow: hidden;
   vertical-align: middle;
+=======
+svg:not(:root) {
+  overflow: hidden;
+}
+
+a,
+area,
+button,
+[role="button"],
+input:not([type="range"]),
+label,
+select,
+summary,
+textarea {
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+>>>>>>> wlx
 }
 
 table {
@@ -182,7 +256,11 @@ table {
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+<<<<<<< HEAD
   color: #6c757d;
+=======
+  color: #868e96;
+>>>>>>> wlx
   text-align: left;
   caption-side: bottom;
 }
@@ -193,7 +271,11 @@ th {
 
 label {
   display: inline-block;
+<<<<<<< HEAD
   margin-bottom: 0.5rem;
+=======
+  margin-bottom: .5rem;
+>>>>>>> wlx
 }
 
 button {
@@ -226,17 +308,23 @@ select {
   text-transform: none;
 }
 
+<<<<<<< HEAD
 select {
   word-wrap: normal;
 }
 
 button,
 [type="button"],
+=======
+button,
+html [type="button"],
+>>>>>>> wlx
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button;
 }
 
+<<<<<<< HEAD
 button:not(:disabled),
 [type="button"]:not(:disabled),
 [type="reset"]:not(:disabled),
@@ -244,6 +332,8 @@ button:not(:disabled),
   cursor: pointer;
 }
 
+=======
+>>>>>>> wlx
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
@@ -303,6 +393,10 @@ progress {
   -webkit-appearance: none;
 }
 
+<<<<<<< HEAD
+=======
+[type="search"]::-webkit-search-cancel-button,
+>>>>>>> wlx
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
@@ -318,7 +412,10 @@ output {
 
 summary {
   display: list-item;
+<<<<<<< HEAD
   cursor: pointer;
+=======
+>>>>>>> wlx
 }
 
 template {

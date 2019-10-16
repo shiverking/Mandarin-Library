@@ -28,12 +28,10 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	private List<Reader> readers;
 	private String errorMessage;
 
-	public String getBorrowrecordByReader() {
-
-		borrowrecords = this.getService().getBorrowrecordsbyReader(tempReader);
+	public String getReaderFine() {
+		totalFine = this.getService().getFine(tempReader.getReaderID());// TODO:增加了开销，后期可能修改算法
 		return SUCCESS;
 	}
-
 	public String borrowBook() {
 
 		if(this.readers == null){
@@ -115,6 +113,21 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	public String showError(){
 		return SUCCESS;
 	}
+	public String getBorrowPageByReader() {
+		// TODO:分页查询
+		borrowPage = this.getService().findPageBean(tempReader, pageNum, false);
+		if (totalFine == null)
+			return "getfine";
+		return SUCCESS;
+	}
+
+	public String getReturnPageByReader() {
+		// TODO:分页查询
+		borrowPage = this.getService().findPageBean(tempReader, pageNum, true);
+		if (totalFine == null)
+			return "getfine";
+		return SUCCESS;
+	}
 
 
 	public PageBean<Borrowrecord> getBorrowPage() {
@@ -131,14 +144,6 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 
 	public void setBooks(List<Book> books) {
 		this.books = books;
-	}
-
-	public List<Borrowrecord> getBorrowrecords() {
-		return borrowrecords;
-	}
-
-	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
-		this.borrowrecords = borrowrecords;
 	}
 
 	public Reader getTempReader() {
@@ -164,7 +169,6 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	public void setTotalFine(Integer totalFine) {
 		this.totalFine = totalFine;
 	}
-
 	public List<Reader> getReaders() {
 		return readers;
 	}
@@ -180,5 +184,4 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	public String getErrorMessager() {
 		return errorMessage;
 	}
-
 }

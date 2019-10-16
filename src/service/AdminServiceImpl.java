@@ -19,4 +19,18 @@ public class AdminServiceImpl extends BaseService<Admin>implements AdminService{
 		this.getDao().merge(admin);
 		return "success";
 	}
+	public void modifyDeposity(int NewDeposit) {
+		List<Admin> admins=this.getDao().findAll();
+		Iterator<Admin> a=admins.iterator();
+		while(a.hasNext())
+		{
+			Admin n=a.next();
+			n.setSecurityDeposite(NewDeposit);
+			this.getDao().merge(n);
+		}
+	}
+	public int getDeposit() {
+		List<Admin> admins=this.getDao().findAll();
+		return admins.get(0).getSecurityDeposite();
+	}
 }

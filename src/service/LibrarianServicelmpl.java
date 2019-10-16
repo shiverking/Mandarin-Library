@@ -43,4 +43,11 @@ public class LibrarianServicelmpl extends BaseService<Librarian>implements Libra
 		// TODO Auto-generated method stub
 		this.getDao().delete(librarianID);
 	}
+	public String findPassword(String LibrarianName) {
+		if(this.getDao().getSingle("LibrarianName", LibrarianName)!=null)
+		{
+			return this.getDao().getSingle("LibrarianName", LibrarianName).getPassword();
+		}
+		return null;
+	}
 }
