@@ -171,13 +171,13 @@
           <li class="nav-item">
             <a class="nav-link" href="../../index.jsp">
               <i class="ti-shield menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title">HomePage</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../../pages/forms/basic_elements.jsp">
               <i class="ti-layout-list-post menu-icon"></i>
-              <span class="menu-title">Form elements</span>
+              <span class="menu-title">Librarian_Register</span>
             </a>
           </li>
           <li class="nav-item">
