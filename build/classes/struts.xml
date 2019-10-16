@@ -126,11 +126,11 @@
 		<!-- 跳转Librarian添加书籍界面 -->
 		<action name="addBookPage" class="bookAction"
 			method="addBookPage">
-			<result name="success">/AddBook.jsp</result>
+			<result name="success">/librarian_jsp/AddBook.jsp</result>
 		</action>
 		<!-- Librarian查看书籍列表 -->
 		<action name="displayBooks" class="bookAction" method="display">
-			<result name="success">/BookList.jsp</result>
+			<result name="success">/librarian_jsp/BookList.jsp</result>
 		</action>
 		<!-- Librarian删除书籍 -->
 		<action name="deleteBook" class="bookAction"
@@ -152,7 +152,10 @@
 			<result name="success">/index.jsp</result>
 		</action>
 		<action name="displayPosts" class="postAction" method="displayPosts">
-			<result name="success">/librarian_jsp/PostList.jsp</result>
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="displayPostItem" class="postAction" method="displayPosts">
+			<result name="success">/librarian_jsp/PostNewItem.jsp</result>
 		</action>
 		<!-- Admin删除馆员 -->
 		<action name="deleteLibrarian" class="librarianAction"
