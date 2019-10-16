@@ -26,56 +26,57 @@ public class BackThread extends Thread {
 		while (!this.isInterrupted()) {
 			todayDate = new Date();
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1000 * 60);
+				autoCancel();
 			} catch (InterruptedException e) {
 			}
 			System.out.println(todayDate.toString() + this.getName());
+		}
+	}
 
-			try {
-				// factory = new Configuration().configure().buildSessionFactory();
-				Configuration cfg = new Configuration().configure();
-				ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(cfg.getProperties())
-						.buildServiceRegistry();
+	public void autoCancel() {
+		try {
+			Configuration cfg = new Configuration().configure();
+			ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(cfg.getProperties())
+					.buildServiceRegistry();
 
-				factory = cfg.buildSessionFactory(serviceRegistry);
-			} catch (Exception e) {
-				throw new ExceptionInInitializerError(e);
-			}
+			factory = cfg.buildSessionFactory(serviceRegistry);
+		} catch (Exception e) {
+			throw new ExceptionInInitializerError(e);
+		}
+		// Dao
+		CurrentRecordDao currentRecordDao = new CurrentRecordDao();
+		BookDao bookDao = new BookDao();
 
-			// Dao
-			CurrentRecordDao currentRecordDao = new CurrentRecordDao();
-			BookDao bookDao = new BookDao();
+		currentRecordDao.setSessionFactory(factory);
+		bookDao.setSessionFactory(factory);
 
-			currentRecordDao.setSessionFactory(factory);
-			bookDao.setSessionFactory(factory);
+		// ÈÝÆ÷
+		List<CurrentRecord> currentRecords = currentRecordDao.findAll();
 
-			// ÈÝÆ÷
-			List<CurrentRecord> currentRecords = currentRecordDao.findAll();
+		// ±éÀú²éÕÒ
+		for (CurrentRecord currentRecord : currentRecords) {
+			int bookID = currentRecord.getBookID();
+			int currentRecordID = currentRecord.getCurrentRecordID();
+			Date borrowingDate = currentRecord.getBorrowingDate();
+			Date date = new Date();
 
-			// ±éÀú²éÕÒ
-			for (CurrentRecord currentRecord : currentRecords) {
-				int bookID = currentRecord.getBookID();
-				int currentRecordID = currentRecord.getCurrentRecordID();
-				Date borrowingDate = currentRecord.getBorrowingDate();
-				Date date = new Date();
+			int h = (int) ((date.getTime() - borrowingDate.getTime()) / (2 * 3600 * 1000));
 
-				int h = (int) ((date.getTime() - borrowingDate.getTime()) / (2 * 3600 * 1000));
+			if (h >= 2) {
+				List<CurrentRecord> currentRecords2 = currentRecordDao.findBy("CurrentRecordID", currentRecordID);
+				for (CurrentRecord c : currentRecords2) {
+					currentRecordID = c.getCurrentRecordID();
+					bookID = c.getBookID();
+				}
 
-				if (h >= 2) {
-					List<CurrentRecord> currentRecords2 = currentRecordDao.findBy("CurrentRecordID", currentRecordID);
-					for (CurrentRecord c : currentRecords2) {
-						currentRecordID = c.getCurrentRecordID();
-						bookID = c.getBookID();
-					}
-
-					try {
-						Book bb = bookDao.get(bookID);
-						bb.setIsBorrowed(false);
-						bookDao.merge(bb);
-						currentRecordDao.delete(currentRecordID);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+				try {
+					Book bb = bookDao.get(bookID);
+					bb.setIsBorrowed(false);
+					bookDao.merge(bb);
+					currentRecordDao.delete(currentRecordID);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		}
