@@ -9,7 +9,7 @@
 </head>
 <body>
 	<script>
-	alert("Book Borrow Success!")
+	alert("Book Return Success!")
 	</script>
 	
 	<jsp:include page="BorrowHistory.jsp"></jsp:include>

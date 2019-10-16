@@ -48,10 +48,10 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 		return SUCCESS;
 		
 	}
-	public String getBorrowrecordbyBook(){
+	public String setReturnBorrowrecordbyBook(){
 		if(this.books.get(0)!=null){
 			System.out.println(this.books.get(0).getBookID());
-			borrowrecords = this.getService().getBorrowrecordByBook(this.books.get(0).getBookID());
+			borrowrecords = this.getService().setReturnBorrowrecordByBook(this.books.get(0).getBookID());
 			if(borrowrecords!=null){
 				return SUCCESS;
 			}else{
@@ -102,6 +102,20 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 			return ERROR;
 		}
 	}
+	
+	public String findReaderCanBorrow(){
+		if(this.getService().findReaderCanBorrow(this.readers.get(0))){
+			return SUCCESS;
+		}else{
+			this.setErrorMessage("ReaderCan'tBorrowError: This Reader has already Borrow 3 books! Reader id:" + this.readers.get(0).getReaderID());
+			return ERROR;
+		}
+	}
+	
+	public String showError(){
+		return SUCCESS;
+	}
+
 
 	public PageBean<Borrowrecord> getBorrowPage() {
 		return borrowPage;

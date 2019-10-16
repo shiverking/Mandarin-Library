@@ -49,16 +49,23 @@ public class BookAction extends BaseAction<Book, BookService> {
 			this.getService().mergeBook(this.books.get(0));
 			return SUCCESS;
 		}else{
-			this.setErrorMessage("BookCannotBorrowedError:this Book has been Borrowed--Book id:" + this.books.get(0).getBookID());
+			this.setErrorMessage("BookCannotBorrowError:this Book has been Borrowed--Book id:" + this.books.get(0).getBookID());
 			System.out.println(this.getErrorMessage());
 			return ERROR;
 		}
 	}
 
 	public String returnBook(){
-		this.books.get(0).setIsBorrowed(false);
-		this.getService().mergeBook(this.books.get(0));
-		return SUCCESS;
+		if(this.books.get(0).getIsBorrowed()){
+			this.books.get(0).setIsBorrowed(false);
+			this.getService().mergeBook(this.books.get(0));
+			return SUCCESS;
+		}else{
+			this.setErrorMessage("BookCannotReturnError:this Book has been Returned--Book id:" + this.books.get(0).getBookID());
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+
 	}
 	
 	public String getBookById() {

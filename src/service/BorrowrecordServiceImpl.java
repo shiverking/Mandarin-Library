@@ -32,21 +32,21 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		// TODO Auto-generated method stub
 		return this.getDao().findBy("ReaderID", reader.getReaderID(), "BorrowingDate desc");
 	}
-	
+
 	public List<Borrowrecord> getBorrowrecordsbyReaders(List<Reader> readers) {
 		// TODO Auto-generated method stub
 		List<Borrowrecord> borrowrecords = new ArrayList<Borrowrecord>();
-		for(Reader r : readers) {
+		for (Reader r : readers) {
 			borrowrecords.addAll(getBorrowrecordsbyReader(r));
 		}
 		return borrowrecords;
 	}
-	
+
 	public List<Borrowrecord> getBorrowrecordsbyReaderId(int readerId) {
 		// TODO Auto-generated method stub
 		return this.getDao().findBy("ReaderID", readerId, "BorrowingDate desc");
 	}
-	
+
 	public Borrowrecord getBorrowrecordByid(int id) {
 		// TODO Auto-generated method stub
 		return this.getDao().get(id);
@@ -78,25 +78,25 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 	}
 
 	public int getFine(int id) {
-		List<Borrowrecord> borrowrecords=this.getDao().getByTwoProperty("ReaderID", "isPayfine", id,false);
-		int fine=0;
+		List<Borrowrecord> borrowrecords = this.getDao().getByTwoProperty("ReaderID", "isPayfine", id, false);
+		int fine = 0;
 		for (Iterator iterator = borrowrecords.iterator(); iterator.hasNext();) {
 			Borrowrecord borrowrecord = (Borrowrecord) iterator.next();
-			fine+=borrowrecord.getFine();
+			fine += borrowrecord.getFine();
 		}
 		return fine;
 	}
 
 	public List<Borrowrecord> borrowBook(List<Reader> readers, List<Book> books) {
-		//初始化参数
+		// 初始化参数
 		Reader reader = readers.get(0);
 		Book book = books.get(0);
 		long returnPeriod = book.getReturnPeriod();
 		long currentTime = System.currentTimeMillis();
 		Date date = new Date();
 		System.out.println(returnPeriod * 24 * 60 * 60 * 1000);
-		Date returnDate =new Date(currentTime + returnPeriod * 24 * 60 * 60 * 1000);
-		//对borrowrecord数据操作
+		Date returnDate = new Date(currentTime + returnPeriod * 24 * 60 * 60 * 1000);
+		// 对borrowrecord数据操作
 		Borrowrecord borrowrecord = new Borrowrecord();
 		borrowrecord.setBookID(book.getBookID());
 		borrowrecord.setReaderID(reader.getReaderID());
@@ -111,34 +111,61 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		return borrowrecords;
 	}
 
-	public List<Borrowrecord> getBorrowrecordByBook(int id) {
-		// TODO Auto-generated method stub
-		if(!this.getDao().findBy("BookID", id, "BorrowingDate desc").isEmpty()){
+	public List<Borrowrecord> setReturnBorrowrecordByBook(int id) {
+		// Warning this method only use to return a book!
+		// If you want to find BorrowRecord By BookID please use another method
+		if (!this.getDao().findBy("BookID", id, "BorrowingDate desc").isEmpty()) {
 			Borrowrecord borrowrecord = new Borrowrecord();
+			System.out.println("BookID is :"+id);
 			List<Borrowrecord> borrowrecords = this.getDao().findBy("BookID", id, "BorrowingDate desc");
 			for (Iterator<Borrowrecord> iterator = borrowrecords.iterator(); iterator.hasNext();) {
 				borrowrecord = (Borrowrecord) iterator.next();
-				if(!iterator.hasNext()){
-					if(!borrowrecord.getIsReturn()){
+				//if (!iterator.hasNext()) {
+					if (!borrowrecord.getIsReturn()) {
+						System.out.println("BookID isReturn :"+!borrowrecord.getIsReturn());
 						borrowrecord.setIsReturn(true);
 						Date returnDate = new Date();
 						borrowrecord.setReturnDate(returnDate);
 						borrowrecord.setIsPayfine(true);
 						this.getDao().merge(borrowrecord);
-					}else{
-						return null;
-					}
+					//} else {
+					//	return null;
+					//}
 				}
 			}
 			borrowrecords = new ArrayList<Borrowrecord>();
 			borrowrecords.add(borrowrecord);
 			return borrowrecords;
-		}else{
+		} else {
 			return null;
 		}
-		
+
 	}
 
-
+	public boolean findReaderCanBorrow(Reader reader) {
+		Borrowrecord borrowrecord = new Borrowrecord();
+		System.out.println("findReaderCanBorrow");
+		int id = reader.getReaderID();
+		System.out.println(id);
+		List<Borrowrecord> borrowrecords = this.getDao().getByTwoProperty("ReaderID", "isReturn", id, false);
+		if (!borrowrecords.isEmpty()) {
+			System.out.println("borrowrecords isNotEmpty");
+			int counter = 0;
+			for (Iterator<Borrowrecord> iterator = borrowrecords.iterator(); iterator.hasNext();) {
+				borrowrecord = (Borrowrecord) iterator.next();
+				System.out.println("counter:"+counter);
+				counter++;
+			}
+			if(counter < 3){
+				return true;
+			}else{
+				System.out.println("UserBorrow 3 books");
+				return false;
+			}	
+		} else {
+			System.out.println("BorrowRecord is empty");
+			return true;
+		}
+	}
 
 }

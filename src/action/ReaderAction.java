@@ -116,6 +116,11 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public String getReaderByName(){
 		String Name = this.getModel().getReaderName();
 		this.readers = this.getService().getReaderByName(Name);
+		if(this.readers.isEmpty()){
+			this.setErrorMessage("ReaderNotFoundError: Can't Find Reader by name:" + Name);
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
 		return SUCCESS;
 	}
 	
@@ -126,5 +131,4 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		}
 		return SUCCESS;
 	}
-
 }

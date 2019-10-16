@@ -29,5 +29,6 @@ public PageBean<Borrowrecord> findPageBean(Reader reader,Integer pageNum);
 public int getFine(int id);
 public List<Borrowrecord> getBorrowrecordsbyReaders(List<Reader> readers);
 public List<Borrowrecord> borrowBook(List<Reader> readers, List<Book> books);
-public List<Borrowrecord> getBorrowrecordByBook(int i);
+public List<Borrowrecord> setReturnBorrowrecordByBook(int i);
+public boolean findReaderCanBorrow(Reader reader);
 }
