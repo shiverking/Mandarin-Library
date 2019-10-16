@@ -2,6 +2,7 @@
         
     <wb-module deploy-name="Mandarin-Library">
         <wb-resource deploy-path="/" source-path="/WebContent"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/"/>
                 
         <property name="context-root" value="Mandarin-Library"/>
                 
