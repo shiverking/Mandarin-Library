@@ -19,14 +19,14 @@
 					<th>PostID</th>
 					<th>Title</th>
 					<th>Content</th>
-					<th>Librarian</th>
+					<th>LibrarianName</th>
 				</tr>
 				<s:iterator value="posts">
 					<tr>
 						<td><s:property value="PostID" /></td>
 						<td><s:property value="Title" /></td>
 						<td><s:property value="Content" /></td>
-						<td><s:property value="librarian" /></td>
+						<td><s:property value="librarian.LibrarianName" /></td>
 					</tr>
 				</s:iterator>
 				</s:if>

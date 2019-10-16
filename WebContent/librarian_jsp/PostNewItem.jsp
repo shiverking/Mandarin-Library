@@ -18,15 +18,15 @@
 						</div>
 						<div class="card-body">
 							<h4 class="card-title">
-								<a href="">${Title}</a>
+								<a href=""><s:property value="Title" /></a>
 							</h4>
 							<ul class="list-inline product-meta">
 								<li class="list-inline-item"><a href=""><i
-										class="fa fa-folder-open-o"></i>${librarian}</a></li>
+										class="fa fa-folder-open-o"></i><s:property value="librarian.LibrarianName" /></a></li>
 								<li class="list-inline-item"><a href=""><i
 										class="fa fa-calendar"></i>26th December</a></li>
 							</ul>
-							<p class="card-text">${Content}</p>
+							<p class="card-text"><s:property value="Content" /></p>
 							<div class="product-ratings">
 								<ul class="list-inline">
 									<li class="list-inline-item selected"><i
