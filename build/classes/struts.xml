@@ -152,7 +152,7 @@
 			<result name="success">/index.jsp</result>
 		</action>
 		<action name="displayPosts" class="postAction" method="displayPosts">
-			<result name="success">/index.jsp</result>
+			<result name="success">/librarian_jsp/PostList.jsp</result>
 		</action>
 		<!-- Admin删除馆员 -->
 		<action name="deleteLibrarian" class="librarianAction"

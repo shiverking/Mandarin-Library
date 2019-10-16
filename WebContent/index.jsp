@@ -182,16 +182,15 @@
 							</div>
 							<div class="card-body">
 								<h4 class="card-title">
-									<a href="">11inch Macbook Air</a>
+									<a href="">${Title}</a>
 								</h4>
 								<ul class="list-inline product-meta">
 									<li class="list-inline-item"><a href=""><i
-											class="fa fa-folder-open-o"></i>Electronics</a></li>
+											class="fa fa-folder-open-o"></i>${librarian}</a></li>
 									<li class="list-inline-item"><a href=""><i
 											class="fa fa-calendar"></i>26th December</a></li>
 								</ul>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Explicabo, aliquam!</p>
+								<p class="card-text">${Content}</p>
 								<div class="product-ratings">
 									<ul class="list-inline">
 										<li class="list-inline-item selected"><i
