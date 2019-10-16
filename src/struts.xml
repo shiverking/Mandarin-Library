@@ -9,7 +9,7 @@
 	<package name="default" extends="struts-default" namespace="/">
 		<!-- Admin登录界面 -->
 		<action name="adminlogin" class="adminAction" method="signin">
-			<result name="success">/Login_success.jsp</result>
+			<result name="success">/AdminJsp/index.jsp</result>
 			<result name="input">/Admin_login.jsp</result>
 		</action>
 		<!-- 注册Librarian界面 -->
