@@ -3,14 +3,15 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-
+	<constant name="struts.ui.theme" value="simple" /> 
+	<constant name="struts.ui.templateDir" value="template" /> 
+	<constant name="struts.ui.templateSuffix" value="ftl" /> 
 	<constant name="struts.objectFactory" value="spring" />
-
 	<package name="default" extends="struts-default" namespace="/">
 		<!-- Admin登录界面 -->
 		<action name="adminlogin" class="adminAction" method="signin">
-			<result name="success">/Login_success.jsp</result>
-			<result name="input">/Admin_login.jsp</result>
+			<result name="success">/AdminJsp/index.jsp</result>
+			<result name="input">/AdminJsp/pages/samples/AdminLogin.jsp</result>
 		</action>
 		<!-- 注册Librarian界面 -->
 		<action name="librariansignup" class="librarianAction"
@@ -29,9 +30,10 @@
 			<result name="success">/Admin_login.jsp</result>
 			<result name="failure">/Admin_login.jsp</result>
 		</action>
+		<!-- Admin展示馆员信息 -->
 		<action name="displayLibrarians" class="librarianAction"
 			method="show">
-			<result name="success">/Librarian.jsp</result>
+			<result name="success">/AdminJsp/pages/tables/basic-table.jsp</result>
 		</action>
 		<!-- Admin修改用户保障金 -->
 		<action name="modify" class="adminAction" method="modify">
@@ -46,6 +48,24 @@
 		<action name="findPassword" class="librarianAction" method="findPassword">
 		<result name="success">/FindPassword.jsp</result>
 		<result name="failure">/FindPassword.jsp</result>
+		</action>
+			<!-- Admin删除馆员 -->
+		<action name="deleteLibrarian" class="librarianAction"
+			method="deleteLibrarian">
+			<result name="success" type="chain">displayLibrarians</result>
+		</action>
+		<!-- Admin修改馆员信息 -->
+		<action name="editLibrarian" class="librarianAction"
+			method="editLibrarian">
+			<result name="success">/AdminJsp/pages/tables/basic-table.jsp</result>
+		</action>
+		<!-- Admin查看书籍列表 -->
+		<action name="adminDisplayBooks" class="bookAction" method="display">
+			<result name="success">/Admin_Display_Book.jsp</result>
+		</action>
+		<!-- Admin修改书籍逾期罚金和归还期限 -->
+		<action name="adminEditBook" class="bookAction" method="adminEditBook">
+			<result name="success">/AdminEditBook.jsp</result>
 		</action>
 
 		<!-- Reader功能 -->
@@ -157,6 +177,7 @@
 		<action name="editBook" class="bookAction" method="editBook">
 			<result name="success">/EditBook.jsp</result>
 		</action>
+<<<<<<< Updated upstream
 		<!-- Admin删除馆员 -->
 		<action name="deleteLibrarian" class="librarianAction"
 			method="deleteLibrarian">
@@ -187,5 +208,8 @@
 		<action name="adminEditBook" class="bookAction" method="adminEditBook">
 			<result name="success">/AdminEditBook.jsp</result>
 		</action>
+=======
+	
+>>>>>>> Stashed changes
 	</package>
 </struts>

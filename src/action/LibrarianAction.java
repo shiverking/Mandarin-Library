@@ -2,9 +2,11 @@ package action;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.connector.Request;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -27,10 +29,10 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	public void setLibrarians(List<Librarian> librarians) {
 		Librarians = librarians;
 	}
-	/*锟斤拷陆*/
+	/*閿熸枻鎷烽檰*/
 	public String signin() throws Exception{
-		String LibrarianName =this.getModel().getLibrarianName();//锟斤拷取LibrarianName
-		String Password  =this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
+		String LibrarianName =this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName
+		String Password  =this.getModel().getPassword();//閿熸枻鎷峰彇閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
 		if(LibrarianName==null) {
 			this.errorMessage="You must input the Name!";
 			return INPUT;
@@ -50,9 +52,9 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return INPUT;
 	}
 	public String signup() throws Exception{
-		String LibrarianName = this.getModel().getLibrarianName();//锟斤拷取LibrarianName
-		String Email = this.getModel().getEmail();//获取邮箱
-		String Password = this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
+		String LibrarianName = this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName
+		String Email = this.getModel().getEmail();//鑾峰彇閭
+		String Password = this.getModel().getPassword();//閿熸枻鎷峰彇閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String NewPassword=request.getParameter("ConfirmPassword");
 		if(LibrarianName.isEmpty()) {
@@ -90,7 +92,10 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return SUCCESS;
 	}
 	public String editLibrarian() {
+		HttpServletRequest request=ServletActionContext.getRequest();
+		String ID=request.getParameter("LibrarianName");
 		this.librarian=this.getService().getLibrarianByID(librarian.getLibrarianID());
+		System.out.println(ID);
 		if(this.getModel().getLibrarianName()!=null) {
 			librarian.setLibrarianName(this.getModel().getLibrarianName());
 		}
@@ -104,14 +109,14 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		this.getService().deleteLibrarianById(librarian.getLibrarianID());
 		return SUCCESS;
 	}
-	public String findPassword() throws Exception//admin 找回 librarian密码
+	public String findPassword() throws Exception//admin 鎵惧洖 librarian瀵嗙爜
 	{
 		if(this.getService().findID(librarian.getLibrarianName())==0)
 		{
 			return "failure";
 		}
 		else {
-			/*HttpSession session=ServletActionContext.getRequest().getSession();//将密码存到session中，因为该方法极有可能需要跨jsp传递信息
+			/*HttpSession session=ServletActionContext.getRequest().getSession();//灏嗗瘑鐮佸瓨鍒皊ession涓紝鍥犱负璇ユ柟娉曟瀬鏈夊彲鑳介渶瑕佽法jsp浼犻�掍俊鎭�
 			session.setAttribute("Password", this.getService().findPassword(librarian.getLibrarianName()));
 			return "success";*/
 			this.librarian=this.getService().getLibrarianByID(this.getService().findID(librarian.getLibrarianName()));			
