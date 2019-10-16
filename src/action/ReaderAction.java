@@ -1,15 +1,19 @@
 package action;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 
+import model.Book;
+import model.Borrowrecord;
 import model.Reader;
 import service.ReaderService;
 
 public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private Reader tempReader = new Reader();
+	private List<Borrowrecord> borrowrecords;
 	private String searchContent;
 	private List<Reader> readers;
 	private String errorMessage;
@@ -37,7 +41,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		return INPUT;
 	}
 
-	// »ñÈ¡ÓÃ»§µÄ×´Ì¬
+	// ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½×´Ì¬
 	public String getReaderStatu() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		this.tempReader = (Reader) session.get("reader");
@@ -55,6 +59,14 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		this.searchContent = searchContent;
 	}
 
+	public List<Borrowrecord> getBorrowrecords() {
+		return borrowrecords;
+	}
+
+	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
+		this.borrowrecords = borrowrecords;
+	}
+	
 	public List<Reader> getReaders() {
 		return readers;
 	}
@@ -83,5 +95,40 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-
+	
+	public String getAllReader(){
+		this.readers = this.getService().getAllReader();
+		return SUCCESS;
+	}
+	
+	public String getReaderById(){
+		this.readers = new ArrayList<Reader>();
+		int id = this.getModel().getReaderID();
+		this.readers.add(this.getService().getReaderById(id));
+		if(this.readers.get(0) == null){
+			this.setErrorMessage("ReaderNotFoundError: Can't Find Reader by id:" + id);
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
+	public String getReaderByName(){
+		String Name = this.getModel().getReaderName();
+		this.readers = this.getService().getReaderByName(Name);
+		if(this.readers.isEmpty()){
+			this.setErrorMessage("ReaderNotFoundError: Can't Find Reader by name:" + Name);
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
+	public String getReadersbyBorrwrecords() {
+		readers = new ArrayList<Reader>();
+		for (Borrowrecord borrowrecord : borrowrecords) {
+			readers.add(this.getService().getReaderByBorrowrecord(borrowrecord));
+		}
+		return SUCCESS;
+	}
 }

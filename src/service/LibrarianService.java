@@ -14,5 +14,4 @@ public interface LibrarianService {
 	public void mergeLibrarian(Librarian librarian);
 
 	public void deleteLibrarianById(int librarianID);
-	public String findPassword(String LibrarianName);
 }

@@ -17,6 +17,7 @@ public class CurrentRecord {
 	private int ReaderID;
 	private int BookID;
 	private Date BorrowingDate;
+	private Date DueDate;
 
 	public CurrentRecord() {
 		CurrentRecordID=1;
@@ -61,4 +62,14 @@ public class CurrentRecord {
 	public void setBorrowingDate(Date borrowingDate) {
 		BorrowingDate = borrowingDate;
 	}
+
+	public Date getDueDate() {
+		return DueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		DueDate = dueDate;
+	}
+
+
 }

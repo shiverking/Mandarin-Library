@@ -16,9 +16,10 @@ import util.PageBean;
 
 public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
-	private List<Book> books;
-	private List<CurrentRecord> currentRecords;// ָ�ڽ��鼮��ԤԼ�鼮����Ϣ
-	private PageBean<Borrowrecord> borrowPage;// ���ļ�¼��Ϣ
+	private List<Book> books;// ���ܱ�bookPageȡ�����������ã�����ʹ�����ע��
+	private List<Borrowrecord> borrowrecords;// ���ܱ�ɾ��
+	private List<CurrentRecord> currentRecords;// ָ�ڽ��鼮��ԤԼ�鼮����Ϣ
+	private PageBean<Borrowrecord> borrowPage;// �ѹ黹���鼮��Ϣ
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
@@ -33,16 +34,62 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
-	public String getBooksbyBorrowPage() {
+	public String findBookIsBorrowed() {
+		if (!this.books.get(0).getIsBorrowed()) {
+			return SUCCESS;
+		}else{
+			this.setErrorMessage("BookCannotBorrowedError:this Book has been Borrowed--Book id:" + this.books.get(0).getBookID());
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+	}
+	public String borrowBook() {
+		if (!this.books.get(0).getIsBorrowed()) {
+			this.books.get(0).setIsBorrowed(true);
+			this.getService().mergeBook(this.books.get(0));
+			return SUCCESS;
+		}else{
+			this.setErrorMessage("BookCannotBorrowError:this Book has been Borrowed--Book id:" + this.books.get(0).getBookID());
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+	}
+
+	public String returnBook(){
+		if(this.books.get(0).getIsBorrowed()){
+			this.books.get(0).setIsBorrowed(false);
+			this.getService().mergeBook(this.books.get(0));
+			return SUCCESS;
+		}else{
+			this.setErrorMessage("BookCannotReturnError:this Book has been Returned--Book id:" + this.books.get(0).getBookID());
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+
+	}
+	
+	public String getBookById() {
+		this.books = new ArrayList<Book>();
+		int id = this.getModel().getBookID();
+		this.books.add(this.getService().getBookById(id));
+		if (this.books.get(0) == null) {
+			this.setErrorMessage("BookNotFoundError: Can't Find Book by id:" + id);
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
+	public String getBooksbyBorrwrecords() {
 		books = new ArrayList<Book>();
-		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
+		for (Borrowrecord borrowrecord : borrowrecords) {
 			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 		}
 		return SUCCESS;
 	}
 
 	public String getBooksbycurrentRecords() {
-		// TODO:���ܸ���pagabeanʵ��
+		// TODO:���ܸ���pagabeanʵ��
 		books = new ArrayList<Book>();
 		for (CurrentRecord currentRecord : currentRecords) {
 			books.add(this.getService().getBookById(currentRecord.getBookID()));
@@ -107,7 +154,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
-//������get��set����
+	// ������get��set����
 	public Book getBook() {
 		return book;
 	}
@@ -122,6 +169,14 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public void setSearchContent(String searchContent) {
 		this.searchContent = searchContent;
+	}
+
+	public List<Borrowrecord> getBorrowrecords() {
+		return borrowrecords;
+	}
+
+	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
+		this.borrowrecords = borrowrecords;
 	}
 
 	public List<Book> getBooks() {
@@ -163,8 +218,8 @@ public class BookAction extends BaseAction<Book, BookService> {
 	public void setCurrentRecords(List<CurrentRecord> currentRecords) {
 		this.currentRecords = currentRecords;
 	}
-	
-//admin修改逾期罚金和归还期限
+
+	// admin修改逾期罚金和归还期限
 	public String adminEditBook() {
 		this.book = this.getService().getBookById(book.getBookID());
 		if (this.getModel().getReturnPeriod() > 0) {

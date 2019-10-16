@@ -1,12 +1,24 @@
 package service;
 
+import java.util.List;
+
+import model.Borrowrecord;
 /**
 * @author 
-* @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ24ÈÕ ÉÏÎç12:19:42
+* @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½24ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½12:19:42
 * 
 */
 import model.Reader;
 
 public interface ReaderService {
 	public Reader verify(String Email, String Password);
+
+	public List<Reader> getReaderByName(String Name);
+
+	public List<Reader> getAllReader();
+
+	public Reader getReaderById(int id);
+
+	public Reader getReaderByBorrowrecord(Borrowrecord borrowrecord);
+
 }
