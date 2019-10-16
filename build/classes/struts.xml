@@ -72,8 +72,8 @@
 			</result>
 			<result name="error">/Reserve_error.jsp</result>
 		</action>
-		<action name="addRecord" class="currentRecordAction"
-			method="addRecord">
+		<action name="addRecord" class="currentrecordAction"
+			method="addRecordddd">
 			<result name="success">
 				/Reserve_success.jsp
 			</result>

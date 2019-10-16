@@ -41,7 +41,7 @@ public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> impleme
 	@Override
 	public void saveCurrentRecord(CurrentRecord currentRecord) {
 
-		this.saveCurrentRecord(currentRecord);
+		this.getDao().save(currentRecord);
 	}
 
 	@Override

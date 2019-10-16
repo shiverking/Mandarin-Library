@@ -1,5 +1,6 @@
 package action;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -33,14 +34,16 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 		currentRecords = this.getService().getCurrentRecordsbyReader(tempReader);
 		return SUCCESS;
 	}
-	public String addRecord() throws Exception {
+	
+	public String addRecordddd() throws Exception {
 		this.currentRecord = new CurrentRecord();
 		currentRecord.setReaderID(this.getTempReader().getReaderID());
 		currentRecord.setBookID(this.getBook().getBookID());
-		currentRecord.setBorrowingDate(this.getModel().getBorrowingDate());
 		this.getService().saveCurrentRecord(currentRecord);
 		return SUCCESS;
 	}
+	
+
 //往下是各种属性的get和set方法
 	public Reader getTempReader() {
 		return tempReader;
