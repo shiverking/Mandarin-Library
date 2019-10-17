@@ -7,23 +7,27 @@
 </script>
 <script src="../../js/edit.js" type="text/javascript"></script>
 <script type="text/javascript">
-function changeInput()
-{
-	var button = document.getElementById("button").value;
-	document.getElementById("button").value ="save"; 
-	var item0 = document.getElementById("LibrarianName");
-	var itemA = item0.innerHTML;
-	item0.innerHTML = "<input  type='text' value='" + itemA + "'/>";
-	var item1 = document.getElementById("Email");
-	var itemB = item1.innerHTML;
-	item1.innerHTML = "<input  type='text' value='" + itemB + "'/>"
-	var item2 = document.getElementById("Password");
-	var itemC = item2.innerHTML;
-	item2.innerHTML = "<input  type='text' value='" + itemC + "'/>"
-	document.getElementById("button").removeAttr("onclick");
-	document.getElementById("button").type="submit";
-	
-}
+$(function() { 
+	//获取class为caname的元素 
+		$(".caname").click(function() { 
+//				
+				$('#Email').removeAttr("readonly")
+				$('#LibrarianName').removeAttr("readonly")
+				$('#Password').removeAttr("readonly")
+				$('#LibrarianID').removeAttr("readonly")
+				$("#edit").hide();
+				$("#delete").hide();
+				$("#save").show();
+				var js = document.getElementById('LibrarianName');
+                     js.style.border = '1px solid black'
+                var js1 = document.getElementById('Password');
+                     js1.style.border = '1px solid black'
+                var js2 = document.getElementById('Email');
+                     js2.style.border = '1px solid black'
+                js.focus();
+                $(this).children("td")
+		}); 
+	}); 
 </script>
 <script type="text/javascript">
 function save()
@@ -226,12 +230,11 @@ function save()
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Bordered table</h4>
+                  <h4 class="card-title">Librarian table</h4>
                   <p class="card-description">
-                    Add class <code>.table-bordered</code>
                   </p>
                   <div class="table-responsive pt-3">
-                   <form action="editLibrarian" method="post"  enctype="multipart/form-data">
+                   
                     <table class="table table-bordered">
                       <thead>
                         <tr>
@@ -254,37 +257,42 @@ function save()
                       </thead>                   
                       <tbody>
                         <s:iterator value="Librarians">
+                         <form action="editLibrarian" method="post">
                         <tr>
                           <td>                           
-                           <input name="LibrarianID" id="LibrarianID" placeholder=<s:property value="LibrarianID"/> >
+                           <input name="LibrarianID" id="LibrarianID" value=<s:property value="LibrarianID"/> style="border:none;" >
                           </td>
                           <td>                           
-                           <input name="LibrarianName" id="LibrarianName" placeholder="<s:property value="LibrarianName"/>" disabled="disabled">
+                           <input name="LibrarianName" id="LibrarianName" value="<s:property value="LibrarianName"/>"  style="border:none;">
                           </td>
                           <td>
-                            <input name="Email" id="Email" placeholder="<s:property value="Email"/>" disabled="disabled">
+                            <input name="Email" id="Email" value="<s:property value="Email"/>" style="border:none;">
                           </td>
                           <td >                            
-                            <input name="Password" id="Password" placeholder="<s:property value="Password"/>" disabled="disabled">
+                            <input name="Password" id="Password" value="<s:property value="Password"/>" style="border:none;" >
                           </td>
                           <td>
-                            <!-- <a href='deleteBook?book.BookID=<s:property value="BookID"/>'>Delete/</a> -->
-                            <input id="edit" type="button" value="edit" class="caname">
+                            <div>
+                            <button id="edit" type="button" value="edit" class=" caname btn btn-outline-success btn-icon-text btn-rounded btn-sm">edit  </button> 
+                            </div>
+                          <%--  <a  href='deleteLibrarian?librarian.LibrarianID=<s:property value="LibrarianID"/>'>Delete</a>
+                           <a class="btn btn-outline-danger btn-icon-text btn-rounded btn-sm" href='deleteLibrarian?librarian.LibrarianID=<s:property value="LibrarianID"/>'>Delete</a>  --%>
                             <div id="save" style="display:none;">
                             	<!--<a href="editLibrarian?librarian.LibrarianID=<s:property value='LibrarianID'/>
                             	&librarian.LibrarianName=
                             	&librarian.Email=Email
                             	&librarian.Password=Password
                             	">Edit</a>-->
-                            	<button type="submit" >save</button>
-                            	
+                            	<button type="submit"  class="btn btn-outline-primary btn-icon-text btn-rounded btn-sm">save</button>
                             </div>                            
                           </td>
+                           
                         </tr>
+                       </form>
 						</s:iterator>
                       </tbody>
                     </table>
-               		</form>
+               		
                   </div>
                 </div>
               </div>
@@ -318,6 +326,7 @@ function save()
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->
   </form>
+  </div>
   </s:if>
 </body>
 

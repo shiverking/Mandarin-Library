@@ -52,12 +52,14 @@
 			<!-- Admin删除馆员 -->
 		<action name="deleteLibrarian" class="librarianAction"
 			method="deleteLibrarian">
-			<result name="success" type="chain">displayLibrarians</result>
+			<result name="success" type="chain">/AdminJsp/pages/tables/basic-table.jsp</result>
 		</action>
 		<!-- Admin修改馆员信息 -->
 		<action name="editLibrarian" class="librarianAction"
 			method="editLibrarian">
+			<result name="success">/AdminJsp/pages/tables/basic-table.jsp</result>
 			<result name="input">/AdminJsp/pages/tables/basic-table.jsp</result>
+			<!-- <result name="input">/index.jsp</result> -->
 		</action>
 		<!-- Admin查看书籍列表 -->
 		<action name="adminDisplayBooks" class="bookAction" method="display">

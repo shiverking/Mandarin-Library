@@ -93,26 +93,25 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return SUCCESS;
 	}
 	public String editLibrarian() {
-		return INPUT;
-//		System.out.println("15555");
-//		int i = this.getModel().getLibrarianID();
-//		System.out.println(i);
-//		String n=this.getModel().getLibrarianName();
-//		String e=this.getModel().getEmail();
-//		String p=this.getModel().getPassword();
-//		this.librarian=this.getService().getLibrarianByID(i);
-//		if(this.getModel().getLibrarianName()!=null) {
-//			librarian.setLibrarianName(n);
-//		}
-//		if(this.getModel().getEmail()!=null)
-//		{
-//			librarian.setEmail(e);
-//		}
-//		if(this.getModel().getPassword()!=null) {
-//			librarian.setPassword(p);
-//		}
-//		this.getService().mergeLibrarian(librarian);
-//		return SUCCESS;
+		System.out.println("aaaa");
+		int i = this.getModel().getLibrarianID();
+		System.out.println(i);
+		String n=this.getModel().getLibrarianName();
+		String e=this.getModel().getEmail();
+		String p=this.getModel().getPassword();
+		this.librarian=this.getService().getLibrarianByID(i);
+		if(this.getModel().getLibrarianName()!=null) {
+			librarian.setLibrarianName(n);
+		}
+		if(this.getModel().getEmail()!=null)
+		{
+			librarian.setEmail(e);
+		}
+		if(this.getModel().getPassword()!=null) {
+			librarian.setPassword(p);
+		}
+		this.getService().mergeLibrarian(librarian);
+		return SUCCESS;
 	}
 	public String deleteLibrarian() {
 		this.getService().deleteLibrarianById(librarian.getLibrarianID());
