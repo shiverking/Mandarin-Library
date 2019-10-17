@@ -56,7 +56,7 @@
 			var sel = document.getElementById("inputGroupSelect01").value;
 			if (sel == 1) {
 				document.getElementById("loginform").action = "readersignin";
-				document.getElementById("getPassword").action = "#";
+				document.getElementById("getPassword").action = "forgetReaderPassword";
 				document.getElementById("uName").innerHTML = "Email:";
 				document.getElementById("User").type = "email:";
 				document.getElementById("User").name = "Email";
@@ -133,7 +133,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="" id="getPassword" method="post">
+				<form action="forgetReaderPassword" id="getPassword" method="post">
 					<div class="modal-body">
 
 						<input class="form-control bg-shadow" type="email"

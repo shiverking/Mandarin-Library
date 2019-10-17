@@ -77,9 +77,9 @@ public class Email_2 {
          */
         msg.setRecipient(MimeMessage.RecipientType.TO,new InternetAddress(recipientAddress));
         //设置邮件主题
-        msg.setSubject("邮件主题","UTF-8");
+        msg.setSubject("Mandarin Library","UTF-8");
         //设置邮件正文
-        msg.setContent("尊敬的用户："+"\n"+"您的密码是"+password, "text/html;charset=UTF-8");
+        msg.setContent("Dear User："+"\n"+"Your Password is    "+password, "text/html;charset=UTF-8");
         //设置邮件的发送时间,默认立即发送
         msg.setSentDate(new Date());
          

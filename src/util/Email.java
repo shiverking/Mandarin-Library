@@ -76,12 +76,12 @@ public class Email {
          */
         msg.setRecipient(MimeMessage.RecipientType.TO,new InternetAddress(recipientAddress));
         //设置邮件主题
-        msg.setSubject("邮件主题","UTF-8");
+        msg.setSubject("Mandarin Library","UTF-8");
         //设置邮件正文
-        msg.setContent("尊敬的"+readerName+"："+"\n"+"  您借阅的《"+bookName+"》2天后将要到期，请及时归还到图书馆!", "text/html;charset=UTF-8");
+        msg.setContent("Dear "+readerName+"："+"\n"+" The《"+bookName+"》 you have borrowed is about to expire,Please return it to the library in time", "text/html;charset=UTF-8");
         //设置邮件的发送时间,默认立即发送
         msg.setSentDate(new Date());
-         
+        
         return msg;
     }
  

@@ -21,7 +21,15 @@ public class BackThread extends Thread {
 	Date todayDate;
 
 	public void run() {
+		try {
+			factory = new Configuration().configure().buildSessionFactory();
+		} catch (Exception e) {
+
+			throw new ExceptionInInitializerError(e);
+		}
+		int i = 0;
 		while (!this.isInterrupted()) {
+			i++;
 			todayDate=new Date();
 			try {
 				Thread.sleep(2000);
@@ -29,7 +37,12 @@ public class BackThread extends Thread {
 				
 			}
 			System.out.println(todayDate.toString()+this.getName());
+//			if (i == 86400) {
+//				email();
+//				i = 0;
+//			}
 		}
+		
 	}
 	
 	public void email() {
@@ -44,7 +57,7 @@ public class BackThread extends Thread {
 		bookDao.setSessionFactory(factory);
 	
 		
-		List<Borrowrecord> borrowrecords = borrowrecordDao.findAll();
+		List<Borrowrecord> borrowrecords = borrowrecordDao.findBy("isReturn",false);
 	
 		
 		for (Borrowrecord borrowrecord : borrowrecords) {

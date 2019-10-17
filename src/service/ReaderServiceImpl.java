@@ -18,7 +18,6 @@ import util.Email_2;
  * 
  */
 public class ReaderServiceImpl extends BaseService<Reader> implements ReaderService {
-	private static SessionFactory factory;
 	
 	public Reader verify(String Email, String Password) {
 		Reader reader = this.getDao().getSingle("Email", Email);
@@ -37,7 +36,10 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 	}
 
 	public boolean forgetReaderPassword(String email) {
-		System.out.println(email);
+		/* System.out.println(email); */
+		if(email == null) {
+			return false;
+		}
 		String password = "";
 		List<Reader> readers = this.getDao().findBy("Email", email);
 		if (readers.size() == 0) {

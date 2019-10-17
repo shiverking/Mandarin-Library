@@ -95,6 +95,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 //		String email = PaswordRequest.getParameter("Email");
 		boolean a = this.getService().forgetReaderPassword(this.getModel().getEmail());
 		if (a == true) {
+			this.errorMessage = "An email has been sent to your mailbox, please check it in time";
 			return SUCCESS;
 		}
 		else {
