@@ -2,6 +2,15 @@ package action;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.SessionFactory;
 
 import com.opensymphony.xwork2.ActionContext;
 
@@ -37,7 +46,41 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		return INPUT;
 	}
 
-	// ��ȡ�û���״̬
+	public String signout() throws Exception {
+		ActionContext.getContext().getSession().clear();
+		return SUCCESS;
+	}
+
+	public String gotoReaderSelfProfile() {
+//    	Map<String, Object> session = ActionContext.getContext().getSession();
+//    	this.tempReader = (Reader) session.get("reader");
+//    	if(tempReader==null) {
+//    		return INPUT;
+//    	}
+		return SUCCESS;
+	}
+
+	public String changeReaderName() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		tempReader = (Reader) session.get("reader");
+		tempReader.setReaderName(this.getModel().getReaderName());
+		this.getService().mergeReader(tempReader);
+		return SUCCESS;
+	}
+
+//	changeReaderPassword
+	public String changeReaderPassword() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		tempReader = (Reader) session.get("reader");
+//    	tempReader.setSalt(Encrypt.getSalt());
+		tempReader.setPassword(this.getModel().getPassword());
+		this.getService().mergeReader(tempReader);
+		this.setErrorMessage("淇敼鎴愬姛锛岃閲嶆柊鐧诲綍锛�");
+		return SUCCESS;
+	}
+
+
+	// 锟斤拷取锟矫伙拷锟斤拷状态
 	public String getReaderStatu() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		this.tempReader = (Reader) session.get("reader");
@@ -46,6 +89,21 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		}
 		return SUCCESS;
 	}
+	
+	public String forgetReaderPassword() throws Exception{
+//		HttpServletRequest PaswordRequest = ServletActionContext.getRequest();
+//		String email = PaswordRequest.getParameter("Email");
+		boolean a = this.getService().forgetReaderPassword(this.getModel().getEmail());
+		if (a == true) {
+			this.errorMessage = "An email has been sent to your mailbox, please check it in time";
+			return SUCCESS;
+		}
+		else {
+			this.errorMessage = "Your email is wrong!";
+			return INPUT;
+		}
+	}
+	
 
 	public String getSearchContent() {
 		return searchContent;
@@ -63,11 +121,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		this.readers = readers;
 	}
 
-	public String signout() throws Exception {
-		ActionContext.getContext().getSession().clear();
-		return SUCCESS;
-	}
-
 	public Reader getTempReader() {
 		return tempReader;
 	}
@@ -83,5 +136,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-
+	
+	
 }

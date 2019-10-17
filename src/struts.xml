@@ -77,6 +77,24 @@
 			method="getBooksbyborrowPage"><!-- 依赖借阅记录获取对应的书籍信息 -->
 			<result name="success">/ReaderJsp/Reader_borrowed.jsp</result><!--结束action，返回借阅记录界面 -->
 		</action>
+		<!-- 修改用户名和密码 -->
+		<action name="changeReaderName" class="readerAction"
+			method="changeReaderName">
+			<result name = "success">/Reader_profile.jsp</result>
+		</action>
+		<action name="changeReaderPassword" class="readerAction"
+			method="changeReaderPassword">
+			<result name="success">/Reader_profile.jsp</result>
+		</action>
+		<!-- 忘记密码  -->
+		<action name="forgetReaderPassword" class="readerAction"
+			method="forgetReaderPassword">
+			<result name="success">/Login.jsp</result>
+			<result name="input">/Login.jsp</result>
+		</action>
+		
+		
+		
 		<!-- 还书记录分页查询 -->
 		<action name="getReaderStatuForReturn" class="readerAction"
 			method="getReaderStatu"><!--获取用户信息 -->

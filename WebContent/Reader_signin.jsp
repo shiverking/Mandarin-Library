@@ -34,8 +34,10 @@
 					type="password" class="input-wrapper" name="Password">
 				<button class="btn btn-info-sm " type="submit" value="登录">Login</button>
 			</form>
+			<a href="http://localhost:8080/Mandarin-Library/ForgetReaderPassword.jsp">忘记密码？</a>
 		</div>
 	</div>
+	
 	<script>
 		function launch_toast() {
 			var x = document.getElementById("toast")

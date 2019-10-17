@@ -33,7 +33,7 @@
 				<ul class="dropdown-menu dropdown-menu-right">
 					<li><a href="getReaderStatuForBorrowPage.action" class="dropdown-item">Borrowing Record</a></li>
 					<li class="divider dropdown-divider"></li>
-					<li><a href="#" class="dropdown-item">Setting</a></li>
+					<li><a href="gotoReaderSelfProfile.action" class="dropdown-item">Setting</a></li>
 					<li class="divider dropdown-divider"></li>
 					<li><a href="readersignout.action" class="dropdown-item">Logout</a></li>
 				</ul></li>
