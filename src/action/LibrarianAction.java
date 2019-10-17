@@ -12,11 +12,12 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import model.Librarian;
 import service.LibrarianService;
-import util.Email;
+//import util.Email;
 
 public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	private Librarian librarian;
 	private List<Librarian> Librarians;
+	
 	public Librarian getLibrarian() {
 		return librarian;
 	}
@@ -92,18 +93,26 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return SUCCESS;
 	}
 	public String editLibrarian() {
-		HttpServletRequest request=ServletActionContext.getRequest();
-		String ID=request.getParameter("LibrarianName");
-		this.librarian=this.getService().getLibrarianByID(librarian.getLibrarianID());
-		System.out.println(ID);
-		if(this.getModel().getLibrarianName()!=null) {
-			librarian.setLibrarianName(this.getModel().getLibrarianName());
-		}
-		if(this.getModel().getPassword()!=null) {
-			librarian.setPassword(this.getModel().getPassword());
-		}
-		this.getService().mergeLibrarian(librarian);
-		return SUCCESS;
+		return INPUT;
+//		System.out.println("15555");
+//		int i = this.getModel().getLibrarianID();
+//		System.out.println(i);
+//		String n=this.getModel().getLibrarianName();
+//		String e=this.getModel().getEmail();
+//		String p=this.getModel().getPassword();
+//		this.librarian=this.getService().getLibrarianByID(i);
+//		if(this.getModel().getLibrarianName()!=null) {
+//			librarian.setLibrarianName(n);
+//		}
+//		if(this.getModel().getEmail()!=null)
+//		{
+//			librarian.setEmail(e);
+//		}
+//		if(this.getModel().getPassword()!=null) {
+//			librarian.setPassword(p);
+//		}
+//		this.getService().mergeLibrarian(librarian);
+//		return SUCCESS;
 	}
 	public String deleteLibrarian() {
 		this.getService().deleteLibrarianById(librarian.getLibrarianID());
@@ -120,8 +129,8 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			session.setAttribute("Password", this.getService().findPassword(librarian.getLibrarianName()));
 			return "success";*/
 			this.librarian=this.getService().getLibrarianByID(this.getService().findID(librarian.getLibrarianName()));			
-			Email email=new Email(librarian.getEmail());
-			email.sendEmail(librarian.getLibrarianName(),librarian.getPassword());
+//			Email email=new Email(librarian.getEmail());
+//			email.sendEmail(librarian.getLibrarianName(),librarian.getPassword());
 			return SUCCESS;
 		}
 	}

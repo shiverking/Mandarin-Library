@@ -25,6 +25,13 @@ function changeInput()
 	
 }
 </script>
+<script type="text/javascript">
+function save()
+{
+	document.form[0].action="editLibrarian"
+	document.form[0].submit();
+}
+</script>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -224,7 +231,7 @@ function changeInput()
                     Add class <code>.table-bordered</code>
                   </p>
                   <div class="table-responsive pt-3">
-                    <form action="editLibrarian" method="post">
+                   <form action="editLibrarian" method="post"  enctype="multipart/form-data">
                     <table class="table table-bordered">
                       <thead>
                         <tr>
@@ -248,22 +255,30 @@ function changeInput()
                       <tbody>
                         <s:iterator value="Librarians">
                         <tr>
+                          <td>                           
+                           <input name="LibrarianID" id="LibrarianID" placeholder=<s:property value="LibrarianID"/> >
+                          </td>
+                          <td>                           
+                           <input name="LibrarianName" id="LibrarianName" placeholder="<s:property value="LibrarianName"/>" disabled="disabled">
+                          </td>
                           <td>
-                           <s:property value="LibrarianID"/>
+                            <input name="Email" id="Email" placeholder="<s:property value="Email"/>" disabled="disabled">
                           </td>
-                          <td id="LibrarianName">
-                           <s:property value="LibrarianName"/>
-                          </td>
-                          <td class="caname" id="Email">
-                            <s:property value="Email"/>
-                          </td>
-                          <td id ="Password">
-                            <s:property value="Password"/>
+                          <td >                            
+                            <input name="Password" id="Password" placeholder="<s:property value="Password"/>" disabled="disabled">
                           </td>
                           <td>
                             <!-- <a href='deleteBook?book.BookID=<s:property value="BookID"/>'>Delete/</a> -->
-                            <input type="button" value="edit" class="caname">
-                            
+                            <input id="edit" type="button" value="edit" class="caname">
+                            <div id="save" style="display:none;">
+                            	<!--<a href="editLibrarian?librarian.LibrarianID=<s:property value='LibrarianID'/>
+                            	&librarian.LibrarianName=
+                            	&librarian.Email=Email
+                            	&librarian.Password=Password
+                            	">Edit</a>-->
+                            	<button type="submit" >save</button>
+                            	
+                            </div>                            
                           </td>
                         </tr>
 						</s:iterator>

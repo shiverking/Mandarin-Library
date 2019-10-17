@@ -31,9 +31,9 @@
 			<result name="failure">/Admin_login.jsp</result>
 		</action>
 		<!-- Admin展示馆员信息 -->
-		<action name="displayLibrarians" class="librarianAction"
-			method="show">
+		<action name="displayLibrarians" class="librarianAction" method="show">			
 			<result name="success">/AdminJsp/pages/tables/basic-table.jsp</result>
+			<result name="input">/AdminJsp/pages/tables/basic-table.jsp</result>
 		</action>
 		<!-- Admin修改用户保障金 -->
 		<action name="modify" class="adminAction" method="modify">
@@ -57,7 +57,7 @@
 		<!-- Admin修改馆员信息 -->
 		<action name="editLibrarian" class="librarianAction"
 			method="editLibrarian">
-			<result name="success">/AdminJsp/pages/tables/basic-table.jsp</result>
+			<result name="input">/AdminJsp/pages/tables/basic-table.jsp</result>
 		</action>
 		<!-- Admin查看书籍列表 -->
 		<action name="adminDisplayBooks" class="bookAction" method="display">
@@ -66,6 +66,7 @@
 		<!-- Admin修改书籍逾期罚金和归还期限 -->
 		<action name="adminEditBook" class="bookAction" method="adminEditBook">
 			<result name="success">/AdminEditBook.jsp</result>
+
 		</action>
 
 		<!-- Reader功能 -->
@@ -177,39 +178,5 @@
 		<action name="editBook" class="bookAction" method="editBook">
 			<result name="success">/EditBook.jsp</result>
 		</action>
-<<<<<<< Updated upstream
-		<!-- Admin删除馆员 -->
-		<action name="deleteLibrarian" class="librarianAction"
-			method="deleteLibrarian">
-			<result name="success" type="chain">displayLibrarians</result>
-		</action>
-		<!-- Admin修改馆员信息 -->
-		<action name="editLibrarian" class="librarianAction"
-			method="editLibrarian">
-			<result name="success">/EditLibrarian.jsp</result>
-		</action>
-		<!-- Admin查看书籍列表 -->
-		<action name="adminDisplayBooks" class="bookAction" method="display">
-			<result name="success">/Admin_Display_Book.jsp</result>
-		</action>
-		<!-- Admin查看书籍数量 -->
-		<action name="admindisplayBooks" class="bookAction" method="display">
-			<result name="success">/AdminJsp/index.jsp</result>
-		</action>
-		<!-- Admin查看馆员数量  -->
-		<action name="librarianNumber" class="librarianAction" method="show">
-			<result name="success">/AdminJsp/index.jsp</result>
-		</action>
-		<!-- Admin查看读者数量 -->
-		<action name="readerNumber" class="readerAction" method="show">
-			<result name="success">/AdminJsp/index.jsp</result>
-		</action>
-		<!-- Admin修改书籍逾期罚金和归还期限 -->
-		<action name="adminEditBook" class="bookAction" method="adminEditBook">
-			<result name="success">/AdminEditBook.jsp</result>
-		</action>
-=======
-	
->>>>>>> Stashed changes
 	</package>
 </struts>
