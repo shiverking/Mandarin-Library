@@ -66,9 +66,9 @@
 									class="rounded-circle">
 							</div>
 							<!-- User Name -->
-							<h5 class="text-center">Samanta Doe</h5>
-							<p>Joined February 06, 2017</p>
-							<a href="user-profile.html" class="btn btn-main-sm">Edit
+							<h5 class="text-center">${tempReader.readerName}</h5>
+							<p>${tempReader.email}</p>
+							<a href="ReaderJsp/Reader_profile.jsp" class="btn btn-main-sm">Edit
 								Profile</a>
 						</div>
 						<!-- Dashboard Links -->
