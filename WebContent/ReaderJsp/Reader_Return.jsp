@@ -107,7 +107,7 @@
 
 
 								<s:iterator value="borrowPage.datalist" status="L">
-								<s:if test="#L.index<3">
+								
 									<tr>
 										<td class="product-details">
 											<h3 class="title">
@@ -126,7 +126,7 @@
 														value="Fine" /> <i class="fa fa-jpy" aria-hidden="true"></i></span></td>
 										</s:if>
 									</tr>
-									</s:if>
+								
 								</s:iterator>
 
 							</tbody>
