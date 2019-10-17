@@ -32,7 +32,7 @@
 				<label>Email:</label> <input type="email" class="input-wrapper"
 					name="Email" autofocus="autofocus" > <label>Password:</label> <input
 					type="password" class="input-wrapper" name="Password">
-				<button class="btn btn-primary btn-block" type="submit" value="登录">Login</button>
+				<button class="btn btn-info-sm " type="submit" value="登录">Login</button>
 			</form>
 		</div>
 	</div>
