@@ -49,6 +49,7 @@
 	<!--===============================
 =           Login form Area            =
 ================================-->
+
 	<script>
 		/*根据用户选择给与输入的提示信息*/
 		function selChange() {
@@ -69,16 +70,25 @@
 				document.getElementById("User").name = "LibrarianName";
 				document.getElementById("User").setAttribute('placeholder',
 						"Input Your UserName");
-			
 			}
-		}
+		};
 	</script>
 	<!--登录的输入表单-->
 	<section class="popular-deals section "
 		style="background-image: url(http://tushuguan.nwpu.edu.cn/images/2019/20191010A.jpg); background-size: 100%; background-position: center;">
 		<div class="row justify-content-center">
 			<div class="container form-group col-3 bg-shadow bg-white rounded ">
-				<form action="readersignin" id="loginform">
+				<s:if test="errorMessage!=null">
+					<div class="alert alert-danger" role="alert">
+						<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+						${errorMessage}
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</s:if>
+				<form action="readersignin" id="loginform" method="post">
 					<label id="uName">Email:</label> <input
 						class="form-control bg-shadow" type="email"
 						placeholder="Input Your Email" Id="User" name="Email"> <label>Password</label>
@@ -108,6 +118,7 @@
 	<!--============================
 =            Forget Password           =
 =============================-->
+
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -122,7 +133,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="" id="getPassword">
+				<form action="" id="getPassword" method="post">
 					<div class="modal-body">
 
 						<input class="form-control bg-shadow" type="email"

@@ -211,12 +211,23 @@
 															class="fa fa-book"></i>${Category}</a></li>
 													<li class="list-inline-item"><a href=""><i
 															class="fa fa-bookmark"></i>${ISBN}</a></li>
+
 												</ul>
+
 												<p class="card-text">
 													<i class="fa fa-map-marker"></i> &nbsp;${Location}
 												</p>
-												<a
-													href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>'>Reserve</a>
+												<s:if test="isBorrowed==0">
+													<li class="list-inline-item "><strong>Status:
+													</strong><strong class="text-info">Available</strong></li>
+													<a class="btn-main-sm"
+														href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>'>Reserve</a>
+												</s:if>
+												<s:else>
+													<li class="list-inline-item "><strong>Status:
+													</strong> <strong class="text-danger">Lended</strong></li>
+												</s:else>
+
 											</div>
 										</div>
 									</div>
@@ -367,7 +378,7 @@
 	</footer>
 
 	<!-- JAVASCRIPTS -->
-	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>

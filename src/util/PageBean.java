@@ -27,10 +27,13 @@ public class PageBean<T> implements Serializable {
 
 	public PageBean(int totalRecords, int current) {
 		totalRecord = totalRecords;
-		this.currentPage = current;
-		startIndex = (current - 1) * pageSize;
 		totalPage = totalRecord % pageSize == 0 ? totalRecord / pageSize : totalRecord / pageSize + 1;
-
+		if (current>totalPage) {
+			currentPage=totalPage;
+		}else {
+			currentPage=current;
+		}
+		startIndex = (current - 1) * pageSize;
 		if (totalPage < 7) {
 			beginPageNum = 1;
 			endPageNum = totalPage;
@@ -50,10 +53,13 @@ public class PageBean<T> implements Serializable {
 	public PageBean(int totalRecords, int current,int size) {
 		totalRecord = totalRecords;
 		this.pageSize=size;
-		this.currentPage = current;
 		startIndex = (current - 1) * pageSize;
 		totalPage = totalRecord % pageSize == 0 ? totalRecord / pageSize : totalRecord / pageSize + 1;
-
+		if (current>totalPage) {
+			currentPage=totalPage;
+		}else {
+			currentPage=current;
+		}
 		if (totalPage < 7) {
 			beginPageNum = 1;
 			endPageNum = totalPage;

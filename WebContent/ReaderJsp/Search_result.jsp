@@ -23,9 +23,35 @@
 </head>
 
 <body class="bg-secondary">
+<div id="toast">
+		<div id="img">
+			<i class="fas fa-exclamation-circle"></i>
+		</div>
+		<p id="desc"></p>
+	</div>
+	<script>
+		function launch_toast() {
+			var x = document.getElementById("toast")
+			x.className = "show";
+			var desc = document.getElementById("desc");
+			desc.innerHTML = "<s:property value="errorMessage"></s:property>";
+			setTimeout(function() {
+				x.className = x.className.replace("show", "");
+			}, 2900);
+		};
+
+		(function() {
+			// your page initialization code here
+			// the DOM will be available here
+			if ("<s:property value="errorMessage"></s:property>" == "") {
+				console.log("no error");
+			} else {
+				launch_toast();
+			}
+		})();
+	</script>
 	<div class="container">
 		<s:include value="Reader_Navbar.jsp" />
-
 		<div class="row">
 			<div class="col-12">
 				<table
