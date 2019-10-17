@@ -78,7 +78,7 @@ public class Email {
         //设置邮件主题
         msg.setSubject("Mandarin Library","UTF-8");
         //设置邮件正文
-        msg.setContent("Dear "+readerName+"："+"\n"+" The《"+bookName+"》 you have borrowed is about to expire,Please return it to the library in time", "text/html;charset=UTF-8");
+        msg.setContent("Dear "+readerName+"："+"\n"+" 	The《"+bookName+"》 you have borrowed is about to expire,Please return it to the library in time", "text/html;charset=UTF-8");
         //设置邮件的发送时间,默认立即发送
         msg.setSentDate(new Date());
         

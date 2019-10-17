@@ -221,7 +221,7 @@
 													<li class="list-inline-item "><strong>Status:
 													</strong><strong class="text-info">Available</strong></li>
 													<a class="btn-main-sm"
-														href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>'>Reserve</a>
+														href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>&searchContent=${searchContent}&pageNum=${pageNum}'>Reserve</a>
 												</s:if>
 												<s:else>
 													<li class="list-inline-item "><strong>Status:
