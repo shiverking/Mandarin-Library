@@ -25,6 +25,7 @@
       <th width="281" align="center">Location</th>
       <th width="281" align="center">IsBorrowed</th>
       <th width="281" align="center">Category</th>
+      <th width="666" align="center">Bar Code</th>
       <th width="281" align="center">Operation</th>
     </tr>
     <s:iterator value="books">
@@ -39,6 +40,8 @@
       <td align="center"><s:property value="Location"/></td>
       <td align="center"><s:property value="IsBorrowed"/></td>
       <td align="center"><s:property value="Category"/></td>
+      <td align="center"><img src="https://barcode.tec-it.com/barcode.ashx?data=<s:property value="ISBN"/>&code=Code128&dpi=96&dataseparator=&tdsourcetag=s_pctim_aiomsg"/></td>
+      
       <td><a href='editBook?book.BookID=<s:property value="BookID"/>'>Edit/</a><a  href='deleteBook?book.BookID=<s:property value="BookID"/>'>Delete</a>
       </td>
     </tr>

@@ -58,7 +58,7 @@
          number:<input name="Number" required="required"><br>
         <button type="submit" value="add">Add Book BY ISBN</button>
       </form>
-      
+      <img src="https://barcode.tec-it.com/barcode.ashx?data=000001&code=Code128&dpi=96&dataseparator=&tdsourcetag=s_pctim_aiomsg"/>
       </table>
 </body>
 </html>
