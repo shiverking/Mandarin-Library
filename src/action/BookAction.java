@@ -19,7 +19,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private List<Book> books;// 可能被bookPage取代，建议少用，如需使用请改注释
 	private List<Borrowrecord> borrowrecords;// 可能被删除
 	private List<CurrentRecord> currentRecords;// 指在借书籍和预约书籍的信息
-	private PageBean<Borrowrecord> borrowPage;// 借阅记录信息
+	private PageBean<Borrowrecord> borrowPage;// 已归还的书籍信息
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
@@ -34,14 +34,20 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
-	public String getBooksbyBorrowPage() {
+	public String getBooksbyBorrwrecords() {
+		books = new ArrayList<Book>();
+		for (Borrowrecord borrowrecord : borrowrecords) {
+			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
+		}
+		return SUCCESS;
+	}
+	public String getBooksbyborrowPage() {
 		books = new ArrayList<Book>();
 		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
 			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
 		}
 		return SUCCESS;
 	}
-
 	public String getBooksbycurrentRecords() {
 		// TODO:可能改用pagabean实现
 		books = new ArrayList<Book>();
@@ -134,6 +140,14 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public void setSearchContent(String searchContent) {
 		this.searchContent = searchContent;
+	}
+
+	public List<Borrowrecord> getBorrowrecords() {
+		return borrowrecords;
+	}
+
+	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
+		this.borrowrecords = borrowrecords;
 	}
 
 	public List<Book> getBooks() {

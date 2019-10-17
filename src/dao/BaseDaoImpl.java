@@ -160,7 +160,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return null;
 	}
 
-	// ï¿½ï¿½Õ¹ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½Ë«ï¿½ï¿½ï¿½Ô²ï¿½Ñ¯
 	public List<TEntity> findByTwoProperty(String propertyName1, String propertyName2, String cond1) {
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" + " or e." + propertyName2 + " like '%"
@@ -228,15 +227,15 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return list.isEmpty() ? 0 : list.get(0).intValue();
 	}
 
-	public List<TEntity> findPageByTwoSubstring(String propertyName1, String propertyName2, String cond1, String cond2,
-			int pageStart, int pageSize) {
+	public List<TEntity> findPageByTwoProperty(String propertyName1, String propertyName2, String cond1, int pageStart,
+			int pageSize) {
 		// TODO:·ÖÒ³ËÑË÷
 		if (cond1 == null) {
 			cond1 = "";
 		}
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" + " or e." + propertyName2 + " like '%"
-				+ cond2 + "%'";
+				+ cond1 + "%'";
 		Query query = this.getSession().createQuery(queryString);
 		query.setFirstResult(pageStart);
 		query.setMaxResults(pageSize);
@@ -268,7 +267,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return list.isEmpty() ? 0 : list.get(0).intValue();
 	}
 	//
-	public List<TEntity> findPageByTwoProperty(String propertyName1,String propertyName2, Object Value1, Object Value2, String cond, int pageStart, int pageSize){
+	public List<TEntity> getPageByTwoProperty(String propertyName1,String propertyName2, Object Value1, Object Value2, String cond, int pageStart, int pageSize){
 		if (cond != null) {
 			cond = " order by " + cond;
 		} else {
