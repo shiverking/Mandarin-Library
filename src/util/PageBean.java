@@ -13,7 +13,7 @@ import java.util.List;
 public class PageBean<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int pageSize = 8; // 每页显示多少条记录
+	private int pageSize = 6; // 每页显示多少条记录
 	private int currentPage; // 当前第几页数据
 	private int startIndex;// 开始的索引
 	private int totalRecord; // 一共多少条记录
@@ -27,10 +27,13 @@ public class PageBean<T> implements Serializable {
 
 	public PageBean(int totalRecords, int current) {
 		totalRecord = totalRecords;
-		this.currentPage = current;
-		startIndex = (current - 1) * pageSize;
 		totalPage = totalRecord % pageSize == 0 ? totalRecord / pageSize : totalRecord / pageSize + 1;
-
+		if (current>totalPage) {
+			currentPage=totalPage;
+		}else {
+			currentPage=current;
+		}
+		startIndex = (current - 1) * pageSize;
 		if (totalPage < 7) {
 			beginPageNum = 1;
 			endPageNum = totalPage;
@@ -47,7 +50,32 @@ public class PageBean<T> implements Serializable {
 			}
 		}
 	}
-
+	public PageBean(int totalRecords, int current,int size) {
+		totalRecord = totalRecords;
+		this.pageSize=size;
+		startIndex = (current - 1) * pageSize;
+		totalPage = totalRecord % pageSize == 0 ? totalRecord / pageSize : totalRecord / pageSize + 1;
+		if (current>totalPage) {
+			currentPage=totalPage;
+		}else {
+			currentPage=current;
+		}
+		if (totalPage < 7) {
+			beginPageNum = 1;
+			endPageNum = totalPage;
+		} else {
+			beginPageNum = currentPage - 3;
+			endPageNum = currentPage + 3;
+			if (beginPageNum < 1) {
+				beginPageNum = 1;
+				endPageNum = beginPageNum + 6;
+			}
+			if (endPageNum > totalPage) {
+				endPageNum = totalPage;
+				beginPageNum = endPageNum - 6;
+			}
+		}
+	}
 	public int getStartIndex() {
 		return startIndex;
 	}

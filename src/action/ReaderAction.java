@@ -31,7 +31,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			this.errorMessage = "You must input your Email!";
 			return INPUT;
 		}
-		if (Password.isEmpty()) {
+		if (Password.isEmpty()||Password==null) {
 			this.errorMessage = "You must input your password!";
 			return INPUT;
 		}
