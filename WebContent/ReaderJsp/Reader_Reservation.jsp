@@ -91,6 +91,16 @@
 				</div>
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
+					<s:if test="errorMessage!=null">
+					<div class="alert alert-warning" role="alert">
+						<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+						${errorMessage}
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</s:if>
 					<div class="widget dashboard-container my-adslist">
 
 						<table class="table table-responsive product-dashboard-table">

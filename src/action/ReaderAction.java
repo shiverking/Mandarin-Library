@@ -31,7 +31,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			this.errorMessage = "You must input your Email!";
 			return INPUT;
 		}
-		if (Password.isEmpty()||Password==null) {
+		if (Password.isEmpty() || Password == null) {
 			this.errorMessage = "You must input your password!";
 			return INPUT;
 		}
@@ -63,7 +63,12 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public String changeReaderName() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		tempReader = (Reader) session.get("reader");
-		tempReader.setReaderName(this.getModel().getReaderName());
+		if (this.getModel().getReaderName().isEmpty()) {
+			this.setErrorMessage("Please do not enter an empty name");
+		} else {
+			tempReader.setReaderName(this.getModel().getReaderName());
+			this.setErrorMessage("The name was successfully modified");
+		}
 		this.getService().mergeReader(tempReader);
 		return SUCCESS;
 	}
@@ -72,13 +77,16 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public String changeReaderPassword() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		tempReader = (Reader) session.get("reader");
-//    	tempReader.setSalt(Encrypt.getSalt());
-		tempReader.setPassword(this.getModel().getPassword());
+		if (this.getModel().getPassword().isEmpty()) {
+			this.setErrorMessage("Please enter a non-empty password");
+		} else {
+			tempReader.setPassword(this.getModel().getPassword());
+		}
+		this.setErrorMessage("Password reset complete");
 		this.getService().mergeReader(tempReader);
-		this.setErrorMessage("淇敼鎴愬姛锛岃閲嶆柊鐧诲綍锛�");
+
 		return SUCCESS;
 	}
-
 
 	// 锟斤拷取锟矫伙拷锟斤拷状态
 	public String getReaderStatu() {
@@ -89,21 +97,19 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		}
 		return SUCCESS;
 	}
-	
-	public String forgetReaderPassword() throws Exception{
+
+	public String forgetReaderPassword() throws Exception {
 //		HttpServletRequest PaswordRequest = ServletActionContext.getRequest();
 //		String email = PaswordRequest.getParameter("Email");
 		boolean a = this.getService().forgetReaderPassword(this.getModel().getEmail());
 		if (a == true) {
 			this.errorMessage = "An email has been sent to your mailbox, please check it in time";
 			return SUCCESS;
-		}
-		else {
+		} else {
 			this.errorMessage = "Your email is wrong!";
 			return INPUT;
 		}
 	}
-	
 
 	public String getSearchContent() {
 		return searchContent;
@@ -136,6 +142,5 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	
-	
+
 }
