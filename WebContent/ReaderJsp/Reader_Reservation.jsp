@@ -47,6 +47,10 @@
 
 <body class="body-wrapper">
 
+	<script src="plugins/jquery/dist/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+
 	<s:include value="/Navbar.jsp"></s:include>
 	<s:include value="/ReaderJsp/setProfile.jsp"></s:include>
 	<!--==================================
@@ -69,8 +73,8 @@
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>
 							<p>${tempReader.email}</p>
-							<a href="#" data-toggle="modal" data-target="#setProfile" class="btn btn-main-sm">Edit
-								Profile</a>
+							<a href="#" data-toggle="modal" data-target="#setProfile"
+								class="btn btn-main-sm">Edit Profile</a>
 						</div>
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
@@ -92,15 +96,15 @@
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
 					<s:if test="errorMessage!=null">
-					<div class="alert alert-warning" role="alert">
-						<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-						${errorMessage}
-						<button type="button" class="close" data-dismiss="alert"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				</s:if>
+						<div class="alert alert-warning" role="alert">
+							<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+							${errorMessage}
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					</s:if>
 					<div class="widget dashboard-container my-adslist">
 
 						<table class="table table-responsive product-dashboard-table">
@@ -115,13 +119,16 @@
 							<tbody>
 
 								<s:iterator value="currentRecords" status="L">
+
 									<tr>
 										<td class="product-details">
 											<h3 class="title">
+
 												<s:property value="books[#L.index].BookName" />
-											</h3> <span class="add-id"><strong>Book ID:</strong>${BookID}</span>
-											<span class="add-id"><strong>ISBN:</strong>
-											<s:property value="books[#L.index].ISBN" /></span> <span><strong>Posted
+											</h3> <span class="add-id"><strong>Book ID:</strong> <svg
+													id="imgcode${BookID}" style="max-height: 10px;" /></svg></span> <span
+											class="add-id"><strong>ISBN:</strong> <s:property
+													value="books[#L.index].ISBN" /></span> <span><strong>Posted
 													on: </strong> <time>${BorrowingDate}</time> </span> <span class="location"><strong>Location:</strong>
 												<s:property value="books[#L.index].Location" /></span>
 										</td>
@@ -142,6 +149,15 @@
 											</div>
 										</td>
 									</tr>
+									<script>
+									$('#imgcode${BookID}').JsBarcode( PrefixInteger(${BookID}, 11), {
+										  height: 20
+									format: "EAN13"
+										});
+								 function PrefixInteger(num, n) {
+									            return (Array(n).join(0) + num).slice(-n);
+									        }
+									</script>
 								</s:iterator>
 							</tbody>
 						</table>
@@ -244,8 +260,9 @@
 	</footer>
 
 	<!-- JAVASCRIPTS -->
-	<script src="plugins/jquery/dist/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+
+
+
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
