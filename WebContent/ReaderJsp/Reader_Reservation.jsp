@@ -48,6 +48,7 @@
 <body class="body-wrapper">
 
 	<s:include value="/Navbar.jsp"></s:include>
+	<s:include value="/ReaderJsp/setProfile.jsp"></s:include>
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -66,9 +67,9 @@
 									class="rounded-circle">
 							</div>
 							<!-- User Name -->
-							<h5 class="text-center">Samanta Doe</h5>
-							<p>Joined February 06, 2017</p>
-							<a href="user-profile.html" class="btn btn-main-sm">Edit
+							<h5 class="text-center">${tempReader.readerName}</h5>
+							<p>${tempReader.email}</p>
+							<a href="#" data-toggle="modal" data-target="#setProfile" class="btn btn-main-sm">Edit
 								Profile</a>
 						</div>
 						<!-- Dashboard Links -->
@@ -90,6 +91,16 @@
 				</div>
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
+					<s:if test="errorMessage!=null">
+					<div class="alert alert-warning" role="alert">
+						<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+						${errorMessage}
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</s:if>
 					<div class="widget dashboard-container my-adslist">
 
 						<table class="table table-responsive product-dashboard-table">
@@ -233,7 +244,7 @@
 	</footer>
 
 	<!-- JAVASCRIPTS -->
-	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>

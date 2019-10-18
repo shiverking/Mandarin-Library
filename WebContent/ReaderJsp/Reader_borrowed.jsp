@@ -48,6 +48,7 @@
 <body class="body-wrapper">
 
 	<s:include value="/Navbar.jsp"></s:include>
+	<s:include value="/ReaderJsp/setProfile.jsp"></s:include>
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -66,9 +67,9 @@
 									class="rounded-circle">
 							</div>
 							<!-- User Name -->
-							<h5 class="text-center">Samanta Doe</h5>
-							<p>Joined February 06, 2017</p>
-							<a href="user-profile.html" class="btn btn-main-sm">Edit
+							<h5 class="text-center">${tempReader.readerName}</h5>
+							<p>${tempReader.email}</p>
+							<a href="#" data-toggle="modal" data-target="#setProfile" class="btn btn-main-sm">Edit
 								Profile</a>
 						</div>
 						<!-- Dashboard Links -->
@@ -222,7 +223,7 @@
 	</footer>
 
 	<!-- JAVASCRIPTS -->
-	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>

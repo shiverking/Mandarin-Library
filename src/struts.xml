@@ -80,11 +80,15 @@
 		<!-- 修改用户名和密码 -->
 		<action name="changeReaderName" class="readerAction"
 			method="changeReaderName">
-			<result name = "success">/Reader_profile.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getReaderStatuForCurrent</param>
+			</result>
 		</action>
 		<action name="changeReaderPassword" class="readerAction"
 			method="changeReaderPassword">
-			<result name="success">/Reader_profile.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getReaderStatuForCurrent</param>
+			</result>
 		</action>
 		<!-- 忘记密码  -->
 		<action name="forgetReaderPassword" class="readerAction"
@@ -92,9 +96,6 @@
 			<result name="success">/Login.jsp</result>
 			<result name="input">/Login.jsp</result>
 		</action>
-		
-		
-		
 		<!-- 还书记录分页查询 -->
 		<action name="getReaderStatuForReturn" class="readerAction"
 			method="getReaderStatu"><!--获取用户信息 -->
@@ -162,8 +163,8 @@
 		</action>
 		<action name="addRecord" class="currentrecordAction"
 			method="addRecord">
-			<result name="success">
-				/Reserve_success.jsp
+			<result name="success" type="chain">
+				<param name="actionName">searchBook</param>
 			</result>
 		</action>
 		<!-- <action name="addRecord" class="currentRecordAction" method="addRecord"> 

@@ -27,6 +27,7 @@ public class BackThread extends Thread {
 
 			throw new ExceptionInInitializerError(e);
 		}
+		email();
 		int i = 0;
 		while (!this.isInterrupted()) {
 			i++;
