@@ -68,19 +68,15 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		return SUCCESS;
 	}
 
-//	changeReaderPassword
 	public String changeReaderPassword() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		tempReader = (Reader) session.get("reader");
-//    	tempReader.setSalt(Encrypt.getSalt());
 		tempReader.setPassword(this.getModel().getPassword());
 		this.getService().mergeReader(tempReader);
-		this.setErrorMessage("淇敼鎴愬姛锛岃閲嶆柊鐧诲綍锛�");
 		return SUCCESS;
 	}
 
 
-	// 锟斤拷取锟矫伙拷锟斤拷状态
 	public String getReaderStatu() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		this.tempReader = (Reader) session.get("reader");
