@@ -43,21 +43,24 @@ public class BackThread extends Thread {
 		int ei = 0;
 		int eh = 0;
 		while (!this.isInterrupted()) {
+			if (eh == 0 && ei == 0) {
+				Remind();
+			}
 			ei++;
 			todayDate = new Date();
 			try {
 				Thread.sleep(60000);
+				System.out.println(todayDate.toString() + this.getName());
+				autoCancel();
 			} catch (InterruptedException e) {
+				System.err.println("try出问题了");
 			}
-			System.out.println(todayDate.toString() + this.getName());
-			autoCancel();
 			if (ei == 60) {
 				eh++;
 				ei = 0;
 			}
 			if (eh == 24) {
 				eh = 0;
-				email();
 			}
 
 		}
@@ -74,7 +77,7 @@ public class BackThread extends Thread {
 			int currentRecordID = currentRecord.getCurrentRecordID();
 			Date borrowingDate = currentRecord.getBorrowingDate();
 			Date date = new Date();
-			int h = (int) ((date.getTime() - borrowingDate.getTime()) / ( 3600 * 1000));
+			int h = (int) ((date.getTime() - borrowingDate.getTime()) / (3600 * 1000));
 			if (h >= 2) {
 				List<CurrentRecord> currentRecords2 = currentRecordDao.findBy("CurrentRecordID", currentRecordID);
 				for (CurrentRecord c : currentRecords2) {
@@ -93,7 +96,7 @@ public class BackThread extends Thread {
 		}
 	}
 
-	public void email() {
+	public void Remind() {
 
 		List<Borrowrecord> borrowrecords = borrowrecordDao.findBy("isReturn", false);
 

@@ -57,16 +57,14 @@
 			if (sel == 1) {
 				document.getElementById("loginform").action = "readersignin";
 				document.getElementById("getPassword").action = "forgetReaderPassword";
-				document.getElementById("uName").innerHTML = "Email:";
-				document.getElementById("User").type = "email:";
-				document.getElementById("User").name = "Email";
+				document.getElementById("uName").innerHTML = "Mobile number:";
+				document.getElementById("User").name = "PhoneNumber";
 				document.getElementById("User").setAttribute('placeholder',
 						"Input Your Email");
 			} else {
 				document.getElementById("loginform").action = "#";
 				document.getElementById("getPassword").action = "#";
 				document.getElementById("uName").innerHTML = "Name:";
-				document.getElementById("User").type = "text";
 				document.getElementById("User").name = "LibrarianName";
 				document.getElementById("User").setAttribute('placeholder',
 						"Input Your UserName");
@@ -89,12 +87,12 @@
 					</div>
 				</s:if>
 				<form action="readersignin" id="loginform" method="post">
-					<label id="uName">Email:</label> <input
-						class="form-control bg-shadow" type="email"
-						placeholder="Input Your Email" Id="User" name="Email"> <label>Password</label>
-					<input class="form-control bg-shadow" type="password"
-						placeholder="Input Your Password" id="Password" name="Password">
-					<label></label>
+					<label id="uName">Mobile number:</label> <input
+						class="form-control bg-shadow" type="text"
+						placeholder="Input Your mobile number" Id="User" name="PhoneNumber">
+					<label>Password</label> <input class="form-control bg-shadow"
+						type="password" placeholder="Input Your Password" id="Password"
+						name="Password"> <label></label>
 					<div class="row justify-content-center">
 						<select class="form-control form-control-lg col-4 bg-shadow"
 							id="inputGroupSelect01" onchange="selChange()">

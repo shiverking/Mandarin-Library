@@ -24,25 +24,25 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private String errorMessage;
 
 	public String signin() throws Exception {
-		String Email = this.getModel().getEmail();
-		String Password = this.getModel().getPassword();
+		String phoneNumber = this.getModel().getPhoneNumber();
+		String password = this.getModel().getPassword();
 
-		if (Email.isEmpty()) {
-			this.errorMessage = "You must input your Email!";
+		if (phoneNumber.isEmpty()||phoneNumber==null) {
+			this.errorMessage = "You must input your mobile number!";
 			return INPUT;
 		}
-		if (Password.isEmpty() || Password == null) {
+		if (password.isEmpty() || password == null) {
 			this.errorMessage = "You must input your password!";
 			return INPUT;
 		}
-		Reader reader = this.getService().verify(Email, Password);
+		Reader reader = this.getService().verify(phoneNumber, password);
 		if (reader != null) {
 			Map<String, Object> session = ActionContext.getContext().getSession();
 			session.put("reader", reader);
 			this.tempReader = reader;
 			return SUCCESS;
 		}
-		this.errorMessage = "Your email or password is wrong!";
+		this.errorMessage = "Your mobile number or password is wrong!";
 		return INPUT;
 	}
 

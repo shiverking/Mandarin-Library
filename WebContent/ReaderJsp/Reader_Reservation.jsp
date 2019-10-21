@@ -125,10 +125,10 @@
 											<h3 class="title">
 
 												<s:property value="books[#L.index].BookName" />
-											</h3> <span class="add-id"><strong>Book ID:</strong> <svg
-													id="imgcode${BookID}" style="max-height: 10px;" /></svg></span> <span
-											class="add-id"><strong>ISBN:</strong> <s:property
-													value="books[#L.index].ISBN" /></span> <span><strong>Posted
+											</h3> <span class="add-id"><strong>Book ID:</strong>
+												${BookID}</span> <span class="add-id"><strong>ISBN:</strong>
+												<s:property value="books[#L.index].ISBN" />
+												</span> <span><strong>Posted
 													on: </strong> <time>${BorrowingDate}</time> </span> <span class="location"><strong>Location:</strong>
 												<s:property value="books[#L.index].Location" /></span>
 										</td>
@@ -150,13 +150,27 @@
 										</td>
 									</tr>
 									<script>
-									$('#imgcode${BookID}').JsBarcode( PrefixInteger(${BookID}, 11), {
-										  height: 20
-									format: "EAN13"
-										});
-								 function PrefixInteger(num, n) {
-									            return (Array(n).join(0) + num).slice(-n);
-									        }
+										JsBarcode(
+												"#imgcode${BookID}",
+												'<s:property value="books[#L.index].ISBN" />',
+												{margin: 0,
+													height : 20,
+													width : 1,
+													format: "EAN13",
+													/* textPosition : "top", */
+													fontSize : 10,
+												});
+										/* $('#imgcode${BookID}').JsBarcode( PrefixInteger(${BookID}, 11), {
+										height: 20,
+										width: 1,
+										textPosition: "top",
+										format: "EAN8",
+										fontSize: 10,
+											}); */
+										function PrefixInteger(num, n) {
+											return (Array(n).join(0) + num)
+													.slice(-n);
+										}
 									</script>
 								</s:iterator>
 							</tbody>
