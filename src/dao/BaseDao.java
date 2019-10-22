@@ -82,7 +82,6 @@ public interface BaseDao<TEntity> {
 
 	List<TEntity> findPageByQuery(String propertyName, Object propertyValue, String cond, int pageStart, int pageSize);
 
-
 	List<TEntity> findPageByTwoProperty(String propertyName1, String propertyName2, String cond1, int pageStart,
 			int pageSize);
 
@@ -94,9 +93,28 @@ public interface BaseDao<TEntity> {
 			String cond, int pageStart, int pageSize);
 
 	// TODO:万能的分页查询，涵盖所有分页查询方式
+	/**
+	 * 
+	 * @param propertyName 要查询的条件名列表
+	 * @param value        要查询的条件值列表
+	 * @param andEnd       在第几个条件结束and语句，若为0则没有and语句
+	 * @param equalEnd     在第几个条件结束"="判断，若为0则没有‘=’语句
+	 * @return Total number of records 返回所有符合条件的记录数
+	 */
 	public Integer findTotalNum(List<String> propertyName, List<String> value, Integer andEnd, Integer equalEnd);
 
+	/**
+	 * 
+	 * @param propertyName 要查询的条件名列表
+	 * @param value        要查询的条件值列表
+	 * @param andEnd       在第几个条件结束and语句，若为0则没有and语句
+	 * @param equalEnd     在第几个条件结束"="判断，若为0则没有‘=’语句
+	 * @param desWhen      从第几个排序条件开始逆序，若
+	 * @param pageStart    分页起始索引
+	 * @param pageSize     分页的大小
+	 * @return 分页查询的列表
+	 */
 	// TODO:万能的分页查询，涵盖所有分页查询方式
-	public List<TEntity> findPage(List<String> propertyName, List<String> value, List<String> order,  Integer andEnd, Integer equalEnd,
-			Integer desWhen, int pageStart, int pageSize);
+	public List<TEntity> findPage(List<String> propertyName, List<String> value, List<String> order, Integer andEnd,
+			Integer equalEnd, Integer desWhen, int pageStart, int pageSize);
 }
