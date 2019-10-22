@@ -11,8 +11,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Calssimax</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -67,7 +65,7 @@
 						<div class="widget user-dashboard-profile">
 							<!-- User Image -->
 							<div class="profile-thumb">
-								<img src="images/user/user-thumb.jpg" alt=""
+								<img src="upload/${tempReader.phoneNumber}.jpg" alt=""
 									class="rounded-circle">
 							</div>
 							<!-- User Name -->
@@ -127,8 +125,7 @@
 												<s:property value="books[#L.index].BookName" />
 											</h3> <span class="add-id"><strong>Book ID:</strong>
 												${BookID}</span> <span class="add-id"><strong>ISBN:</strong>
-												<s:property value="books[#L.index].ISBN" />
-												</span> <span><strong>Posted
+												<s:property value="books[#L.index].ISBN" /> </span> <span><strong>Posted
 													on: </strong> <time>${BorrowingDate}</time> </span> <span class="location"><strong>Location:</strong>
 												<s:property value="books[#L.index].Location" /></span>
 										</td>
@@ -149,29 +146,6 @@
 											</div>
 										</td>
 									</tr>
-									<script>
-										JsBarcode(
-												"#imgcode${BookID}",
-												'<s:property value="books[#L.index].ISBN" />',
-												{margin: 0,
-													height : 20,
-													width : 1,
-													format: "EAN13",
-													/* textPosition : "top", */
-													fontSize : 10,
-												});
-										/* $('#imgcode${BookID}').JsBarcode( PrefixInteger(${BookID}, 11), {
-										height: 20,
-										width: 1,
-										textPosition: "top",
-										format: "EAN8",
-										fontSize: 10,
-											}); */
-										function PrefixInteger(num, n) {
-											return (Array(n).join(0) + num)
-													.slice(-n);
-										}
-									</script>
 								</s:iterator>
 							</tbody>
 						</table>
@@ -186,93 +160,7 @@
 	<!--============================
 =            Footer            =
 =============================-->
-
-	<footer class="footer section section-sm">
-		<!-- Container Start -->
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-7 offset-md-1 offset-lg-0">
-					<!-- About -->
-					<div class="block about">
-						<!-- footer logo -->
-						<img src="images/logo-footer.png" alt="">
-						<!-- description -->
-						<p class="alt-color">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-							dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-							exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
-					</div>
-				</div>
-				<!-- Link list -->
-				<div class="col-lg-2 offset-lg-1 col-md-3">
-					<div class="block">
-						<h4>Site Pages</h4>
-						<ul>
-							<li><a href="#">Boston</a></li>
-							<li><a href="#">How It works</a></li>
-							<li><a href="#">Deals & Coupons</a></li>
-							<li><a href="#">Articls & Tips</a></li>
-							<li><a href="#">Terms of Services</a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- Link list -->
-				<div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0">
-					<div class="block">
-						<h4>Admin Pages</h4>
-						<ul>
-							<li><a href="#">Boston</a></li>
-							<li><a href="#">How It works</a></li>
-							<li><a href="#">Deals & Coupons</a></li>
-							<li><a href="#">Articls & Tips</a></li>
-							<li><a href="#">Terms of Services</a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- Promotion -->
-				<div class="col-lg-4 col-md-7">
-					<!-- App promotion -->
-					<div class="block-2 app-promotion">
-						<a href=""> <!-- Icon --> <img
-							src="images/footer/phone-icon.png" alt="mobile-icon">
-						</a>
-						<p>Get the Dealsy Mobile App and Save more</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Container End -->
-	</footer>
-	<!-- Footer Bottom -->
-	<footer class="footer-bottom">
-		<!-- Container Start -->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-12">
-					<!-- Copyright -->
-					<div class="copyright">
-						<p>Copyright Â© 2016. All Rights Reserved</p>
-					</div>
-				</div>
-				<div class="col-sm-6 col-12">
-					<!-- Social Icons -->
-					<ul class="social-media-icons text-right">
-						<li><a class="fa fa-facebook" href=""></a></li>
-						<li><a class="fa fa-twitter" href=""></a></li>
-						<li><a class="fa fa-pinterest-p" href=""></a></li>
-						<li><a class="fa fa-vimeo" href=""></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- Container End -->
-		<!-- To Top -->
-		<div class="top-to">
-			<a id="top" class="" href=""><i class="fa fa-angle-up"></i></a>
-		</div>
-	</footer>
-
+	<s:include value="/footer.jsp"></s:include>
 	<!-- JAVASCRIPTS -->
 
 

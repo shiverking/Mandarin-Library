@@ -77,7 +77,7 @@
 			method="getBooksbyborrowPage"><!-- 依赖借阅记录获取对应的书籍信息 -->
 			<result name="success">/ReaderJsp/Reader_borrowed.jsp</result><!--结束action，返回借阅记录界面 -->
 		</action>
-		<!-- 修改用户名和密码 -->
+		<!-- 修改用户名和密码还有头像 -->
 		<action name="changeReaderName" class="readerAction"
 			method="changeReaderName">
 			<result name="success" type="chain">
@@ -90,7 +90,15 @@
 				<param name="actionName">getReaderStatuForCurrent</param>
 			</result>
 		</action>
-		<!-- 忘记密码  -->
+		<action name="changeReaderAvatar" class="readerAction"
+			method="changeReaderAvatar">
+			<result name="login">/Login.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getReaderStatuForCurrent</param>
+			</result>
+			
+		</action>
+		<!-- 忘记密码 -->
 		<action name="forgetReaderPassword" class="readerAction"
 			method="forgetReaderPassword">
 			<result name="success">/Login.jsp</result>
@@ -169,8 +177,8 @@
 		</action>
 		<!-- <action name="addRecord" class="currentRecordAction" method="addRecord"> 
 			<result name="success">/Reserve_success.jsp</result> </action> -->
-		
-		
+
+
 
 		<!-- Librarian添加书籍 -->
 		<action name="addBook" class="bookAction" method="addBook">

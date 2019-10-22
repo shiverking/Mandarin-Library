@@ -15,6 +15,13 @@
 
 			<div class="modal-body">
 
+				<form action="changeReaderAvatar" method="post" enctype="multipart/form-data">
+					<label>change your avatar</label>
+					<div class="row justify-content-center">
+						<input type="file" accept="image/*" name="avatarFile">
+						<button class="btn btn-main-sm col-3 " type="submit">yes</button>
+					</div>
+				</form>
 				<form action="changeReaderName" method="post">
 					<label>change your name</label>
 					<div class="row justify-content-center">

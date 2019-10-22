@@ -1,17 +1,19 @@
 package action;
-
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
+/*import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;*/
 
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.SessionFactory;
-
+/*import org.hibernate.SessionFactory;
+*/
 import com.opensymphony.xwork2.ActionContext;
 
 import model.Reader;
@@ -22,11 +24,13 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private String searchContent;
 	private List<Reader> readers;
 	private String errorMessage;
+	private File avatarFile;
+
 	public String signin() throws Exception {
 		String phoneNumber = this.getModel().getPhoneNumber();
 		String password = this.getModel().getPassword();
 
-		if (phoneNumber.isEmpty()||phoneNumber==null) {
+		if (phoneNumber.isEmpty() || phoneNumber == null) {
 			this.errorMessage = "You must input your mobile number!";
 			return INPUT;
 		}
@@ -50,15 +54,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		return SUCCESS;
 	}
 
-	public String gotoReaderSelfProfile() {
-//    	Map<String, Object> session = ActionContext.getContext().getSession();
-//    	this.tempReader = (Reader) session.get("reader");
-//    	if(tempReader==null) {
-//    		return INPUT;
-//    	}
-		return SUCCESS;
-	}
-
 	public String changeReaderName() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		tempReader = (Reader) session.get("reader");
@@ -76,18 +71,30 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public String changeReaderPassword() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		tempReader = (Reader) session.get("reader");
-		if (this.getModel().getPassword().isEmpty()) {
-			this.setErrorMessage("Please enter a non-empty password");
-		} else {
-			tempReader.setPassword(this.getModel().getPassword());
-		}
-		this.setErrorMessage("Password reset complete");
 		this.getService().mergeReader(tempReader);
-
 		return SUCCESS;
 	}
 
-	// 锟斤拷取锟矫伙拷锟斤拷状态
+	public String changeReaderAvatar() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		tempReader = (Reader) session.get("reader");
+		if (tempReader==null) {
+			return LOGIN;
+		}
+		if (avatarFile==null) {
+			this.errorMessage="Please select an image.";
+			return SUCCESS;
+		}
+		String realPath = ServletActionContext.getServletContext().getRealPath("upload");
+		try {
+			FileUtils.copyFile(avatarFile, new File(realPath+"\\"+tempReader.getPhoneNumber()+".jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+
+	// 获取当前读者状态
 	public String getReaderStatu() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		this.tempReader = (Reader) session.get("reader");
@@ -140,6 +147,14 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+
+	public File getAvatarFile() {
+		return avatarFile;
+	}
+
+	public void setAvatarFile(File avatarFile) {
+		this.avatarFile = avatarFile;
 	}
 
 }
