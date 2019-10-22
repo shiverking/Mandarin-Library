@@ -12,8 +12,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Calssimax</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -50,11 +48,34 @@
 	<!--导航栏-->
 	<s:include value="/Navbar.jsp"></s:include>
 	<!--搜索栏 -->
-	<section class="page-search">
+	<section class="page-search " style="background-color: #4573ab;">
 		<div class="container">
-			<div class="row justify-content-center">
+		<div class="advance-search">
+						<form action="searchBook">
+							<div class="row justify-content-center ">
+								<!-- Store Search -->
+								<div class="col-lg-10 col-md-12">
+									<div class="block d-flex">
+										<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0"
+											name="searchContent" id="search" placeholder="Search book">
+										<select name="selectSearch"
+											class="form-control mb-2 mr-sm-2 mb-sm-0">
+											<option value="1" selected>ALL</option>
+											<option value="2">Book ISBN</option>
+											<option value="3">Book Title</option>
+											<option value="4">Book Author</option>
+										</select>
+										<!-- Search Button -->
+										<button class="btn btn-primary " type="submit">SEARCH</button>
+									</div>
+								</div>
+							</div>
+						</form>
+
+					</div>
+			<!-- <div class="row justify-content-center">
 				<div class="col-md-10 ">
-					<!-- Advance Search -->
+					Advance Search
 					<div class="advance-search">
 						<form action="searchBook">
 							<div class="form-row justify-content-center">
@@ -70,7 +91,7 @@
 						</form>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</section>
 	<section class="section-sm">
@@ -78,7 +99,10 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="search-result bg-gray">
-						<h2>Results For "${searchContent}"</h2>
+						<h2>Search <s:if test="selectSearch==2">by ISBN</s:if>
+						<s:elseif test="selectSearch==3">by Book Title</s:elseif>
+						<s:elseif test="selectSearch==4">by Author</s:elseif>
+						 For "${searchContent}"</h2>
 						<%
 							Date Resultsdate = new Date();
 						%>
@@ -241,14 +265,14 @@
 							<ul class="pagination">
 								<!--前往上一页的按钮-->
 								<li class="page-item"><a class="page-link"
-									href="searchBook?searchContent=${searchContent}&pageNum=${bookPage.prePageNum}"
+									href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=${bookPage.prePageNum}"
 									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 										<span class="sr-only">Previous</span>
 								</a></li>
 								<!--显示前往第一页的按钮-->
 								<s:if test="bookPage.beginPageNum>1">
 									<li class="page-item"><a class="page-link"
-										href="searchBook?searchContent=${searchContent}&pageNum=1">1</a></li>
+										href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=1">1</a></li>
 									<s:if test="bookPage.beginPageNum>2">
 										<li class="page-item"><a class="page-link">....</a></li>
 									</s:if>
@@ -258,11 +282,11 @@
 									end="%{bookPage.endPageNum}" var="snum">
 									<s:if test="#snum == bookPage.currentPage">
 										<li class="page-item active"><a class="page-link"
-											href="searchBook?searchContent=${searchContent}&pageNum=${snum}">${snum}</a></li>
+											href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=${snum}">${snum}</a></li>
 									</s:if>
 									<s:else>
 										<li class="page-item"><a class="page-link"
-											href="searchBook?searchContent=${searchContent}&pageNum=${snum}">${snum}</a></li>
+											href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=${snum}">${snum}</a></li>
 									</s:else>
 								</s:iterator>
 								<!-- 显示最后一页 -->
@@ -272,11 +296,11 @@
 										<li class="page-item"><a class="page-link">....</a></li>
 									</s:if>
 									<li class="page-item"><a class="page-link"
-										href="searchBook?searchContent=${searchContent}&pageNum=${bookPage.totalPage}">${bookPage.totalPage}</a></li>
+										href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=${bookPage.totalPage}">${bookPage.totalPage}</a></li>
 								</s:if>
 								<!-- 前往下一页的按钮-->
 								<li class="page-item"><a class="page-link"
-									href="searchBook?searchContent=${searchContent}&pageNum=${bookPage.nextPageNum}"
+									href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=${bookPage.nextPageNum}"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 										<span class="sr-only">Next</span>
 								</a></li>
@@ -299,13 +323,9 @@
 					<!-- About -->
 					<div class="block about">
 						<!-- footer logo -->
-						<img src="images/logo-footer.png" alt="">
+						<img src="images/MLA_logo_tagline.png" width="300px" alt="">
 						<!-- description -->
-						<p class="alt-color">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-							dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-							exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
+						<p class="alt-color"></p>
 					</div>
 				</div>
 				<!-- Link list -->
@@ -379,7 +399,7 @@
 
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
@@ -390,8 +410,7 @@
 	<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
 	<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+
 	<script src="js/scripts.js"></script>
 
 </body>

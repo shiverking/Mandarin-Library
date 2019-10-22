@@ -18,19 +18,40 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
 	private List<Book> books;// 可能被bookPage取代，建议少用，如需使用请改注释
 	private List<Borrowrecord> borrowrecords;// 可能被删除
-	private List<CurrentRecord> currentRecords;// 指在借书籍和预约书籍的信息
+	private List<CurrentRecord> currentRecords;// 指预约书籍的信息
 	private PageBean<Borrowrecord> borrowPage;// 已归还的书籍信息
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
 	private String searchContent;
+	private Integer selectSearch;
 
 	// 以下是具体使用的功能函数
 
 	// reader需要使用的函数↓↓↓↓↓↓↓
 	public String searchBook() {
 		// TODO:分页搜索
-		bookPage = this.getService().getPageBean(searchContent, pageNum);
+		if (selectSearch != null) {
+			switch (selectSearch) {
+			case 1:
+				bookPage = this.getService().getPageBean(searchContent, pageNum);
+				break;
+			case 2:
+				bookPage = this.getService().getPageBeanbyISBN(searchContent, pageNum);
+				break;
+			case 3:
+				bookPage = this.getService().getPageBeanbyTitle(searchContent, pageNum);
+				break;
+			case 4:
+				bookPage = this.getService().getPageBeanbyAuthor(searchContent, pageNum);
+				break;
+			default:
+				bookPage = this.getService().getPageBean(searchContent, pageNum);
+			}
+		}else {
+			bookPage = this.getService().getPageBean(searchContent, pageNum);
+		}
+
 		return SUCCESS;
 	}
 
@@ -41,6 +62,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return SUCCESS;
 	}
+
 	public String getBooksbyborrowPage() {
 		books = new ArrayList<Book>();
 		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
@@ -48,6 +70,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return SUCCESS;
 	}
+
 	public String getBooksbycurrentRecords() {
 		// TODO:可能改用pagabean实现
 		books = new ArrayList<Book>();
@@ -188,6 +211,14 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public void setCurrentRecords(List<CurrentRecord> currentRecords) {
 		this.currentRecords = currentRecords;
+	}
+
+	public Integer getSelectSearch() {
+		return selectSearch;
+	}
+
+	public void setSelectSearch(Integer selectSearch) {
+		this.selectSearch = selectSearch;
 	}
 
 }

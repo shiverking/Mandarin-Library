@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.Book;
 import model.Borrowrecord;
@@ -32,6 +33,7 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 		// TODO Auto-generated method stub
 		this.getDao().merge(book);
 	}
+
 	@Override
 	public Book getBookById(int id) {
 		// TODO Auto-generated method stub
@@ -73,16 +75,74 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 
 	@Override
 	public PageBean<Book> getPageBean(String cond, Integer pageNum) {
-		//TODO:·ÖÒ³ËÑË÷
+		// TODO:·ÖÒ³ËÑË÷
 		int current = 1;
 		if (pageNum != null) {
-			current=pageNum;
+			current = pageNum;
 		}
-		int totalRecords = this.getDao().findTotalNumbyTwoSubstring("ISBN", "BookName", cond);
+		List<String> pnList = new ArrayList<String>();
+		List<String> vList = new ArrayList<String>();
+		pnList.add("ISBN");
+		pnList.add("BookName");
+		vList.add(cond);
+		vList.add(cond);
+		int totalRecords = this.getDao().findTotalNum(pnList, vList, 0, 0);
 		PageBean<Book> bookPageBean = new PageBean<Book>(totalRecords, current);
-		bookPageBean.setDataList(this.getDao().findPageByTwoProperty("ISBN", "BookName", cond,
-				bookPageBean.getStartIndex(), bookPageBean.getPageSize()));
+		bookPageBean.setDataList(this.getDao().findPage(pnList, vList, null, 0, 0, 0, bookPageBean.getStartIndex(),
+				bookPageBean.getPageSize()));
 		return bookPageBean;
+	}
+
+	@Override
+	public PageBean<Book> getPageBeanbyISBN(String isbn, Integer pageNum) {
+		int current = 1;
+		if (pageNum != null) {
+			current = pageNum;
+		}
+		List<String> pnList = new ArrayList<String>();
+		List<String> vList = new ArrayList<String>();
+		pnList.add("ISBN");
+		vList.add(isbn);
+		int totalRecords = this.getDao().findTotalNum(pnList, vList, 0, 0);
+		PageBean<Book> bookPageBean = new PageBean<Book>(totalRecords, current);
+		bookPageBean.setDataList(this.getDao().findPage(pnList, vList, null, 0, 0, 0, bookPageBean.getStartIndex(),
+				bookPageBean.getPageSize()));
+		return bookPageBean;
+	}
+
+	@Override
+	public PageBean<Book> getPageBeanbyTitle(String title, Integer pageNum) {
+		int current = 1;
+		if (pageNum != null) {
+			current = pageNum;
+		}
+		List<String> pnList = new ArrayList<String>();
+		List<String> vList = new ArrayList<String>();
+		pnList.add("BookName");
+		vList.add(title);
+		int totalRecords = this.getDao().findTotalNum(pnList, vList, 0, 0);
+		PageBean<Book> bookPageBean = new PageBean<Book>(totalRecords, current);
+		bookPageBean.setDataList(this.getDao().findPage(pnList, vList, null, 0, 0, 0, bookPageBean.getStartIndex(),
+				bookPageBean.getPageSize()));
+		return bookPageBean;
+	}
+
+	@Override
+	public PageBean<Book> getPageBeanbyAuthor(String author, Integer pageNum) {
+		int current = 1;
+		if (pageNum != null) {
+			current = pageNum;
+		}
+		List<String> pnList = new ArrayList<String>();
+		List<String> vList = new ArrayList<String>();
+		pnList.add("Author");
+		vList.add(author);
+		int totalRecords = this.getDao().findTotalNum(pnList, vList, 0, 0);
+		PageBean<Book> bookPageBean = new PageBean<Book>(totalRecords, current);
+		bookPageBean.setDataList(this.getDao().findPage(pnList, vList, null, 0, 0, 0, bookPageBean.getStartIndex(),
+				bookPageBean.getPageSize()));
+		return bookPageBean;
+		
 	}
 
 }

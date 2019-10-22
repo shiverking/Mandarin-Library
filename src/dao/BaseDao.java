@@ -82,6 +82,7 @@ public interface BaseDao<TEntity> {
 
 	List<TEntity> findPageByQuery(String propertyName, Object propertyValue, String cond, int pageStart, int pageSize);
 
+
 	List<TEntity> findPageByTwoProperty(String propertyName1, String propertyName2, String cond1, int pageStart,
 			int pageSize);
 
@@ -91,4 +92,11 @@ public interface BaseDao<TEntity> {
 
 	List<TEntity> getPageByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2,
 			String cond, int pageStart, int pageSize);
+
+	// TODO:万能的分页查询，涵盖所有分页查询方式
+	public Integer findTotalNum(List<String> propertyName, List<String> value, Integer andEnd, Integer equalEnd);
+
+	// TODO:万能的分页查询，涵盖所有分页查询方式
+	public List<TEntity> findPage(List<String> propertyName, List<String> value, List<String> order,  Integer andEnd, Integer equalEnd,
+			Integer desWhen, int pageStart, int pageSize);
 }

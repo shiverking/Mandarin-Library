@@ -23,4 +23,7 @@ public interface BookService {
 	public void deleteBookById(int id);
 	public List<Book> getBookByNameOrISBN(String cond1);
 	PageBean<Book> getPageBean(String cond,Integer pageNum);
+	PageBean<Book> getPageBeanbyISBN(String cond,Integer pageNum);
+	PageBean<Book> getPageBeanbyTitle(String cond,Integer pageNum);
+	PageBean<Book> getPageBeanbyAuthor(String cond,Integer pageNum);
 }

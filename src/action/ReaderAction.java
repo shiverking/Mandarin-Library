@@ -22,7 +22,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private String searchContent;
 	private List<Reader> readers;
 	private String errorMessage;
-
 	public String signin() throws Exception {
 		String phoneNumber = this.getModel().getPhoneNumber();
 		String password = this.getModel().getPassword();
