@@ -50,7 +50,7 @@
 
 
 <body>
-	<s:include value="jspElement/Head.jsp" />
+<s:include value="jspElement/Head.jsp"/>
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -81,18 +81,17 @@
 										Search Book</a></li>
 								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
 										Register Reader </a></li>
-								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
+								<li><a href="BorrowHistory"><i class="fa fa-history"></i> 
 										Borrow History</a></li>
-								<li><a href="BookBorrow"><i class="fa fa-share"></i>
-										Borrow Book</a></li>
-								<li><a href="BookReturn"><i class="fa fa-reply"></i>
-										Return Book</a></li>
-								<li><a href="IncomeHistory"><i class="fa fa-money"></i>
-										Income History</a></li>
-								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i>
+								<li><a href="BookBorrow"><i class="fa fa-share"></i> 
+										Borrow Book</a></li>				
+								<li><a href="BookReturn"><i class="fa fa-reply"></i> 
+										Return Book</a></li>				
+								<li><a href="IncomeHistory"><i class="fa fa-money"></i> 
+										Income History</a></li>				
+								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i> 
 										Post News</a></li>
-								<li><a href="Logout"><i class="fa fa-sign-out"></i>
-										Logout</a></li>
+								<li><a href="Logout"><i class="fa fa-sign-out"></i> Logout</a></li>
 							</ul>
 						</div>
 					</div>
@@ -101,46 +100,8 @@
 					<!-- Recently Favorited -->
 					<div class="widget dashboard-container my-adslist">
 						<h3 class="widget-header">Book Management</h3>
-						<div id="a">
-					<td><a href="addBookPage">AddBook</a>
-						<form action="displayBooks" method="post">
-							<table border="1" width="100%">
-								<tr>
-									<th width="128" height="25" align="center">BookID</th>
-									<th width="157" align="center">BookName</th>
-									<th width="147" align="center">ISBN</th>
-									<th width="147" align="center">Author</th>
-									<th width="147" align="center">Category</th>
-									<th width="1470" align="center">Description</th>
-									<th width="281" align="center">Price</th>
-									<th width="281" align="center">Location</th>
-									<th width="281" align="center">IsBorrowed</th>
-									<th width="666" align="center">Bar Code</th>
-									<th width="281" align="center">Operation</th>
-								</tr>
-								<s:iterator value="books">
-									<tr>
-										<td align="center"><s:property value="BookID" /></td>
-										<td align="center"><s:property value="BookName" /></td>
-										<td align="center"><s:property value="ISBN" /></td>
-										<td align="center"><s:property value="Author" /></td>
-										<td align="center"><s:property value="Category" /></td>
-										<td align="center"><s:property value="Introduction" /></td>
-										<td align="center"><s:property value="Price" /></td>
-										<td align="center"><s:property value="Location" /></td>
-										<td align="center"><s:property value="IsBorrowed" /></td>
-										<td align="center"><img
-											src="https://barcode.tec-it.com/barcode.ashx?data=<s:property value="ISBN"/>&code=Code128&dpi=96&dataseparator=&tdsourcetag=s_pctim_aiomsg" /></td>
-
-										<td><a
-											href='editBook?book.BookID=<s:property value="BookID"/>'>Edit/</a><a
-											href='deleteBook?book.BookID=<s:property value="BookID"/>'>Delete</a>
-										</td>
-									</tr>
-								</s:iterator>
-							</table>
-						</form>
-				</div>
+						在这里写BookManagement展示对象
+						<!-- 在这里写BookManagement展示对象 -->
 
 					</div>
 				</div>
@@ -149,7 +110,7 @@
 		</div>
 		<!-- Container End -->
 	</section>
-	<s:include value="jspElement/Foot.jsp" />
+<s:include value="jspElement/Foot.jsp"/>
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
