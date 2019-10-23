@@ -5,8 +5,7 @@
 	<div class="modal-dialog " role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Enter your Email
-					to retrieve your password</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Set up your personal information</h5>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -15,13 +14,7 @@
 
 			<div class="modal-body">
 
-				<form action="changeReaderAvatar" method="post" enctype="multipart/form-data">
-					<label>change your avatar</label>
-					<div class="row justify-content-center">
-						<input type="file" accept="image/*" name="avatarFile">
-						<button class="btn btn-main-sm col-3 " type="submit">yes</button>
-					</div>
-				</form>
+				
 				<form action="changeReaderName" method="post">
 					<label>change your name</label>
 					<div class="row justify-content-center">
@@ -39,6 +32,18 @@
 							placeholder="Enter your new Password" name="Password">
 						<button class=" btn btn-main-sm col-3 " type="submit">yes</button>
 					</div>
+				</form>
+				<form action="changeReaderAvatar" method="post"
+					enctype="multipart/form-data">
+					<label>change your avatar</label>
+					<div class="row justify-content-center">
+						<input class=" input form-control  bg-shadow col-6 " type="file" accept="image/*" name="avatarFile">
+						<button class="btn btn-main-sm col-3 " type="submit">yes</button>
+					</div>
+					<!-- <div class="row justify-content-center custom-file">
+						<input type="file" accept="image/*" name="avatarFile">
+						<button class="btn btn-main-sm col-3 " type="submit">yes</button>
+					</div> -->
 				</form>
 			</div>
 

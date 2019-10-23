@@ -1,18 +1,14 @@
 package action;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-
-import com.opensymphony.xwork2.ActionContext;
 
 import model.Book;
 import model.CurrentRecord;
 import model.Reader;
 import service.CurrentRecordService;
+import util.PageBean;
 
 /**
  * @author
@@ -24,6 +20,8 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 	private List<CurrentRecord> currentRecords;// 记录在借书籍和预约书籍的信息
 	private CurrentRecord currentRecord;
 	private Book book;
+	private PageBean<Book> bookPage;
+	private List<Boolean> reservation;
 
 //以下是具体使用的功能函数
 
@@ -32,6 +30,7 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 		currentRecords = this.getService().getCurrentRecordsbyReader(tempReader);
 		return SUCCESS;
 	}
+
 	public String addRecord() throws Exception {
 		this.currentRecord = new CurrentRecord();
 		System.out.println(tempReader.getReaderID());
@@ -41,6 +40,19 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 		this.getService().saveCurrentRecord(currentRecord);
 		return SUCCESS;
 	}
+
+	public String isReservation() {
+		reservation = new ArrayList<Boolean>();
+		for (int i = 0; i < bookPage.getDataList().size(); i++) {
+			if (this.getService().getCurrentRecordByBook(bookPage.getDataList().get(i)).isEmpty()) {
+				reservation.add(false);
+			} else {
+				reservation.add(true);
+			}
+		}
+		return SUCCESS;
+	}
+
 //往下是各种属性的get和set方法
 	public Reader getTempReader() {
 		return tempReader;
@@ -65,6 +77,7 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 	public void setCurrentRecords(List<CurrentRecord> currentRecords) {
 		this.currentRecords = currentRecords;
 	}
+
 	/**
 	 * @param currentRecord the currentRecord to set
 	 */
@@ -72,6 +85,20 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 		this.currentRecord = currentRecord;
 	}
 
+	public PageBean<Book> getBookPage() {
+		return bookPage;
+	}
 
+	public void setBookPage(PageBean<Book> bookPage) {
+		this.bookPage = bookPage;
+	}
+
+	public List<Boolean> getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(List<Boolean> reservation) {
+		this.reservation = reservation;
+	}
 
 }

@@ -50,59 +50,41 @@
 	<!--搜索栏 -->
 	<section class="page-search " style="background-color: #4573ab;">
 		<div class="container">
-		<div class="advance-search">
-						<form action="searchBook">
-							<div class="row justify-content-center ">
-								<!-- Store Search -->
-								<div class="col-lg-10 col-md-12">
-									<div class="block d-flex">
-										<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0"
-											name="searchContent" id="search" placeholder="Search book">
-										<select name="selectSearch"
-											class="form-control mb-2 mr-sm-2 mb-sm-0">
-											<option value="1" selected>ALL</option>
-											<option value="2">Book ISBN</option>
-											<option value="3">Book Title</option>
-											<option value="4">Book Author</option>
-										</select>
-										<!-- Search Button -->
-										<button class="btn btn-primary " type="submit">SEARCH</button>
-									</div>
-								</div>
+			<div class="advance-search">
+				<form action="searchBook">
+					<div class="row justify-content-center ">
+						<!-- Store Search -->
+						<div class="col-lg-10 col-md-12">
+							<div class="block d-flex">
+								<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0"
+									name="searchContent" id="search" placeholder="Search book">
+								<select name="selectSearch"
+									class="form-control mb-2 mr-sm-2 mb-sm-0">
+									<option value="1" selected>ALL</option>
+									<option value="2">Book ISBN</option>
+									<option value="3">Book Title</option>
+									<option value="4">Book Author</option>
+								</select>
+								<!-- Search Button -->
+								<button class="btn btn-primary " type="submit">SEARCH</button>
 							</div>
-						</form>
-
+						</div>
 					</div>
-			<!-- <div class="row justify-content-center">
-				<div class="col-md-10 ">
-					Advance Search
-					<div class="advance-search">
-						<form action="searchBook">
-							<div class="form-row justify-content-center">
-								<div class="form-group col-md-10 ">
-									<input type="text" class="form-control" name="searchContent"
-										id="inputLocation4" placeholder="Search by title or ISBN">
-								</div>
-								<div class="form-group col-md-2 ">
-									<button type="submit" class="btn btn-primary">Search
-										Now</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div> -->
-		</div>
+				</form>
+			</div>
 	</section>
 	<section class="section-sm">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="search-result bg-gray">
-						<h2>Search <s:if test="selectSearch==2">by ISBN</s:if>
-						<s:elseif test="selectSearch==3">by Book Title</s:elseif>
-						<s:elseif test="selectSearch==4">by Author</s:elseif>
-						 For "${searchContent}"</h2>
+						<h2>
+							Search
+							<s:if test="selectSearch==2">by ISBN</s:if>
+							<s:elseif test="selectSearch==3">by Book Title</s:elseif>
+							<s:elseif test="selectSearch==4">by Author</s:elseif>
+							For "${searchContent}"
+						</h2>
 						<%
 							Date Resultsdate = new Date();
 						%>
@@ -112,209 +94,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<div class="category-sidebar">
-						<div class="widget category-list">
-							<h4 class="widget-header">All Category</h4>
-							<ul class="category-list">
-								<li><a href="category.html">Laptops <span>93</span></a></li>
-								<li><a href="category.html">Iphone <span>233</span></a></li>
-								<li><a href="category.html">Microsoft <span>183</span></a></li>
-								<li><a href="category.html">Monitors <span>343</span></a></li>
-							</ul>
-						</div>
-
-						<div class="widget category-list">
-							<h4 class="widget-header">Nearby</h4>
-							<ul class="category-list">
-								<li><a href="category.html">New York <span>93</span></a></li>
-								<li><a href="category.html">New Jersy <span>233</span></a></li>
-								<li><a href="category.html">Florida <span>183</span></a></li>
-								<li><a href="category.html">California <span>120</span></a></li>
-								<li><a href="category.html">Texas <span>40</span></a></li>
-								<li><a href="category.html">Alaska <span>81</span></a></li>
-							</ul>
-						</div>
-
-						<div class="widget filter">
-							<h4 class="widget-header">Show Produts</h4>
-							<select>
-								<option>Popularity</option>
-								<option value="1">Top rated</option>
-								<option value="2">Lowest Price</option>
-								<option value="4">Highest Price</option>
-							</select>
-						</div>
-
-						<div class="widget price-range">
-							<h4 class="widget-header">Price Range</h4>
-							<div class="block">
-								<b>$10</b> <input id="ex2" type="text" class="span2" value=""
-									data-slider-min="10" data-slider-max="1000"
-									data-slider-step="5" data-slider-value="[250,450]" /> <b>$5000</b>
-							</div>
-						</div>
-
-						<div class="widget product-shorting">
-							<h4 class="widget-header">By Condition</h4>
-							<div class="form-check">
-								<label class="form-check-label"> <input
-									class="form-check-input" type="checkbox" value="">
-									Brand New
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label"> <input
-									class="form-check-input" type="checkbox" value="">
-									Almost New
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label"> <input
-									class="form-check-input" type="checkbox" value="">
-									Gently New
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label"> <input
-									class="form-check-input" type="checkbox" value="">
-									Havely New
-								</label>
-							</div>
-						</div>
-
-					</div>
-				</div>
-				<div class="col-md-9">
-					<div class="category-search-filter">
-						<div class="row">
-							<div class="col-md-6">
-								<strong>Short</strong> <select>
-									<option>Most Recent</option>
-									<option value="1">Most Popular</option>
-									<option value="2">Lowest Price</option>
-									<option value="4">Highest Price</option>
-								</select>
-							</div>
-							<div class="col-md-6">
-								<div class="view">
-									<strong>Views</strong>
-									<ul class="list-inline view-switcher">
-										<li class="list-inline-item"><a
-											href="javascript:void(0);"><i class="fa fa-th-large"></i></a>
-										</li>
-										<li class="list-inline-item"><a
-											href="javascript:void(0);"><i class="fa fa-reorder"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 搜索结果页面 -->
-					<div class="product-grid-list">
-						<div class="row mt-30">
-							<s:iterator value="bookPage.dataList" status="L">
-								<div class="col-sm-12 col-lg-4 col-md-6">
-									<!-- product card -->
-									<div class="product-item bg-light">
-										<div class="card">
-											<div class="thumb-content">
-												<!-- <div class="price">$200</div> -->
-												<a href=""> <img class="card-img-top img-fluid"
-													src="images/products/products-1.jpg" alt="Card image cap">
-												</a>
-											</div>
-											<div class="card-body">
-												<h4 class="card-title">
-													<a href="">${bookName}</a>
-												</h4>
-												<ul class="list-inline product-meta">
-													<li class="list-inline-item"><a href=""><i
-															class="fa fa-book"></i>${Category}</a></li>
-													<li class="list-inline-item"><a href=""><i
-															class="fa fa-bookmark"></i>${ISBN}</a></li>
-
-												</ul>
-
-												<p class="card-text">
-													<i class="fa fa-map-marker"></i> &nbsp;${Location}
-												</p>
-												<s:if test="isBorrowed==0">
-													<li class="list-inline-item "><strong>Status:
-													</strong><strong class="text-info">Available</strong></li>
-													<a class="btn-main-sm"
-														href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>&searchContent=${searchContent}&pageNum=${pageNum}'>Reserve</a>
-												</s:if>
-												<s:else>
-													<li class="list-inline-item "><strong>Status:
-													</strong> <strong class="text-danger">Lended</strong></li>
-												</s:else>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</s:iterator>
-						</div>
-					</div>
-					<!--分页按钮  -->
-					<div class="pagination justify-content-center">
-						<nav aria-label="Page navigation example">
-							<ul class="pagination">
-								<!--前往上一页的按钮-->
-								<li class="page-item"><a class="page-link"
-									href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=${bookPage.prePageNum}"
-									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-								</a></li>
-								<!--显示前往第一页的按钮-->
-								<s:if test="bookPage.beginPageNum>1">
-									<li class="page-item"><a class="page-link"
-										href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=1">1</a></li>
-									<s:if test="bookPage.beginPageNum>2">
-										<li class="page-item"><a class="page-link">....</a></li>
-									</s:if>
-								</s:if>
-								<!-- 显示以当前页为中心的7页 -->
-								<s:iterator begin="%{bookPage.beginPageNum}"
-									end="%{bookPage.endPageNum}" var="snum">
-									<s:if test="#snum == bookPage.currentPage">
-										<li class="page-item active"><a class="page-link"
-											href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=${snum}">${snum}</a></li>
-									</s:if>
-									<s:else>
-										<li class="page-item"><a class="page-link"
-											href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=${snum}">${snum}</a></li>
-									</s:else>
-								</s:iterator>
-								<!-- 显示最后一页 -->
-								<s:if test="bookPage.endPageNum<bookPage.totalPage">
-
-									<s:if test="bookPage.endPageNum+1<bookPage.totalPage">
-										<li class="page-item"><a class="page-link">....</a></li>
-									</s:if>
-									<li class="page-item"><a class="page-link"
-										href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=${bookPage.totalPage}">${bookPage.totalPage}</a></li>
-								</s:if>
-								<!-- 前往下一页的按钮-->
-								<li class="page-item"><a class="page-link"
-									href="searchBook?searchContent=${searchContent}&selectSearch=${selectSearch}&pageNum=${bookPage.nextPageNum}"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-								</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
+			<s:include value="Search_result.jsp"></s:include>
 		</div>
 	</section>
 	<!--============================
 =            Footer            =
 =============================-->
-<s:include value="/footer.jsp"></s:include>
+	<s:include value="/footer.jsp"></s:include>
 
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>

@@ -2,7 +2,7 @@ package service;
 
 import java.util.List;
 
-
+import model.Book;
 import model.CurrentRecord;
 import model.Reader;
 import util.PageBean;
@@ -21,6 +21,7 @@ public interface CurrentRecordService {
 
 	public void saveCurrentRecord(CurrentRecord currentRecord);
 	public void mergeCurrentRecord(CurrentRecord currentRecord);
+	List<CurrentRecord> getCurrentRecordByBook(Book book);
 
 	
 }

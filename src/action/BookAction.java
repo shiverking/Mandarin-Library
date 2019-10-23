@@ -1,7 +1,10 @@
 package action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import model.Book;
 import model.Borrowrecord;
@@ -24,34 +27,52 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
 	private String searchContent;
+	private String categoryString;
 	private Integer selectSearch;
-
+	private Map<String, Integer> categoryMap;
 	// 以下是具体使用的功能函数
 
 	// reader需要使用的函数↓↓↓↓↓↓↓
 	public String searchBook() {
 		// TODO:分页搜索
+	
 		if (selectSearch != null) {
 			switch (selectSearch) {
 			case 1:
-				bookPage = this.getService().getPageBean(searchContent, pageNum);
+				bookPage = this.getService().getPageBean(searchContent,categoryString, pageNum);
 				break;
 			case 2:
-				bookPage = this.getService().getPageBeanbyISBN(searchContent, pageNum);
+				bookPage = this.getService().getPageBeanbyISBN(searchContent,categoryString, pageNum);
 				break;
 			case 3:
-				bookPage = this.getService().getPageBeanbyTitle(searchContent, pageNum);
+				bookPage = this.getService().getPageBeanbyTitle(searchContent,categoryString, pageNum);
 				break;
 			case 4:
-				bookPage = this.getService().getPageBeanbyAuthor(searchContent, pageNum);
+				bookPage = this.getService().getPageBeanbyAuthor(searchContent,categoryString, pageNum);
 				break;
 			default:
-				bookPage = this.getService().getPageBean(searchContent, pageNum);
+				bookPage = this.getService().getPageBean(searchContent,categoryString,pageNum);
 			}
-		}else {
-			bookPage = this.getService().getPageBean(searchContent, pageNum);
+		} else {
+			bookPage = this.getService().getPageBean(searchContent,categoryString, pageNum);
 		}
+		this.getCategory();
+		return SUCCESS;
+	}
 
+	public String getCategory() {
+		List<String> cStrings = this.getService().getCategory(searchContent, selectSearch);
+		Map<String, Integer> tempMap = new HashMap<String, Integer>();
+		for (Iterator iterator = cStrings.iterator(); iterator.hasNext();) {
+			String string = (String) iterator.next();
+			String[] tsStrings = string.split(",");
+			for (int i = 0; i < tsStrings.length; i++) {
+				if (tempMap.containsKey(tsStrings[i])) {
+					tempMap.put(tsStrings[i],tempMap.get(tsStrings[i])+1);
+				}else tempMap.put(tsStrings[i],1);
+			}
+		}
+		categoryMap = tempMap;
 		return SUCCESS;
 	}
 
@@ -219,6 +240,22 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public void setSelectSearch(Integer selectSearch) {
 		this.selectSearch = selectSearch;
+	}
+
+	public Map<String, Integer> getCategoryMap() {
+		return categoryMap;
+	}
+
+	public void setCategoryMap(Map<String, Integer> categoryMap) {
+		this.categoryMap = categoryMap;
+	}
+
+	public String getCategoryString() {
+		return categoryString;
+	}
+
+	public void setCategoryString(String categoryString) {
+		this.categoryString = categoryString;
 	}
 
 }

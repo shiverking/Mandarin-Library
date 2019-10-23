@@ -212,8 +212,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return results;
 	}
 
-
-
 //双属性分页单值模糊查询
 	public int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1) {
 		// TODO:分页搜索
@@ -375,5 +373,42 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		query.setMaxResults(pageSize);
 		List<TEntity> results = query.list();
 		return results;
+	}
+
+	// TODO:获取单一字段的查询.仅支持字符串
+	public List<String> findSingleField(List<String> propertyName, List<String> value, String name, Integer andEnd,
+			Integer equalEnd) {
+		String queryString = "select "+name+" from " + entityClass.getSimpleName() + " e where ";
+		int i = 0;
+		// 添加查询条件
+		for (; i < andEnd; i++) {// 先添加and条件
+			if (i > 0)
+				queryString += " and ";// 若and条件个数大于1个，添加and关键词
+			if (i < equalEnd) {// 根据equalEnd决定此属性是精准查询还是模糊查询
+				queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+			} else {
+				queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+			}
+		}
+		if (i < propertyName.size()) {
+			if (i > 0) {
+				queryString += " and ";// 如果前面有and条件，先添加and关键词
+			}
+			queryString += "(";
+			for (; i < propertyName.size(); i++) {// 添加or条件
+				if (i > andEnd) {
+					queryString += " or ";// 如果or条件个数大于1个，添加or关键词
+				}
+				if (i < equalEnd) {// 根据equalEnd决定此属性是精准查询还是模糊查询
+					queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+				} else {
+					queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+				}
+			}
+			queryString += "" + ")";
+		}
+		Query query = this.getSession().createQuery(queryString);
+		List<String> list = query.list();
+		return list;
 	}
 }

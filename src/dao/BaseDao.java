@@ -117,4 +117,6 @@ public interface BaseDao<TEntity> {
 	// TODO:万能的分页查询，涵盖所有分页查询方式
 	public List<TEntity> findPage(List<String> propertyName, List<String> value, List<String> order, Integer andEnd,
 			Integer equalEnd, Integer desWhen, int pageStart, int pageSize);
+	//TODO:获取单一字段的查询
+	public List<String> findSingleField(List<String> propertyName, List<String> value,String name, Integer andEnd, Integer equalEnd);
 }

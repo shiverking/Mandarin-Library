@@ -152,6 +152,13 @@
 		<!-- 搜索书籍 -->
 		<action name="searchBook" class="bookAction"
 			method="searchBook">
+			<result name="success" type="chain">
+				<param name="actionName">isReservation</param>
+			</result>
+			
+		</action>
+		<action name="isReservation" class="currentrecordAction"
+			method="isReservation"><!-- 依赖借阅记录获取对应的书籍信息 -->
 			<result name="success">/ReaderJsp/category.jsp</result>
 		</action>
 		<!-- 预约书籍 -->
