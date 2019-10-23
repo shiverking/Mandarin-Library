@@ -90,6 +90,22 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 
 	}
+	public void deleteByLS(int id) {
+		Session session = this.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			TEntity entity = (TEntity) session.get(entityClass, id);
+			session.delete(entity);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
 
 	@Override
 	public void delete(int id) {
@@ -169,7 +185,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-//ÍØÕ¹µÄIDÊı×é²éÑ¯
+//ï¿½ï¿½Õ¹ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
 	public List<TEntity> findByIDList(List<Integer> IDlist) {
 
 		String namString = entityClass.getSimpleName();
@@ -183,7 +199,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return list;
 	}
 
-	// ·ÖÒ³²éÑ¯ÊµÏÖ
+	// ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯Êµï¿½ï¿½
 	public int findTotalNum(String propertyName, Object propertyValue) {
 		String namString = entityClass.getSimpleName();
 		if (entityClass.getSimpleName().equals("Borrowrecord"))
@@ -213,7 +229,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 
 	public int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1) {
-		// TODO:·ÖÒ³ËÑË÷
+		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 		String namString = entityClass.getSimpleName();
 		if (entityClass.getSimpleName().equals("Borrowrecord"))
 			namString = "record";
@@ -230,7 +246,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 
 	public List<TEntity> findPageByTwoSubstring(String propertyName1, String propertyName2, String cond1, String cond2,
 			int pageStart, int pageSize) {
-		// TODO:·ÖÒ³ËÑË÷
+		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 		if (cond1 == null) {
 			cond1 = "";
 		}
@@ -244,7 +260,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return results;
 	}
 
-	// Ë«ÊôĞÔ¾«×¼²éÑ¯ÊµÏÖ
+	// Ë«ï¿½ï¿½ï¿½Ô¾ï¿½×¼ï¿½ï¿½Ñ¯Êµï¿½ï¿½
 	public List<TEntity> getByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2) {
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + "=:Value1" + " and e." + propertyName2 + "=:Value2";
@@ -284,4 +300,11 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		List<TEntity> results = query.list();
 		return results;
 	}
+	//è¯»å–è¯»è€…æ•°ç›®
+		public int numOfReader() {
+			String queryString = "select count(*) from " + entityClass.getSimpleName() + " e ";
+			Query query = this.getSession().createQuery(queryString);
+			List<Long> list = query.list();
+			return list.isEmpty() ? 0 : list.get(0).intValue();
+		}
 }

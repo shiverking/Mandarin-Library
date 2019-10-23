@@ -16,5 +16,6 @@
 		<property name="category" type="string" not-null="false"/>
 		<property name="Author" type="string" not-null="false"/>
 		<property name="Introduction" type="string" not-null="false"/>
+		<property name="Picture" type="string" not-null="false"/>
 	</class>
 </hibernate-mapping>

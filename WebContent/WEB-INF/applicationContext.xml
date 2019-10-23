@@ -97,7 +97,22 @@
 		<property name="service" ref="borrowrecordService" />
 		<property name="model" ref="borrowrecord" />
 	</bean>
-	
+	<!-- DeleterecordDao 数据操作对象 -->
+	<bean id="deleterecordDao" class="dao.DeleterecordDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- DeleterecordService用户操作业务对象 -->
+	<bean id="deleterecordService"
+		class="service.DeleterecordServiceImpl">
+		<property name="dao" ref="deleterecordDao"></property>
+	</bean>
+	<bean id="deleterecord" class="model.Deleterecord"
+		scope="prototype" />
+	<bean id="deleterecordAction" class="action.DeleterecordAction"
+		scope="prototype">
+		<property name="service" ref="deleterecordService" />
+		<property name="model" ref="deleterecord" />
+	</bean>
 	<!-- CurrentRecordDao 数据操作对象 -->
 	<bean id="currentrecordDao" class="dao.CurrentRecordDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -113,5 +128,22 @@
 		scope="prototype">
 		<property name="service" ref="currentrecordService" />
 		<property name="model" ref="currentrecord" />
+	</bean>
+	
+		<!-- PayrecordDao 数据操作对象 -->
+	<bean id="payrecordDao" class="dao.PayrecordDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- PayrecordService用户操作业务对象 -->
+	<bean id="payrecordService"
+		class="service.PayrecordServiceImpl">
+		<property name="dao" ref="payrecordDao"></property>
+	</bean>
+	<bean id="payrecord" class="model.Payrecord"
+		scope="prototype" />
+	<bean id="payrecordAction" class="action.PayrecordAction"
+		scope="prototype">
+		<property name="service" ref="payrecordService" />
+		<property name="model" ref="payrecord" />
 	</bean>
 </beans>

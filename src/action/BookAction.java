@@ -24,8 +24,106 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
 	private String searchContent;
+	private List<Borrowrecord> borrowrecords;
+	private String isbn1;
+	private int bookID2;
+	public ISBNgenerator getiSBNgenerator() {
+		return iSBNgenerator;
+	}
 
+	public void setiSBNgenerator(ISBNgenerator iSBNgenerator) {
+		this.iSBNgenerator = iSBNgenerator;
+	}
+
+	public List<Borrowrecord> getBorrowrecords() {
+		return borrowrecords;
+	}
+
+	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
+		this.borrowrecords = borrowrecords;
+	}
+
+	public int getBookID2() {
+		return bookID2;
+	}
+
+	public void setBookID2(int bookID2) {
+		this.bookID2 = bookID2;
+	}
+
+	public int getBookID3() {
+		return bookID3;
+	}
+
+	public void setBookID3(int bookID3) {
+		this.bookID3 = bookID3;
+	}
+
+	public static String getBookName() {
+		return BookName;
+	}
+
+	public static void setBookName(String bookName) {
+		BookName = bookName;
+	}
+
+	public static String getISBN() {
+		return ISBN;
+	}
+
+	public static void setISBN(String iSBN) {
+		ISBN = iSBN;
+	}
+
+	public static String getPrice() {
+		return Price;
+	}
+
+	public static void setPrice(String price) {
+		Price = price;
+	}
+
+	public static String getAuthor() {
+		return Author;
+	}
+
+	public static void setAuthor(String author) {
+		Author = author;
+	}
+
+	public static String getDescription() {
+		return Description;
+	}
+
+	public static void setDescription(String description) {
+		Description = description;
+	}
+
+	public static String getCategory() {
+		return Category;
+	}
+
+	public static void setCategory(String category) {
+		Category = category;
+	}
+
+	public static String getIsbn() {
+		return isbn;
+	}
+
+	public static void setIsbn(String isbn) {
+		BookAction.isbn = isbn;
+	}
+	private int bookID3;
 	// �����Ǿ���ʹ�õĹ��ܺ���
+
+	public String getIsbn1() {
+		return isbn1;
+	}
+
+	public void setIsbn1(String isbn1) {
+		this.isbn1 = isbn1;
+	}
 
 	// reader��Ҫʹ�õĺ�����������������
 	public String searchBook() {
@@ -41,6 +139,155 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return SUCCESS;
 	}
+//ls
+	public String findBookIsBorrowed() {
+		if (!this.books.get(0).getIsBorrowed()) {
+			
+		} else {
+			this.setErrorMessage(
+					"BookCannotBorrowedError:this Book has been Borrowed--Book id:" + this.books.get(0).getBookID());
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+		if (this.books.size()>=2&&this.books.get(1) != null) {
+			if (!this.books.get(1).getIsBorrowed()) {
+				
+			} else {
+				this.setErrorMessage(
+						"BookCannotBorrowedError:this Book has been Borrowed--Book id:" + this.books.get(1).getBookID());
+				System.out.println(this.getErrorMessage());
+				return ERROR;
+			}
+		}
+		if (this.books.size()>=3&&this.books.get(2) != null) {
+			if (!this.books.get(2).getIsBorrowed()) {
+				
+			} else {
+				this.setErrorMessage(
+						"BookCannotBorrowedError:this Book has been Borrowed--Book id:" + this.books.get(2).getBookID());
+				System.out.println(this.getErrorMessage());
+				return ERROR;
+			}
+		}
+		return SUCCESS;
+	}
+
+	public String borrowBook() {
+		if (!this.books.get(0).getIsBorrowed()) {
+			this.books.get(0).setIsBorrowed(true);
+			this.getService().mergeBook(this.books.get(0));
+		} else {
+			this.setErrorMessage(
+					"BookCannotBorrowError:this Book has been Borrowed--Book id:" + this.books.get(0).getBookID());
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+		if (this.books.size()>=2&&!this.books.get(1).getIsBorrowed()) {
+			this.books.get(1).setIsBorrowed(true);
+			this.getService().mergeBook(this.books.get(1));
+		}
+		
+		if (this.books.size()>=3&&!this.books.get(2).getIsBorrowed()) {
+			this.books.get(2).setIsBorrowed(true);
+			this.getService().mergeBook(this.books.get(2));
+		} 
+		return SUCCESS;
+	}
+
+	public String returnBook() {
+		if (this.books.get(0).getIsBorrowed()) {
+			this.books.get(0).setIsBorrowed(false);
+			this.getService().mergeBook(this.books.get(0));
+			return SUCCESS;
+		} else {
+			this.setErrorMessage(
+					"BookCannotReturnError:this Book has been Returned--Book id:" + this.books.get(0).getBookID());
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+
+	}
+
+	public String getBookById() {
+		this.books = new ArrayList<Book>();
+		int id = this.getModel().getBookID();
+		int id2 = this.bookID2;
+		int id3 = this.bookID3;
+		if ((id != 0 && id2 != 0) || (id != 0 && id3 != 0) || (id2 != 0 && id3 != 0)) {
+			if (id == id2 || id == id3 || id2 == id3) {
+				this.setErrorMessage("Some Bookid is same: id1:" + id + "id2:" + id2 + "id3:" + id3);
+				System.out.println(this.getErrorMessage());
+				return ERROR;
+			}
+		}
+		if(id==0&&id2==0&&id3==0){
+			this.setErrorMessage("Please Input the book id!");
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+		if (id != 0) {
+			this.books.add(this.getService().getBookById(id));
+			if (this.books.get(0) == null) {
+				this.setErrorMessage("BookNotFoundError: Can't Find Book by id1:" + id);
+				System.out.println(this.getErrorMessage());
+				return ERROR;
+			}
+			if (id2 != 0) {
+				this.books.add(this.getService().getBookById(id2));
+				if (this.books.get(1) == null) {
+					this.setErrorMessage("BookNotFoundError: Can't Find Book by id2:" + id2);
+					System.out.println(this.getErrorMessage());
+					return ERROR;
+				}
+				if (id3 != 0) {
+					this.books.add(this.getService().getBookById(id3));
+					if (this.books.get(2) == null) {
+						this.setErrorMessage("BookNotFoundError: Can't Find Book by id3:" + id3);
+						System.out.println(this.getErrorMessage());
+						return ERROR;
+					}
+				}
+			} else if (id3 != 0) {
+				this.books.add(this.getService().getBookById(id3));
+				if (this.books.get(1) == null) {
+					this.setErrorMessage("BookNotFoundError: Can't Find Book by id3:" + id3);
+					System.out.println(this.getErrorMessage());
+					return ERROR;
+				}
+			}
+		} else if (id2 != 0) {
+			this.books.add(this.getService().getBookById(id2));
+			if (this.books.get(0) == null) {
+				this.setErrorMessage("BookNotFoundError: Can't Find Book by id2:" + id2);
+				System.out.println(this.getErrorMessage());
+				return ERROR;
+			}
+			if (id3 != 0) {
+				this.books.add(this.getService().getBookById(id3));
+				if (this.books.get(1) == null) {
+					this.setErrorMessage("BookNotFoundError: Can't Find Book by id3:" + id3);
+					System.out.println(this.getErrorMessage());
+					return ERROR;
+				}
+			}
+		} else if (id3 != 0) {
+			this.books.add(this.getService().getBookById(id3));
+			if (this.books.get(0) == null) {
+				this.setErrorMessage("BookNotFoundError: Can't Find Book by id3:" + id3);
+				System.out.println(this.getErrorMessage());
+				return ERROR;
+			}
+		}
+
+		return SUCCESS;
+	}
+	public String getBooksbyBorrwrecords() {
+		books = new ArrayList<Book>();
+		for (Borrowrecord borrowrecord : borrowrecords) {
+			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
+		}
+		return SUCCESS;
+	}
 
 	public String getBooksbycurrentRecords() {
 		// TODO:���ܸ���pagabeanʵ��
@@ -50,6 +297,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return SUCCESS;
 	}
+	
 	// reader��Ҫʹ�õĺ�����������������
 
 	public String addBook() throws Exception {
@@ -185,6 +433,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public String deleteBook() {
+		isbn1 = this.getService().getBookById(book.getBookID()).getISBN();
 		this.getService().deleteBookById(book.getBookID());
 		return SUCCESS;
 	}
@@ -208,6 +457,9 @@ public class BookAction extends BaseAction<Book, BookService> {
 		this.getService().mergeBook(book);
 		return SUCCESS;
 	}
+
+
+	
 
 //������get��set����
 	public Book getBook() {
