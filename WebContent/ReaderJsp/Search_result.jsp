@@ -91,7 +91,7 @@
 									<s:else>
 										<s:if test="%{reservation.get(#L.index)!=0}">
 											<li class="list-inline-item "><strong>Status: </strong>
-												<strong class="text-danger">Reserved</strong></li>
+												<strong class="text-warning">Reserved</strong></li>
 										</s:if>
 										<s:else>
 											<li class="list-inline-item "><strong>Status: </strong>
