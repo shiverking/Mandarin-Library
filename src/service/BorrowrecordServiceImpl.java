@@ -12,7 +12,7 @@ import util.PageBean;
 
 /**
  * @author
- * @version ����ʱ�䣺2019��9��24�� ����2:16:23
+ * @version 锟斤拷锟斤拷时锟戒：2019锟斤拷9锟斤拷24锟斤拷 锟斤拷锟斤拷2:16:23
  * 
  */
 public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implements BorrowrecordService {
@@ -63,9 +63,8 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		this.getDao().merge(borrowrecord);
 	}
 
-	@Override
 	public PageBean<Borrowrecord> getPageBean(Reader reader, Integer pageNum,boolean isreturn) {
-		// TODO ��ҳ��ѯ
+		// TODO 分页查询
 		int Num = 1;
 		if (pageNum != null) {
 			Num = pageNum;
@@ -89,7 +88,7 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 	}
 
 	public List<Borrowrecord> borrowBook(List<Reader> readers, List<Book> books) {
-		// 初始化参数
+		// 鍒濆鍖栧弬鏁�
 		Book book;
 		long returnPeriod;
 		Date returnDate;
@@ -101,7 +100,7 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		book = iterator.next();
 		returnPeriod = book.getReturnPeriod();
 		returnDate = new Date(currentTime + returnPeriod * 24 * 60 * 60 * 1000);
-		// 对borrowrecord数据操作
+		// 瀵筨orrowrecord鏁版嵁鎿嶄綔
 		Borrowrecord borrowrecord = new Borrowrecord();
 		borrowrecord.setBookID(book.getBookID());
 		borrowrecord.setReaderID(reader.getReaderID());

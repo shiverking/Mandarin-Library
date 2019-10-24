@@ -1,7 +1,7 @@
 package dao;
 /**
 * @author 
-* @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½23ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1:57:18
+* @version é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ—¶é”Ÿæˆ’ï¼š2019é”Ÿæ–¤æ‹·9é”Ÿæ–¤æ‹·23é”Ÿæ–¤æ‹· é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·1:57:18
 * 
 */
 
@@ -40,7 +40,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 	}
 
-	@Override
 	public void save(TEntity entity) {
 		Session session = this.getSession();
 		Transaction tx = null;
@@ -74,7 +73,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 	}
 
-	@Override
 	public void delete(TEntity entity) {
 		Session session = this.getSession();
 		Transaction tx = null;
@@ -108,14 +106,12 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 	}
 
-	@Override
 	public void delete(int id) {
 		TEntity entity = get(id);
 		delete(entity);
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<TEntity> findAll(String cond) {
 		if (cond != null) {
 			cond = " order by " + cond;
@@ -126,7 +122,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-	@Override
 	public List<TEntity> findAll() {
 		return this.findAll(null);
 	}
@@ -144,7 +139,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-	@Override
 	public List<TEntity> findBy(String propertyName, Object propertyValue) {
 		return findBy(propertyName, propertyValue, null);
 	}
@@ -158,7 +152,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public TEntity get(int id) {
 		Session session = this.getSession();
 		session.beginTransaction();
@@ -168,7 +161,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entity;
 	}
 
-	@Override
 	public TEntity getSingle(String propertyName, Object propertyValue) {
 		List<TEntity> entities = findBy(propertyName, propertyValue);
 		if (entities != null && entities.size() > 0) {
@@ -185,7 +177,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-//ï¿½ï¿½Õ¹ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
+//é”Ÿæ–¤æ‹·å±•é”Ÿæ–¤æ‹·IDé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿçª–ï¿½
 	public List<TEntity> findByIDList(List<Integer> IDlist) {
 
 		String namString = entityClass.getSimpleName();
@@ -199,7 +191,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return list;
 	}
 
-	// ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯Êµï¿½ï¿½
+	// é”Ÿæ–¤æ‹·é¡µé”Ÿæ–¤æ‹·è¯¢å®é”Ÿæ–¤æ‹·
 	public int findTotalNum(String propertyName, Object propertyValue) {
 		String namString = entityClass.getSimpleName();
 		if (entityClass.getSimpleName().equals("Borrowrecord"))
@@ -228,9 +220,9 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return results;
 	}
 
-//Ë«ÊôĞÔ·ÖÒ³µ¥ÖµÄ£ºı²éÑ¯
+//åŒå±æ€§åˆ†é¡µå•å€¼æ¨¡ç³ŠæŸ¥è¯¢
 	public int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1) {
-		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
+		// TODO:é”Ÿæ–¤æ‹·é¡µé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 		String namString = entityClass.getSimpleName();
 		if (entityClass.getSimpleName().equals("Borrowrecord"))
 			namString = "record";
@@ -247,7 +239,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 
 	public List<TEntity> findPageByTwoProperty(String propertyName1, String propertyName2, String cond1, int pageStart,
 			int pageSize) {
-		// TODO:·ÖÒ³ËÑË÷
+		// TODO:åˆ†é¡µæœç´¢
 		if (cond1 == null) {
 			cond1 = "";
 		}
@@ -261,7 +253,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return results;
 	}
 
-	// Ë«ï¿½ï¿½ï¿½Ô¾ï¿½×¼ï¿½ï¿½Ñ¯Êµï¿½ï¿½
+	// åŒé”Ÿæ–¤æ‹·é”Ÿçš†æ’…æ‹·å‡†é”Ÿæ–¤æ‹·è¯¢å®é”Ÿæ–¤æ‹·
 	public List<TEntity> getByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2) {
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + "=:Value1" + " and e." + propertyName2 + "=:Value2";
@@ -303,7 +295,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		List<TEntity> results = query.list();
 		return results;
 	}
-	//è¯»å–è¯»è€…æ•°ç›®
+	//ç’‡è¯²æ½ ç’‡æ˜ï¿½å‘®æšŸé©ï¿½
 		public int numOfReader() {
 			String queryString = "select count(*) from " + entityClass.getSimpleName() + " e ";
 			Query query = this.getSession().createQuery(queryString);
@@ -311,17 +303,17 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 			return list.isEmpty() ? 0 : list.get(0).intValue();
 		}
 
-	// TODO:ÍòÄÜµÄ·ÖÒ³²éÑ¯£¬º­¸ÇËùÓĞ·ÖÒ³²éÑ¯·½Ê½
+	// TODO:ä¸‡èƒ½çš„åˆ†é¡µæŸ¥è¯¢ï¼Œæ¶µç›–æ‰€æœ‰åˆ†é¡µæŸ¥è¯¢æ–¹å¼
 	public Integer findTotalNum(List<String> propertyName, List<String> value, Integer andEnd, Integer equalEnd) {
 		String namString = entityClass.getSimpleName();
 		if (entityClass.getSimpleName().equals("Borrowrecord"))
 			namString = "record";
 		String queryString = "SELECT COUNT(" + namString + "ID) from " + entityClass.getSimpleName() + " e where ";
 		int i = 0;
-		for (; i < andEnd; i++) {// ÏÈÌí¼ÓandÌõ¼ş
+		for (; i < andEnd; i++) {// å…ˆæ·»åŠ andæ¡ä»¶
 			if (i > 0)
-				queryString += " and ";// ÈôandÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óand¹Ø¼ü´Ê
-			if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+				queryString += " and ";// è‹¥andæ¡ä»¶ä¸ªæ•°å¤§äº1ä¸ªï¼Œæ·»åŠ andå…³é”®è¯
+			if (i < equalEnd) {// æ ¹æ®equalEndå†³å®šæ­¤å±æ€§æ˜¯ç²¾å‡†æŸ¥è¯¢è¿˜æ˜¯æ¨¡ç³ŠæŸ¥è¯¢
 				queryString += " e." + propertyName.get(i) + "=" + value.get(i);
 			} else {
 				queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
@@ -329,14 +321,14 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 		if (i < propertyName.size()) {
 			if (i > 0) {
-				queryString += " and ";// Èç¹ûÇ°ÃæÓĞandÌõ¼ş£¬ÏÈÌí¼Óand¹Ø¼ü´Ê
+				queryString += " and ";// å¦‚æœå‰é¢æœ‰andæ¡ä»¶ï¼Œå…ˆæ·»åŠ andå…³é”®è¯
 			}
 			queryString += "(";
-			for (; i < propertyName.size(); i++) {// Ìí¼ÓorÌõ¼ş
+			for (; i < propertyName.size(); i++) {// æ·»åŠ oræ¡ä»¶
 				if (i > andEnd) {
-					queryString += " or ";// Èç¹ûorÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óor¹Ø¼ü´Ê
+					queryString += " or ";// å¦‚æœoræ¡ä»¶ä¸ªæ•°å¤§äº1ä¸ªï¼Œæ·»åŠ orå…³é”®è¯
 				}
-				if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+				if (i < equalEnd) {// æ ¹æ®equalEndå†³å®šæ­¤å±æ€§æ˜¯ç²¾å‡†æŸ¥è¯¢è¿˜æ˜¯æ¨¡ç³ŠæŸ¥è¯¢
 					queryString += " e." + propertyName.get(i) + "=" + value.get(i);
 				} else {
 					queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
@@ -349,16 +341,16 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return list.isEmpty() ? 0 : list.get(0).intValue();
 	}
 
-	// TODO:ÍòÄÜµÄ·ÖÒ³²éÑ¯£¬º­¸ÇËùÓĞ·ÖÒ³²éÑ¯·½Ê½
+	// TODO:ä¸‡èƒ½çš„åˆ†é¡µæŸ¥è¯¢ï¼Œæ¶µç›–æ‰€æœ‰åˆ†é¡µæŸ¥è¯¢æ–¹å¼
 	public List<TEntity> findPage(List<String> propertyName, List<String> value, List<String> order, Integer andEnd,
 			Integer equalEnd, Integer desWhen, int pageStart, int pageSize) {
 		String queryString = " from " + entityClass.getSimpleName() + " e where ";
 		int i = 0;
-		// Ìí¼Ó²éÑ¯Ìõ¼ş
-		for (; i < andEnd; i++) {// ÏÈÌí¼ÓandÌõ¼ş
+		// æ·»åŠ æŸ¥è¯¢æ¡ä»¶
+		for (; i < andEnd; i++) {// å…ˆæ·»åŠ andæ¡ä»¶
 			if (i > 0)
-				queryString += " and ";// ÈôandÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óand¹Ø¼ü´Ê
-			if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+				queryString += " and ";// è‹¥andæ¡ä»¶ä¸ªæ•°å¤§äº1ä¸ªï¼Œæ·»åŠ andå…³é”®è¯
+			if (i < equalEnd) {// æ ¹æ®equalEndå†³å®šæ­¤å±æ€§æ˜¯ç²¾å‡†æŸ¥è¯¢è¿˜æ˜¯æ¨¡ç³ŠæŸ¥è¯¢
 				queryString += " e." + propertyName.get(i) + "=" + value.get(i);
 			} else {
 				queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
@@ -366,14 +358,14 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 		if (i < propertyName.size()) {
 			if (i > 0) {
-				queryString += " and ";// Èç¹ûÇ°ÃæÓĞandÌõ¼ş£¬ÏÈÌí¼Óand¹Ø¼ü´Ê
+				queryString += " and ";// å¦‚æœå‰é¢æœ‰andæ¡ä»¶ï¼Œå…ˆæ·»åŠ andå…³é”®è¯
 			}
 			queryString += "(";
-			for (; i < propertyName.size(); i++) {// Ìí¼ÓorÌõ¼ş
+			for (; i < propertyName.size(); i++) {// æ·»åŠ oræ¡ä»¶
 				if (i > andEnd) {
-					queryString += " or ";// Èç¹ûorÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óor¹Ø¼ü´Ê
+					queryString += " or ";// å¦‚æœoræ¡ä»¶ä¸ªæ•°å¤§äº1ä¸ªï¼Œæ·»åŠ orå…³é”®è¯
 				}
-				if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+				if (i < equalEnd) {// æ ¹æ®equalEndå†³å®šæ­¤å±æ€§æ˜¯ç²¾å‡†æŸ¥è¯¢è¿˜æ˜¯æ¨¡ç³ŠæŸ¥è¯¢
 					queryString += " e." + propertyName.get(i) + "=" + value.get(i);
 				} else {
 					queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
@@ -381,7 +373,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 			}
 			queryString += "" + ")";
 		}
-		// Èôorder²»Îª¿Õ£¬Ìí¼ÓÅÅĞòÌõ¼ş
+		// è‹¥orderä¸ä¸ºç©ºï¼Œæ·»åŠ æ’åºæ¡ä»¶
 		if (order != null && !order.isEmpty()) {
 			queryString += " order by ";
 			for (int j = 0; j < order.size(); j++) {
@@ -398,16 +390,16 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return results;
 	}
 
-	// TODO:»ñÈ¡µ¥Ò»×Ö¶ÎµÄ²éÑ¯.½öÖ§³Ö×Ö·û´®
+	// TODO:è·å–å•ä¸€å­—æ®µçš„æŸ¥è¯¢.ä»…æ”¯æŒå­—ç¬¦ä¸²
 	public List<String> findSingleField(List<String> propertyName, List<String> value, String name, Integer andEnd,
 			Integer equalEnd) {
 		String queryString = "select "+name+" from " + entityClass.getSimpleName() + " e where ";
 		int i = 0;
-		// Ìí¼Ó²éÑ¯Ìõ¼ş
-		for (; i < andEnd; i++) {// ÏÈÌí¼ÓandÌõ¼ş
+		// æ·»åŠ æŸ¥è¯¢æ¡ä»¶
+		for (; i < andEnd; i++) {// å…ˆæ·»åŠ andæ¡ä»¶
 			if (i > 0)
-				queryString += " and ";// ÈôandÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óand¹Ø¼ü´Ê
-			if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+				queryString += " and ";// è‹¥andæ¡ä»¶ä¸ªæ•°å¤§äº1ä¸ªï¼Œæ·»åŠ andå…³é”®è¯
+			if (i < equalEnd) {// æ ¹æ®equalEndå†³å®šæ­¤å±æ€§æ˜¯ç²¾å‡†æŸ¥è¯¢è¿˜æ˜¯æ¨¡ç³ŠæŸ¥è¯¢
 				queryString += " e." + propertyName.get(i) + "=" + value.get(i);
 			} else {
 				queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
@@ -415,14 +407,14 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 		if (i < propertyName.size()) {
 			if (i > 0) {
-				queryString += " and ";// Èç¹ûÇ°ÃæÓĞandÌõ¼ş£¬ÏÈÌí¼Óand¹Ø¼ü´Ê
+				queryString += " and ";// å¦‚æœå‰é¢æœ‰andæ¡ä»¶ï¼Œå…ˆæ·»åŠ andå…³é”®è¯
 			}
 			queryString += "(";
-			for (; i < propertyName.size(); i++) {// Ìí¼ÓorÌõ¼ş
+			for (; i < propertyName.size(); i++) {// æ·»åŠ oræ¡ä»¶
 				if (i > andEnd) {
-					queryString += " or ";// Èç¹ûorÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óor¹Ø¼ü´Ê
+					queryString += " or ";// å¦‚æœoræ¡ä»¶ä¸ªæ•°å¤§äº1ä¸ªï¼Œæ·»åŠ orå…³é”®è¯
 				}
-				if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+				if (i < equalEnd) {// æ ¹æ®equalEndå†³å®šæ­¤å±æ€§æ˜¯ç²¾å‡†æŸ¥è¯¢è¿˜æ˜¯æ¨¡ç³ŠæŸ¥è¯¢
 					queryString += " e." + propertyName.get(i) + "=" + value.get(i);
 				} else {
 					queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
