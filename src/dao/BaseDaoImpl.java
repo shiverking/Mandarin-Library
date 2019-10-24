@@ -1,7 +1,7 @@
 package dao;
 /**
 * @author 
-* @version ����ʱ�䣺2019��9��23�� ����1:57:18
+* @version 锟斤拷锟斤拷时锟戒：2019锟斤拷9锟斤拷23锟斤拷 锟斤拷锟斤拷1:57:18
 * 
 */
 
@@ -39,7 +39,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 	}
 
-	@Override
 	public void save(TEntity entity) {
 		Session session = this.getSession();
 		Transaction tx = null;
@@ -73,7 +72,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 	}
 
-	@Override
 	public void delete(TEntity entity) {
 		Session session = this.getSession();
 		Transaction tx = null;
@@ -107,14 +105,12 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		}
 	}
 
-	@Override
 	public void delete(int id) {
 		TEntity entity = get(id);
 		delete(entity);
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<TEntity> findAll(String cond) {
 		if (cond != null) {
 			cond = " order by " + cond;
@@ -125,7 +121,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-	@Override
 	public List<TEntity> findAll() {
 		return this.findAll(null);
 	}
@@ -143,7 +138,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-	@Override
 	public List<TEntity> findBy(String propertyName, Object propertyValue) {
 		return findBy(propertyName, propertyValue, null);
 	}
@@ -157,7 +151,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public TEntity get(int id) {
 		Session session = this.getSession();
 		session.beginTransaction();
@@ -167,7 +160,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entity;
 	}
 
-	@Override
 	public TEntity getSingle(String propertyName, Object propertyValue) {
 		List<TEntity> entities = findBy(propertyName, propertyValue);
 		if (entities != null && entities.size() > 0) {
@@ -176,7 +168,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return null;
 	}
 
-	// ��չ�Ķ����ݿ�˫���Բ�ѯ
+	// 锟斤拷展锟侥讹拷锟斤拷锟捷匡拷双锟斤拷锟皆诧拷询
 	public List<TEntity> findByTwoProperty(String propertyName1, String propertyName2, String cond1) {
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" + " or e." + propertyName2 + " like '%"
@@ -185,7 +177,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return entities;
 	}
 
-//��չ��ID�����ѯ
+//锟斤拷展锟斤拷ID锟斤拷锟斤拷锟窖�
 	public List<TEntity> findByIDList(List<Integer> IDlist) {
 
 		String namString = entityClass.getSimpleName();
@@ -199,7 +191,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return list;
 	}
 
-	// ��ҳ��ѯʵ��
+	// 锟斤拷页锟斤拷询实锟斤拷
 	public int findTotalNum(String propertyName, Object propertyValue) {
 		String namString = entityClass.getSimpleName();
 		if (entityClass.getSimpleName().equals("Borrowrecord"))
@@ -229,7 +221,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 
 	public int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1) {
-		// TODO:��ҳ����
+		// TODO:锟斤拷页锟斤拷锟斤拷
 		String namString = entityClass.getSimpleName();
 		if (entityClass.getSimpleName().equals("Borrowrecord"))
 			namString = "record";
@@ -246,7 +238,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 
 	public List<TEntity> findPageByTwoSubstring(String propertyName1, String propertyName2, String cond1, String cond2,
 			int pageStart, int pageSize) {
-		// TODO:��ҳ����
+		// TODO:锟斤拷页锟斤拷锟斤拷
 		if (cond1 == null) {
 			cond1 = "";
 		}
@@ -260,7 +252,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return results;
 	}
 
-	// ˫���Ծ�׼��ѯʵ��
+	// 双锟斤拷锟皆撅拷准锟斤拷询实锟斤拷
 	public List<TEntity> getByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2) {
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + "=:Value1" + " and e." + propertyName2 + "=:Value2";
@@ -300,7 +292,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		List<TEntity> results = query.list();
 		return results;
 	}
-	//读取读者数目
+	//璇诲彇璇昏�呮暟鐩�
 		public int numOfReader() {
 			String queryString = "select count(*) from " + entityClass.getSimpleName() + " e ";
 			Query query = this.getSession().createQuery(queryString);
