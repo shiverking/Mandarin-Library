@@ -61,7 +61,7 @@ public class BackThread extends Thread {
 			Date borrowingDate = currentRecord.getBorrowingDate();
 			Date date = new Date();
 
-			int h = (int) ((date.getTime() - borrowingDate.getTime()) / (2 * 3600 * 1000));
+			int h = (int) ((date.getTime() - borrowingDate.getTime()) / (3600 * 1000));
 
 			if (h >= 2) {
 				List<CurrentRecord> currentRecords2 = currentRecordDao.findBy("CurrentRecordID", currentRecordID);
@@ -77,8 +77,6 @@ public class BackThread extends Thread {
 					currentRecordDao.delete(currentRecordID);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
-			}
-		}
-	}
+				}}}}
+	
 }

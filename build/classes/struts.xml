@@ -67,10 +67,6 @@
 				<param name="actionName">getReaderFineb</param><!-- 若fine为空，去取fine -->
 			</result>
 		</action>
-		<action name="addRecord" class="currentrecordAction"
-			method="addRecordddd">
-			<result name="success">
-				/Reserve_success.jsp
 		<action name="getReaderFineb" class="borrowrecordAction"
 			method="getReaderFine">
 			<result name="success" type="chain">
@@ -80,6 +76,33 @@
 		<action name="getBooksbyborrowing" class="bookAction"
 			method="getBooksbyborrowPage"><!-- 依赖借阅记录获取对应的书籍信息 -->
 			<result name="success">/ReaderJsp/Reader_borrowed.jsp</result><!--结束action，返回借阅记录界面 -->
+		</action>
+		<!-- 修改用户名和密码还有头像 -->
+		<action name="changeReaderName" class="readerAction"
+			method="changeReaderName">
+			<result name="success" type="chain">
+				<param name="actionName">getReaderStatuForCurrent</param>
+			</result>
+		</action>
+		<action name="changeReaderPassword" class="readerAction"
+			method="changeReaderPassword">
+			<result name="success" type="chain">
+				<param name="actionName">getReaderStatuForCurrent</param>
+			</result>
+		</action>
+		<action name="changeReaderAvatar" class="readerAction"
+			method="changeReaderAvatar">
+			<result name="login">/Login.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getReaderStatuForCurrent</param>
+			</result>
+			
+		</action>
+		<!-- 忘记密码 -->
+		<action name="forgetReaderPassword" class="readerAction"
+			method="forgetReaderPassword">
+			<result name="success">/Login.jsp</result>
+			<result name="input">/Login.jsp</result>
 		</action>
 		<!-- 还书记录分页查询 -->
 		<action name="getReaderStatuForReturn" class="readerAction"
@@ -129,6 +152,13 @@
 		<!-- 搜索书籍 -->
 		<action name="searchBook" class="bookAction"
 			method="searchBook">
+			<result name="success" type="chain">
+				<param name="actionName">isReservation</param>
+			</result>
+			
+		</action>
+		<action name="isReservation" class="currentrecordAction"
+			method="isReservation"><!-- 依赖借阅记录获取对应的书籍信息 -->
 			<result name="success">/ReaderJsp/category.jsp</result>
 		</action>
 		<!-- 预约书籍 -->
@@ -148,14 +178,14 @@
 		</action>
 		<action name="addRecord" class="currentrecordAction"
 			method="addRecord">
-			<result name="success">
-				/Reserve_success.jsp
+			<result name="success" type="chain">
+				<param name="actionName">searchBook</param>
 			</result>
 		</action>
 		<!-- <action name="addRecord" class="currentRecordAction" method="addRecord"> 
 			<result name="success">/Reserve_success.jsp</result> </action> -->
-		
-		
+
+
 
 		<!-- Librarian添加书籍 -->
 		<action name="addBook" class="bookAction" method="addBook">
