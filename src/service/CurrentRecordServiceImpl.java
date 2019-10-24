@@ -36,12 +36,11 @@ public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> impleme
 
 	public void saveCurrentRecord(CurrentRecord currentRecord) {
 
-		this.saveCurrentRecord(currentRecord);
+		this.getDao().save(currentRecord);
 	}
 
 	public void mergeCurrentRecord(CurrentRecord currentRecord) {
-		this.mergeCurrentRecord(currentRecord);
-
+		this.getDao().merge(currentRecord);
 	}
 	
 
@@ -90,6 +89,12 @@ public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> impleme
 
 
 
+	@Override
+	public List<CurrentRecord> getCurrentRecordByBook(Book book) {
+		// TODO Auto-generated method stub
+		return this.getDao().findBy("BookID", book.getBookID());
+		
+	}
 
 }
 

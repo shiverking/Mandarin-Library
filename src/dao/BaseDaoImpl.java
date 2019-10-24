@@ -7,6 +7,7 @@ package dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -176,7 +177,6 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return null;
 	}
 
-	// ï¿½ï¿½Õ¹ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½İ¿ï¿½Ë«ï¿½ï¿½ï¿½Ô²ï¿½Ñ¯
 	public List<TEntity> findByTwoProperty(String propertyName1, String propertyName2, String cond1) {
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" + " or e." + propertyName2 + " like '%"
@@ -213,7 +213,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 
 	public List<TEntity> findPageByQuery(String propertyName, Object propertyValue, String cond, int pageStart,
 			int pageSize) {
-		if (cond != null) {
+		if (cond != null && !cond.isEmpty()) {
 			cond = " order by " + cond;
 		} else {
 			cond = "";
@@ -228,6 +228,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return results;
 	}
 
+//Ë«ÊôĞÔ·ÖÒ³µ¥ÖµÄ£ºı²éÑ¯
 	public int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1) {
 		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 		String namString = entityClass.getSimpleName();
@@ -244,15 +245,15 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return list.isEmpty() ? 0 : list.get(0).intValue();
 	}
 
-	public List<TEntity> findPageByTwoSubstring(String propertyName1, String propertyName2, String cond1, String cond2,
-			int pageStart, int pageSize) {
-		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
+	public List<TEntity> findPageByTwoProperty(String propertyName1, String propertyName2, String cond1, int pageStart,
+			int pageSize) {
+		// TODO:·ÖÒ³ËÑË÷
 		if (cond1 == null) {
 			cond1 = "";
 		}
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName1 + " like '%" + cond1 + "%'" + " or e." + propertyName2 + " like '%"
-				+ cond2 + "%'";
+				+ cond1 + "%'";
 		Query query = this.getSession().createQuery(queryString);
 		query.setFirstResult(pageStart);
 		query.setMaxResults(pageSize);
@@ -283,15 +284,17 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		List<Long> list = query.list();
 		return list.isEmpty() ? 0 : list.get(0).intValue();
 	}
+
 	//
-	public List<TEntity> findPageByTwoProperty(String propertyName1,String propertyName2, Object Value1, Object Value2, String cond, int pageStart, int pageSize){
+	public List<TEntity> getPageByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2,
+			String cond, int pageStart, int pageSize) {
 		if (cond != null) {
 			cond = " order by " + cond;
 		} else {
 			cond = "";
 		}
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
-		queryString += "where e." + propertyName1 + "=:Value1" +" and e." + propertyName2 + "=:Value2"+ cond;
+		queryString += "where e." + propertyName1 + "=:Value1" + " and e." + propertyName2 + "=:Value2" + cond;
 		Query query = this.getSession().createQuery(queryString);
 		query.setParameter("Value1", Value1);
 		query.setParameter("Value2", Value2);
@@ -300,11 +303,135 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		List<TEntity> results = query.list();
 		return results;
 	}
-	//è¯»å–è¯»è€…æ•°ç›®
+	//è¯»å–è¯»è€…æ•°ç›®
 		public int numOfReader() {
 			String queryString = "select count(*) from " + entityClass.getSimpleName() + " e ";
 			Query query = this.getSession().createQuery(queryString);
 			List<Long> list = query.list();
 			return list.isEmpty() ? 0 : list.get(0).intValue();
 		}
+
+	// TODO:ÍòÄÜµÄ·ÖÒ³²éÑ¯£¬º­¸ÇËùÓĞ·ÖÒ³²éÑ¯·½Ê½
+	public Integer findTotalNum(List<String> propertyName, List<String> value, Integer andEnd, Integer equalEnd) {
+		String namString = entityClass.getSimpleName();
+		if (entityClass.getSimpleName().equals("Borrowrecord"))
+			namString = "record";
+		String queryString = "SELECT COUNT(" + namString + "ID) from " + entityClass.getSimpleName() + " e where ";
+		int i = 0;
+		for (; i < andEnd; i++) {// ÏÈÌí¼ÓandÌõ¼ş
+			if (i > 0)
+				queryString += " and ";// ÈôandÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óand¹Ø¼ü´Ê
+			if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+				queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+			} else {
+				queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+			}
+		}
+		if (i < propertyName.size()) {
+			if (i > 0) {
+				queryString += " and ";// Èç¹ûÇ°ÃæÓĞandÌõ¼ş£¬ÏÈÌí¼Óand¹Ø¼ü´Ê
+			}
+			queryString += "(";
+			for (; i < propertyName.size(); i++) {// Ìí¼ÓorÌõ¼ş
+				if (i > andEnd) {
+					queryString += " or ";// Èç¹ûorÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óor¹Ø¼ü´Ê
+				}
+				if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+					queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+				} else {
+					queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+				}
+			}
+			queryString += "" + ")";
+		}
+		Query query = this.getSession().createQuery(queryString);
+		List<Long> list = query.list();
+		return list.isEmpty() ? 0 : list.get(0).intValue();
+	}
+
+	// TODO:ÍòÄÜµÄ·ÖÒ³²éÑ¯£¬º­¸ÇËùÓĞ·ÖÒ³²éÑ¯·½Ê½
+	public List<TEntity> findPage(List<String> propertyName, List<String> value, List<String> order, Integer andEnd,
+			Integer equalEnd, Integer desWhen, int pageStart, int pageSize) {
+		String queryString = " from " + entityClass.getSimpleName() + " e where ";
+		int i = 0;
+		// Ìí¼Ó²éÑ¯Ìõ¼ş
+		for (; i < andEnd; i++) {// ÏÈÌí¼ÓandÌõ¼ş
+			if (i > 0)
+				queryString += " and ";// ÈôandÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óand¹Ø¼ü´Ê
+			if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+				queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+			} else {
+				queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+			}
+		}
+		if (i < propertyName.size()) {
+			if (i > 0) {
+				queryString += " and ";// Èç¹ûÇ°ÃæÓĞandÌõ¼ş£¬ÏÈÌí¼Óand¹Ø¼ü´Ê
+			}
+			queryString += "(";
+			for (; i < propertyName.size(); i++) {// Ìí¼ÓorÌõ¼ş
+				if (i > andEnd) {
+					queryString += " or ";// Èç¹ûorÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óor¹Ø¼ü´Ê
+				}
+				if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+					queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+				} else {
+					queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+				}
+			}
+			queryString += "" + ")";
+		}
+		// Èôorder²»Îª¿Õ£¬Ìí¼ÓÅÅĞòÌõ¼ş
+		if (order != null && !order.isEmpty()) {
+			queryString += " order by ";
+			for (int j = 0; j < order.size(); j++) {
+				queryString += order.get(j);
+				if (j + 1 < order.size()) {
+					queryString += ",";
+				}
+			}
+		}
+		Query query = this.getSession().createQuery(queryString);
+		query.setFirstResult(pageStart);
+		query.setMaxResults(pageSize);
+		List<TEntity> results = query.list();
+		return results;
+	}
+
+	// TODO:»ñÈ¡µ¥Ò»×Ö¶ÎµÄ²éÑ¯.½öÖ§³Ö×Ö·û´®
+	public List<String> findSingleField(List<String> propertyName, List<String> value, String name, Integer andEnd,
+			Integer equalEnd) {
+		String queryString = "select "+name+" from " + entityClass.getSimpleName() + " e where ";
+		int i = 0;
+		// Ìí¼Ó²éÑ¯Ìõ¼ş
+		for (; i < andEnd; i++) {// ÏÈÌí¼ÓandÌõ¼ş
+			if (i > 0)
+				queryString += " and ";// ÈôandÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óand¹Ø¼ü´Ê
+			if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+				queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+			} else {
+				queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+			}
+		}
+		if (i < propertyName.size()) {
+			if (i > 0) {
+				queryString += " and ";// Èç¹ûÇ°ÃæÓĞandÌõ¼ş£¬ÏÈÌí¼Óand¹Ø¼ü´Ê
+			}
+			queryString += "(";
+			for (; i < propertyName.size(); i++) {// Ìí¼ÓorÌõ¼ş
+				if (i > andEnd) {
+					queryString += " or ";// Èç¹ûorÌõ¼ş¸öÊı´óÓÚ1¸ö£¬Ìí¼Óor¹Ø¼ü´Ê
+				}
+				if (i < equalEnd) {// ¸ù¾İequalEnd¾ö¶¨´ËÊôĞÔÊÇ¾«×¼²éÑ¯»¹ÊÇÄ£ºı²éÑ¯
+					queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+				} else {
+					queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+				}
+			}
+			queryString += "" + ")";
+		}
+		Query query = this.getSession().createQuery(queryString);
+		List<String> list = query.list();
+		return list;
+	}
 }

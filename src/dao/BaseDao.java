@@ -71,9 +71,11 @@ public interface BaseDao<TEntity> {
 
 	// ï¿½ï¿½Õ¹ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½İ¿ï¿½Ë«ï¿½ï¿½ï¿½Ô²ï¿½Ñ¯
 	List<TEntity> findByTwoProperty(String propertyName1, String propertyName2, String cond1);
-	//ï¿½ï¿½Õ¹ï¿½ï¿½Ë«ï¿½ï¿½ï¿½Ô¾ï¿½×¼ï¿½ï¿½Ñ¯
-	List<TEntity> getByTwoProperty(String propertyName1, String propertyName2, Object Value1,Object Value2);
-	// ï¿½ï¿½Õ¹IDï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
+
+	// ÍØÕ¹µÄË«ÊôĞÔ¾«×¼²éÑ¯
+	List<TEntity> getByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2);
+
+	// ÍØÕ¹IDÊı×é²éÑ¯
 	List<TEntity> findByIDList(List<Integer> IDlist);
 
 	// ï¿½ï¿½Õ¹ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
@@ -81,11 +83,41 @@ public interface BaseDao<TEntity> {
 
 	List<TEntity> findPageByQuery(String propertyName, Object propertyValue, String cond, int pageStart, int pageSize);
 
-	List<TEntity> findPageByTwoSubstring(String propertyName1, String propertyName2, String cond1,String cond2, int pageStart,
+	List<TEntity> findPageByTwoProperty(String propertyName1, String propertyName2, String cond1, int pageStart,
 			int pageSize);
 
 	int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1);
-	int findTotalNumbyTwoProperty(String propertyName1, String propertyName2,Object value1,Object value2);
-	int numOfReader();
-	List<TEntity> findPageByTwoProperty(String propertyName1,String propertyName2, Object Value1, Object Value2, String cond, int pageStart, int pageSize);
+
+	int findTotalNumbyTwoProperty(String propertyName1, String propertyName2, Object value1, Object value2);
+
+	List<TEntity> getPageByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2,
+			String cond, int pageStart, int pageSize);
+int numOfReader();
+	// TODO:ÍòÄÜµÄ·ÖÒ³²éÑ¯£¬º­¸ÇËùÓĞ·ÖÒ³²éÑ¯·½Ê½
+	/**
+	 * 
+	 * @param propertyName Òª²éÑ¯µÄÌõ¼şÃûÁĞ±í
+	 * @param value        Òª²éÑ¯µÄÌõ¼şÖµÁĞ±í
+	 * @param andEnd       ÔÚµÚ¼¸¸öÌõ¼ş½áÊøandÓï¾ä£¬ÈôÎª0ÔòÃ»ÓĞandÓï¾ä
+	 * @param equalEnd     ÔÚµÚ¼¸¸öÌõ¼ş½áÊø"="ÅĞ¶Ï£¬ÈôÎª0ÔòÃ»ÓĞ¡®=¡¯Óï¾ä
+	 * @return Total number of records ·µ»ØËùÓĞ·ûºÏÌõ¼şµÄ¼ÇÂ¼Êı
+	 */
+	public Integer findTotalNum(List<String> propertyName, List<String> value, Integer andEnd, Integer equalEnd);
+
+	/**
+	 * 
+	 * @param propertyName Òª²éÑ¯µÄÌõ¼şÃûÁĞ±í
+	 * @param value        Òª²éÑ¯µÄÌõ¼şÖµÁĞ±í
+	 * @param andEnd       ÔÚµÚ¼¸¸öÌõ¼ş½áÊøandÓï¾ä£¬ÈôÎª0ÔòÃ»ÓĞandÓï¾ä
+	 * @param equalEnd     ÔÚµÚ¼¸¸öÌõ¼ş½áÊø"="ÅĞ¶Ï£¬ÈôÎª0ÔòÃ»ÓĞ¡®=¡¯Óï¾ä
+	 * @param desWhen      ´ÓµÚ¼¸¸öÅÅĞòÌõ¼ş¿ªÊ¼ÄæĞò£¬Èô
+	 * @param pageStart    ·ÖÒ³ÆğÊ¼Ë÷Òı
+	 * @param pageSize     ·ÖÒ³µÄ´óĞ¡
+	 * @return ·ÖÒ³²éÑ¯µÄÁĞ±í
+	 */
+	// TODO:ÍòÄÜµÄ·ÖÒ³²éÑ¯£¬º­¸ÇËùÓĞ·ÖÒ³²éÑ¯·½Ê½
+	public List<TEntity> findPage(List<String> propertyName, List<String> value, List<String> order, Integer andEnd,
+			Integer equalEnd, Integer desWhen, int pageStart, int pageSize);
+	//TODO:»ñÈ¡µ¥Ò»×Ö¶ÎµÄ²éÑ¯
+	public List<String> findSingleField(List<String> propertyName, List<String> value,String name, Integer andEnd, Integer equalEnd);
 }
