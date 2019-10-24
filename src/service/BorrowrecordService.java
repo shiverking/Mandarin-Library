@@ -23,9 +23,15 @@ public Borrowrecord getBorrowrecordByid(int id);
 public void saveBorrowrecord(Borrowrecord borrowrecord);
 public void mergeBorrowrecord(Borrowrecord borrowrecord);
 
+<<<<<<< HEAD
 //TODO:ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 public PageBean<Borrowrecord> findPageBean(Reader reader,Integer pageNum);
 //Í¨ï¿½ï¿½idï¿½ï¿½È¡Î´Ö§ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
+=======
+//TODO:·ÖÒ³²éÑ¯
+public PageBean<Borrowrecord> getPageBean(Reader reader,Integer pageNum,boolean isreturn);
+//Í¨¹ýid»ñÈ¡Î´Ö§¸¶µÄ·£½ð
+>>>>>>> wjy
 public int getFine(int id);
 public List<Borrowrecord> getBorrowrecordsbyReaders(List<Reader> readers);
 public List<Borrowrecord> borrowBook(List<Reader> readers, List<Book> books);

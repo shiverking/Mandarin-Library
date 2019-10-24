@@ -11,7 +11,11 @@ import model.Borrowrecord;
 import model.Reader;
 
 public interface ReaderService {
+<<<<<<< HEAD
 	public Reader verify(String Email, String Password);
+=======
+
+>>>>>>> wjy
 
 	public List<Reader> getReaderByName(String Name);
 
@@ -23,4 +27,10 @@ public interface ReaderService {
 
 	public int getReaderNum();
 
+<<<<<<< HEAD
+=======
+	public Reader verify(String phoneNumber, String Password);
+	public void mergeReader(Reader reader);
+	public boolean forgetReaderPassword(String email);
+>>>>>>> wjy
 }

@@ -27,10 +27,13 @@ public class PageBean<T> implements Serializable {
 
 	public PageBean(int totalRecords, int current) {
 		totalRecord = totalRecords;
-		this.currentPage = current;
-		startIndex = (current - 1) * pageSize;
 		totalPage = totalRecord % pageSize == 0 ? totalRecord / pageSize : totalRecord / pageSize + 1;
-
+		if (current>totalPage) {
+			currentPage=totalPage;
+		}else {
+			currentPage=current;
+		}
+		startIndex = (current - 1) * pageSize;
 		if (totalPage < 7) {
 			beginPageNum = 1;
 			endPageNum = totalPage;
@@ -47,6 +50,33 @@ public class PageBean<T> implements Serializable {
 			}
 		}
 	}
+	public PageBean(int totalRecords, int current,int size) {
+		totalRecord = totalRecords;
+		this.pageSize=size;
+		startIndex = (current - 1) * pageSize;
+		totalPage = totalRecord % pageSize == 0 ? totalRecord / pageSize : totalRecord / pageSize + 1;
+		if (current>totalPage) {
+			currentPage=totalPage;
+		}else {
+			currentPage=current;
+		}
+		if (totalPage < 7) {
+			beginPageNum = 1;
+			endPageNum = totalPage;
+		} else {
+			beginPageNum = currentPage - 3;
+			endPageNum = currentPage + 3;
+			if (beginPageNum < 1) {
+				beginPageNum = 1;
+				endPageNum = beginPageNum + 6;
+			}
+			if (endPageNum > totalPage) {
+				endPageNum = totalPage;
+				beginPageNum = endPageNum - 6;
+			}
+		}
+	}
+<<<<<<< HEAD
 	public PageBean(int totalRecords, int current,int size) {
 		pageSize=size;
 		totalRecord = totalRecords;
@@ -70,6 +100,8 @@ public class PageBean<T> implements Serializable {
 			}
 		}
 	}
+=======
+>>>>>>> wjy
 	public int getStartIndex() {
 		return startIndex;
 	}

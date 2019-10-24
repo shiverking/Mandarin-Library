@@ -10,6 +10,6 @@
 		<property name="Password" not-null="true"/>
 		<property name="Email" not-null="true"/>
 		<property name="Money" type="int" not-null="true"/>
-		<property name="PhoneNumber" type="string" length="11" not-null="true"/>
+		<property name="PhoneNumber" type="string" length="13" not-null="true"/>
 	  </class>
 </hibernate-mapping>

@@ -1,13 +1,35 @@
 package action;
+<<<<<<< HEAD
 
+=======
+import java.io.File;
+import java.io.IOException;
+>>>>>>> wjy
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+/*import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.servlet.http.HttpServletRequest;*/
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
+<<<<<<< HEAD
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
+=======
+import org.apache.commons.io.FileUtils;
+
+/*import org.hibernate.SessionFactory;
+*/
+>>>>>>> wjy
 import com.opensymphony.xwork2.ActionContext;
 
 import model.Book;
@@ -62,30 +84,84 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			this.errorMessage="Your name or password is wrong, please try again !";
 			return INPUT;
 		}
-	public String signin() throws Exception {
-		String Email = this.getModel().getEmail();
-		String Password = this.getModel().getPassword();
+<<<<<<< HEAD
+=======
+	private File avatarFile;
 
-		if (Email.isEmpty()) {
-			this.errorMessage = "You must input your Email!";
+>>>>>>> wjy
+	public String signin() throws Exception {
+		String phoneNumber = this.getModel().getPhoneNumber();
+		String password = this.getModel().getPassword();
+
+		if (phoneNumber.isEmpty() || phoneNumber == null) {
+			this.errorMessage = "You must input your mobile number!";
 			return INPUT;
 		}
-		if (Password.isEmpty()) {
+		if (password.isEmpty() || password == null) {
 			this.errorMessage = "You must input your password!";
 			return INPUT;
 		}
-		Reader reader = this.getService().verify(Email, Password);
+		Reader reader = this.getService().verify(phoneNumber, password);
 		if (reader != null) {
 			Map<String, Object> session = ActionContext.getContext().getSession();
 			session.put("reader", reader);
 			this.tempReader = reader;
 			return SUCCESS;
 		}
-		this.errorMessage = "Your email or password is wrong!";
+		this.errorMessage = "Your mobile number or password is wrong!";
 		return INPUT;
 	}
 
+<<<<<<< HEAD
 	// ��ȡ�û���״̬
+=======
+	public String signout() throws Exception {
+		ActionContext.getContext().getSession().clear();
+		return SUCCESS;
+	}
+
+	public String changeReaderName() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		tempReader = (Reader) session.get("reader");
+		if (this.getModel().getReaderName().isEmpty()) {
+			this.setErrorMessage("Please do not enter an empty name");
+		} else {
+			tempReader.setReaderName(this.getModel().getReaderName());
+			this.setErrorMessage("The name was successfully modified");
+		}
+		this.getService().mergeReader(tempReader);
+		return SUCCESS;
+	}
+
+//	changeReaderPassword
+	public String changeReaderPassword() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		tempReader = (Reader) session.get("reader");
+		this.getService().mergeReader(tempReader);
+		return SUCCESS;
+	}
+
+	public String changeReaderAvatar() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		tempReader = (Reader) session.get("reader");
+		if (tempReader==null) {
+			return LOGIN;
+		}
+		if (avatarFile==null) {
+			this.errorMessage="Please select an image.";
+			return SUCCESS;
+		}
+		String realPath = ServletActionContext.getServletContext().getRealPath("upload");
+		try {
+			FileUtils.copyFile(avatarFile, new File(realPath+"\\"+tempReader.getPhoneNumber()+".jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+
+	// 获取当前读者状态
+>>>>>>> wjy
 	public String getReaderStatu() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		this.tempReader = (Reader) session.get("reader");
@@ -93,6 +169,19 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			return NONE;
 		}
 		return SUCCESS;
+	}
+
+	public String forgetReaderPassword() throws Exception {
+//		HttpServletRequest PaswordRequest = ServletActionContext.getRequest();
+//		String email = PaswordRequest.getParameter("Email");
+		boolean a = this.getService().forgetReaderPassword(this.getModel().getEmail());
+		if (a == true) {
+			this.errorMessage = "An email has been sent to your mailbox, please check it in time";
+			return SUCCESS;
+		} else {
+			this.errorMessage = "Your email is wrong!";
+			return INPUT;
+		}
 	}
 
 	public String getSearchContent() {
@@ -117,11 +206,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 
 	public void setReaders(List<Reader> readers) {
 		this.readers = readers;
-	}
-
-	public String signout() throws Exception {
-		ActionContext.getContext().getSession().clear();
-		return SUCCESS;
 	}
 
 	public Reader getTempReader() {
@@ -179,4 +263,16 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		readerNum = this.getService().getReaderNum();
 		return SUCCESS;
 	}
+<<<<<<< HEAD
+=======
+
+	public File getAvatarFile() {
+		return avatarFile;
+	}
+
+	public void setAvatarFile(File avatarFile) {
+		this.avatarFile = avatarFile;
+	}
+
+>>>>>>> wjy
 }

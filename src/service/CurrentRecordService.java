@@ -26,6 +26,10 @@ public interface CurrentRecordService {
 	public CurrentRecord getCurrentRecordbyBookbyReader(Book book, Reader reader);
 	public CurrentRecord getCurrentRecordbyBook(Book book);
 	public void deleteCurrentRecordbyID(int id);
+<<<<<<< HEAD
+=======
+	List<CurrentRecord> getCurrentRecordByBook(Book book);
+>>>>>>> wjy
 
 	
 }

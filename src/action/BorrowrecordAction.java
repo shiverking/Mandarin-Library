@@ -87,10 +87,43 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 
 	public String getReaderFine() {
 		totalFine = this.getService().getFine(tempReader.getReaderID());// TODO:ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ã·¨
+<<<<<<< HEAD
+=======
+		return SUCCESS;
+	}
+
+		
+	public String findReaderCanBorrow(){
+		int n = this.getService().findCanBorrow(this.readers.get(0));
+		if(n < 3){
+			int x = 1;
+			if(this.bookID2 != 0){
+				x++;
+			}
+			if(this.bookID3 != 0){
+				x++;
+			}
+			if(n + x <= 3){
+				return SUCCESS;
+			}else{
+				this.setErrorMessage("ReaderCan'tBorrowError: This Reader can only Borrow " + (3 - n) + " books! Reader id:" + this.readers.get(0).getReaderID());
+				return ERROR;
+			}
+		}else{
+			this.setErrorMessage("ReaderCan'tBorrowError: This Reader has already Borrow 3 books! Reader id:" + this.readers.get(0).getReaderID());
+			return ERROR;
+		}
+	}
+	
+	
+	public String showError(){
+		totalFine=this.getService().getFine(tempReader.getReaderID());//TODO:Ôö¼ÓÁË¿ªÏú£¬ºóÆÚ¿ÉÄÜÐÞ¸ÄËã·¨
+>>>>>>> wjy
 		return SUCCESS;
 	}
 
 	public String getBorrowPageByReader() {
+<<<<<<< HEAD
 		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 		this.setErrorMessage(null);
 		borrowPage = this.getService().findPageBean(tempReader, pageNum);
@@ -129,6 +162,18 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	
 	
 	public String showError(){
+=======
+		// TODO:·ÖÒ³²éÑ¯
+		borrowPage = this.getService().getPageBean(tempReader, pageNum ,false);
+		if(totalFine==null)return "getfine";
+		return SUCCESS;
+	}
+	
+	public String getReturnPageByReader() {
+		// TODO:·ÖÒ³²éÑ¯
+		borrowPage = this.getService().getPageBean(tempReader, pageNum ,true);
+		if(totalFine==null)return "getfine";
+>>>>>>> wjy
 		return SUCCESS;
 	}
 
@@ -184,6 +229,38 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	public List<Reader> getReaders() {
 		return readers;
 	}
+<<<<<<< HEAD
+=======
+
+	public void setReaders(List<Reader> readers) {
+		this.readers = readers;
+	}
+	
+	public void setErrorMessager(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+	
+	public String getErrorMessager() {
+		return errorMessage;
+	}
+
+	public void setBookID2(int bookID2) {
+		this.bookID2 = bookID2;
+	}
+
+	public int getBookID2() {
+		return bookID2;
+	}
+
+	public void setBookID3(int bookID3) {
+		this.bookID3 = bookID3;
+	}
+
+	public int getBookID3() {
+		return bookID3;
+	}
+	
+>>>>>>> wjy
 
 	public void setReaders(List<Reader> readers) {
 		this.readers = readers;

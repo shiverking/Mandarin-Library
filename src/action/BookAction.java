@@ -3,7 +3,10 @@ import java.io.*;
 import java.net.*;
 import java.util.regex.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import model.Book;
 import model.Borrowrecord;
@@ -17,14 +20,24 @@ import util.ISBNgenerator;
 import util.PageBean;
 public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
+<<<<<<< HEAD
 	private List<Book> books;
 	private List<CurrentRecord> currentRecords;// ָ�ڽ��鼮��ԤԼ�鼮����Ϣ
 	private PageBean<Borrowrecord> borrowPage;// ���ļ�¼��Ϣ
+=======
+	private List<Book> books;// 可能被bookPage取代，建议少用，如需使用请改注释
+	private List<Borrowrecord> borrowrecords;// 可能被删除
+	private List<CurrentRecord> currentRecords;// 指预约书籍的信息
+	private PageBean<Borrowrecord> borrowPage;// 已归还的书籍信息
+>>>>>>> wjy
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
 	private String searchContent;
+<<<<<<< HEAD
 	private List<Borrowrecord> borrowrecords;
+=======
+>>>>>>> wjy
 	private String isbn1;
 	private int bookID2;
 	public ISBNgenerator getiSBNgenerator() {
@@ -35,6 +48,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		this.iSBNgenerator = iSBNgenerator;
 	}
 
+<<<<<<< HEAD
 	public List<Borrowrecord> getBorrowrecords() {
 		return borrowrecords;
 	}
@@ -42,6 +56,9 @@ public class BookAction extends BaseAction<Book, BookService> {
 	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
 		this.borrowrecords = borrowrecords;
 	}
+=======
+	
+>>>>>>> wjy
 
 	public int getBookID2() {
 		return bookID2;
@@ -94,6 +111,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	public static String getDescription() {
 		return Description;
 	}
+<<<<<<< HEAD
 
 	public static void setDescription(String description) {
 		Description = description;
@@ -126,12 +144,127 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	// reader��Ҫʹ�õĺ�����������������
+=======
+
+	public static void setDescription(String description) {
+		Description = description;
+	}
+
+
+	public static void setCategory(String category) {
+		Category = category;
+	}
+
+	public static String getIsbn() {
+		return isbn;
+	}
+
+	public static void setIsbn(String isbn) {
+		BookAction.isbn = isbn;
+	}
+	private int bookID3;
+	// 锟斤拷锟斤拷锟角撅拷锟斤拷使锟矫的癸拷锟杰猴拷锟斤拷
+
+	public String getIsbn1() {
+		return isbn1;
+	}
+
+	public void setIsbn1(String isbn1) {
+		this.isbn1 = isbn1;
+	}
+	private String categoryString;
+	private Integer selectSearch;
+	private Map<String, Integer> categoryMap;
+	private Boolean	displayStyle=true;
+	// 以下是具体使用的功能函数
+
+	// reader锟斤拷要使锟矫的猴拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+>>>>>>> wjy
 	public String searchBook() {
-		// TODO:��ҳ����
-		bookPage = this.getService().getPageBean(searchContent, pageNum);
+		// TODO:分页搜索
+	
+		if (selectSearch != null) {
+			switch (selectSearch) {
+			case 1:
+				bookPage = this.getService().getPageBean(searchContent,categoryString, pageNum);
+				break;
+			case 2:
+				bookPage = this.getService().getPageBeanbyISBN(searchContent,categoryString, pageNum);
+				break;
+			case 3:
+				bookPage = this.getService().getPageBeanbyTitle(searchContent,categoryString, pageNum);
+				break;
+			case 4:
+				bookPage = this.getService().getPageBeanbyAuthor(searchContent,categoryString, pageNum);
+				break;
+			default:
+				bookPage = this.getService().getPageBean(searchContent,categoryString,pageNum);
+			}
+		} else {
+			bookPage = this.getService().getPageBean(searchContent,categoryString, pageNum);
+		}
+		this.getsCategory();
 		return SUCCESS;
 	}
 
+	public String getsCategory() {
+		List<String> cStrings = this.getService().getCategory(searchContent, selectSearch);
+		Map<String, Integer> tempMap = new HashMap<String, Integer>();
+		for (Iterator iterator = cStrings.iterator(); iterator.hasNext();) {
+			String string = (String) iterator.next();
+			String[] tsStrings = string.split(",");
+			for (int i = 0; i < tsStrings.length; i++) {
+				if (tempMap.containsKey(tsStrings[i])) {
+					tempMap.put(tsStrings[i],tempMap.get(tsStrings[i])+1);
+				}else tempMap.put(tsStrings[i],1);
+			}
+		}
+		categoryMap = tempMap;
+		return SUCCESS;
+	}
+
+
+	public String getBooksbyborrowPage() {
+		books = new ArrayList<Book>();
+		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
+			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
+		}
+		return SUCCESS;
+	}
+//ls
+	public String findBookIsBorrowed() {
+		if (!this.books.get(0).getIsBorrowed()) {
+			
+		} else {
+			this.setErrorMessage(
+					"BookCannotBorrowedError:this Book has been Borrowed--Book id:" + this.books.get(0).getBookID());
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}
+		if (this.books.size()>=2&&this.books.get(1) != null) {
+			if (!this.books.get(1).getIsBorrowed()) {
+				
+			} else {
+				this.setErrorMessage(
+						"BookCannotBorrowedError:this Book has been Borrowed--Book id:" + this.books.get(1).getBookID());
+				System.out.println(this.getErrorMessage());
+				return ERROR;
+			}
+		}
+		if (this.books.size()>=3&&this.books.get(2) != null) {
+			if (!this.books.get(2).getIsBorrowed()) {
+				
+			} else {
+				this.setErrorMessage(
+						"BookCannotBorrowedError:this Book has been Borrowed--Book id:" + this.books.get(2).getBookID());
+				System.out.println(this.getErrorMessage());
+				return ERROR;
+			}
+		}
+		return SUCCESS;
+	}
+
+<<<<<<< HEAD
 	public String getBooksbyBorrowPage() {
 		books = new ArrayList<Book>();
 		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
@@ -172,6 +305,8 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
+=======
+>>>>>>> wjy
 	public String borrowBook() {
 		if (!this.books.get(0).getIsBorrowed()) {
 			this.books.get(0).setIsBorrowed(true);
@@ -290,7 +425,11 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public String getBooksbycurrentRecords() {
+<<<<<<< HEAD
 		// TODO:���ܸ���pagabeanʵ��
+=======
+		// TODO:锟斤拷锟杰革拷锟斤拷pagabean实锟斤拷
+>>>>>>> wjy
 		books = new ArrayList<Book>();
 		for (CurrentRecord currentRecord : currentRecords) {
 			books.add(this.getService().getBookById(currentRecord.getBookID()));
@@ -298,7 +437,11 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 	
+<<<<<<< HEAD
 	// reader��Ҫʹ�õĺ�����������������
+=======
+	// reader锟斤拷要使锟矫的猴拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+>>>>>>> wjy
 
 	public String addBook() throws Exception {
 		HttpServletRequest NumRequest = ServletActionContext.getRequest();
@@ -320,6 +463,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return SUCCESS;
 	}
+<<<<<<< HEAD
 	//根据ISBN加书
 	static String BookName=null;//书名
 	static String ISBN=null;
@@ -329,13 +473,28 @@ public class BookAction extends BaseAction<Book, BookService> {
 	static String Category=null;//种类
 	static String isbn;
 	public static String getUrl(String isbn) {//构造URL
+=======
+	//鏍规嵁ISBN鍔犱功
+	static String BookName=null;//涔﹀悕
+	static String ISBN=null;
+	static String Price=null;//浠锋牸
+	static String Author=null;//浣滆 �
+	static String Description=null;//涔︾睄绠�浠�
+	static String Category=null;//绉嶇被
+	static String isbn;
+	public static String getUrl(String isbn) {//鏋勯�燯RL
+>>>>>>> wjy
 		StringBuilder builder= new StringBuilder();
 		builder.append("http://api.douban.com/book/subject/isbn/");
 		builder.append(isbn);
 		builder.append("?apikey=0b2bdeda43b5688921839c8ecb20399b");
 		return builder.toString();
 	}
+<<<<<<< HEAD
 	public static String getContent(String urlName) {//获取网页显示的内容
+=======
+	public static String getContent(String urlName) {//鑾峰彇缃戦〉鏄剧ず鐨勫唴瀹�
+>>>>>>> wjy
 		String result="";
 		BufferedReader reader= null;
 		try {
@@ -346,8 +505,13 @@ public class BookAction extends BaseAction<Book, BookService> {
 			conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
             conn.setRequestProperty("user-agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+<<<<<<< HEAD
             conn.connect();//建立连接
             reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));//定义输入流来读取URL的响应
+=======
+            conn.connect();//寤虹珛杩炴帴
+            reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));//瀹氫箟杈撳叆娴佹潵璇诲彇URL鐨勫搷搴�
+>>>>>>> wjy
             String line;
             while((line= reader.readLine())!=null) {
             	result+=line;
@@ -366,16 +530,28 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return result;
 	}
+<<<<<<< HEAD
 	public static void seprarate(String result) {//对获取到的网页内容进行分割，获取感兴趣的数据部分,用正则表达式进行匹配
+=======
+	public static void seprarate(String result) {//瀵硅幏鍙栧埌鐨勭綉椤靛唴瀹硅繘琛屽垎鍓诧紝鑾峰彇鎰熷叴瓒ｇ殑鏁版嵁閮ㄥ垎,鐢ㄦ鍒欒〃杈惧紡杩涜鍖归厤
+>>>>>>> wjy
 		String pattern[] = new String[5];
 		Pattern patterncompile[] = new Pattern[5];
 		Matcher matcher[] =new Matcher[5];
 		String group[] = new String[5];
+<<<<<<< HEAD
 		pattern[0]="<title>(.*)</title>";//匹配书籍名称
 		pattern[1]="<db:attribute name=\"price\">(.*?)</db:attribute>";//匹配价格
 		pattern[2]="<db:attribute name=\"author\">(.*?)</db:attribute>";//匹配作者
 		pattern[3]="<summary>(.*)</summary>";//匹配简介
 		pattern[4]="<db:rating(.*?)/>(.*)<gd:rating";//匹配书籍种类
+=======
+		pattern[0]="<title>(.*)</title>";//鍖归厤涔︾睄鍚嶇О
+		pattern[1]="<db:attribute name=\"price\">(.*?)</db:attribute>";//鍖归厤浠锋牸
+		pattern[2]="<db:attribute name=\"author\">(.*?)</db:attribute>";//鍖归厤浣滆��
+		pattern[3]="<summary>(.*)</summary>";//鍖归厤绠�浠�
+		pattern[4]="<db:rating(.*?)/>(.*)<gd:rating";//鍖归厤涔︾睄绉嶇被
+>>>>>>> wjy
 		for(int i=0;i<5;i++) {
 			patterncompile[i]=Pattern.compile(pattern[i]);
 			matcher[i]=patterncompile[i].matcher(result);
@@ -384,7 +560,11 @@ public class BookAction extends BaseAction<Book, BookService> {
 				group[i]=matcher[i].group(1);
 				}
 				else {
+<<<<<<< HEAD
 				group[i]=matcher[i].group(2);//进行二次匹配
+=======
+				group[i]=matcher[i].group(2);//杩涜浜屾鍖归厤
+>>>>>>> wjy
 				String[] splitStr = group[i].split("\"");
 				String res="";
 				for(String str:splitStr) {
@@ -393,7 +573,10 @@ public class BookAction extends BaseAction<Book, BookService> {
 						res+=",";
 						}		
 				}
+<<<<<<< HEAD
 				res = res.substring(0,res.length() - 1);
+=======
+>>>>>>> wjy
 				group[i]=res;
 				}
 				}
@@ -458,10 +641,25 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
+<<<<<<< HEAD
 
 	
 
 //������get��set����
+=======
+	public String reserveBook() {
+		this.book = this.getService().getBookById(book.getBookID());
+		if (book.getIsBorrowed() != false) {
+			return ERROR;
+		} else {
+			book.setIsBorrowed(true);
+			this.getService().mergeBook(book);
+			return SUCCESS;
+		}
+	}
+
+//以下是get和set函数
+>>>>>>> wjy
 	public Book getBook() {
 		return book;
 	}
@@ -518,7 +716,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		this.currentRecords = currentRecords;
 	}
 	
-//admin修改逾期罚金和归还期限
+//admin淇敼閫炬湡缃氶噾鍜屽綊杩樻湡闄�
 	public String adminEditBook() {
 		this.book = this.getService().getBookById(book.getBookID());
 		if (this.getModel().getReturnPeriod() > 0) {
@@ -530,6 +728,38 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		this.getService().mergeBook(book);
 		return SUCCESS;
+	}
+
+	public Integer getSelectSearch() {
+		return selectSearch;
+	}
+
+	public void setSelectSearch(Integer selectSearch) {
+		this.selectSearch = selectSearch;
+	}
+
+	public Map<String, Integer> getCategoryMap() {
+		return categoryMap;
+	}
+
+	public void setCategoryMap(Map<String, Integer> categoryMap) {
+		this.categoryMap = categoryMap;
+	}
+
+	public String getCategoryString() {
+		return categoryString;
+	}
+
+	public void setCategoryString(String categoryString) {
+		this.categoryString = categoryString;
+	}
+
+	public Boolean getDisplayStyle() {
+		return displayStyle;
+	}
+
+	public void setDisplayStyle(Boolean displayStyle) {
+		this.displayStyle = displayStyle;
 	}
 
 }

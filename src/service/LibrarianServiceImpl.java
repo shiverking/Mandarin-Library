@@ -2,7 +2,12 @@ package service;
 import java.util.List;
 
 import model.Librarian;
+<<<<<<< HEAD:src/service/LibrarianServicelmpl.java
+public class LibrarianServicelmpl extends BaseService<Librarian>implements LibrarianService{
+=======
 public class LibrarianServiceImpl extends BaseService<Librarian>implements LibrarianService{
+	@Override
+>>>>>>> wjy:src/service/LibrarianServiceImpl.java
 	public Librarian verify(String LibrarianName, String Password) {
 		if(Password==null) {Password="00010001";}
 		Librarian librarian = this.getDao().getSingle("LibrarianName",LibrarianName);

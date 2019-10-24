@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import model.Librarian;
+import model.Reader;
 import service.LibrarianService;
 
 public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
@@ -26,10 +27,10 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	public void setLibrarians(List<Librarian> librarians) {
 		Librarians = librarians;
 	}
-	/*锟斤拷陆*/
+	/*閿熸枻鎷烽檰*/
 	public String signin() throws Exception{
-		String LibrarianName =this.getModel().getLibrarianName();//锟斤拷取LibrarianName
-		String Password  =this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
+		String LibrarianName =this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName
+		String Password  =this.getModel().getPassword();//閿熸枻鎷峰彇閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
 		if(LibrarianName==null) {
 			System.out.println(LibrarianName);
 			this.errorMessage="You must input the Name!";
@@ -50,8 +51,8 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return INPUT;
 	}
 	public String signup() throws Exception{
-		String LibrarianName = this.getModel().getLibrarianName();//锟斤拷取LibrarianName
-		String Password = this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
+		String LibrarianName = this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName
+		String Password = this.getModel().getPassword();//閿熸枻鎷峰彇閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String NewPassword=request.getParameter("ConfirmPassword");
 		if(LibrarianName.isEmpty()) {
@@ -99,14 +100,23 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		this.getService().deleteLibrarianById(librarian.getLibrarianID());
 		return SUCCESS;
 	}
-	public String findPassword()//admin 找回 librarian密码
+	// 获取当前lib状态
+		public String getReaderStatu() {
+			Map<String, Object> session = ActionContext.getContext().getSession();
+			this.librarian = (Librarian) session.get("librarian");
+			if (librarian == null) {
+				return NONE;
+			}
+			return SUCCESS;
+		}
+	public String findPassword()//admin 鎵惧洖 librarian瀵嗙爜
 	{
 		if(this.getService().findPassword(librarian.getLibrarianName())==null)
 		{
 			return "failure";
 		}
 		else {
-			HttpSession session=ServletActionContext.getRequest().getSession();//将密码存到session中，因为该方法极有可能需要跨jsp传递信息
+			HttpSession session=ServletActionContext.getRequest().getSession();//灏嗗瘑鐮佸瓨鍒皊ession涓紝鍥犱负璇ユ柟娉曟瀬鏈夊彲鑳介渶瑕佽法jsp浼犻�掍俊鎭�
 			session.setAttribute("Password", this.getService().findPassword(librarian.getLibrarianName()));
 			return "success";
 		}
