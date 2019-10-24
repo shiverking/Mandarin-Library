@@ -6,17 +6,17 @@
 	<div class="col-md-3">
 		<div class="category-sidebar">
 			<div class="widget category-list">
-				<h4 class="widget-header">All Category</h4>
+				<h4 class="widget-header" ><a href="javascript:searcha('')">All Category</a></h4>
 				<ul class="category-list">
 
 					<s:iterator value="categoryMap" status="st">
 						<s:if test="%{categoryString ==key}">
-							<li><a style="color: #5672f9;"
-								href="javascript:searcha(<s:property value='key' />)"><s:property
-										value='key' /> <span> <s:property value='value' /></span></a></li>
+							<li><a style="color: #5672f9; "
+								href="javascript:searcha('<s:property value='key'/>')"><s:property
+										value='key' /> <span style="color: #fff; background:#5672f9;"> <s:property value='value' /></span></a></li>
 						</s:if>
 						<s:else>
-							<li><a href="javascript:searcha(<s:property value='key' />)"><s:property
+							<li><a href="javascript:searcha('<s:property value='key'/>')"><s:property
 										value='key' /> <span> <s:property value='value' /></span></a></li>
 						</s:else>
 					</s:iterator>
