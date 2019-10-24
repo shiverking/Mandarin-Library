@@ -7,6 +7,7 @@ package dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -196,7 +197,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 
 	public List<TEntity> findPageByQuery(String propertyName, Object propertyValue, String cond, int pageStart,
 			int pageSize) {
-		if (cond != null) {
+		if (cond != null && !cond.isEmpty()) {
 			cond = " order by " + cond;
 		} else {
 			cond = "";
@@ -211,6 +212,7 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		return results;
 	}
 
+//双属性分页单值模糊查询
 	public int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1) {
 		// TODO:分页搜索
 		String namString = entityClass.getSimpleName();
@@ -266,15 +268,17 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		List<Long> list = query.list();
 		return list.isEmpty() ? 0 : list.get(0).intValue();
 	}
+
 	//
-	public List<TEntity> getPageByTwoProperty(String propertyName1,String propertyName2, Object Value1, Object Value2, String cond, int pageStart, int pageSize){
+	public List<TEntity> getPageByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2,
+			String cond, int pageStart, int pageSize) {
 		if (cond != null) {
 			cond = " order by " + cond;
 		} else {
 			cond = "";
 		}
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
-		queryString += "where e." + propertyName1 + "=:Value1" +" and e." + propertyName2 + "=:Value2"+ cond;
+		queryString += "where e." + propertyName1 + "=:Value1" + " and e." + propertyName2 + "=:Value2" + cond;
 		Query query = this.getSession().createQuery(queryString);
 		query.setParameter("Value1", Value1);
 		query.setParameter("Value2", Value2);
@@ -282,5 +286,129 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		query.setMaxResults(pageSize);
 		List<TEntity> results = query.list();
 		return results;
+	}
+
+	// TODO:万能的分页查询，涵盖所有分页查询方式
+	public Integer findTotalNum(List<String> propertyName, List<String> value, Integer andEnd, Integer equalEnd) {
+		String namString = entityClass.getSimpleName();
+		if (entityClass.getSimpleName().equals("Borrowrecord"))
+			namString = "record";
+		String queryString = "SELECT COUNT(" + namString + "ID) from " + entityClass.getSimpleName() + " e where ";
+		int i = 0;
+		for (; i < andEnd; i++) {// 先添加and条件
+			if (i > 0)
+				queryString += " and ";// 若and条件个数大于1个，添加and关键词
+			if (i < equalEnd) {// 根据equalEnd决定此属性是精准查询还是模糊查询
+				queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+			} else {
+				queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+			}
+		}
+		if (i < propertyName.size()) {
+			if (i > 0) {
+				queryString += " and ";// 如果前面有and条件，先添加and关键词
+			}
+			queryString += "(";
+			for (; i < propertyName.size(); i++) {// 添加or条件
+				if (i > andEnd) {
+					queryString += " or ";// 如果or条件个数大于1个，添加or关键词
+				}
+				if (i < equalEnd) {// 根据equalEnd决定此属性是精准查询还是模糊查询
+					queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+				} else {
+					queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+				}
+			}
+			queryString += "" + ")";
+		}
+		Query query = this.getSession().createQuery(queryString);
+		List<Long> list = query.list();
+		return list.isEmpty() ? 0 : list.get(0).intValue();
+	}
+
+	// TODO:万能的分页查询，涵盖所有分页查询方式
+	public List<TEntity> findPage(List<String> propertyName, List<String> value, List<String> order, Integer andEnd,
+			Integer equalEnd, Integer desWhen, int pageStart, int pageSize) {
+		String queryString = " from " + entityClass.getSimpleName() + " e where ";
+		int i = 0;
+		// 添加查询条件
+		for (; i < andEnd; i++) {// 先添加and条件
+			if (i > 0)
+				queryString += " and ";// 若and条件个数大于1个，添加and关键词
+			if (i < equalEnd) {// 根据equalEnd决定此属性是精准查询还是模糊查询
+				queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+			} else {
+				queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+			}
+		}
+		if (i < propertyName.size()) {
+			if (i > 0) {
+				queryString += " and ";// 如果前面有and条件，先添加and关键词
+			}
+			queryString += "(";
+			for (; i < propertyName.size(); i++) {// 添加or条件
+				if (i > andEnd) {
+					queryString += " or ";// 如果or条件个数大于1个，添加or关键词
+				}
+				if (i < equalEnd) {// 根据equalEnd决定此属性是精准查询还是模糊查询
+					queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+				} else {
+					queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+				}
+			}
+			queryString += "" + ")";
+		}
+		// 若order不为空，添加排序条件
+		if (order != null && !order.isEmpty()) {
+			queryString += " order by ";
+			for (int j = 0; j < order.size(); j++) {
+				queryString += order.get(j);
+				if (j + 1 < order.size()) {
+					queryString += ",";
+				}
+			}
+		}
+		Query query = this.getSession().createQuery(queryString);
+		query.setFirstResult(pageStart);
+		query.setMaxResults(pageSize);
+		List<TEntity> results = query.list();
+		return results;
+	}
+
+	// TODO:获取单一字段的查询.仅支持字符串
+	public List<String> findSingleField(List<String> propertyName, List<String> value, String name, Integer andEnd,
+			Integer equalEnd) {
+		String queryString = "select "+name+" from " + entityClass.getSimpleName() + " e where ";
+		int i = 0;
+		// 添加查询条件
+		for (; i < andEnd; i++) {// 先添加and条件
+			if (i > 0)
+				queryString += " and ";// 若and条件个数大于1个，添加and关键词
+			if (i < equalEnd) {// 根据equalEnd决定此属性是精准查询还是模糊查询
+				queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+			} else {
+				queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+			}
+		}
+		if (i < propertyName.size()) {
+			if (i > 0) {
+				queryString += " and ";// 如果前面有and条件，先添加and关键词
+			}
+			queryString += "(";
+			for (; i < propertyName.size(); i++) {// 添加or条件
+				if (i > andEnd) {
+					queryString += " or ";// 如果or条件个数大于1个，添加or关键词
+				}
+				if (i < equalEnd) {// 根据equalEnd决定此属性是精准查询还是模糊查询
+					queryString += " e." + propertyName.get(i) + "=" + value.get(i);
+				} else {
+					queryString += " e." + propertyName.get(i) + " like '%" + value.get(i) + "%'";
+				}
+			}
+			queryString += "" + ")";
+		}
+		Query query = this.getSession().createQuery(queryString);
+		List<String> list = query.list();
+		return list;
 	}
 }

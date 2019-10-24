@@ -12,7 +12,6 @@
 <title>Calssimax</title>
 
 <!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Font Awesome -->
 <link href="plugins/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -57,16 +56,14 @@
 			if (sel == 1) {
 				document.getElementById("loginform").action = "readersignin";
 				document.getElementById("getPassword").action = "forgetReaderPassword";
-				document.getElementById("uName").innerHTML = "Email:";
-				document.getElementById("User").type = "email:";
-				document.getElementById("User").name = "Email";
+				document.getElementById("uName").innerHTML = "Mobile number:";
+				document.getElementById("User").name = "PhoneNumber";
 				document.getElementById("User").setAttribute('placeholder',
 						"Input Your Email");
 			} else {
 				document.getElementById("loginform").action = "#";
 				document.getElementById("getPassword").action = "#";
 				document.getElementById("uName").innerHTML = "Name:";
-				document.getElementById("User").type = "text";
 				document.getElementById("User").name = "LibrarianName";
 				document.getElementById("User").setAttribute('placeholder',
 						"Input Your UserName");
@@ -75,7 +72,7 @@
 	</script>
 	<!--登录的输入表单-->
 	<section class="popular-deals section "
-		style="background-image: url(http://tushuguan.nwpu.edu.cn/images/2019/20191010A.jpg); background-size: 100%; background-position: center;">
+		style="background-image: url(http://tushuguan.nwpu.edu.cn/images/2019/20191010A.jpg); background-position: center; background-repeat: no-repeat; background-size: cover;">
 		<div class="row justify-content-center">
 			<div class="container form-group col-3 bg-shadow bg-white rounded ">
 				<s:if test="errorMessage!=null">
@@ -89,10 +86,11 @@
 					</div>
 				</s:if>
 				<form action="readersignin" id="loginform" method="post">
-					<label id="uName">Email:</label> <input
-						class="form-control bg-shadow" type="email"
-						placeholder="Input Your Email" Id="User" name="Email"> <label>Password</label>
-					<input class="form-control bg-shadow" type="password"
+					<label id="uName">Mobile number:</label> <input
+						class="form-control bg-shadow" type="text"
+						placeholder="Input Your mobile number" Id="User"
+						name="PhoneNumber"> <label>Password</label> <input
+						class="form-control bg-shadow" type="password"
 						placeholder="Input Your Password" id="Password" name="Password">
 					<label></label>
 					<div class="row justify-content-center">
@@ -162,11 +160,7 @@
 						<!-- footer logo -->
 						<img src="images/MLA_logo_tagline.png" width="300px" alt="">
 						<!-- description -->
-						<p class="alt-color">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-							dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-							exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
+						<p class="alt-color"></p>
 					</div>
 				</div>
 				<!-- Link list -->
@@ -240,7 +234,6 @@
 
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>

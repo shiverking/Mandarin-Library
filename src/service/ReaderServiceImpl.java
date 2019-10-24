@@ -19,8 +19,8 @@ import util.Email_2;
  */
 public class ReaderServiceImpl extends BaseService<Reader> implements ReaderService {
 	
-	public Reader verify(String Email, String Password) {
-		Reader reader = this.getDao().getSingle("Email", Email);
+	public Reader verify(String phoneNumber, String Password) {
+		Reader reader = this.getDao().getSingle("PhoneNumber",phoneNumber);
 		if (reader == null) {
 			return null;
 		}
