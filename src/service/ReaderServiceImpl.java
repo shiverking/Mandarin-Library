@@ -61,7 +61,7 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 		}
 		this.getDao().save(reader);
 	}
-}
+
 
 	public void mergeReader(Reader reader) {
 		// TODO Auto-generated method stub

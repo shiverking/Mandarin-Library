@@ -92,7 +92,7 @@ public interface BaseDao<TEntity> {
 
 	List<TEntity> getPageByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2,
 			String cond, int pageStart, int pageSize);
-
+int numOfReader();
 	// TODO:万能的分页查询，涵盖所有分页查询方式
 	/**
 	 * 

@@ -40,7 +40,6 @@ public class BackThread extends Thread {
 	private ReaderDao readerDao;
 	Date todayDate;
 
-	private static SessionFactory factory;
 	private static Date Update;
 	private static boolean flag = false;
 	private static int counter;
@@ -67,12 +66,7 @@ public class BackThread extends Thread {
 
 		while (!this.isInterrupted()) {
 			todayDate = new Date();
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			System.out.println("Counter: " + counter);
+		
 			if (Update == null) {
 				counter = 0;
 				Update = todayDate;
@@ -170,8 +164,7 @@ public class BackThread extends Thread {
 			}
 
 		}
-
-	}
+	}}}}
 
 	public void autoCancel() {
 
