@@ -7,7 +7,6 @@ public class Reader {
 	private String Email;
 	private int Money;
 	private String PhoneNumber;
-
 	public Reader() {
 	}
 
@@ -68,5 +67,7 @@ public class Reader {
 	public void setPhoneNumber(String phoneNumber) {
 		PhoneNumber = phoneNumber;
 	}
+
+
 
 }

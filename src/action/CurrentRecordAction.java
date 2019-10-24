@@ -2,39 +2,38 @@ package action;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-
-import com.opensymphony.xwork2.ActionContext;
 
 import model.Book;
 import model.CurrentRecord;
 import model.Reader;
 import service.CurrentRecordService;
+import util.PageBean;
 
 /**
  * @author
- * @version ´´½¨Ê±¼ä£º2019Äê10ÔÂ6ÈÕ ÏÂÎç3:37:56
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½10ï¿½ï¿½6ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½3:37:56
  * 
  */
 public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecordService> {
-	private Reader tempReader;// ¼ÇÂ¼µ±Ç°¶ÁÕßµÄÐÅÏ¢
-	private List<CurrentRecord> currentRecords;// ¼ÇÂ¼ÔÚ½èÊé¼®ºÍÔ¤Ô¼Êé¼®µÄÐÅÏ¢
+	private Reader tempReader;// ï¿½ï¿½Â¼ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½Ï¢
+	private List<CurrentRecord> currentRecords;// ï¿½ï¿½Â¼ï¿½Ú½ï¿½ï¿½é¼®ï¿½ï¿½Ô¤Ô¼ï¿½é¼®ï¿½ï¿½ï¿½ï¿½Ï¢
 	private CurrentRecord currentRecord;
 	private Book book;
+	private PageBean<Book> bookPage;
+	private List<Boolean> reservation;
 
-//ÒÔÏÂÊÇ¾ßÌåÊ¹ÓÃµÄ¹¦ÄÜº¯Êý
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½Ê¹ï¿½ÃµÄ¹ï¿½ï¿½Üºï¿½ï¿½ï¿½
 
-//È¡µÃ¶ÁÕßµ±Ç°½èÔÄµÄÊé¼®ºÍÔ¤Ô¼µÄÊé¼®¼ÇÂ¼
+//È¡ï¿½Ã¶ï¿½ï¿½ßµï¿½Ç°ï¿½ï¿½ï¿½Äµï¿½ï¿½é¼®ï¿½ï¿½Ô¤Ô¼ï¿½ï¿½ï¿½é¼®ï¿½ï¿½Â¼
 	public String getCurrentRecord() {
 		currentRecords = this.getService().getCurrentRecordsbyReader(tempReader);
 		return SUCCESS;
 	}
-	
-	public String addRecordddd() throws Exception {
+
+	public String addRecord() throws Exception {
 		this.currentRecord = new CurrentRecord();
 		System.out.println(tempReader.getReaderID());
 		currentRecord.setReaderID(this.getTempReader().getReaderID());
@@ -42,9 +41,21 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 		this.getService().saveCurrentRecord(currentRecord);
 		return SUCCESS;
 	}
-	
 
-//ÍùÏÂÊÇ¸÷ÖÖÊôÐÔµÄgetºÍset·½·¨
+	public String isReservation() {
+		reservation = new ArrayList<Boolean>();
+		for (int i = 0; i < bookPage.getDataList().size(); i++) {
+			if (this.getService().getCurrentRecordByBook(bookPage.getDataList().get(i)).isEmpty()) {
+				reservation.add(false);
+			} else {
+				reservation.add(true);
+			}
+		}
+		
+		return SUCCESS;
+	}
+
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½getï¿½ï¿½setï¿½ï¿½ï¿½ï¿½
 	public Reader getTempReader() {
 		return tempReader;
 	}
@@ -68,6 +79,7 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 	public void setCurrentRecords(List<CurrentRecord> currentRecords) {
 		this.currentRecords = currentRecords;
 	}
+
 	/**
 	 * @param currentRecord the currentRecord to set
 	 */
@@ -75,6 +87,20 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 		this.currentRecord = currentRecord;
 	}
 
+	public PageBean<Book> getBookPage() {
+		return bookPage;
+	}
 
+	public void setBookPage(PageBean<Book> bookPage) {
+		this.bookPage = bookPage;
+	}
+
+	public List<Boolean> getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(List<Boolean> reservation) {
+		this.reservation = reservation;
+	}
 
 }
