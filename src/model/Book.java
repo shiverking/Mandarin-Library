@@ -13,8 +13,16 @@ public class Book {
 	private String category;
 	private String Author;
 	private String Introduction;
+	private String Picture;
+	public String getPicture() {
+		return Picture;
+	}
+	public void setPicture(String picture) {
+		Picture = picture;
+	}
+	
 	public Book(int bookID, String bookName, String iSBN, String price, String location, int returnPeriod,
-			int fineValue, boolean isBorrowed, String category, String author, String introduction) {
+			int fineValue, boolean isBorrowed, String category, String author, String introduction, String picture) {
 		super();
 		BookID = bookID;
 		BookName = bookName;
@@ -27,11 +35,13 @@ public class Book {
 		this.category = category;
 		Author = author;
 		Introduction = introduction;
+		Picture = picture;
 	}
 	public Book() {
 		ReturnPeriod = 30;
 		FineValue = 1;
 		isBorrowed = false;
+		Picture="";
 	}
 
 	public int getBookID() {

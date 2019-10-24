@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author
- * @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ23ÈÕ ÏÂÎç2:04:16
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½23ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½2:04:16
  * 
  */
 public interface BaseDao<TEntity> {
@@ -51,6 +51,7 @@ public interface BaseDao<TEntity> {
 	 * 
 	 * @return the List of entities found
 	 */
+	void deleteByLS(int id);
 	List<TEntity> findAll();
 
 	List<TEntity> findAll(String cond);
@@ -68,14 +69,14 @@ public interface BaseDao<TEntity> {
 
 	List<TEntity> findBySubString(String propertyName, String cond);
 
-	// ÍØÕ¹µÄ¶ÔÊý¾Ý¿âË«ÊôÐÔ²éÑ¯
+	// ï¿½ï¿½Õ¹ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½Ë«ï¿½ï¿½ï¿½Ô²ï¿½Ñ¯
 	List<TEntity> findByTwoProperty(String propertyName1, String propertyName2, String cond1);
-	//ÍØÕ¹µÄË«ÊôÐÔ¾«×¼²éÑ¯
+	//ï¿½ï¿½Õ¹ï¿½ï¿½Ë«ï¿½ï¿½ï¿½Ô¾ï¿½×¼ï¿½ï¿½Ñ¯
 	List<TEntity> getByTwoProperty(String propertyName1, String propertyName2, Object Value1,Object Value2);
-	// ÍØÕ¹IDÊý×é²éÑ¯
+	// ï¿½ï¿½Õ¹IDï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
 	List<TEntity> findByIDList(List<Integer> IDlist);
 
-	// ÍØÕ¹·ÖÒ³²éÑ¯
+	// ï¿½ï¿½Õ¹ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 	int findTotalNum(String propertyName, Object propertyValue);
 
 	List<TEntity> findPageByQuery(String propertyName, Object propertyValue, String cond, int pageStart, int pageSize);
@@ -85,5 +86,6 @@ public interface BaseDao<TEntity> {
 
 	int findTotalNumbyTwoSubstring(String propertyName1, String propertyName2, String cond1);
 	int findTotalNumbyTwoProperty(String propertyName1, String propertyName2,Object value1,Object value2);
+	int numOfReader();
 	List<TEntity> findPageByTwoProperty(String propertyName1,String propertyName2, Object Value1, Object Value2, String cond, int pageStart, int pageSize);
 }

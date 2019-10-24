@@ -3,6 +3,7 @@ import java.util.*;
 
 import model.Admin;
 public class AdminServiceImpl extends BaseService<Admin>implements AdminService{
+	@Override
 	public Admin verify(String AdminName, String Password) {
 		Admin admin = this.getDao().getSingle("AdminName", AdminName);//获取用户名为AdminName的对象
 		if(admin == null) {
@@ -31,6 +32,7 @@ public class AdminServiceImpl extends BaseService<Admin>implements AdminService{
 			this.getDao().merge(n);
 		}
 	}
+	@Override
 	public int getDeposit() {
 		List<Admin> admins=this.getDao().findAll();
 		return admins.get(0).getSecurityDeposite();

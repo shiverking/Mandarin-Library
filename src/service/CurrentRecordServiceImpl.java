@@ -2,14 +2,14 @@ package service;
 
 import java.util.List;
 
-
+import model.Book;
 import model.CurrentRecord;
 import model.Reader;
 import util.PageBean;
 
 /**
  * @author
- * @version ´´½¨Ê±¼ä£º2019Äê10ÔÂ6ÈÕ ÏÂÎç3:37:01
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½10ï¿½ï¿½6ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½3:37:01
  * 
  */
 public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> implements CurrentRecordService {
@@ -43,6 +43,53 @@ public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> impleme
 		this.mergeCurrentRecord(currentRecord);
 
 	}
+	
+
+	public boolean isOrder(Book book, Reader reader) {
+		if(this.getCurrentRecordbyBookbyReader(book, reader)!=null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isOrder(Book book) {
+		if(this.getCurrentRecordbyBook(book)!=null)
+			return true;
+		else
+			return false;
+	}
+
+	public CurrentRecord getCurrentRecordbyBook(Book book) {
+
+		List<CurrentRecord> CurrentRecords = this.getDao().findBy("BookID", book.getBookID());
+		if(!CurrentRecords.isEmpty()){
+			return CurrentRecords.get(0);
+		}else{
+			return null;
+		}
+
+		
+	}
+
+	public CurrentRecord getCurrentRecordbyBookbyReader(Book book, Reader reader) {
+		
+		List<CurrentRecord> CurrentRecords = this.getDao().getByTwoProperty("BookID", "ReaderID", book.getBookID(), reader.getReaderID());
+		if(!CurrentRecords.isEmpty()){
+			return CurrentRecords.get(0);
+		}else{
+			return null;
+		}
+
+	}
+
+	public void deleteCurrentRecordbyID(int id) {
+		
+		this.getDao().deleteByLS(id);
+		
+	}
+
+
 
 
 }
+
