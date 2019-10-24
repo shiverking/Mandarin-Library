@@ -45,7 +45,7 @@
 </head>
 
 <body class="body-wrapper">
-	<s:include value="librarian_jsp/Navbar.jsp"></s:include>
+	<s:include value="/Navbar.jsp"></s:include>
 	<!--===============================
 =           Login form Area            =
 ================================-->
@@ -88,7 +88,7 @@
 						</button>
 					</div>
 				</s:if>
-				<form action="readersignin" id="loginform" method="post">
+				<form action="librarianlogin" id="loginform" method="post">
 					<label id="uName">UserName</label> <input
 						class="form-control bg-shadow" type="email"
 						placeholder="Input Your Email" Id="User" name="Email"> <label>Password</label>
@@ -258,6 +258,4 @@
 </body>
 
 </html>
-
-
 

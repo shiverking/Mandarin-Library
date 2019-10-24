@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AddBook</title>
+<title>BookBorrow</title>
 
 <!-- PLUGINS CSS STYLE -->
 <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@
 		<div class="container">
 			<!-- Row Start -->
 			<div class="row">
-				<div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0">
+				<div class="col-md-8 offset-md-0 col-lg-3 offset-lg-0">
 					<div class="sidebar">
 						<!-- User Widget -->
 						<div class="widget user-dashboard-profile">
@@ -75,13 +75,13 @@
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
 							<ul>
-								<li class="active"><a href=""><i class="fa fa-book"></i>
+								<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
 								<li><a href="BookSearch"><i class="fa fa-search"></i>
 										Search Book</a></li>
-								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
-										Register Reader </a></li>
-								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
+								<li><a href="ReaderRegister"><i
+										class="fa fa-user-plus"></i> Register Reader </a></li>
+								<li class="active"><a href=""><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
 										Borrow Book</a></li>
@@ -96,62 +96,77 @@
 							</ul>
 						</div>
 					</div>
+
 				</div>
-				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
+				<div class="col-md-12 offset-md-0 col-lg-9 offset-lg-0">
 					<!-- Recently Favorited -->
+					<div style="min-width:1000px;">
 					<div class="widget dashboard-container my-adslist">
-						<h3 class="widget-header">Book Management</h3>
-						<table border="1" name="AddBook">
-							<form action="addBook" method="post">
-								BookName:<br><input name="BookName" required="required"><br>
-								Price:<br><input name="Price" required="required" /><br>
-								<li><label>Floor:<br></label> <select name="Location"
-									required="required"><br>
-										<option value="first floor">first floor</option>
-										<option value="second floor">second floor</option>
-										<option value="third floor">third floor</option>
-								</select></li>
-								<li><label>Area:</label> <select name="Location"
-									required="required"><br>
-										<option value="A area">A</option>
-										<option value="B area">B</option>
-										<option value="C area">C</option>
-										<option value="D area">D</option>
+						<h3 class="widget-header">BorrowHistory</h3>
+						
+						<!-- 这里是BorrowHistory展示对象 -->
+						<nav class="navbar navbar-light bg-main-light">
+							<s:form class="form-inline" action="findBRByReader" method="post">
+								<input type="text" class="form-control mr-sm-2" type="search"
+									placeholder="Input the ReaderID" aria-label="Search"
+									name="ReaderID">
+								<button class="btn btn-outline-success my-2 my-sm-0"
+									type="submit">Search</button>
+							</s:form>
+							<s:form class="form-inline" action="findBRByReaderName"
+								method="post">
+								<input type="text" class="form-control mr-sm-2" type="search"
+									placeholder="Input the ReaderName" aria-label="Search"
+									name="ReaderName">
+								<button class="btn btn-outline-success my-2 my-sm-0"
+									type="submit">Search</button>
+							</s:form>
+							<div>
+								<s:form action="displayBorrowrecord" method="post">
+									<button class="btn btn-outline-success my-2 my-sm-0"
+										type="submit">ShowAll</button>
+								</s:form>
+							</div>
+						</nav>
+						<s:property value="ErrorMessage" />
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr>
+									<th>ReaderID</th>
+									<th>ReaderName</th>
+									<th>BookName</th>
+									<th>BorrowingDate</th>
+									<th>ReturnDate</th>
+									<th>IsReturn</th>
+									<th>IsPayFine</th>
+									<th>Fine</th>
+								</tr>
+							</thead>
+							<tbody>
+								<s:iterator value="borrowrecords" status="status">
 
-								</select></li> category:<br><input name="Category" required="required" /><br>
-								Number:<br><input name="Num" required="required" /><br>
-								Description:<br><input name="Introduction" required="required" /><br>
-								Author:<br><input name="author" required="required" /><br>
-								<button type="submit" value="add">Add Book</button>
-							</form>
+									<tr>
+										<td align="center"><s:property value="ReaderID" /></td>
+										<td align="center"><s:property
+												value="%{readers[#status.index].ReaderName}" /></td>
+										<td align="center"><s:property
+												value="%{books[#status.index].BookName}" /></td>
+										<td align="center"><s:property value="BorrowingDate" /></td>
+										<td align="center"><s:property value="ReturnDate" /></td>
+										<td align="center"><s:property value="IsReturn" /></td>
+										<td align="center"><s:property value="IsPayfine" /></td>
+										<td align="center"><s:property value="Fine" /></td>
+									</tr>
 
-						</table>
-						<br>
-						<table border="2" name="AddBookisbn">
-							<form action="addBookISBN" method="post">
-								ISBN:<input name="ISBN" required="required"><br>
-								<li><label>Floor</label> <select name="Location"
-									required="required">
-										<option value="first floor">first floor</option>
-										<option value="second floor">second floor</option>
-										<option value="third floor">third floor</option>
-								</select></li>
-								<li><label>Area</label> <select name="Location"
-									required="required">
-										<option value="A area">A</option>
-										<option value="B area">B</option>
-										<option value="C area">C</option>
-										<option value="D area">D</option>
-
-								</select></li> <br> number:<input name="Number" required="required"><br>
-								<button type="submit" value="add">Add Book BY ISBN</button>
-							</form>
-
+								</s:iterator>
+							</tbody>
 						</table>
 					</div>
+
 				</div>
 			</div>
-			<!-- Row End -->
+		</div>
+		<!-- Row End -->
 		</div>
 		<!-- Container End -->
 	</section>
@@ -176,5 +191,3 @@
 </body>
 
 </html>
-
-

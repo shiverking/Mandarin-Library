@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AddBook</title>
+<title>BookBorrow</title>
 
 <!-- PLUGINS CSS STYLE -->
 <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
@@ -75,7 +75,7 @@
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
 							<ul>
-								<li class="active"><a href=""><i class="fa fa-book"></i>
+								<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
 								<li><a href="BookSearch"><i class="fa fa-search"></i>
 										Search Book</a></li>
@@ -85,7 +85,7 @@
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
 										Borrow Book</a></li>
-								<li><a href="BookReturn"><i class="fa fa-reply"></i>
+								<li class="active"><a href=""><i class="fa fa-reply"></i>
 										Return Book</a></li>
 								<li><a href="IncomeHistory"><i class="fa fa-money"></i>
 										Income History</a></li>
@@ -100,54 +100,23 @@
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
 					<div class="widget dashboard-container my-adslist">
-						<h3 class="widget-header">Book Management</h3>
-						<table border="1" name="AddBook">
-							<form action="addBook" method="post">
-								BookName:<br><input name="BookName" required="required"><br>
-								Price:<br><input name="Price" required="required" /><br>
-								<li><label>Floor:<br></label> <select name="Location"
-									required="required"><br>
-										<option value="first floor">first floor</option>
-										<option value="second floor">second floor</option>
-										<option value="third floor">third floor</option>
-								</select></li>
-								<li><label>Area:</label> <select name="Location"
-									required="required"><br>
-										<option value="A area">A</option>
-										<option value="B area">B</option>
-										<option value="C area">C</option>
-										<option value="D area">D</option>
+						<h3 class="widget-header">BookReturn</h3>
+						<!-- 在这里写BookReturn展示对象 -->
+						<s:form action="returnBookFindBook" method="post">
 
-								</select></li> category:<br><input name="Category" required="required" /><br>
-								Number:<br><input name="Num" required="required" /><br>
-								Description:<br><input name="Introduction" required="required" /><br>
-								Author:<br><input name="author" required="required" /><br>
-								<button type="submit" value="add">Add Book</button>
-							</form>
+							<div class="form-group">
+								<label>BookID</label> <input type="text"
+									placeholder="Input the BookID" name="BookID"
+									class="form-control" style="height: 35px; width: 500px;" />
+							</div>
 
-						</table>
-						<br>
-						<table border="2" name="AddBookisbn">
-							<form action="addBookISBN" method="post">
-								ISBN:<input name="ISBN" required="required"><br>
-								<li><label>Floor</label> <select name="Location"
-									required="required">
-										<option value="first floor">first floor</option>
-										<option value="second floor">second floor</option>
-										<option value="third floor">third floor</option>
-								</select></li>
-								<li><label>Area</label> <select name="Location"
-									required="required">
-										<option value="A area">A</option>
-										<option value="B area">B</option>
-										<option value="C area">C</option>
-										<option value="D area">D</option>
+							<div class="form-group" style="text-align: center">
+								<br>
+								<button type="submit" class="btn btn-primary btn-main-sm">Submit</button>
+							</div>
+						</s:form>
+						<s:property value="ErrorMessage" />
 
-								</select></li> <br> number:<input name="Number" required="required"><br>
-								<button type="submit" value="add">Add Book BY ISBN</button>
-							</form>
-
-						</table>
 					</div>
 				</div>
 			</div>
@@ -176,5 +145,3 @@
 </body>
 
 </html>
-
-

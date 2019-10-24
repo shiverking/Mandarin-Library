@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AddBook</title>
+<title>BookBorrow</title>
 
 <!-- PLUGINS CSS STYLE -->
 <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
@@ -75,7 +75,7 @@
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
 							<ul>
-								<li class="active"><a href=""><i class="fa fa-book"></i>
+								<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
 								<li><a href="BookSearch"><i class="fa fa-search"></i>
 										Search Book</a></li>
@@ -89,9 +89,9 @@
 										Return Book</a></li>
 								<li><a href="IncomeHistory"><i class="fa fa-money"></i>
 										Income History</a></li>
-								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i>
-										Post News</a></li>
-								<li><a href="Logout"><i class="fa fa-sign-out"></i>
+								<li class="active"><a href=""><i
+										class="fa fa-paper-plane"></i> Post News</a></li>
+								<li><a href="sLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
 							</ul>
 						</div>
@@ -100,55 +100,29 @@
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
 					<div class="widget dashboard-container my-adslist">
-						<h3 class="widget-header">Book Management</h3>
+					<div class="form-group">
+						<label>NewsPost</label>
+						</div>
 						<table border="1" name="AddBook">
-							<form action="addBook" method="post">
-								BookName:<br><input name="BookName" required="required"><br>
-								Price:<br><input name="Price" required="required" /><br>
-								<li><label>Floor:<br></label> <select name="Location"
-									required="required"><br>
-										<option value="first floor">first floor</option>
-										<option value="second floor">second floor</option>
-										<option value="third floor">third floor</option>
-								</select></li>
-								<li><label>Area:</label> <select name="Location"
-									required="required"><br>
-										<option value="A area">A</option>
-										<option value="B area">B</option>
-										<option value="C area">C</option>
-										<option value="D area">D</option>
-
-								</select></li> category:<br><input name="Category" required="required" /><br>
-								Number:<br><input name="Num" required="required" /><br>
-								Description:<br><input name="Introduction" required="required" /><br>
-								Author:<br><input name="author" required="required" /><br>
-								<button type="submit" value="add">Add Book</button>
+							<form action="PostNews" method="post" textarea rows="10"
+								cols="30">
+								<div class="form-group">
+								<label>Title</label>
+								<input name="Title" required="required" class="form-control">
+								</div>
+								<div class="form-group">
+								<label>Content</label><br>
+								<textarea class="form-main-control" rows="10" cols="45" name="Content" required="required" /></textarea>
+								</div>
+								<div class="form-group">
+								<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
 							</form>
-
 						</table>
-						<br>
-						<table border="2" name="AddBookisbn">
-							<form action="addBookISBN" method="post">
-								ISBN:<input name="ISBN" required="required"><br>
-								<li><label>Floor</label> <select name="Location"
-									required="required">
-										<option value="first floor">first floor</option>
-										<option value="second floor">second floor</option>
-										<option value="third floor">third floor</option>
-								</select></li>
-								<li><label>Area</label> <select name="Location"
-									required="required">
-										<option value="A area">A</option>
-										<option value="B area">B</option>
-										<option value="C area">C</option>
-										<option value="D area">D</option>
+						</div>
 
-								</select></li> <br> number:<input name="Number" required="required"><br>
-								<button type="submit" value="add">Add Book BY ISBN</button>
-							</form>
-
-						</table>
 					</div>
+					
 				</div>
 			</div>
 			<!-- Row End -->
@@ -176,5 +150,3 @@
 </body>
 
 </html>
-
-

@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AddBook</title>
+<title>BookBorrow</title>
 
 <!-- PLUGINS CSS STYLE -->
 <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
@@ -75,12 +75,12 @@
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
 							<ul>
-								<li class="active"><a href=""><i class="fa fa-book"></i>
+								<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
 								<li><a href="BookSearch"><i class="fa fa-search"></i>
 										Search Book</a></li>
-								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
-										Register Reader </a></li>
+								<li class="active"><a href=""><i
+										class="fa fa-user-plus"></i> Register Reader </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
@@ -100,54 +100,21 @@
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
 					<div class="widget dashboard-container my-adslist">
-						<h3 class="widget-header">Book Management</h3>
-						<table border="1" name="AddBook">
-							<form action="addBook" method="post">
-								BookName:<br><input name="BookName" required="required"><br>
-								Price:<br><input name="Price" required="required" /><br>
-								<li><label>Floor:<br></label> <select name="Location"
-									required="required"><br>
-										<option value="first floor">first floor</option>
-										<option value="second floor">second floor</option>
-										<option value="third floor">third floor</option>
-								</select></li>
-								<li><label>Area:</label> <select name="Location"
-									required="required"><br>
-										<option value="A area">A</option>
-										<option value="B area">B</option>
-										<option value="C area">C</option>
-										<option value="D area">D</option>
+						<h3 class="widget-header">Reader Register</h3>
 
-								</select></li> category:<br><input name="Category" required="required" /><br>
-								Number:<br><input name="Num" required="required" /><br>
-								Description:<br><input name="Introduction" required="required" /><br>
-								Author:<br><input name="author" required="required" /><br>
-								<button type="submit" value="add">Add Book</button>
-							</form>
+						<!-- 在这里写ReaderRegister展示对象 -->
 
-						</table>
-						<br>
-						<table border="2" name="AddBookisbn">
-							<form action="addBookISBN" method="post">
-								ISBN:<input name="ISBN" required="required"><br>
-								<li><label>Floor</label> <select name="Location"
-									required="required">
-										<option value="first floor">first floor</option>
-										<option value="second floor">second floor</option>
-										<option value="third floor">third floor</option>
-								</select></li>
-								<li><label>Area</label> <select name="Location"
-									required="required">
-										<option value="A area">A</option>
-										<option value="B area">B</option>
-										<option value="C area">C</option>
-										<option value="D area">D</option>
 
-								</select></li> <br> number:<input name="Number" required="required"><br>
-								<button type="submit" value="add">Add Book BY ISBN</button>
-							</form>
 
-						</table>
+						<form action="readerregister" method="post">
+							username<input type="text" name="ReaderName"><br>
+							password<input type="password" name="Password"><br>
+							confirm<input type="password" name="ConfirmPassword"><br>
+							email<input type="email" name="Email"><br>
+							phonenumber<input type="text" name="PhoneNumber"><br>
+							<button type="submit" value="signup">register</button>
+						</form>
+
 					</div>
 				</div>
 			</div>
@@ -176,5 +143,3 @@
 </body>
 
 </html>
-
-
