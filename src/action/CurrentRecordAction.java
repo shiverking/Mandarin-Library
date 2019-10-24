@@ -1,11 +1,14 @@
 package action;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import model.Book;
 import model.CurrentRecord;
 import model.Reader;
 import service.CurrentRecordService;
+import util.PageBean;
 
 /**
  * @author
@@ -13,12 +16,12 @@ import service.CurrentRecordService;
  * 
  */
 public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecordService> {
-	private static CurrentRecord currentRecord;
-	private Reader tempReader;// ï¿½ï¿½Â¼ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½Ï¢
-
-	private List<CurrentRecord> currentRecords;// ï¿½ï¿½Â¼ï¿½Ú½ï¿½ï¿½é¼®ï¿½ï¿½Ô¤Ô¼ï¿½é¼®ï¿½ï¿½ï¿½ï¿½Ï¢
-	private List<Book> books;
-	private List<Reader> readers;
+	private Reader tempReader;// ¼ÇÂ¼µ±Ç°¶ÁÕßµÄÐÅÏ¢
+	private List<CurrentRecord> currentRecords;// ¼ÇÂ¼ÔÚ½èÊé¼®ºÍÔ¤Ô¼Êé¼®µÄÐÅÏ¢
+	private CurrentRecord currentRecord;
+	private Book book;
+	private PageBean<Book> bookPage;
+	private List<Boolean> reservation;
 
 	// ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½Ê¹ï¿½ÃµÄ¹ï¿½ï¿½Üºï¿½ï¿½ï¿½
 
@@ -28,7 +31,30 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 		return SUCCESS;
 	}
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½getï¿½ï¿½setï¿½ï¿½ï¿½ï¿½
+	public String addRecord() throws Exception {
+		this.currentRecord = new CurrentRecord();
+		System.out.println(tempReader.getReaderID());
+		currentRecord.setReaderID(this.getTempReader().getReaderID());
+		currentRecord.setBookID(this.getBook().getBookID());
+		currentRecord.setBorrowingDate(this.getModel().getBorrowingDate());
+		this.getService().saveCurrentRecord(currentRecord);
+		return SUCCESS;
+	}
+
+	public String isReservation() {
+		reservation = new ArrayList<Boolean>();
+		for (int i = 0; i < bookPage.getDataList().size(); i++) {
+			if (this.getService().getCurrentRecordByBook(bookPage.getDataList().get(i)).isEmpty()) {
+				reservation.add(false);
+			} else {
+				reservation.add(true);
+			}
+		}
+		
+		return SUCCESS;
+	}
+
+//ÍùÏÂÊÇ¸÷ÖÖÊôÐÔµÄgetºÍset·½·¨
 	public Reader getTempReader() {
 		return tempReader;
 	}
@@ -88,6 +114,14 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 		this.tempReader = tempReader;
 	}
 
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
 	public List<CurrentRecord> getCurrentRecords() {
 		return currentRecords;
 	}
@@ -110,6 +144,27 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 
 	public void setBooks(List<Book> books) {
 		this.books = books;
+	/**
+	 * @param currentRecord the currentRecord to set
+	 */
+	public void setCurrentRecord(CurrentRecord currentRecord) {
+		this.currentRecord = currentRecord;
+	}
+
+	public PageBean<Book> getBookPage() {
+		return bookPage;
+	}
+
+	public void setBookPage(PageBean<Book> bookPage) {
+		this.bookPage = bookPage;
+	}
+
+	public List<Boolean> getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(List<Boolean> reservation) {
+		this.reservation = reservation;
 	}
 
 }

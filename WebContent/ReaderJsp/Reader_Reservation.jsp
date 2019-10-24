@@ -8,11 +8,14 @@
 <!-- SITE TITTLE -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
+<meta http-equiv="expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <title>Calssimax</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -47,6 +50,10 @@
 
 <body class="body-wrapper">
 
+	<script src="plugins/jquery/dist/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+
 	<s:include value="/Navbar.jsp"></s:include>
 	<s:include value="/ReaderJsp/setProfile.jsp"></s:include>
 	<!--==================================
@@ -69,18 +76,18 @@
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>
 							<p>${tempReader.email}</p>
-							<a href="#" data-toggle="modal" data-target="#setProfile" class="btn btn-main-sm">Edit
-								Profile</a>
+							<a href="#" data-toggle="modal" data-target="#setProfile"
+								class="btn btn-main-sm">Edit Profile</a>
 						</div>
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
 							<ul>
-								<li ><a href="getReaderStatuForCurrent"><i class="fa fa-user"></i>
-										My Reservation</a></li>
-								<li class="active"><a href="getReaderStatuForBorrowPage"><i class="fa fa-bookmark-o"></i> Current
-										Record </a></li>
-								<li><a href="getReaderStatuForReturn"><i class="fa fa-file-archive-o"></i>
-										Return History </a></li>
+								<li class="active"><a href="getReaderStatuForCurrent"><i
+										class="fa fa-user"></i> My Reservation</a></li>
+								<li><a href="getReaderStatuForBorrowPage"><i
+										class="fa fa-bookmark-o"></i> Current Record </a></li>
+								<li><a href="getReaderStatuForReturn"><i
+										class="fa fa-file-archive-o"></i> Return History </a></li>
 
 								<li><a href="readersignout"><i class="fa fa-cog"></i>
 										Logout</a></li>
@@ -91,35 +98,58 @@
 				</div>
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
+					<s:if test="errorMessage!=null">
+						<div class="alert alert-warning" role="alert">
+							<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+							${errorMessage}
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					</s:if>
 					<div class="widget dashboard-container my-adslist">
-						<h3 class="widget-header">Unpaid fine: ${totalFine} <i class="fa fa-jpy" aria-hidden="true"></i></h3>
+
 						<table class="table table-responsive product-dashboard-table">
 							<thead>
 								<tr>
-									<th>BOOK INFORMATION</th>
-									<th class="text-center">Due Date</th>
+									<th>Book information</th>
+
 									<th class="text-center">Category</th>
-									
+									<th class="text-center">Action</th>
 								</tr>
 							</thead>
 							<tbody>
 
-								<s:iterator value="borrowPage.datalist" status="L">
+								<s:iterator value="currentRecords" status="L">
+
 									<tr>
 										<td class="product-details">
 											<h3 class="title">
+
 												<s:property value="books[#L.index].BookName" />
-											</h3> <span class="add-id"><strong>Book ID:</strong>${BookID}</span>
-											<span><strong>ISBN:</strong><s:property value="books[#L.index].ISBN" /></span>
-											<span><strong>Posted on: </strong> <time>${BorrowingDate}</time>
-										</span>  <span class="location "><strong>Location:</strong>
+											</h3> <span class="add-id"><strong>Book ID:</strong>
+												${BookID}</span> <span class="add-id"><strong>ISBN:</strong>
+												<s:property value="books[#L.index].ISBN" /> </span> <span><strong>Posted
+													on: </strong> <time>${BorrowingDate}</time> </span> <span class="location"><strong>Location:</strong>
 												<s:property value="books[#L.index].Location" /></span>
 										</td>
-										<td class="product-thumb text-center"><s:property
-													value="ReturnDate" /></td>
+
 										<td class="product-category"><span class="categories"><s:property
 													value="books[#L.index].category" /></span></td>
-							
+										<td class="action" data-title="Action">
+											<div class="">
+												<ul class="list-inline justify-content-center">
+													<li class="list-inline-item"><a data-toggle="tooltip"
+														data-placement="top" title="Tooltip on top" class="view"
+														href=""> <i class="fa fa-eye"></i>
+													</a></li>
+													<li class="list-inline-item"><a class="delete" href="">
+															<i class="fa fa-trash"></i>
+													</a></li>
+												</ul>
+											</div>
+										</td>
 									</tr>
 								</s:iterator>
 							</tbody>
@@ -135,11 +165,11 @@
 	<!--============================
 =            Footer            =
 =============================-->
-<s:include value="/footer.jsp"></s:include>
-
+	<s:include value="/footer.jsp"></s:include>
 	<!-- JAVASCRIPTS -->
-	<script src="plugins/jquery/dist/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+
+
+
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>

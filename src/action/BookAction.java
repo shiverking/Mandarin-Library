@@ -3,7 +3,10 @@ import java.io.*;
 import java.net.*;
 import java.util.regex.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import model.Book;
 import model.Borrowrecord;
@@ -17,9 +20,10 @@ import util.ISBNgenerator;
 import util.PageBean;
 public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
-	private List<Book> books;
-	private List<CurrentRecord> currentRecords;// Ö¸ï¿½Ú½ï¿½ï¿½é¼®ï¿½ï¿½Ô¤Ô¼ï¿½é¼®ï¿½ï¿½ï¿½ï¿½Ï¢
-	private PageBean<Borrowrecord> borrowPage;// ï¿½ï¿½ï¿½Ä¼ï¿½Â¼ï¿½ï¿½Ï¢
+	private List<Book> books;// ¿ÉÄÜ±»bookPageÈ¡´ú£¬½¨ÒéÉÙÓÃ£¬ÈçÐèÊ¹ÓÃÇë¸Ä×¢ÊÍ
+	private List<Borrowrecord> borrowrecords;// ¿ÉÄÜ±»É¾³ý
+	private List<CurrentRecord> currentRecords;// Ö¸Ô¤Ô¼Êé¼®µÄÐÅÏ¢
+	private PageBean<Borrowrecord> borrowPage;// ÒÑ¹é»¹µÄÊé¼®ÐÅÏ¢
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
@@ -124,15 +128,65 @@ public class BookAction extends BaseAction<Book, BookService> {
 	public void setIsbn1(String isbn1) {
 		this.isbn1 = isbn1;
 	}
+	private String categoryString;
+	private Integer selectSearch;
+	private Map<String, Integer> categoryMap;
+	private Boolean	displayStyle=true;
+	// ÒÔÏÂÊÇ¾ßÌåÊ¹ÓÃµÄ¹¦ÄÜº¯Êý
 
 	// readerï¿½ï¿½ÒªÊ¹ï¿½ÃµÄºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String searchBook() {
-		// TODO:ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
-		bookPage = this.getService().getPageBean(searchContent, pageNum);
+		// TODO:·ÖÒ³ËÑË÷
+	
+		if (selectSearch != null) {
+			switch (selectSearch) {
+			case 1:
+				bookPage = this.getService().getPageBean(searchContent,categoryString, pageNum);
+				break;
+			case 2:
+				bookPage = this.getService().getPageBeanbyISBN(searchContent,categoryString, pageNum);
+				break;
+			case 3:
+				bookPage = this.getService().getPageBeanbyTitle(searchContent,categoryString, pageNum);
+				break;
+			case 4:
+				bookPage = this.getService().getPageBeanbyAuthor(searchContent,categoryString, pageNum);
+				break;
+			default:
+				bookPage = this.getService().getPageBean(searchContent,categoryString,pageNum);
+			}
+		} else {
+			bookPage = this.getService().getPageBean(searchContent,categoryString, pageNum);
+		}
+		this.getCategory();
 		return SUCCESS;
 	}
 
-	public String getBooksbyBorrowPage() {
+	public String getCategory() {
+		List<String> cStrings = this.getService().getCategory(searchContent, selectSearch);
+		Map<String, Integer> tempMap = new HashMap<String, Integer>();
+		for (Iterator iterator = cStrings.iterator(); iterator.hasNext();) {
+			String string = (String) iterator.next();
+			String[] tsStrings = string.split(",");
+			for (int i = 0; i < tsStrings.length; i++) {
+				if (tempMap.containsKey(tsStrings[i])) {
+					tempMap.put(tsStrings[i],tempMap.get(tsStrings[i])+1);
+				}else tempMap.put(tsStrings[i],1);
+			}
+		}
+		categoryMap = tempMap;
+		return SUCCESS;
+	}
+
+	public String getBooksbyBorrwrecords() {
+		books = new ArrayList<Book>();
+		for (Borrowrecord borrowrecord : borrowrecords) {
+			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
+		}
+		return SUCCESS;
+	}
+
+	public String getBooksbyborrowPage() {
 		books = new ArrayList<Book>();
 		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
 			books.add(this.getService().getBookByBorrowrecord(borrowrecord));
@@ -458,10 +512,18 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
+	public String reserveBook() {
+		this.book = this.getService().getBookById(book.getBookID());
+		if (book.getIsBorrowed() != false) {
+			return ERROR;
+		} else {
+			book.setIsBorrowed(true);
+			this.getService().mergeBook(book);
+			return SUCCESS;
+		}
+	}
 
-	
-
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½getï¿½ï¿½setï¿½ï¿½ï¿½ï¿½
+//ÒÔÏÂÊÇgetºÍsetº¯Êý
 	public Book getBook() {
 		return book;
 	}
@@ -476,6 +538,14 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public void setSearchContent(String searchContent) {
 		this.searchContent = searchContent;
+	}
+
+	public List<Borrowrecord> getBorrowrecords() {
+		return borrowrecords;
+	}
+
+	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
+		this.borrowrecords = borrowrecords;
 	}
 
 	public List<Book> getBooks() {
@@ -530,6 +600,38 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		this.getService().mergeBook(book);
 		return SUCCESS;
+	}
+
+	public Integer getSelectSearch() {
+		return selectSearch;
+	}
+
+	public void setSelectSearch(Integer selectSearch) {
+		this.selectSearch = selectSearch;
+	}
+
+	public Map<String, Integer> getCategoryMap() {
+		return categoryMap;
+	}
+
+	public void setCategoryMap(Map<String, Integer> categoryMap) {
+		this.categoryMap = categoryMap;
+	}
+
+	public String getCategoryString() {
+		return categoryString;
+	}
+
+	public void setCategoryString(String categoryString) {
+		this.categoryString = categoryString;
+	}
+
+	public Boolean getDisplayStyle() {
+		return displayStyle;
+	}
+
+	public void setDisplayStyle(Boolean displayStyle) {
+		this.displayStyle = displayStyle;
 	}
 
 }

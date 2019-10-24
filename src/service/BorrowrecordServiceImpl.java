@@ -63,26 +63,27 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		this.getDao().merge(borrowrecord);
 	}
 
-	public PageBean<Borrowrecord> findPageBean(Reader reader, Integer pageNum) {
-		// TODO ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
+	@Override
+	public PageBean<Borrowrecord> getPageBean(Reader reader, Integer pageNum,boolean isreturn) {
+		// TODO ·ÖÒ³²éÑ¯
 		int Num = 1;
 		if (pageNum != null) {
 			Num = pageNum;
 		}
-		int totalRecords = this.getDao().findTotalNum("ReaderID", reader.getReaderID());
+		int totalRecords = this.getDao().findTotalNumbyTwoProperty("ReaderID", "isReturn", reader.getReaderID(), isreturn);
 
-		PageBean<Borrowrecord> page = new PageBean<Borrowrecord>(totalRecords, Num);
-		page.setDataList(this.getDao().findPageByQuery("ReaderID", reader.getReaderID(), "BorrowingDate desc",
-				page.getStartIndex(), page.getPageSize()));
+		PageBean<Borrowrecord> page = new PageBean<Borrowrecord>(totalRecords, Num,5);
+		page.setDataList(this.getDao().getPageByTwoProperty("ReaderID", "isReturn", reader.getReaderID(), isreturn,
+				"BorrowingDate desc", page.getStartIndex(), page.getPageSize()));
 		return page;
 	}
 
 	public int getFine(int id) {
-		List<Borrowrecord> borrowrecords = this.getDao().getByTwoProperty("ReaderID", "isPayfine", id, false);
-		int fine = 0;
+		List<Borrowrecord> borrowrecords=this.getDao().getByTwoProperty("ReaderID", "isPayfine", id,false);
+		int fine=0;
 		for (Iterator iterator = borrowrecords.iterator(); iterator.hasNext();) {
 			Borrowrecord borrowrecord = (Borrowrecord) iterator.next();
-			fine += borrowrecord.getFine();
+			fine+=borrowrecord.getFine();
 		}
 		return fine;
 	}

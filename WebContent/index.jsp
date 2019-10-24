@@ -11,8 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mandarin-Library</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -46,66 +45,10 @@
 </head>
 
 <body class="body-wrapper">
-
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<nav class="navbar navbar-expand-lg  navigation">
-						<a class="navbar-brand" href="index.html"> <img
-							src="images/logo.png" alt="">
-						</a>
-						<button class="navbar-toggler" type="button"
-							data-toggle="collapse" data-target="#navbarSupportedContent"
-							aria-controls="navbarSupportedContent" aria-expanded="false"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse" id="navbarSupportedContent">
-							<ul class="navbar-nav ml-auto main-nav ">
-								<li class="nav-item active"><a class="nav-link"
-									href="index.html">Home</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="dashboard.html">Dashboard</a></li>
-								<li class="nav-item dropdown dropdown-slide"><a
-									class="nav-link dropdown-toggle" href="#"
-									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false"> Pages <span><i
-											class="fa fa-angle-down"></i></span>
-								</a> <!-- Dropdown list -->
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="category.html">Category</a> <a
-											class="dropdown-item" href="single.html">Single Page</a> <a
-											class="dropdown-item" href="store-single.html">Store
-											Single</a> <a class="dropdown-item" href="dashboard.html">Dashboard</a>
-										<a class="dropdown-item" href="user-profile.html">User
-											Profile</a> <a class="dropdown-item" href="submit-coupon.html">Submit
-											Coupon</a> <a class="dropdown-item" href="blog.html">Blog</a> <a
-											class="dropdown-item" href="single-blog.html">Single Post</a>
-									</div></li>
-								<li class="nav-item dropdown dropdown-slide"><a
-									class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"> Listing <span><i
-											class="fa fa-angle-down"></i></span>
-								</a> <!-- Dropdown list -->
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#">Action</a> <a
-											class="dropdown-item" href="#">Another action</a> <a
-											class="dropdown-item" href="#">Something else here</a>
-									</div></li>
-							</ul>
-							<ul class="navbar-nav ml-auto mt-10">
-								<li class="nav-item"><a class="nav-link login-button"
-									href="librarian_jsp/Librarian_login.jsp">Login</a></li>
-								<li class="nav-item"><a class="nav-link add-button"
-									href="#"><i class="fa fa-plus-circle"></i> Add Listing</a></li>
-							</ul>
-						</div>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</section>
+	<!--===============================
+=            Navbar Area            =
+================================-->
+	<s:include value="/Navbar.jsp"></s:include>
 
 	<!--===============================
 =            Hero Area            =
@@ -132,8 +75,14 @@
 								<div class="col-lg-10 col-md-12">
 									<div class="block d-flex">
 										<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0"
-											name="searchContent" id="search"
-											placeholder="Search for store">
+											name="searchContent" id="search" placeholder="Search book">
+										<select name="selectSearch"
+											class="form-control mb-2 mr-sm-2 mb-sm-0">
+											<option value="1" selected>ALL</option>
+											<option value="2">Book ISBN</option>
+											<option value="3">Book Title</option>
+											<option value="2">Book Author</option>
+										</select>
 										<!-- Search Button -->
 										<button class="btn btn-main " type="submit">SEARCH</button>
 									</div>
@@ -356,13 +305,9 @@
 					<!-- About -->
 					<div class="block about">
 						<!-- footer logo -->
-						<img src="images/logo-footer.png" alt="">
+						<img src="images/MLA_logo_tagline.png" width="300px" alt="">
 						<!-- description -->
-						<p class="alt-color">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-							dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-							exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
+
 					</div>
 				</div>
 				<!-- Link list -->
@@ -435,8 +380,7 @@
 	</footer>
 
 	<!-- JAVASCRIPTS -->
-	<script src="plugins/jquery/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
@@ -447,8 +391,7 @@
 	<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
 	<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+	
 	<script src="js/scripts.js"></script>
 
 </body>

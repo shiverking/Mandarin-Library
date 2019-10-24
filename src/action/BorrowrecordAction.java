@@ -90,21 +90,7 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 		return SUCCESS;
 	}
 
-	public String getBorrowPageByReader() {
-		// TODO:锟斤拷页锟斤拷询
-		this.setErrorMessage(null);
-		borrowPage = this.getService().findPageBean(tempReader, pageNum);
-		this.borrowrecords = borrowPage.getDataList();
-		if (totalFine == null)
-			return "getfine";
-		if(this.getErrorMessage()==null){
-			return SUCCESS;
-		}else{
-			System.out.println(this.getErrorMessage());
-			return ERROR;
-		}
-	}
-	
+		
 	public String findReaderCanBorrow(){
 		int n = this.getService().findCanBorrow(this.readers.get(0));
 		if(n < 3){
@@ -129,6 +115,20 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	
 	
 	public String showError(){
+		totalFine=this.getService().getFine(tempReader.getReaderID());//TODO:增加了开销，后期可能修改算法
+		return SUCCESS;
+	}
+	public String getBorrowPageByReader() {
+		// TODO:分页查询
+		borrowPage = this.getService().getPageBean(tempReader, pageNum ,false);
+		if(totalFine==null)return "getfine";
+		return SUCCESS;
+	}
+	
+	public String getReturnPageByReader() {
+		// TODO:分页查询
+		borrowPage = this.getService().getPageBean(tempReader, pageNum ,true);
+		if(totalFine==null)return "getfine";
 		return SUCCESS;
 	}
 
@@ -213,4 +213,5 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 		return bookID3;
 	}
 	
+
 }
