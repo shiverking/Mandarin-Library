@@ -88,7 +88,7 @@
 			<result name="success">/librarian_jsp/IncomeHistory.jsp</result>
 		</action>
 		<action name="NewsPost">
-			<result name="success">/librarian_jsp/NewsPost.jsp</result>
+			<result name="success">/librarian_jsp/PostNews.jsp</result>
 		</action>
 		<action name="Logout">
 			<result name="success">/librarian_jsp/Logout.jsp</result>
