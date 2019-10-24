@@ -61,7 +61,7 @@
 				document.getElementById("User").setAttribute('placeholder',
 						"Input Your Email");
 			} else {
-				document.getElementById("loginform").action = "#";
+				document.getElementById("loginform").action = "librarianlogin";
 				document.getElementById("getPassword").action = "#";
 				document.getElementById("uName").innerHTML = "Name:";
 				document.getElementById("User").name = "LibrarianName";
