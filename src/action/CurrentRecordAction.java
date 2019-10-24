@@ -50,6 +50,7 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 				reservation.add(true);
 			}
 		}
+		
 		return SUCCESS;
 	}
 

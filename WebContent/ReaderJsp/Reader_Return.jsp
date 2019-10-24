@@ -64,7 +64,7 @@
 							<!-- User Image -->
 							<div class="profile-thumb">
 								<img src="upload/${tempReader.phoneNumber}.jpg" alt=""
-									class="rounded-circle">
+									style="max-height: 100px">
 							</div>
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <section>
+<div class="fade" id="header"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">

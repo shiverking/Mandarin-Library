@@ -8,7 +8,12 @@
 <!-- SITE TITTLE -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
+<meta http-equiv="expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <title>Calssimax</title>
 
 <!-- Bootstrap -->

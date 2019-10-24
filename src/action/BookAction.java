@@ -30,6 +30,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private String categoryString;
 	private Integer selectSearch;
 	private Map<String, Integer> categoryMap;
+	private Boolean	displayStyle=true;
 	// 以下是具体使用的功能函数
 
 	// reader需要使用的函数↓↓↓↓↓↓↓
@@ -256,6 +257,14 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 	public void setCategoryString(String categoryString) {
 		this.categoryString = categoryString;
+	}
+
+	public Boolean getDisplayStyle() {
+		return displayStyle;
+	}
+
+	public void setDisplayStyle(Boolean displayStyle) {
+		this.displayStyle = displayStyle;
 	}
 
 }
