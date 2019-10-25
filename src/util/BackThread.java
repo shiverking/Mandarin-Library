@@ -40,9 +40,6 @@ public class BackThread extends Thread {
 	private ReaderDao readerDao;
 	Date todayDate;
 
-	private static Date Update;
-	private static boolean flag = false;
-
 	public void run() {
 	
 		
