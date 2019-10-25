@@ -89,7 +89,6 @@ public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> impleme
 
 
 
-	@Override
 	public List<CurrentRecord> getCurrentRecordByBook(Book book) {
 		// TODO Auto-generated method stub
 		return this.getDao().findBy("BookID", book.getBookID());
