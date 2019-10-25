@@ -104,6 +104,7 @@
 						<table border="1" name="AddBook">
 							<form action="addBook" method="post">
 								BookName:<br><input name="BookName" required="required"><br>
+								ISBN:<br><input name="ISBN" required="required"><br>
 								Price:<br><input name="Price" required="required" /><br>
 								<li><label>Floor:<br></label> <select name="Location"
 									required="required"><br>

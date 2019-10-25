@@ -101,7 +101,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return SUCCESS;
 	}
 	// 获取当前lib状态
-		public String getReaderStatu() {
+		public String getLibstatu() {
 			Map<String, Object> session = ActionContext.getContext().getSession();
 			this.librarian = (Librarian) session.get("librarian");
 			if (librarian == null) {

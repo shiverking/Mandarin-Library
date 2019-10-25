@@ -284,10 +284,18 @@
 			<result name="success">/AddBook.jsp</result>
 		</action>
 		<!-- 跳转Post主页界面 -->
+		<action name="getLibStatuForPostNews" class="LibrarianAction"
+		method="getLibReaderStatu"><!--获取用户信息 -->
+		<result name="success" type="chain"><!--若lib已经登录，post记录 -->
+		<param name="actionName">PostNews</param>
+		</result>
 		<action name="PostNews" class="postAction" 
 		method="PostNews">
 			<result name="success">/index.jsp</result>
+			
 		</action>
+		
+		
 		<action name="displayPosts" class="postAction" method="displayPosts">
 			<result name="success">/index.jsp</result>
 		</action>

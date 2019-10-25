@@ -344,7 +344,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		String Location = this.getModel().getLocation();
 		String Category = this.getModel().getCategory();
 		int Number = Integer.parseInt(NumRequest.getParameter("Num"));
-		String isbn=iSBNgenerator.generateISBN();
+		String isbn = this.getModel().getISBN();
 		for (int i = 0; i < Number; i++) {
 			this.getModel().setBookName(BookName);
 			this.getModel().setLocation(Location);
@@ -435,6 +435,8 @@ public class BookAction extends BaseAction<Book, BookService> {
 				}
 			}
 		BookName=group[0];Price=group[1];Author=group[2];Description=group[3];Category=group[4];
+		if(BookName==null||BookName.isEmpty())BookName="Default Book";
+		if(Category==null||Category.isEmpty())Category="Default Category";
 	}
 	public String addBookISBN() throws Exception {
 		String isbn = this.getModel().getISBN();
