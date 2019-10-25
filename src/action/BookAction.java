@@ -129,7 +129,9 @@ public class BookAction extends BaseAction<Book, BookService> {
 	// reader锟斤拷要使锟矫的猴拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	public String searchBook() {
 		// TODO:分页搜索
-
+		if (categoryString!=null&&categoryString.isEmpty()) {
+			categoryString = null;
+		}
 		if (selectSearch != null) {
 			switch (selectSearch) {
 			case 1:

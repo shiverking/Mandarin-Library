@@ -6,19 +6,25 @@
 	<div class="col-md-3">
 		<div class="category-sidebar">
 			<div class="widget category-list">
-				<h4 class="widget-header" ><a href="javascript:searcha('')">All Category</a></h4>
+				<h4 class="widget-header">
+					<a href="javascript:searcha('')">All Category</a>
+				</h4>
 				<ul class="category-list">
 
 					<s:iterator value="categoryMap" status="st">
 						<s:if test="%{categoryString ==key}">
-							<li><a style="color: #5672f9; "
+							<li><a style="color: #5672f9;"
 								href="javascript:searcha('<s:property value='key'/>')"><s:property
-										value='key' /> <span style="color: #fff; background:#5672f9;"> <s:property value='value' /></span></a></li>
+										value='key' /> <span
+									style="color: #fff; background: #5672f9;"> <s:property
+											value='value' /></span></a></li>
 						</s:if>
 						<s:else>
-							<li><a href="javascript:searcha('<s:property value='key'/>')"><s:property
+							<li><a
+								href="javascript:searcha('<s:property value='key'/>')"><s:property
 										value='key' /> <span> <s:property value='value' /></span></a></li>
 						</s:else>
+
 					</s:iterator>
 				</ul>
 			</div>
@@ -159,9 +165,10 @@
 									<li class="list-inline-item"><s:if test="isBorrowed==0">
 											<li class="list-inline-item "><strong>Status: </strong><strong
 												class="text-info">Available</strong></li>
-										<div><a class="btn-main-sm"
-												href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>&searchContent=${searchContent}&selectSearch=${selectSearch}&displayStyle=${displayStyle}&categoryString=${categoryString}&pageNum=${pageNum}'>Reserve</a>
-										</div>
+											<div>
+												<a class="btn-main-sm"
+													href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>&searchContent=${searchContent}&selectSearch=${selectSearch}&displayStyle=${displayStyle}&categoryString=${categoryString}&pageNum=${pageNum}'>Reserve</a>
+											</div>
 										</s:if> <s:else>
 											<s:if test="%{reservation.get(#L.index)!=0}">
 												<li class="list-inline-item "><strong>Status:
@@ -249,19 +256,19 @@
 </form>
 <script>
            function searchb(e){
-        	   $("#searchContent").val(${searchContent})
+        	   $("#searchContent").val('${searchContent}')
         	   $("#selectSearch").val(${selectSearch})
-        	   $("#categoryString").val(${categoryString})
+        	   $("#categoryString").val('${categoryString}')
         	   $("#pageNum").val(e)
         	   $("#displayStyle").val(document.getElementById("home").className=="tab-pane fade active show")
-        	   $("#search2").submit();
+        	   $("#search2").submit()
         	            }
            function searcha(e){
-        	   $("#searchContent").val(${searchContent})
+        	   $("#searchContent").val('${searchContent}')
         	   $("#selectSearch").val(${selectSearch})
         	   $("#categoryString").val(e)
         	   $("#displayStyle").val(document.getElementById("home").className=="tab-pane fade active show")
-        	   $("#search2").submit();
+        	   $("#search2").submit()
            }
         </script>
 </div>

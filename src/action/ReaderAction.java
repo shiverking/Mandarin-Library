@@ -33,6 +33,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private List<Reader> readers;
 	private String errorMessage;
 	private int readerNum;
+	private String filename;
 	public int getReaderNum() {
 		return readerNum;
 	}
@@ -134,6 +135,12 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			this.errorMessage="Please select an image.";
 			return SUCCESS;
 		}
+	        String suffix =filename.substring(filename.lastIndexOf(".") + 1);
+	        System.out.println(suffix+"sssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+	        if (!suffix.equals("png")&&!suffix.equals("gif")) {
+	        	this.errorMessage="Please select an image.";
+				return SUCCESS;
+			}
 		String realPath = ServletActionContext.getServletContext().getRealPath("upload");
 		try {
 			FileUtils.copyFile(avatarFile, new File(realPath+"\\"+tempReader.getPhoneNumber()+".jpg"));
@@ -252,6 +259,12 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 
 	public void setAvatarFile(File avatarFile) {
 		this.avatarFile = avatarFile;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 }
