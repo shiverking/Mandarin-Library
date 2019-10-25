@@ -104,7 +104,7 @@
 						<label>NewsPost</label>
 						</div>
 						<table border="1" name="AddBook">
-							<form action="PostNews" method="post" textarea rows="10"
+							<form action="getLibStatuForPostNews" method="post" textarea rows="10"
 								cols="30">
 								<div class="form-group">
 								<label>Title</label>

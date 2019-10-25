@@ -215,7 +215,7 @@
 		</action>
 		<!--librarian登陆界面 -->
 		<action name="librarianlogin" class="librarianAction" method="signin">
-			<result name="success">/librarian_jsp/AddBook.jsp</result>
+			<result name="success">/librarian_jsp/BookManagement.jsp</result>
 			
 		</action>
 		<!-- 预约书籍 -->
@@ -284,11 +284,17 @@
 			<result name="success">/AddBook.jsp</result>
 		</action>
 		<!-- 跳转Post主页界面 -->
-		<action name="getLibStatuForPostNews" class="LibrarianAction"
-		method="getLibReaderStatu"><!--获取用户信息 -->
+		<action name="getLibStatuForPostNews" class="librarianAction"
+		method="getLibstatu"><!--获取用户信息 -->
+		<result name="none">
+		/Login.jsp
+		</result>
 		<result name="success" type="chain"><!--若lib已经登录，post记录 -->
+		
 		<param name="actionName">PostNews</param>
 		</result>
+		
+		</action>
 		<action name="PostNews" class="postAction" 
 		method="PostNews">
 			<result name="success">/index.jsp</result>
