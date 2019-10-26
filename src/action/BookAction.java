@@ -32,7 +32,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private String searchContent;
 	private String isbn1;
 	private int bookID2;
-	
+
 	public ISBNgenerator getiSBNgenerator() {
 		return iSBNgenerator;
 	}
@@ -374,7 +374,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	static String Description = null;// 涔︾睄绠�浠�
 	static String Category = null;// 绉嶇被
 	static String isbn;
-	static String ImageAddress=null;//图片地址
+
 	public static String getUrl(String isbn) {// 鏋勯�燯RL
 		StringBuilder builder = new StringBuilder();
 		builder.append("http://api.douban.com/book/subject/isbn/");
@@ -416,21 +416,20 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public static void seprarate(String result) {// 瀵硅幏鍙栧埌鐨勭綉椤靛唴瀹硅繘琛屽垎鍓诧紝鑾峰彇鎰熷叴瓒ｇ殑鏁版嵁閮ㄥ垎,鐢ㄦ鍒欒〃杈惧紡杩涜鍖归厤
-		String pattern[] = new String[6];
-		Pattern patterncompile[] = new Pattern[6];
-		Matcher matcher[] = new Matcher[6];
-		String group[] = new String[6];
+		String pattern[] = new String[5];
+		Pattern patterncompile[] = new Pattern[5];
+		Matcher matcher[] = new Matcher[5];
+		String group[] = new String[5];
 		pattern[0] = "<title>(.*)</title>";// 鍖归厤涔︾睄鍚嶇О
 		pattern[1] = "<db:attribute name=\"price\">(.*?)</db:attribute>";// 鍖归厤浠锋牸
 		pattern[2] = "<db:attribute name=\"author\">(.*?)</db:attribute>";// 鍖归厤浣滆��
 		pattern[3] = "<summary>(.*)</summary>";// 鍖归厤绠�浠�
 		pattern[4] = "<db:rating(.*?)/>(.*)<gd:rating";// 鍖归厤涔︾睄绉嶇被
-		pattern[5]="rel=\"alternate\"/>	<link href=\"(.*?)\" rel=\"image\"/>";//匹配图片
 		for (int i = 0; i < 5; i++) {
 			patterncompile[i] = Pattern.compile(pattern[i]);
 			matcher[i] = patterncompile[i].matcher(result);
 			if (matcher[i].find()) {
-				if (i<=3||i==5) {
+				if (i <= 3) {
 					group[i] = matcher[i].group(1);
 				} else {
 					group[i] = matcher[i].group(2);// 杩涜浜屾鍖归厤
@@ -445,7 +444,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 					group[i] = res;
 				}
 			}
-		BookName=group[0];Price=group[1];Author=group[2];Description=group[3];Category=group[4];ImageAddress=group[5];
+		BookName=group[0];Price=group[1];Author=group[2];Description=group[3];Category=group[4];
 		if(BookName==null||BookName.isEmpty())BookName="Default Book";
 		if(Category==null||Category.isEmpty())Category="Default Category";
 	}
@@ -469,7 +468,6 @@ public class BookAction extends BaseAction<Book, BookService> {
 			this.getModel().setFineValue(1);
 			this.getModel().setIsBorrowed(false);
 			this.getModel().setCategory(Category);
-			this.getModel().setImageAddress(ImageAddress);
 			this.getService().saveBook(this.getModel());
 		}
 		return SUCCESS;
