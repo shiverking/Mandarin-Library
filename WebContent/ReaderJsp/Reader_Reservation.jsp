@@ -8,11 +8,14 @@
 <!-- SITE TITTLE -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
+<meta http-equiv="expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <title>Calssimax</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -47,7 +50,12 @@
 
 <body class="body-wrapper">
 
+	<script src="plugins/jquery/dist/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+
 	<s:include value="/Navbar.jsp"></s:include>
+	<s:include value="/ReaderJsp/setProfile.jsp"></s:include>
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -62,14 +70,14 @@
 						<div class="widget user-dashboard-profile">
 							<!-- User Image -->
 							<div class="profile-thumb">
-								<img src="images/user/user-thumb.jpg" alt=""
-									class="rounded-circle">
+								<img src="upload/${tempReader.phoneNumber}.jpg" alt=""
+									style="max-height: 100px">
 							</div>
 							<!-- User Name -->
-							<h5 class="text-center">Samanta Doe</h5>
-							<p>Joined February 06, 2017</p>
-							<a href="user-profile.html" class="btn btn-main-sm">Edit
-								Profile</a>
+							<h5 class="text-center">${tempReader.readerName}</h5>
+							<p>${tempReader.email}</p>
+							<a href="#" data-toggle="modal" data-target="#setProfile"
+								class="btn btn-main-sm">Edit Profile</a>
 						</div>
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
@@ -90,6 +98,16 @@
 				</div>
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
+					<s:if test="errorMessage!=null">
+						<div class="alert alert-warning" role="alert">
+							<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+							${errorMessage}
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					</s:if>
 					<div class="widget dashboard-container my-adslist">
 
 						<table class="table table-responsive product-dashboard-table">
@@ -104,13 +122,15 @@
 							<tbody>
 
 								<s:iterator value="currentRecords" status="L">
+
 									<tr>
 										<td class="product-details">
 											<h3 class="title">
+
 												<s:property value="books[#L.index].BookName" />
-											</h3> <span class="add-id"><strong>Book ID:</strong>${BookID}</span>
-											<span class="add-id"><strong>ISBN:</strong>
-											<s:property value="books[#L.index].ISBN" /></span> <span><strong>Posted
+											</h3> <span class="add-id"><strong>Book ID:</strong>
+												${BookID}</span> <span class="add-id"><strong>ISBN:</strong>
+												<s:property value="books[#L.index].ISBN" /> </span> <span><strong>Posted
 													on: </strong> <time>${BorrowingDate}</time> </span> <span class="location"><strong>Location:</strong>
 												<s:property value="books[#L.index].Location" /></span>
 										</td>
@@ -145,96 +165,11 @@
 	<!--============================
 =            Footer            =
 =============================-->
-
-	<footer class="footer section section-sm">
-		<!-- Container Start -->
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-7 offset-md-1 offset-lg-0">
-					<!-- About -->
-					<div class="block about">
-						<!-- footer logo -->
-						<img src="images/logo-footer.png" alt="">
-						<!-- description -->
-						<p class="alt-color">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-							dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-							exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
-					</div>
-				</div>
-				<!-- Link list -->
-				<div class="col-lg-2 offset-lg-1 col-md-3">
-					<div class="block">
-						<h4>Site Pages</h4>
-						<ul>
-							<li><a href="#">Boston</a></li>
-							<li><a href="#">How It works</a></li>
-							<li><a href="#">Deals & Coupons</a></li>
-							<li><a href="#">Articls & Tips</a></li>
-							<li><a href="#">Terms of Services</a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- Link list -->
-				<div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0">
-					<div class="block">
-						<h4>Admin Pages</h4>
-						<ul>
-							<li><a href="#">Boston</a></li>
-							<li><a href="#">How It works</a></li>
-							<li><a href="#">Deals & Coupons</a></li>
-							<li><a href="#">Articls & Tips</a></li>
-							<li><a href="#">Terms of Services</a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- Promotion -->
-				<div class="col-lg-4 col-md-7">
-					<!-- App promotion -->
-					<div class="block-2 app-promotion">
-						<a href=""> <!-- Icon --> <img
-							src="images/footer/phone-icon.png" alt="mobile-icon">
-						</a>
-						<p>Get the Dealsy Mobile App and Save more</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Container End -->
-	</footer>
-	<!-- Footer Bottom -->
-	<footer class="footer-bottom">
-		<!-- Container Start -->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-12">
-					<!-- Copyright -->
-					<div class="copyright">
-						<p>Copyright Â© 2016. All Rights Reserved</p>
-					</div>
-				</div>
-				<div class="col-sm-6 col-12">
-					<!-- Social Icons -->
-					<ul class="social-media-icons text-right">
-						<li><a class="fa fa-facebook" href=""></a></li>
-						<li><a class="fa fa-twitter" href=""></a></li>
-						<li><a class="fa fa-pinterest-p" href=""></a></li>
-						<li><a class="fa fa-vimeo" href=""></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- Container End -->
-		<!-- To Top -->
-		<div class="top-to">
-			<a id="top" class="" href=""><i class="fa fa-angle-up"></i></a>
-		</div>
-	</footer>
-
+	<s:include value="/footer.jsp"></s:include>
 	<!-- JAVASCRIPTS -->
-	<script src="plugins/jquery/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+
+
+
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>

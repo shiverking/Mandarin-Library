@@ -1,7 +1,10 @@
 package action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import model.Book;
 import model.Borrowrecord;
@@ -18,19 +21,59 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
 	private List<Book> books;// 可能被bookPage取代，建议少用，如需使用请改注释
 	private List<Borrowrecord> borrowrecords;// 可能被删除
-	private List<CurrentRecord> currentRecords;// 指在借书籍和预约书籍的信息
+	private List<CurrentRecord> currentRecords;// 指预约书籍的信息
 	private PageBean<Borrowrecord> borrowPage;// 已归还的书籍信息
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
 	private String searchContent;
-
-	// 锟斤拷锟斤拷锟角撅拷锟斤拷使锟矫的癸拷锟杰猴拷锟斤拷
+	private String categoryString;
+	private Integer selectSearch;
+	private Map<String, Integer> categoryMap;
+	private Boolean	displayStyle=true;
+	// 以下是具体使用的功能函数
 
 	// reader锟斤拷要使锟矫的猴拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	public String searchBook() {
-		// TODO:锟斤拷页锟斤拷锟斤拷
-		bookPage = this.getService().getPageBean(searchContent, pageNum);
+		// TODO:分页搜索
+	
+		if (selectSearch != null) {
+			switch (selectSearch) {
+			case 1:
+				bookPage = this.getService().getPageBean(searchContent,categoryString, pageNum);
+				break;
+			case 2:
+				bookPage = this.getService().getPageBeanbyISBN(searchContent,categoryString, pageNum);
+				break;
+			case 3:
+				bookPage = this.getService().getPageBeanbyTitle(searchContent,categoryString, pageNum);
+				break;
+			case 4:
+				bookPage = this.getService().getPageBeanbyAuthor(searchContent,categoryString, pageNum);
+				break;
+			default:
+				bookPage = this.getService().getPageBean(searchContent,categoryString,pageNum);
+			}
+		} else {
+			bookPage = this.getService().getPageBean(searchContent,categoryString, pageNum);
+		}
+		this.getCategory();
+		return SUCCESS;
+	}
+
+	public String getCategory() {
+		List<String> cStrings = this.getService().getCategory(searchContent, selectSearch);
+		Map<String, Integer> tempMap = new HashMap<String, Integer>();
+		for (Iterator iterator = cStrings.iterator(); iterator.hasNext();) {
+			String string = (String) iterator.next();
+			String[] tsStrings = string.split(",");
+			for (int i = 0; i < tsStrings.length; i++) {
+				if (tempMap.containsKey(tsStrings[i])) {
+					tempMap.put(tsStrings[i],tempMap.get(tsStrings[i])+1);
+				}else tempMap.put(tsStrings[i],1);
+			}
+		}
+		categoryMap = tempMap;
 		return SUCCESS;
 	}
 
@@ -41,6 +84,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return SUCCESS;
 	}
+
 	public String getBooksbyborrowPage() {
 		books = new ArrayList<Book>();
 		for (Borrowrecord borrowrecord : borrowPage.getDataList()) {
@@ -48,6 +92,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return SUCCESS;
 	}
+
 	public String getBooksbycurrentRecords() {
 		// TODO:可能改用pagabean实现
 		books = new ArrayList<Book>();
@@ -202,6 +247,38 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		this.getService().mergeBook(book);
 		return SUCCESS;
+	}
+
+	public Integer getSelectSearch() {
+		return selectSearch;
+	}
+
+	public void setSelectSearch(Integer selectSearch) {
+		this.selectSearch = selectSearch;
+	}
+
+	public Map<String, Integer> getCategoryMap() {
+		return categoryMap;
+	}
+
+	public void setCategoryMap(Map<String, Integer> categoryMap) {
+		this.categoryMap = categoryMap;
+	}
+
+	public String getCategoryString() {
+		return categoryString;
+	}
+
+	public void setCategoryString(String categoryString) {
+		this.categoryString = categoryString;
+	}
+
+	public Boolean getDisplayStyle() {
+		return displayStyle;
+	}
+
+	public void setDisplayStyle(Boolean displayStyle) {
+		this.displayStyle = displayStyle;
 	}
 
 }

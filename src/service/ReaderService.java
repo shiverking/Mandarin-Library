@@ -2,11 +2,13 @@ package service;
 
 /**
 * @author 
-* @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ24ÈÕ ÉÏÎç12:19:42
+* @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½24ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½12:19:42
 * 
 */
 import model.Reader;
 
 public interface ReaderService {
-	public Reader verify(String Email, String Password);
+	public Reader verify(String phoneNumber, String Password);
+	public void mergeReader(Reader reader);
+	public boolean forgetReaderPassword(String email);
 }

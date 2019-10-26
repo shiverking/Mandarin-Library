@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import model.Book;
 import model.CurrentRecord;
 import model.Reader;
 import util.PageBean;
@@ -46,6 +47,13 @@ public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> impleme
 	@Override
 	public void mergeCurrentRecord(CurrentRecord currentRecord) {
 		this.getDao().merge(currentRecord);
+	}
+
+	@Override
+	public List<CurrentRecord> getCurrentRecordByBook(Book book) {
+		// TODO Auto-generated method stub
+		return this.getDao().findBy("BookID", book.getBookID());
+		
 	}
 
 }
