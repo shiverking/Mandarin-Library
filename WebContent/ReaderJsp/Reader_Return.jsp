@@ -127,7 +127,7 @@
 														value="Fine" /> <i class="fa fa-jpy" aria-hidden="true"></i></span></td>
 										</s:if>
 									</tr>
-
+									
 								</s:iterator>
 
 							</tbody>

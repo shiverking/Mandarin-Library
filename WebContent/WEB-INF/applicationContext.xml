@@ -20,20 +20,38 @@
 		<property name="service" ref="adminService" />
 		<property name="model" ref="admin" />
 	</bean>
-	<!-- Librarian数据操作对象 -->
-	<bean id="librarianDao" class="dao.LibrarianDao">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
+	
+	<!-- LibrarianDao 数据操作对象 -->
+    <bean id="librarianDao" class="dao.LibrarianDao">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
 	<!-- librarianService图书馆馆员操作业务对象 -->
-	<bean id="librarianService" class="service.LibrarianServicelmpl">
+	<bean id="librarianService" class="service.LibrarianServiceImpl">
 		<property name="dao" ref="librarianDao"></property>
 	</bean>
 	<bean id="librarian" class="model.Librarian" scope="prototype" />
 	<bean id="librarianAction" class="action.LibrarianAction"
 		scope="prototype">
-		<property name="service" ref="librarianService"></property>
-		<property name="model" ref="librarian"></property>
+		<property name="service" ref="librarianService" />
+		<property name="model" ref="librarian" />
 	</bean>
+	
+	<!-- Librarian_Post数据操作对象 -->
+	<bean id="postDao" class="dao.PostDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="post" class="model.Post" scope="prototype"  >
+		<property name="librarian" ref="librarian"></property>
+	</bean>
+		<!-- PostService用户操作业务对象 -->
+	<bean id="postService" class="service.PostServiceImpl">
+		<property name="dao" ref="postDao"></property>
+	</bean>
+	<bean id="postAction" class="action.PostAction" scope="prototype">
+		<property name="service" ref="postService"></property>
+		<property name="model" ref="post"></property>
+	</bean>
+	
 	<!-- ReaderDao 数据操作对象 -->
 	<bean id="readerDao" class="dao.ReaderDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -79,7 +97,22 @@
 		<property name="service" ref="borrowrecordService" />
 		<property name="model" ref="borrowrecord" />
 	</bean>
-	
+	<!-- DeleterecordDao 数据操作对象 -->
+	<bean id="deleterecordDao" class="dao.DeleterecordDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- DeleterecordService用户操作业务对象 -->
+	<bean id="deleterecordService"
+		class="service.DeleterecordServiceImpl">
+		<property name="dao" ref="deleterecordDao"></property>
+	</bean>
+	<bean id="deleterecord" class="model.Deleterecord"
+		scope="prototype" />
+	<bean id="deleterecordAction" class="action.DeleterecordAction"
+		scope="prototype">
+		<property name="service" ref="deleterecordService" />
+		<property name="model" ref="deleterecord" />
+	</bean>
 	<!-- CurrentRecordDao 数据操作对象 -->
 	<bean id="currentrecordDao" class="dao.CurrentRecordDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -95,5 +128,22 @@
 		scope="prototype">
 		<property name="service" ref="currentrecordService" />
 		<property name="model" ref="currentrecord" />
+	</bean>
+	
+		<!-- PayrecordDao 数据操作对象 -->
+	<bean id="payrecordDao" class="dao.PayrecordDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- PayrecordService用户操作业务对象 -->
+	<bean id="payrecordService"
+		class="service.PayrecordServiceImpl">
+		<property name="dao" ref="payrecordDao"></property>
+	</bean>
+	<bean id="payrecord" class="model.Payrecord"
+		scope="prototype" />
+	<bean id="payrecordAction" class="action.PayrecordAction"
+		scope="prototype">
+		<property name="service" ref="payrecordService" />
+		<property name="model" ref="payrecord" />
 	</bean>
 </beans>

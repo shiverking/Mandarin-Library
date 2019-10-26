@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author
- * @version 创建时间：2019年9月23日 下午2:04:16
+ * @version 锟斤拷锟斤拷时锟戒：2019锟斤拷9锟斤拷23锟斤拷 锟斤拷锟斤拷2:04:16
  * 
  */
 public interface BaseDao<TEntity> {
@@ -51,6 +51,7 @@ public interface BaseDao<TEntity> {
 	 * 
 	 * @return the List of entities found
 	 */
+	void deleteByLS(int id);
 	List<TEntity> findAll();
 
 	List<TEntity> findAll(String cond);
@@ -68,7 +69,7 @@ public interface BaseDao<TEntity> {
 
 	List<TEntity> findBySubString(String propertyName, String cond);
 
-	// 拓展的对数据库双属性查询
+	// 锟斤拷展锟侥讹拷锟斤拷锟捷匡拷双锟斤拷锟皆诧拷询
 	List<TEntity> findByTwoProperty(String propertyName1, String propertyName2, String cond1);
 
 	// 拓展的双属性精准查询
@@ -77,7 +78,7 @@ public interface BaseDao<TEntity> {
 	// 拓展ID数组查询
 	List<TEntity> findByIDList(List<Integer> IDlist);
 
-	// 拓展分页查询
+	// 锟斤拷展锟斤拷页锟斤拷询
 	int findTotalNum(String propertyName, Object propertyValue);
 
 	List<TEntity> findPageByQuery(String propertyName, Object propertyValue, String cond, int pageStart, int pageSize);
@@ -91,7 +92,7 @@ public interface BaseDao<TEntity> {
 
 	List<TEntity> getPageByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2,
 			String cond, int pageStart, int pageSize);
-
+int numOfReader();
 	// TODO:万能的分页查询，涵盖所有分页查询方式
 	/**
 	 * 

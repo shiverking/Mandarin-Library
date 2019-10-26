@@ -15,16 +15,20 @@ import util.PageBean;
 
 /**
  * @author
- * @version ´´½¨Ê±¼ä£º2019Äê9ÔÂ24ÈÕ ÉÏÎç2:12:54
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½9ï¿½ï¿½24ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½2:12:54
  * 
  */
 public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordService> {
-	private List<Borrowrecord> borrowrecords;//¿ÉÄÜ±»É¾³ý
+	private List<Borrowrecord> borrowrecords;// ï¿½ï¿½ï¿½Ü±ï¿½É¾ï¿½ï¿½
 	private Reader tempReader;
-	private List<Book> books;//¿ÉÄÜ±»É¾³ý
-	private Integer pageNum;
+	private List<Book> books;// ï¿½ï¿½ï¿½Ü±ï¿½É¾ï¿½ï¿½
+	private int bookID2;
+	private int bookID3;
+	private int pageNum;
 	private PageBean<Borrowrecord> borrowPage;
 	private Integer totalFine;
+	private List<Reader> readers;
+	private String errorMessage;
 
 	public String getBorrowrecordByReader() {
 
@@ -32,14 +36,85 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 		return SUCCESS;
 	}
 
+	public String borrowBook() {
+
+		if(this.readers == null){
+			this.setErrorMessage("ReaderNotFoundError: method(BorrowrecordAction.borrowBook) this.reader is null");
+			System.out.println(this.getErrorMessage());
+		}else if(this.books == null){
+			this.setErrorMessage("BookNotFoundError: method(BorrowrecordAction.borrowBook) this.Book is null");
+			System.out.println(this.getErrorMessage());
+		}else{
+			borrowrecords = this.getService().borrowBook(readers, books);
+		}
+		return SUCCESS;
+		
+	}
+	public String setReturnBorrowrecordbyBook(){
+		if(this.books.get(0)!=null){
+			System.out.println(this.books.get(0).getBookID());
+			borrowrecords = this.getService().setReturnBorrowrecordByBook(this.books.get(0).getBookID());
+			if(borrowrecords!=null){
+				return SUCCESS;
+			}else{
+				this.setErrorMessage("BorrowrecordNotFoundError: Can't Find the Borrowrecord");
+				System.out.println(this.getErrorMessage());
+				return ERROR;
+			}
+		}else{
+			this.setErrorMessage("BorrowrecordNotFoundError: Can't Find the book");
+			System.out.println(this.getErrorMessage());
+			return ERROR;
+		}		
+	}
+
+	public String getBorrowrecordByReaders() {
+
+		borrowrecords = this.getService().getBorrowrecordsbyReaders(readers);
+		return SUCCESS;
+	}
+
 	public String getAllBorrowrecord() {
 
 		this.borrowrecords = this.getService().getAllBorrowrecords();
+		return SUCCESS;
+	}
 
+	public String getBorrowrecordByReaderId() {
+		borrowrecords = this.getService().getBorrowrecordsbyReaderId(this.getModel().getReaderID());
 		return SUCCESS;
 	}
 
 	public String getReaderFine() {
+		totalFine = this.getService().getFine(tempReader.getReaderID());// TODO:ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ã·¨
+		return SUCCESS;
+	}
+
+		
+	public String findReaderCanBorrow(){
+		int n = this.getService().findCanBorrow(this.readers.get(0));
+		if(n < 3){
+			int x = 1;
+			if(this.bookID2 != 0){
+				x++;
+			}
+			if(this.bookID3 != 0){
+				x++;
+			}
+			if(n + x <= 3){
+				return SUCCESS;
+			}else{
+				this.setErrorMessage("ReaderCan'tBorrowError: This Reader can only Borrow " + (3 - n) + " books! Reader id:" + this.readers.get(0).getReaderID());
+				return ERROR;
+			}
+		}else{
+			this.setErrorMessage("ReaderCan'tBorrowError: This Reader has already Borrow 3 books! Reader id:" + this.readers.get(0).getReaderID());
+			return ERROR;
+		}
+	}
+	
+	
+	public String showError(){
 		totalFine=this.getService().getFine(tempReader.getReaderID());//TODO:Ôö¼ÓÁË¿ªÏú£¬ºóÆÚ¿ÉÄÜÐÞ¸ÄËã·¨
 		return SUCCESS;
 	}
@@ -56,6 +131,7 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 		if(totalFine==null)return "getfine";
 		return SUCCESS;
 	}
+
 
 	public PageBean<Borrowrecord> getBorrowPage() {
 		return borrowPage;
@@ -105,5 +181,37 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 		this.totalFine = totalFine;
 	}
 
+	public List<Reader> getReaders() {
+		return readers;
+	}
+
+	public void setReaders(List<Reader> readers) {
+		this.readers = readers;
+	}
+	
+	public void setErrorMessager(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+	
+	public String getErrorMessager() {
+		return errorMessage;
+	}
+
+	public void setBookID2(int bookID2) {
+		this.bookID2 = bookID2;
+	}
+
+	public int getBookID2() {
+		return bookID2;
+	}
+
+	public void setBookID3(int bookID3) {
+		this.bookID3 = bookID3;
+	}
+
+	public int getBookID3() {
+		return bookID3;
+	}
+	
 
 }

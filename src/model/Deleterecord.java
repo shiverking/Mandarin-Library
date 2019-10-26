@@ -4,7 +4,8 @@ public class Deleterecord {
 	private int DeleterecordID;
 	private Librarian librarian;
 	private Date Date;
-	private Book book;
+	private String ISBN;
+	
 	public Deleterecord() {
 		
 	}
@@ -30,13 +31,7 @@ public class Deleterecord {
 		Date = date;
 	}
 
-	public Book getBook() {
-		return book;
-	}
 
-	public void setBook(Book book) {
-		this.book = book;
-	}
 
 	public Librarian getLibrarian() {
 		return librarian;
@@ -45,4 +40,15 @@ public class Deleterecord {
 	public void setLibrarian(Librarian librarian) {
 		this.librarian = librarian;
 	}
+
+	public String getISBN() {
+		return ISBN;
+	}
+
+	public void setISBN(String iSBN) {
+		ISBN = iSBN;
+	}
+
+
+
 }

@@ -5,7 +5,7 @@ public class Reader {
 	private String ReaderName;
 	private String Password;
 	private String Email;
-	private int Money;
+	private int Money=300;
 	private String PhoneNumber;
 	public Reader() {
 	}
@@ -16,7 +16,6 @@ public class Reader {
 		ReaderName = readerName;
 		Password = password;
 		Email = email;
-		Money = money;
 		PhoneNumber = phoneNumber;
 	}
 

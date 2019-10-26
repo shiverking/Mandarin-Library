@@ -6,8 +6,8 @@
 		<id name="DeleterecordID" type="int">
 			<generator class="native" />
 		</id>
+		<property name="ISBN" type="string" not-null="true" />
 		<property name="Date" type="date" not-null="true" />
-		<many-to-one name="book" not-null="true"></many-to-one>
 		<many-to-one name="librarian" not-null="true"></many-to-one>
 	</class>
 </hibernate-mapping>

@@ -9,47 +9,86 @@ import util.PageBean;
 
 /**
  * @author
- * @version ´´½¨Ê±¼ä£º2019Äê10ÔÂ6ÈÕ ÏÂÎç3:37:01
+ * @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½10ï¿½ï¿½6ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½3:37:01
  * 
  */
 public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> implements CurrentRecordService {
 
-	@Override
 	public List<CurrentRecord> getAllCurrentRecords() {
 		return this.getDao().findAll();
 
 	}
 
-	@Override
 	public List<CurrentRecord> getAllCurrentRecords(String cond) {
 
 		return this.getDao().findAll(cond);
 	}
 
-	@Override
 	public List<CurrentRecord> getCurrentRecordsbyReader(Reader reader) {
 
 		return this.getDao().findBy("ReaderID", reader.getReaderID(), "BorrowingDate desc");
 	}
 
-	@Override
 	public CurrentRecord getCurrentRecordByid(int id) {
 
 		return this.getDao().get(id);
 	}
 
-	@Override
 	public void saveCurrentRecord(CurrentRecord currentRecord) {
 
 		this.getDao().save(currentRecord);
 	}
 
-	@Override
 	public void mergeCurrentRecord(CurrentRecord currentRecord) {
 		this.getDao().merge(currentRecord);
 	}
+	
 
-	@Override
+	public boolean isOrder(Book book, Reader reader) {
+		if(this.getCurrentRecordbyBookbyReader(book, reader)!=null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isOrder(Book book) {
+		if(this.getCurrentRecordbyBook(book)!=null)
+			return true;
+		else
+			return false;
+	}
+
+	public CurrentRecord getCurrentRecordbyBook(Book book) {
+
+		List<CurrentRecord> CurrentRecords = this.getDao().findBy("BookID", book.getBookID());
+		if(!CurrentRecords.isEmpty()){
+			return CurrentRecords.get(0);
+		}else{
+			return null;
+		}
+
+		
+	}
+
+	public CurrentRecord getCurrentRecordbyBookbyReader(Book book, Reader reader) {
+		
+		List<CurrentRecord> CurrentRecords = this.getDao().getByTwoProperty("BookID", "ReaderID", book.getBookID(), reader.getReaderID());
+		if(!CurrentRecords.isEmpty()){
+			return CurrentRecords.get(0);
+		}else{
+			return null;
+		}
+
+	}
+
+	public void deleteCurrentRecordbyID(int id) {
+		
+		this.getDao().deleteByLS(id);
+		
+	}
+
+
+
 	public List<CurrentRecord> getCurrentRecordByBook(Book book) {
 		// TODO Auto-generated method stub
 		return this.getDao().findBy("BookID", book.getBookID());
@@ -57,3 +96,4 @@ public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> impleme
 	}
 
 }
+
