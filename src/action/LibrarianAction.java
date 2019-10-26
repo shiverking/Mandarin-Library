@@ -28,16 +28,15 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		Librarians = librarians;
 	}
 	/*閿熸枻鎷烽檰*/
-
 	public String signin() throws Exception{
 		String LibrarianName =this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName
 		String Password  =this.getModel().getPassword();//閿熸枻鎷峰彇閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
-		if(LibrarianName==null||LibrarianName.isEmpty() ) {
+		if(LibrarianName==null) {
 			System.out.println(LibrarianName);
 			this.errorMessage="You must input the Name!";
 			return INPUT;
 		}
-		if(Password==null||Password.isEmpty()) {
+		if(Password==null) {
 			this.errorMessage="You must input the Password!";
 			return INPUT;
 		}
@@ -49,7 +48,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			return SUCCESS;
 		}
 		this.errorMessage="Your name or password is wrong, please try again !";
-		return SUCCESS;
+		return INPUT;
 	}
 	public String signup() throws Exception{
 		String LibrarianName = this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName

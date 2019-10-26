@@ -365,89 +365,89 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return SUCCESS;
 	}
-	static String BookName=null;//书名
-	static String ISBN=null;
-	static String Price=null;//价格
-	static String Author=null;//作者
-	static String Description=null;//书籍简介
-	static String Category=null;//种类
+
+	// 鏍规嵁ISBN鍔犱功
+	static String BookName = null;// 涔﹀悕
+	static String ISBN = null;
+	static String Price = null;// 浠锋牸
+	static String Author = null;// 浣滆 �
+	static String Description = null;// 涔︾睄绠�浠�
+	static String Category = null;// 绉嶇被
 	static String isbn;
-	static String ImageAddress=null;//图片地址
-	public static String getUrl(String isbn) {//构造URL
-		StringBuilder builder= new StringBuilder();
+
+	public static String getUrl(String isbn) {// 鏋勯�燯RL
+		StringBuilder builder = new StringBuilder();
 		builder.append("http://api.douban.com/book/subject/isbn/");
 		builder.append(isbn);
 		builder.append("?apikey=0b2bdeda43b5688921839c8ecb20399b");
 		return builder.toString();
 	}
-	public static String getContent(String urlName) {//获取网页显示的内容
-		String result="";
-		BufferedReader reader= null;
+
+	public static String getContent(String urlName) {// 鑾峰彇缃戦〉鏄剧ず鐨勫唴瀹�
+		String result = "";
+		BufferedReader reader = null;
 		try {
 			URL url = new URL(urlName);
 			URLConnection conn = url.openConnection();
 			conn.setDoInput(true);
 			conn.setDoInput(true);
 			conn.setRequestProperty("accept", "*/*");
-            conn.setRequestProperty("connection", "Keep-Alive");
-            conn.setRequestProperty("user-agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-            conn.connect();//建立连接
-            reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));//定义输入流来读取URL的响应
-            String line;
-            while((line= reader.readLine())!=null) {
-            	result+=line;
-            }
+			conn.setRequestProperty("connection", "Keep-Alive");
+			conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+			conn.connect();// 寤虹珛杩炴帴
+			reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));// 瀹氫箟杈撳叆娴佹潵璇诲彇URL鐨勫搷搴�
+			String line;
+			while ((line = reader.readLine()) != null) {
+				result += line;
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
-			if(reader!=null)
-			try {
-				reader.close();
-			}catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
+		} finally {
+			if (reader != null)
+				try {
+					reader.close();
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
 		}
 		return result;
 	}
-	public static void seprarate(String result) {//对获取到的网页内容进行分割，获取感兴趣的数据部分,用正则表达式进行匹配
-		String pattern[] = new String[6];
-		Pattern patterncompile[] = new Pattern[6];
-		Matcher matcher[] =new Matcher[6];
-		String group[] = new String[6];
-		pattern[0]="<title>(.*)</title>";//匹配书籍名称
-		pattern[1]="<db:attribute name=\"price\">(.*?)</db:attribute>";//匹配价格
-		pattern[2]="<db:attribute name=\"author\">(.*?)</db:attribute>";//匹配作者
-		pattern[3]="<summary>(.*)</summary>";//匹配简介
-		pattern[4]="<db:rating(.*?)/>(.*)<gd:rating";//匹配书籍种类
-		pattern[5]="rel=\"alternate\"/>	<link href=\"(.*?)\" rel=\"image\"/>";//匹配图片
-		for(int i=0;i<6;i++) {
-			patterncompile[i]=Pattern.compile(pattern[i]);
-			matcher[i]=patterncompile[i].matcher(result);
-			if(matcher[i].find()) {
-				if(i<=3||i==5) {
-				group[i]=matcher[i].group(1);
-				}
-				else {
-				group[i]=matcher[i].group(2);//进行二次匹配
-				String[] splitStr = group[i].split("\"");
-				String res="";
-				for(String str:splitStr) {
-					if(Pattern.matches("[\\u4E00-\\u9FA5]+", str))
-						res+=str;
-				}
-				group[i]=res;
+
+	public static void seprarate(String result) {// 瀵硅幏鍙栧埌鐨勭綉椤靛唴瀹硅繘琛屽垎鍓诧紝鑾峰彇鎰熷叴瓒ｇ殑鏁版嵁閮ㄥ垎,鐢ㄦ鍒欒〃杈惧紡杩涜鍖归厤
+		String pattern[] = new String[5];
+		Pattern patterncompile[] = new Pattern[5];
+		Matcher matcher[] = new Matcher[5];
+		String group[] = new String[5];
+		pattern[0] = "<title>(.*)</title>";// 鍖归厤涔︾睄鍚嶇О
+		pattern[1] = "<db:attribute name=\"price\">(.*?)</db:attribute>";// 鍖归厤浠锋牸
+		pattern[2] = "<db:attribute name=\"author\">(.*?)</db:attribute>";// 鍖归厤浣滆��
+		pattern[3] = "<summary>(.*)</summary>";// 鍖归厤绠�浠�
+		pattern[4] = "<db:rating(.*?)/>(.*)<gd:rating";// 鍖归厤涔︾睄绉嶇被
+		for (int i = 0; i < 5; i++) {
+			patterncompile[i] = Pattern.compile(pattern[i]);
+			matcher[i] = patterncompile[i].matcher(result);
+			if (matcher[i].find()) {
+				if (i <= 3) {
+					group[i] = matcher[i].group(1);
+				} else {
+					group[i] = matcher[i].group(2);// 杩涜浜屾鍖归厤
+					String[] splitStr = group[i].split("\"");
+					String res = "";
+					for (String str : splitStr) {
+						if (Pattern.matches("[\\u4E00-\\u9FA5]+", str)) {
+							res += str;
+							res += ",";
+						}
+					}
+					group[i] = res;
 				}
 			}
-		}
-		BookName=group[0];Price=group[1];Author=group[2];Description=group[3];Category=group[4];ImageAddress=group[5];
+		BookName=group[0];Price=group[1];Author=group[2];Description=group[3];Category=group[4];
 		if(BookName==null||BookName.isEmpty())BookName="Default Book";
 		if(Category==null||Category.isEmpty())Category="Default Category";
-	
 	}
-		
-	
 
 	public String addBookISBN() throws Exception {
 		String isbn = this.getModel().getISBN();
@@ -468,7 +468,6 @@ public class BookAction extends BaseAction<Book, BookService> {
 			this.getModel().setFineValue(1);
 			this.getModel().setIsBorrowed(false);
 			this.getModel().setCategory(Category);
-			this.getModel().setImageAddress(ImageAddress);
 			this.getService().saveBook(this.getModel());
 		}
 		return SUCCESS;
