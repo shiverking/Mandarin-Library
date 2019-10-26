@@ -77,7 +77,7 @@
 							<ul>
 								<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
-								<li class="active"><a href=""><i class="fa fa-search"></i>
+								<li><a href=""><i class="fa fa-search"></i>
 										Search Book</a></li>
 								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
 										Register Reader </a></li>

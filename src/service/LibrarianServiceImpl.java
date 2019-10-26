@@ -4,7 +4,6 @@ import java.util.List;
 import model.Librarian;
 public class LibrarianServiceImpl extends BaseService<Librarian>implements LibrarianService{
 	public Librarian verify(String LibrarianName, String Password) {
-		if(Password==null) {Password="00010001";}
 		Librarian librarian = this.getDao().getSingle("LibrarianName",LibrarianName);
 		if(librarian == null) {
 			return null;
