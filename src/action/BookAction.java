@@ -446,7 +446,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 			}
 		BookName=group[0];Price=group[1];Author=group[2];Description=group[3];Category=group[4];
 		if(BookName==null||BookName.isEmpty())BookName="Default Book";
-		if(Category==null||Category.isEmpty())Category="Default Category";
+		if(Category==null||Category.isEmpty())Category="Default Category,";
 	}}
 
 	public String addBookISBN() throws Exception {
