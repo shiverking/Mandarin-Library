@@ -31,12 +31,12 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	public String signin() throws Exception{
 		String LibrarianName =this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName
 		String Password  =this.getModel().getPassword();//閿熸枻鎷峰彇閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
-		if(LibrarianName==null) {
+		if(LibrarianName.isEmpty()) {
 			System.out.println(LibrarianName);
 			this.errorMessage="You must input the Name!";
 			return INPUT;
 		}
-		if(Password==null) {
+		if(Password.isEmpty()) {
 			this.errorMessage="You must input the Password!";
 			return INPUT;
 		}

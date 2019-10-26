@@ -216,7 +216,7 @@
 		<!--librarian登陆界面 -->
 		<action name="librarianlogin" class="librarianAction" method="signin">
 			<result name="success">/librarian_jsp/BookManagement.jsp</result>
-			
+			<result name="input">/Login.jsp</result>
 		</action>
 		<!-- 预约书籍 -->
 		<action name="getReaderStatuForReserveBook"
