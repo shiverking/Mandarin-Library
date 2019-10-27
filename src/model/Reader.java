@@ -8,6 +8,7 @@ public class Reader {
 	private int Money=300;
 	private String PhoneNumber;
 	public Reader() {
+		ReaderID = 1;
 	}
 
 	public Reader(int readerID, String readerName, String password, String email, int money, String phoneNumber) {

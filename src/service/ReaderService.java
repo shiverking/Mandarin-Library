@@ -20,10 +20,11 @@ public interface ReaderService {
 	public Reader getReaderById(int id);
 	public void register(Reader reader);
 	public Reader getReaderByBorrowrecord(Borrowrecord borrowrecord);
-
+	public Reader getReaderbyPhone(String pString);
 	public int getReaderNum();
 
 	public Reader verify(String phoneNumber, String Password);
 	public void mergeReader(Reader reader);
 	public boolean forgetReaderPassword(String email);
+	
 }

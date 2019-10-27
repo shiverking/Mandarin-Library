@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF8"
 	pageEncoding="UTF8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<section class="shadow">
+<section >
 <div class="fade" id="header"></div>
 	<div class="container ">
 		<div class="row">

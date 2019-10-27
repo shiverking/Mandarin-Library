@@ -1,4 +1,5 @@
 package action;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,47 +35,40 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private String errorMessage;
 	private int readerNum;
 	private String filename;
+	private File avatarFile;
+
 	public int getReaderNum() {
 		return readerNum;
 	}
+
 	public void setReaderNum(int readerNum) {
 		this.readerNum = readerNum;
 	}
-		//读者注册
-		public String register() throws Exception{
-			String ReaderName = this.getModel().getReaderName();
-			String PhoneNUmber = this.getModel().getPhoneNumber();
 
-			String Email = this.getModel().getEmail();
-			String Password = this.getModel().getPassword();
-			HttpServletRequest request = ServletActionContext.getRequest();
-			String NewPassword=request.getParameter("ConfirmPassword");
-			if(Email.isEmpty()) {
-				this.errorMessage="You must input the Email!";
-				return INPUT;
-			}
-			Reader reader = this.getService().verify(Email, Password);
-			if(!NewPassword.equals(Password)) {
-				this.errorMessage="Both passwords must be the same!";
-				return INPUT;
-			}
-			if(reader == null) {
-				if(NewPassword.equals(Password)) {
-			    	try {
-						this.getService().register(this.getModel());
-					}
-					catch (Exception ex){
-						this.addActionError(ex.getMessage());
-						return INPUT;
+	// 璇昏�呮敞鍐�
+	public String register() throws Exception {
 
-					}
-			    	return SUCCESS;
-				}
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String NewPassword = request.getParameter("ConfirmPassword");
+		if (this.getModel().getEmail().isEmpty()) {
+			this.errorMessage = "You must input the Email!";
+		} else if (this.getModel().getPhoneNumber().isEmpty()) {
+			this.errorMessage = "You must input the phone number!";
+		} else if (this.getModel().getPassword().isEmpty()) {
+			this.errorMessage = "You must input the Password!";
+		} else if (this.getModel().getReaderName().isEmpty()) {
+			this.errorMessage = "You must input reader's namer!";
+		} else if (!this.getModel().getPassword().equals(NewPassword)) {
+			this.errorMessage = "Both passwords must be the same!";
+		} else {
+			tempReader = this.getService().getReaderbyPhone(this.getModel().getPhoneNumber());
+			if (tempReader == null) {
+				this.getService().mergeReader(this.getModel());
 			}
-			this.errorMessage="Your name or password is wrong, please try again !";
-			return INPUT;
 		}
-	private File avatarFile;
+
+		return SUCCESS;
+	}
 
 	public String signin() throws Exception {
 		String phoneNumber = this.getModel().getPhoneNumber();
@@ -128,29 +122,29 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public String changeReaderAvatar() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		tempReader = (Reader) session.get("reader");
-		if (tempReader==null) {
+		if (tempReader == null) {
 			return LOGIN;
 		}
-		if (avatarFile==null) {
-			this.errorMessage="Please select an image.";
+		if (avatarFile == null) {
+			this.errorMessage = "Please select an image.";
 			return SUCCESS;
 		}
-	        String suffix =filename.substring(filename.lastIndexOf(".") + 1);
-	        System.out.println(suffix+"sssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-	        if (!suffix.equals("png")&&!suffix.equals("gif")) {
-	        	this.errorMessage="Please select an image.";
-				return SUCCESS;
-			}
+		String suffix = filename.substring(filename.lastIndexOf(".") + 1);
+		System.out.println(suffix + "sssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+		if (!suffix.equals("png") && !suffix.equals("gif")) {
+			this.errorMessage = "Please select an image.";
+			return SUCCESS;
+		}
 		String realPath = ServletActionContext.getServletContext().getRealPath("upload");
 		try {
-			FileUtils.copyFile(avatarFile, new File(realPath+"\\"+tempReader.getPhoneNumber()+".jpg"));
+			FileUtils.copyFile(avatarFile, new File(realPath + "\\" + tempReader.getPhoneNumber() + ".jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return SUCCESS;
 	}
 
-	// 获取当前读者状态
+	// 鑾峰彇褰撳墠璇昏�呯姸鎬�
 	public String getReaderStatu() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		this.tempReader = (Reader) session.get("reader");
@@ -188,7 +182,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public void setBorrowrecords(List<Borrowrecord> borrowrecords) {
 		this.borrowrecords = borrowrecords;
 	}
-	
+
 	public List<Reader> getReaders() {
 		return readers;
 	}
@@ -212,35 +206,35 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	
-	public String getAllReader(){
+
+	public String getAllReader() {
 		this.readers = this.getService().getAllReader();
 		return SUCCESS;
 	}
-	
-	public String getReaderById(){
+
+	public String getReaderById() {
 		this.readers = new ArrayList<Reader>();
 		int id = this.getModel().getReaderID();
 		this.readers.add(this.getService().getReaderById(id));
-		if(this.readers.get(0) == null){
+		if (this.readers.get(0) == null) {
 			this.setErrorMessage("ReaderNotFoundError: Can't Find Reader by id:" + id);
 			System.out.println(this.getErrorMessage());
 			return ERROR;
 		}
 		return SUCCESS;
 	}
-	
-	public String getReaderByName(){
+
+	public String getReaderByName() {
 		String Name = this.getModel().getReaderName();
 		this.readers = this.getService().getReaderByName(Name);
-		if(this.readers.isEmpty()){
+		if (this.readers.isEmpty()) {
 			this.setErrorMessage("ReaderNotFoundError: Can't Find Reader by name:" + Name);
 			System.out.println(this.getErrorMessage());
 			return ERROR;
 		}
 		return SUCCESS;
 	}
-	
+
 	public String getReadersbyBorrwrecords() {
 		readers = new ArrayList<Reader>();
 		for (Borrowrecord borrowrecord : borrowrecords) {
@@ -248,6 +242,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		}
 		return SUCCESS;
 	}
+
 	public String findReaderNum() {
 		readerNum = this.getService().getReaderNum();
 		return SUCCESS;
@@ -260,9 +255,11 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public void setAvatarFile(File avatarFile) {
 		this.avatarFile = avatarFile;
 	}
+
 	public String getFilename() {
 		return filename;
 	}
+
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}

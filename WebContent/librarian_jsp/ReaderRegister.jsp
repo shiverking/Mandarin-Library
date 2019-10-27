@@ -50,7 +50,7 @@
 
 
 <body>
-	<s:include value="jspElement/Head.jsp" />
+	<s:include value="/Navbar.jsp" />
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -103,9 +103,7 @@
 						<h3 class="widget-header">Reader Register</h3>
 
 						<!-- 在这里写ReaderRegister展示对象 -->
-
-
-
+						
 						<form action="readerregister" method="post">
 							username<input type="text" name="ReaderName"><br>
 							password<input type="password" name="Password"><br>
@@ -122,7 +120,7 @@
 		</div>
 		<!-- Container End -->
 	</section>
-	<s:include value="jspElement/Foot.jsp" />
+	<s:include value="/footer.jsp" />
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>

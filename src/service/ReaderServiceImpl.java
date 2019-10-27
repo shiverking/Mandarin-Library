@@ -54,6 +54,7 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 		int id = borrowrecord.getReaderID();
 		return this.getReaderById(id);
 	}
+	
 	public void register(Reader reader) {
 		// TODO Auto-generated method stub
 		if(reader.getPassword()=="") {
@@ -91,5 +92,10 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 			}
 			return true;
 		}
+	}
+	@Override
+	public Reader getReaderbyPhone(String pString) {
+	return this.getDao().getSingle("PhoneNumber", pString);
+
 	}
 }

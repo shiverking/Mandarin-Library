@@ -83,7 +83,7 @@ public class CurrentRecordServiceImpl extends BaseService<CurrentRecord> impleme
 
 	public void deleteCurrentRecordbyID(int id) {
 		
-		this.getDao().deleteByLS(id);
+		this.getDao().delete(id);
 		
 	}
 
