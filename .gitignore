@@ -29,3 +29,4 @@ src/hibernate.cfg.xml
 build/classes/hibernate.cfg.xml
 build/classes/hibernate.cfg.xml
 src/hibernate.cfg.xml
+build/classes/hibernate.cfg.xml
