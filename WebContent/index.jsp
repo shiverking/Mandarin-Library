@@ -48,7 +48,7 @@
 	<!--===============================
 =            Navbar Area            =
 ================================-->
-	<s:include value="/librarian_jsp/Navbar.jsp"></s:include>
+	<s:include value="/Navbar.jsp"></s:include>
 
 	<!--===============================
 =            Hero Area            =
