@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF8"
 	pageEncoding="UTF8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<%@page import="java.util.Date,java.lang.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +53,7 @@
 	<!--==================================
 =            User Profile            =
 ===================================-->
-	<section class="dashboard section">
+	<section class="dashboard section  bg-gray">
 		<!-- Container Start -->
 		<div class="container">
 			<!-- Row Start -->
@@ -63,8 +64,14 @@
 						<div class="widget user-dashboard-profile">
 							<!-- User Image -->
 							<div class="profile-thumb ">
-								<img src="upload/${tempReader.phoneNumber}.jpg" alt=""
-									style="max-height: 100px; max-width: 100px;">
+									<%
+								Date Resultsdate = new Date();
+							%>
+							<div class="profile-thumb">
+								<img
+									src="upload/${tempReader.phoneNumber}.jpg?time=<%=Resultsdate%>"
+									alt="" style="max-height: 100px; max-width: 100px;">
+							</div>
 							</div>
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>

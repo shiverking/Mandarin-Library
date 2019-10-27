@@ -25,7 +25,7 @@
 								
 								<li class="nav-item dropdown dropdown-slide"><a
 									class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"> History <span><i
+									aria-haspopup="true" aria-expanded="false"> My profile <span><i
 											class="fa fa-angle-down"></i></span>
 								</a> <!-- Dropdown list -->
 									<div class="dropdown-menu dropdown-menu-right">

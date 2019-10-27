@@ -58,7 +58,7 @@
 	<!--==================================
 =            User Profile            =
 ===================================-->
-	<section class="dashboard section">
+	<section class="dashboard section  bg-gray">
 		<!-- Container Start -->
 		<div class="container">
 			<!-- Row Start -->
