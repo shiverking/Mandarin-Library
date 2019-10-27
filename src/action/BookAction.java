@@ -15,6 +15,8 @@ import model.CurrentRecord;
 import service.BookService;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionContext;
 import util.ISBNgenerator;
@@ -377,7 +379,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	static String ImageAddress=null;//图片地址
 	public static String getUrl(String isbn) {//构造URL
 		StringBuilder builder= new StringBuilder();
-		builder.append("http://api.douban.com/book/subject/isbn/");
+		builder.append("https://api.douban.com/v2/book/isbn/");
 		builder.append(isbn);
 		builder.append("?apikey=0b2bdeda43b5688921839c8ecb20399b");
 		return builder.toString();
@@ -448,7 +450,37 @@ public class BookAction extends BaseAction<Book, BookService> {
 		if(BookName==null||BookName.isEmpty())BookName="Default Book";
 		if(Category==null||Category.isEmpty())Category="Default Category,";
 	}
-		
+	public static  void parseJSON(String content) {//解析从网页中获取的json格式的数据
+	    try
+	    {
+	            JSONObject jsonObject = new JSONObject(content);
+	            BookName = jsonObject.getString("title"); //获取图书名
+	            Price = jsonObject.getString("price"); //获取价格
+	           String description = "<p>"+jsonObject.getString("summary")+"</p>"; //获取图书简介
+	           Description=description.replaceAll("\n", "</p><p>");
+	            ISBN = jsonObject.getString("isbn13");//获取ISBN
+	            JSONArray AuthorArray = jsonObject.getJSONArray("author");
+	            Author="";Category="";
+	            for(int i=0;i<AuthorArray.length();i++) {//应对多作者的情况
+	            	if(i==AuthorArray.length()-1){
+	            		Author+=AuthorArray.get(i);
+	            	}else{
+	            		Author+=AuthorArray.get(i)+"/";
+	            	}
+	            }
+	            JSONObject ImageAddressObject=jsonObject.getJSONObject("images");
+	            ImageAddress = ImageAddressObject.getString("large");//获取图片链接地址
+	            JSONArray tagsArray = jsonObject.getJSONArray("tags");
+	            for(int i=0;i<tagsArray.length();i++) {
+	            	JSONObject tmpObject =new JSONObject(tagsArray.get(i).toString());
+	            	Category += tmpObject.getString("name")+",";
+	            }
+	    }
+	    catch (Exception e)
+	    {
+	        e.printStackTrace();
+	    }
+	}	
 	
 
 	public String addBookISBN() throws Exception {
@@ -456,7 +488,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		HttpServletRequest NumRequest = ServletActionContext.getRequest();
 		String Location = this.getModel().getLocation();
 		int Number = Integer.parseInt(NumRequest.getParameter("Number"));
-		seprarate(getContent(getUrl(isbn.strip())));
+		parseJSON(getContent(getUrl(isbn.strip())));
 
 		for (int i = 0; i < Number; i++) {
 			this.getModel().setBookName(BookName);

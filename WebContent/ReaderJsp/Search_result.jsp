@@ -119,7 +119,7 @@
 											<div
 												style="overflow-y: scroll; max-height: 250px; width: 110%; margin: 0 auto;">
 												<strong>Introduction:</strong>
-												<div class="card card-body">${Introduction}</div>
+												<div class="card card-body" style="text-indent: 2em">${Introduction}</div>
 											</div>
 										</div>
 									</div>
@@ -145,10 +145,10 @@
 						<div class="row">
 							<div class="thumb-content col-3">
 								<!-- <div class="price">$200</div> -->
-								<a data-toggle="collapse" href="#collap2${bookID}"> <img
-									class="card-img-top img-fluid" src="${ImageAddress}"
-									alt="Card image cap" style="height: 250px">
-								</a>
+									<a data-toggle="collapse" href="#collap2${bookID}"> <img
+											class="card-img-top img-fluid" src="${ImageAddress}"
+											alt="Card image cap" style="height: 200px; width: 150px;">
+										</a>
 							</div>
 							<div class=" col-8">
 								<h4 class="card-title">
@@ -181,10 +181,9 @@
 							</div>
 							<div class="collapse col-12" id="collap2${bookID}">
 								<div
-									style="overflow-y: scroll; max-height: 250px; width: 100%; margin: 0 auto;">
+									style="overflow-y: scroll; max-height: 250px; width: 100%; margin: 0 auto;text-indent: 2em">
 									<strong>Introduction:</strong>
-									<div class="card card-body">
-										<blockquote>${Introduction}</blockquote>
+									<div class="card card-body">${Introduction}
 									</div>
 								</div>
 							</div>

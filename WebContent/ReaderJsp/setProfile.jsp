@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<div class="modal fade" id="setProfile" tabindex="-1" role="dialog"
+<div class="modal fade" id="setProfile" tabindex="-1" role="dialog" style=""
 	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog " role="document">
 		<div class="modal-content">
