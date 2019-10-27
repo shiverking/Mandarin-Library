@@ -10,15 +10,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>mandarin admin</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../images/favicon.png" />
+  <link rel="shortcut icon" href="../images/favicon.png" />
 </head>
 
 <body>
@@ -29,7 +29,7 @@
           <div class="col-lg-6 d-flex align-items-center justify-content-center">
             <div class="auth-form-transparent text-left p-3">
               <div class="brand-logo">
-                <img src="../../images/MLA_logo_tagline.png" alt="logo">
+                <img src="../images/MLA_logo_tagline.png" alt="logo">
               </div>
               <h4>Welcome back!</h4>
               <h6 class="font-weight-light">Happy to see you again!</h6>
@@ -59,9 +59,6 @@
                 <div class="my-3">
                   <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="login">LOGIN</button>
                 </div>
-                <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register-2.html" class="text-primary">Create</a>
-                </div>
               </form>
             </div>
           </div>
@@ -76,13 +73,13 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="../../vendors/base/vendor.bundle.base.js"></script>
+  <script src="../vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- inject:js -->
-  <script src="../../js/off-canvas.js"></script>
-  <script src="../../js/hoverable-collapse.js"></script>
-  <script src="../../js/template.js"></script>
-  <script src="../../js/todolist.js"></script>
+  <script src="../js/off-canvas.js"></script>
+  <script src="../js/hoverable-collapse.js"></script>
+  <script src="../js/template.js"></script>
+  <script src="../js/todolist.js"></script>
   <!-- endinject -->
 </body>
 

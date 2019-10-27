@@ -5,50 +5,20 @@
 <html lang="en">
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
 </script>
-<script src="../../js/edit.js" type="text/javascript"></script>
-<script type="text/javascript">
-$(function() { 
-	//获取class为caname的元素 
-		$(".caname").click(function() { 
-//				
-				$('#Email').removeAttr("readonly")
-				$('#LibrarianName').removeAttr("readonly")
-				$('#Password').removeAttr("readonly")
-				$('#LibrarianID').removeAttr("readonly")
-				$("#edit").hide();
-				$("#delete").hide();
-				$("#save").show();
-				var js = document.getElementById('LibrarianName');
-                     js.style.border = '1px solid black'
-                var js1 = document.getElementById('Password');
-                     js1.style.border = '1px solid black'
-                var js2 = document.getElementById('Email');
-                     js2.style.border = '1px solid black'
-                js.focus();
-                $(this).children("td")
-		}); 
-	}); 
-</script>
-<script type="text/javascript">
-function save()
-{
-	document.form[0].action="editLibrarian"
-	document.form[0].submit();
-}
-</script>
+<script src="../js/edit.js" type="text/javascript"></script>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Mandarin-Linbrary</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../images/favicon.png" />
+  <link rel="shortcut icon" href="../images/favicon.png" />
 </head>
 
 <body>
@@ -58,7 +28,7 @@ function save()
   <!-- partial:partials/_navbar.html -->
   <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-      <a class="navbar-brand brand-logo mr-5" href="../../index.jsp"><img src="../../images/gen.svg" class="mr-2" alt="logo"/></a>
+      <a class="navbar-brand brand-logo mr-5" href="../index.jsp"><img src="../images/gen.svg" class="mr-2" alt="logo"/></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
       <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -171,7 +141,7 @@ function save()
         </li>
         <li class="nav-item nav-profile dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-            <img src="../../images/faces/face28.jpg" alt="profile"/>
+            <img src="../images/faces/face28.jpg" alt="profile"/>
           </a>
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
             <a class="dropdown-item">
@@ -197,32 +167,37 @@ function save()
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../../index.jsp">
+            <a class="nav-link" href="../index.jsp">
               <i class="ti-shield menu-icon"></i>
               <span class="menu-title">HomePage</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/forms/basic_elements.jsp">
+            <a class="nav-link" href="../pages/Register.jsp">
               <i class="ti-layout-list-post menu-icon"></i>
               <span class="menu-title">Librarian_Register</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/tables/basic-table.jsp">
+            <a class="nav-link" href="../pages/EditLibrarian.jsp">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Tables</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../documentation/documentation.jsp">
+            <a class="nav-link" href="../pages/Modify_Deposit.jsp">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Modify Deposit</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../documentation/documentation.jsp">
               <i class="ti-write menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>
           </li>
         </ul>
-      </nav>
-      
+      </nav>      
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -257,38 +232,46 @@ function save()
                       </thead>                   
                       <tbody>
                         <s:iterator value="Librarians">
-                         <form action="editLibrarian" method="post">
+                        <script>
+                        $(function() { 
+                        		$(".caname${LibrarianID}").click(function() { 
+//                        				
+                        				$('#Email${LibrarianID}').removeAttr("readonly")
+                        				$('#Email${LibrarianID}').removeAttr("style")
+                        				$('#LibrarianName${LibrarianID}').removeAttr("readonly")
+                        				$('#LibrarianName${LibrarianID}').removeAttr("style")
+                        				$('#Password${LibrarianID}').removeAttr("readonly")
+                        				$('#Password${LibrarianID}').removeAttr("style")
+                        				$("#edit${LibrarianID}").hide();
+                        				$("#save${LibrarianID}").show();
+                        		}); 
+                        	}); 
+                        </script>
+                         <form name="form" action="editLibrarian" method="post">
                         <tr>
                           <td>                           
-                           <input name="LibrarianID" id="LibrarianID" value=<s:property value="LibrarianID"/> style="border:none;" >
+                           <input name="LibrarianID" id="LibrarianID${LibrarianID}" value=<s:property value="LibrarianID"/> style="border:none;" readonly="readonly" >
                           </td>
                           <td>                           
-                           <input name="LibrarianName" id="LibrarianName" value="<s:property value="LibrarianName"/>"  style="border:none;">
+                           <input name="LibrarianName" id="LibrarianName${LibrarianID}" value="<s:property value="LibrarianName"/>"  style="border:none;" readonly="readonly">
                           </td>
                           <td>
-                            <input name="Email" id="Email" value="<s:property value="Email"/>" style="border:none;">
+                            <input name="Email" id="Email${LibrarianID}" value="<s:property value="Email"/>" style="border:none;" readonly="readonly">
                           </td>
                           <td >                            
-                            <input name="Password" id="Password" value="<s:property value="Password"/>" style="border:none;" >
+                            <input name="Password" id="Password${LibrarianID}" value="<s:property value="Password"/>" style="border:none;" readonly="readonly">
                           </td>
                           <td>
                             <div>
-                            <button id="edit" type="button" value="edit" class=" caname btn btn-outline-success btn-icon-text btn-rounded btn-sm">edit  </button> 
-                            </div>
-                          <%--  <a  href='deleteLibrarian?librarian.LibrarianID=<s:property value="LibrarianID"/>'>Delete</a>
-                           <a class="btn btn-outline-danger btn-icon-text btn-rounded btn-sm" href='deleteLibrarian?librarian.LibrarianID=<s:property value="LibrarianID"/>'>Delete</a>  --%>
-                            <div id="save" style="display:none;">
-                            	<!--<a href="editLibrarian?librarian.LibrarianID=<s:property value='LibrarianID'/>
-                            	&librarian.LibrarianName=
-                            	&librarian.Email=Email
-                            	&librarian.Password=Password
-                            	">Edit</a>-->
+                            <button id="edit${LibrarianID}" type="button" value="edit" class="caname${LibrarianID} btn btn-outline-success btn-icon-text btn-rounded btn-sm">edit  </button>
+                            	<div id="save${LibrarianID}" style="display:none;">
                             	<button type="submit"  class="btn btn-outline-primary btn-icon-text btn-rounded btn-sm">save</button>
-                            </div>                            
+                            	<input type="button" value="Delete" class="btn btn-outline-primary btn-icon-text btn-rounded btn-sm" onclick="form.action='deleteLibrarian';form1">
+                            	</div>  
+                            </div>                          
                           </td>
-                           
                         </tr>
-                       </form>
+                    	</form>
 						</s:iterator>
                       </tbody>
                     </table>
@@ -301,7 +284,7 @@ function save()
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.templatewatch.com/" target="_blank">Templatewatch</a>. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.templatewatch.com/" target="_blank">TTT</a>. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>
@@ -313,15 +296,15 @@ function save()
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="../../vendors/base/vendor.bundle.base.js"></script>
+  <script src="../vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->
   <!-- End plugin js for this page-->
   <!-- inject:js -->
-  <script src="../../js/off-canvas.js"></script>
-  <script src="../../js/hoverable-collapse.js"></script>
-  <script src="../../js/template.js"></script>
-  <script src="../../js/todolist.js"></script>
+  <script src="../js/off-canvas.js"></script>
+  <script src="../js/hoverable-collapse.js"></script>
+  <script src="../js/template.js"></script>
+  <script src="../js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->

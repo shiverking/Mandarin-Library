@@ -1,8 +1,7 @@
 eclipse.preferences.version=1
 encoding//WebContent/AdminJsp/documentation/documentation.jsp=UTF-8
-encoding//WebContent/AdminJsp/pages/tables/NewFile.jsp=UTF-8
-encoding//WebContent/AdminJsp/pages/tables/basic-table.jsp=UTF-8
 encoding//WebContent/Admin_login.jsp=UTF-8
 encoding//WebContent/help.jsp=UTF-8
+encoding//src/action/AdminAction.java=UTF-8
 encoding//src/action/LibrarianAction.java=UTF-8
 encoding//src/util/Email.java=UTF-8

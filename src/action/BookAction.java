@@ -16,20 +16,20 @@ import util.PageBean;
 
 public class BookAction extends BaseAction<Book, BookService> {
 	private static Book book;
-	private List<Book> books;//���ܱ�bookPageȡ�����������ã�����ʹ�����ע��
-	private List<Borrowrecord> borrowrecords;// ���ܱ�ɾ��
-	private List<CurrentRecord> currentRecords;// ָ�ڽ��鼮��ԤԼ�鼮����Ϣ
-	private PageBean<Borrowrecord> borrowPage;// �ѹ黹���鼮��Ϣ
+	private List<Book> books;//锟斤拷锟杰憋拷bookPage取锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟矫ｏ拷锟斤拷锟斤拷使锟斤拷锟斤拷锟阶拷锟�
+	private List<Borrowrecord> borrowrecords;// 锟斤拷锟杰憋拷删锟斤拷
+	private List<CurrentRecord> currentRecords;// 指锟节斤拷锟介籍锟斤拷预约锟介籍锟斤拷锟斤拷息
+	private PageBean<Borrowrecord> borrowPage;// 锟窖归还锟斤拷锟介籍锟斤拷息
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
 	private String searchContent;
 
-	// �����Ǿ���ʹ�õĹ��ܺ���
+	// 锟斤拷锟斤拷锟角撅拷锟斤拷使锟矫的癸拷锟杰猴拷锟斤拷
 
-	// reader��Ҫʹ�õĺ�����������������
+	// reader锟斤拷要使锟矫的猴拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	public String searchBook() {
-		// TODO:��ҳ����
+		// TODO:锟斤拷页锟斤拷锟斤拷
 		bookPage = this.getService().getPageBean(searchContent, pageNum);
 		return SUCCESS;
 	}
@@ -43,14 +43,14 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public String getBooksbycurrentRecords() {
-		//TODO:���ܸ���pagabeanʵ��
+		//TODO:锟斤拷锟杰革拷锟斤拷pagabean实锟斤拷
 		books = new ArrayList<Book>();
 		for (CurrentRecord currentRecord : currentRecords) {
 			books.add(this.getService().getBookById(currentRecord.getBookID()));
 		}
 		return SUCCESS;
 	}
-	// reader��Ҫʹ�õĺ�����������������
+	// reader锟斤拷要使锟矫的猴拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 
 	public String addBook() throws Exception {
 		HttpServletRequest PriceRequest = ServletActionContext.getRequest();
@@ -108,7 +108,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
-//������get��set����
+//锟斤拷锟斤拷锟斤拷get锟斤拷set锟斤拷锟斤拷
 	public Book getBook() {
 		return book;
 	}
@@ -173,7 +173,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		this.currentRecords = currentRecords;
 	}
 	
-//admin修改逾期罚金和归还期限
+//admin淇敼閫炬湡缃氶噾鍜屽綊杩樻湡闄�
 	public String adminEditBook() {
 		this.book = this.getService().getBookById(book.getBookID());
 		if (this.getModel().getReturnPeriod() > 0) {

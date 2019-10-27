@@ -10,3 +10,14 @@ $(function() {
 			$("#save").show();
 	}); 
 }); 
+//function edit(id){
+//
+//	var E="#Email"+id;
+//	alert(id)
+//	$(E).removeAttr("readonly");
+//	$('#LibrarianName'+id).attr("readonly","readonly");
+//	$('#Password'+id).removeAttr("readonly");
+//	$('#LibrarianID'+id).removeAttr("readonly");
+//	$("#edit"+id).hide();
+//	$("#save"+id).show();
+//}

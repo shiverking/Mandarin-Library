@@ -169,21 +169,27 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.jsp">
+            <a class="nav-link" href="/Mandarin-Library/AdminJsp/index.jsp">
               <i class="ti-shield menu-icon"></i>
               <span class="menu-title">HomePage</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.jsp">
+            <a class="nav-link" href="/Mandarin-Library/AdminJsp/pages/Register.jsp">
               <i class="ti-layout-list-post menu-icon"></i>
               <span class="menu-title">Librarian_Register</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.jsp">
+            <a class="nav-link" href="/Mandarin-Library/AdminJsp/pages/EditLibrarian.jsp">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Tables</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Mandarin-Library/AdminJsp/pages/Modify_Deposit.jsp">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Modify Deposit</span>
             </a>
           </li>
           <li class="nav-item">
@@ -224,7 +230,7 @@
                   <p class="card-title text-md-center text-xl-left">Librarian</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                     <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><s:property value="Librarians.size()"/></h3>
-                    <a href="pages/forms/basic_elements.jsp"><i class="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0" ></i></a>
+                    <a href="pages/Register.jsp"><i class="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0" ></i></a>
                   </div>  
                 </div>
               </div>
