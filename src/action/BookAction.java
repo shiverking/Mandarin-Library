@@ -134,6 +134,9 @@ public class BookAction extends BaseAction<Book, BookService> {
 		if (categoryString!=null&&categoryString.isEmpty()) {
 			categoryString = null;
 		}
+		if (searchContent==null||searchContent.isEmpty()) {
+			searchContent="";
+		}
 		if (selectSearch != null) {
 			switch (selectSearch) {
 			case 1:
@@ -152,6 +155,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 				bookPage = this.getService().getPageBean(searchContent, categoryString, pageNum);
 			}
 		} else {
+			selectSearch=1;
 			bookPage = this.getService().getPageBean(searchContent, categoryString, pageNum);
 		}
 		this.getsCategory();

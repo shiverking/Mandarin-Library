@@ -21,10 +21,8 @@
 							<li class="nav-item active"><a class="nav-link"
 								href="index.jsp">Home</a></li>
 							
-							<s:if test="#session.reader==null">
+							<s:if test="#session.reader!=null">
 								
-							</s:if>
-							<s:else>
 								<li class="nav-item dropdown dropdown-slide"><a
 									class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false"> History <span><i
@@ -37,7 +35,9 @@
 											class="dropdown-item" href="getReaderStatuForReturn">Return
 											History</a>
 									</div></li>
-							</s:else>
+						
+							</s:if>
+							<s:else>	</s:else>
 						</ul>
 						<s:if test="#session.librarian!=null">
 							<ul class="navbar-nav ml-auto mt-10">

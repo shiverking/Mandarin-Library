@@ -64,13 +64,13 @@
 							<!-- User Image -->
 							<div class="profile-thumb ">
 								<img src="upload/${tempReader.phoneNumber}.jpg" alt=""
-									style="max-height: 100px;max-width: 100px;">
+									style="max-height: 100px; max-width: 100px;">
 							</div>
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>
 							<p>${tempReader.email}</p>
 							<a data-toggle="modal" data-target="#setProfile"
-								class="btn btn-main-sm" style="color:#fff;">Edit Profile</a>
+								class="btn btn-main-sm" style="color: #fff;">Edit Profile</a>
 						</div>
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
@@ -79,7 +79,8 @@
 										class="fa fa-user"></i> My Reservation</a></li>
 								<li><a href="getReaderStatuForBorrowPage"><i
 										class="fa fa-bookmark-o"></i> Current Record </a></li>
-								<li class="active"><a href="getReaderStatuForReturn?pageNum=1"><i
+								<li class="active"><a
+									href="getReaderStatuForReturn?pageNum=1"><i
 										class="fa fa-file-archive-o"></i> Return History </a></li>
 
 								<li><a href="readersignout"><i class="fa fa-cog"></i>
@@ -105,33 +106,41 @@
 								</tr>
 							</thead>
 							<tbody>
+								<s:if test="borrowPage.datalist.size()>0">
+									<s:iterator value="borrowPage.datalist" status="L">
+										<tr>
+											<td class="product-details">
+												<h3 class="title">
+													<s:property value="books[#L.index].BookName" />
+												</h3> <span class="add-id"><strong>Book ID:</strong>${BookID}</span>
+												<span><strong>ISBN:</strong>
+												<s:property value="books[#L.index].ISBN" /></span> <span><strong>Posted
+														on: </strong> <time>${BorrowingDate}</time> </span> <span class="location"><strong>Location:</strong>
+													<s:property value="books[#L.index].Location" /></span>
+											</td>
+											<td class="product-thumb"><s:property value="ReturnDate" /></td>
+											<td class="product-category"><span class="categories"><s:property
+														value="books[#L.index].category" /></span></td>
 
+											<td class="product-category"><s:if test="Fine>0">
+													<span class="categories"><s:property value="Fine" />
+														<i class="fa fa-jpy" aria-hidden="true"></i></span>
+												</s:if></td>
 
-								<s:iterator value="borrowPage.datalist" status="L">
-								
+										</tr>
+
+									</s:iterator>
+								</s:if>
+								<s:else>
 									<tr>
-										<td class="product-details">
-											<h3 class="title">
-												<s:property value="books[#L.index].BookName" />
-											</h3> <span class="add-id"><strong>Book ID:</strong>${BookID}</span>
-											<span><strong>ISBN:</strong><s:property value="books[#L.index].ISBN" /></span>
-											<span><strong>Posted on: </strong> <time>${BorrowingDate}</time>
-										</span> <span class="location"><strong>Location:</strong> <s:property
-													value="books[#L.index].Location" /></span>
-										</td>
-										<td class="product-thumb"><s:property value="ReturnDate" /></td>
-										<td class="product-category"><span class="categories"><s:property
-													value="books[#L.index].category" /></span></td>
-										
-											<td class="product-category"><s:if test="Fine>0"><span class="categories"><s:property
-														value="Fine" /> <i class="fa fa-jpy" aria-hidden="true"></i></span>	</s:if></td>
-									
+										<td class="product-details"></td>
+										<td class="product-thumb text-center"></td>
+										<td class="product-category"><span class="categories"></span></td>
 									</tr>
-									
-								</s:iterator>
-
+								</s:else>
 							</tbody>
 						</table>
+						<s:if test="borrowPage.datalist.size()>0">
 						<div class="pagination justify-content-center">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination">
@@ -179,6 +188,7 @@
 								</ul>
 							</nav>
 						</div>
+					</s:if>
 					</div>
 				</div>
 			</div>
@@ -189,8 +199,8 @@
 	<!--============================
 =            Footer            =
 =============================-->
-<s:include value="/footer.jsp"></s:include>
-<!-- JAVASCRIPTS -->
+	<s:include value="/footer.jsp"></s:include>
+	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
