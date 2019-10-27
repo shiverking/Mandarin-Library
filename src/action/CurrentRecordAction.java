@@ -1,3 +1,4 @@
+
 package action;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 	private CurrentRecord currentRecord;
 	private Book book;
 	private PageBean<Book> bookPage;
-	private List<Boolean> reservation;
+	private List<Boolean> reservations;
 	private List<Book> books;
 	private List<Reader> readers;
 	// �����Ǿ���ʹ�õĹ��ܺ���
@@ -43,15 +44,14 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 	}
 
 	public String isReservation() {
-		reservation = new ArrayList<Boolean>();
+		reservations = new ArrayList<Boolean>();
 		for (int i = 0; i < bookPage.getDataList().size(); i++) {
 			if (this.getService().getCurrentRecordByBook(bookPage.getDataList().get(i)).isEmpty()) {
-				reservation.add(false);
+				reservations.add(false);
 			} else {
-				reservation.add(true);
+				reservations.add(true);
 			}
 		}
-
 		return SUCCESS;
 	}
 
@@ -162,12 +162,12 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 		this.bookPage = bookPage;
 	}
 
-	public List<Boolean> getReservation() {
-		return reservation;
+	public List<Boolean> getReservations() {
+		return reservations;
 	}
 
-	public void setReservation(List<Boolean> reservation) {
-		this.reservation = reservation;
+	public void setReservations(List<Boolean> reservations) {
+		this.reservations = reservations;
 	}
 
 }
