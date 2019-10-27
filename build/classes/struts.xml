@@ -64,35 +64,7 @@
 			<result name="success">/index.jsp</result>
 		</action>
 		<!-- 获取借阅记录 -->
-		<!-- Librarian Url跳转 -->
 		
-		<action name="BookManagement">
-			<result name="success">/librarian_jsp/BookManagement.jsp</result>
-		</action>
-		<action name="BookSearch">
-			<result name="success">/librarian_jsp/BookSearch.jsp</result>
-		</action>
-		<action name="ReaderRegister">
-			<result name="success">/librarian_jsp/ReaderRegister.jsp</result>
-		</action>
-		<action name="BorrowHistory">
-			<result name="success">/librarian_jsp/BorrowHistory.jsp</result>
-		</action>
-		<action name="BookReturn">
-			<result name="success">/librarian_jsp/BookReturn.jsp</result>
-		</action>
-		<action name="BookBorrow">
-			<result name="success">/librarian_jsp/BookBorrow.jsp</result>
-		</action>
-		<action name="IncomeHistory">
-			<result name="success">/librarian_jsp/IncomeHistory.jsp</result>
-		</action>
-		<action name="NewsPost">
-			<result name="success">/librarian_jsp/NewsPost.jsp</result>
-		</action>
-		<action name="Logout">
-			<result name="success">/librarian_jsp/Logout.jsp</result>
-		</action>
 		<!-- 搜索书籍 -->
 		<action name="searchBook" class="bookAction"
 			method="searchBook">
@@ -201,7 +173,7 @@
 			method="getBooksbycurrentRecords"><!-- 依赖借阅记录获取对应的书籍信息 -->
 			<result name="success">/ReaderJsp/Reader_Reservation.jsp</result><!--结束action，返回借阅记录界面 -->
 		</action>
-		<!-- 搜索书籍 -->
+		<!-- Reader搜索书籍 -->
 		<action name="searchBook" class="bookAction"
 			method="searchBook">
 			<result name="success" type="chain">
@@ -243,13 +215,41 @@
 			<result name="success">/Reserve_success.jsp</result> </action> -->
 
 
-
+		<!-- Librarian Url跳转 -->
+		
+		<action name="BookManagement">
+			<result name="success">/librarian_jsp/BookManagement.jsp</result>
+		</action>
+		<action name="BookSearch">
+			<result name="success">/librarian_jsp/BookSearch.jsp</result>
+		</action>
+		<action name="ReaderRegister">
+			<result name="success">/librarian_jsp/ReaderRegister.jsp</result>
+		</action>
+		<action name="BorrowHistory">
+			<result name="success">/librarian_jsp/BorrowHistory.jsp</result>
+		</action>
+		<action name="BookReturn">
+			<result name="success">/librarian_jsp/BookReturn.jsp</result>
+		</action>
+		<action name="BookBorrow">
+			<result name="success">/librarian_jsp/BookBorrow.jsp</result>
+		</action>
+		<action name="IncomeHistory">
+			<result name="success">/librarian_jsp/IncomeHistory.jsp</result>
+		</action>
+		<action name="NewsPost">
+			<result name="success">/librarian_jsp/NewsPost.jsp</result>
+		</action>
+		<action name="Logout">
+			<result name="success">/librarian_jsp/Logout.jsp</result>
+		</action>
 		<!-- Librarian添加书籍 -->
 		<action name="addBook" class="bookAction" method="addBook">
-			<result name="success" type="chain">displayBooks</result>
+			<result name="success" type="chain">searchBook1</result>
 		</action>
 		<action name="addBookISBN" class="bookAction" method="addBookISBN">
-			<result name="success" type="chain">displayBooks</result>
+			<result name="success" type="chain">searchBook1</result>
 		</action>
 		<!-- 跳转Librarian添加书籍界面 -->
 		<action name="addBookPage" class="bookAction"
@@ -259,6 +259,11 @@
 		<!-- Librarian查看书籍列表 -->
 		<action name="displayBooks" class="bookAction" method="display">
 			<result name="success">/librarian_jsp/BookList.jsp</result>
+		</action>
+			<!-- Librarian搜索书籍 -->
+		<action name="searchBook1" class="bookAction"
+			method="searchBook">
+			<result name="success">/librarian_jsp/BookSearch.jsp</result>
 		</action><!-- Librarian删除书籍 -->
 		<action name="deleteBook" class="bookAction"
 			method="deleteBook">
@@ -276,7 +281,7 @@
 
 		<!-- Librarian修改书籍信息 -->
 		<action name="editBook" class="bookAction" method="editBook">
-			<result name="success">/EditBook.jsp</result>
+			<result name="success">/librarian_jsp/</result>
 		</action>
 		<!-- 跳转Librarian添加书籍界面 -->
 		<action name="addBookPage" class="bookAction"
