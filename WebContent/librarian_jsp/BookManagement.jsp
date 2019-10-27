@@ -99,56 +99,66 @@
 				</div>
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
-					<div class="widget dashboard-container my-adslist">
-						<h3 class="widget-header">Book Management</h3>
-						<table border="1" name="AddBook">
-							<form action="addBook" method="post">
-								BookName:<br><input name="BookName" required="required"><br>
-								ISBN:<br><input name="ISBN" required="required"><br>
-								Price:<br><input name="Price" required="required" /><br>
-								<li><label>Floor:<br></label> <select name="Location"
-									required="required"><br>
-										<option value="first floor">first floor</option>
-										<option value="second floor">second floor</option>
-										<option value="third floor">third floor</option>
-								</select></li>
-								<li><label>Area:</label> <select name="Location"
-									required="required"><br>
-										<option value="A area">A</option>
-										<option value="B area">B</option>
-										<option value="C area">C</option>
-										<option value="D area">D</option>
+					<div class="widget dashboard-container my-adslist row">
+						
+						
+						<div class="col">
 
-								</select></li> category:<br><input name="Category" required="required" /><br>
-								Number:<br><input name="Num" required="required" /><br>
-								Description:<br><input name="Introduction" required="required" /><br>
-								Author:<br><input name="author" required="required" /><br>
-								<button type="submit" value="add">Add Book</button>
-							</form>
+							<table border="1" name="AddBook">
+								<form action="addBook" method="post">
+									BookName:<br>
+									<input name="BookName" required="required"><br>
+									ISBN:<br>
+									<input name="ISBN" required="required"><br> Price:<br>
+									<input name="Price" required="required" /><br>
+									<li><label>Floor:<br></label> <select name="Location"
+										required="required"><br>
+											<option value="first floor">first floor</option>
+											<option value="second floor">second floor</option>
+											<option value="third floor">third floor</option>
+									</select></li>
+									<li><label>Area:</label> <select name="Location"
+										required="required"><br>
+											<option value="A area">A</option>
+											<option value="B area">B</option>
+											<option value="C area">C</option>
+											<option value="D area">D</option>
 
-						</table>
-						<br>
-						<table border="2" name="AddBookisbn">
-							<form action="addBookISBN" method="post">
-								ISBN:<input name="ISBN" required="required"><br>
-								<li><label>Floor</label> <select name="Location"
-									required="required">
-										<option value="first floor">first floor</option>
-										<option value="second floor">second floor</option>
-										<option value="third floor">third floor</option>
-								</select></li>
-								<li><label>Area</label> <select name="Location"
-									required="required">
-										<option value="A area">A</option>
-										<option value="B area">B</option>
-										<option value="C area">C</option>
-										<option value="D area">D</option>
+									</select></li> category:<br>
+									<input name="Category" required="required" /><br> Number:<br>
+									<input name="Num" required="required" /><br> Description:<br>
+									<input name="Introduction" required="required" /><br>
+									Author:<br>
+									<input name="author" required="required" /><br><br>
+									<button type="submit" value="add" class="btn btn-main-sm">Add Book</button>
+								</form>
 
-								</select></li> <br> number:<input name="Number" required="required"><br>
-								<button type="submit" value="add">Add Book BY ISBN</button>
-							</form>
+							</table>
+							<br>
+						</div>
+						<div class="col">
+							<table border="2" name="AddBookisbn">
+								<form action="addBookISBN" method="post">
+									ISBN:<input name="ISBN" required="required"><br>
+									<li><label>Floor</label> <select name="Location"
+										required="required">
+											<option value="first floor">first floor</option>
+											<option value="second floor">second floor</option>
+											<option value="third floor">third floor</option>
+									</select></li>
+									<li><label>Area</label> <select name="Location"
+										required="required">
+											<option value="A area">A</option>
+											<option value="B area">B</option>
+											<option value="C area">C</option>
+											<option value="D area">D</option>
 
-						</table>
+									</select></li> <br> number:<input name="Number" required="required"><br><br>
+									<button type="submit" value="add" class="btn btn-main-sm">Add Book BY ISBN</button>
+								</form>
+
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -159,7 +169,6 @@
 	<s:include value="jspElement/Foot.jsp" />
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
