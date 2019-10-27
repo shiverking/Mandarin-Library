@@ -81,8 +81,8 @@
 									<div class="thumb-content">
 										<!-- <div class="price">$200</div> -->
 										<a data-toggle="collapse" href="#collap${bookID}"> <img
-											class="card-img-top img-fluid"
-											src="images/products/products-1.jpg" alt="Card image cap">
+											class="card-img-top img-fluid" src="${ImageAddress}"
+											alt="Card image cap" style="height: 250px">
 										</a>
 									</div>
 									<div class="card-body">
@@ -117,9 +117,12 @@
 												</strong> <strong class="text-danger">Lended</strong></li>
 											</s:else>
 										</s:else>
-										<div class="collapse" id="collap${bookID}">
-											<strong>Introduction:</strong>
-											<div class="card card-body">${Introduction}</div>
+										<div class=" collapse" id="collap${bookID}">
+											<div
+												style="overflow-y: scroll;max-height: 250px ; width: 110%; margin: 0 auto;">
+												<strong>Introduction:</strong>
+												<div class="card card-body">${Introduction}</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -145,8 +148,8 @@
 							<div class="thumb-content col-3">
 								<!-- <div class="price">$200</div> -->
 								<a data-toggle="collapse" href="#collap2${bookID}"> <img
-									class="card-img-top img-fluid"
-									src="images/products/products-1.jpg" alt="Card image cap">
+									class="card-img-top img-fluid" src="${ImageAddress}"
+									alt="Card image cap" style="height: 250px">
 								</a>
 							</div>
 							<div class=" col-8">
@@ -182,10 +185,11 @@
 								</ul>
 							</div>
 							<div class="collapse col-12" id="collap2${bookID}">
+							<div style="overflow-y: scroll;max-height: 250px ; width: 100%; margin: 0 auto;">
 								<strong>Introduction:</strong>
 								<div class="card card-body">
 									<blockquote>${Introduction}</blockquote>
-								</div>
+								</div></div>
 							</div>
 						</div>
 					</div>

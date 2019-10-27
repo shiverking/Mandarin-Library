@@ -437,7 +437,8 @@ public class BookAction extends BaseAction<Book, BookService> {
 				String res="";
 				for(String str:splitStr) {
 					if(Pattern.matches("[\\u4E00-\\u9FA5]+", str))
-						res+=str;
+						res+=str+",";
+					
 				}
 				group[i]=res;
 				}

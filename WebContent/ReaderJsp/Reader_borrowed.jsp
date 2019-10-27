@@ -64,7 +64,7 @@
 							<!-- User Image -->
 							<div class="profile-thumb">
 								<img src="upload/${tempReader.phoneNumber}.jpg" alt=""
-									style="max-height: 100px">
+									style="max-height: 100px;max-width: 100px;">
 							</div>
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>
@@ -79,7 +79,7 @@
 										My Reservation</a></li>
 								<li class="active"><a href="getReaderStatuForBorrowPage"><i class="fa fa-bookmark-o"></i> Current
 										Record </a></li>
-								<li><a href="getReaderStatuForReturn"><i class="fa fa-file-archive-o"></i>
+								<li><a href="getReaderStatuForReturn?pageNum=1"><i class="fa fa-file-archive-o"></i>
 										Return History </a></li>
 
 								<li><a href="readersignout"><i class="fa fa-cog"></i>
