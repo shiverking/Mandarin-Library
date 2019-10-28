@@ -3,6 +3,7 @@ package action;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 /*import java.util.Properties;
@@ -35,8 +36,10 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private String searchContent;
 	private List<Reader> readers;
 	private String errorMessage;
-	private int readerNum;
+
 	private String filename;
+	private Date readerDate;
+	private int readerNum;
 	private File avatarFile;
 	private Librarian librarian;
 	private PageBean<Reader> readerPage;

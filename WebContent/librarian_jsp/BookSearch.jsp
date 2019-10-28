@@ -127,7 +127,7 @@
 							<div class="accordion col-12" ID="VIEW2">
 								<div class="row ">
 									<s:iterator value="bookPage.dataList" status="L2">
-
+												<s:include value="setBook.jsp" />
 										<!-- product card -->
 										<div class="product-item bg-light">
 											<div class="row">
@@ -155,8 +155,14 @@
 																test="isBorrowed==0">
 																<li class="list-inline-item "><strong>Status:</strong><strong
 																	class="text-info">Available</strong></li>
-																<a class="btn-main-sm"
-																	href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>&searchContent=${searchContent}&selectSearch=${selectSearch}&displayStyle=${displayStyle}&categoryString=${categoryString}&pageNum=${pageNum}'>Reserve</a>
+																<br>
+																<a data-toggle="modal" data-target="#setBook${bookID}"
+																	class="btn-main-sm" style="color: #fff;">Edit
+																	</a>
+															
+																<a class="btn-sm btn-danger"
+																	href='deleteBook?book.BookID=<s:property value="BookID"/>'>Delete</a>
+
 															</s:if> <s:elseif test="reservations.get(#L2.index)!=0">
 																<li class="list-inline-item "><strong>Status:
 																</strong> <strong class="text-warning">Reserved</strong></li>
@@ -183,55 +189,56 @@
 					</div>
 
 
-					<s:if test="bookPage.dataList.size()>0"><!--分页按钮  -->
-					<div class="pagination justify-content-center">
-						<nav aria-label="Page navigation example">
-							<ul class="pagination">
-								<!--前往上一页的按钮-->
-								<li class="page-item"><a class="page-link"
-									href="javascript:searchs(${bookPage.prePageNum})"
-									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-								</a></li>
-								<!--显示前往第一页的按钮-->
-								<s:if test="bookPage.beginPageNum>1">
+					<s:if test="bookPage.dataList">
+						<!--分页按钮  -->
+						<div class="pagination justify-content-center">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+									<!--前往上一页的按钮-->
 									<li class="page-item"><a class="page-link"
-										href="javascript:searchs(1)">1</a></li>
-									<s:if test="bookPage.beginPageNum>2">
-										<li class="page-item"><a class="page-link">....</a></li>
-									</s:if>
-								</s:if>
-								<!-- 显示以当前页为中心的7页 -->
-								<s:iterator begin="%{bookPage.beginPageNum}"
-									end="%{bookPage.endPageNum}" var="snum">
-									<s:if test="#snum == bookPage.currentPage">
-										<li class="page-item active"><a class="page-link"
-											href="javascript:searchs(${snum})">${snum}</a></li>
-									</s:if>
-									<s:else>
+										href="javascript:searchs(${bookPage.prePageNum})"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+											<span class="sr-only">Previous</span>
+									</a></li>
+									<!--显示前往第一页的按钮-->
+									<s:if test="bookPage.beginPageNum>1">
 										<li class="page-item"><a class="page-link"
-											href="javascript:searchs(${snum})">${snum}</a></li>
-									</s:else>
-								</s:iterator>
-								<!-- 显示最后一页 -->
-								<s:if test="bookPage.endPageNum<bookPage.totalPage">
-
-									<s:if test="bookPage.endPageNum+1<bookPage.totalPage">
-										<li class="page-item"><a class="page-link">....</a></li>
+											href="javascript:searchs(1)">1</a></li>
+										<s:if test="bookPage.beginPageNum>2">
+											<li class="page-item"><a class="page-link">....</a></li>
+										</s:if>
 									</s:if>
-									<li class="page-item"><a class="page-link"
-										href="javascript:searchs(${bookPage.totalPage})">${bookPage.totalPage}</a></li>
-								</s:if>
+									<!-- 显示以当前页为中心的7页 -->
+									<s:iterator begin="%{bookPage.beginPageNum}"
+										end="%{bookPage.endPageNum}" var="snum">
+										<s:if test="#snum == bookPage.currentPage">
+											<li class="page-item active"><a class="page-link"
+												href="javascript:searchs(${snum})">${snum}</a></li>
+										</s:if>
+										<s:else>
+											<li class="page-item"><a class="page-link"
+												href="javascript:searchs(${snum})">${snum}</a></li>
+										</s:else>
+									</s:iterator>
+									<!-- 显示最后一页 -->
+									<s:if test="bookPage.endPageNum<bookPage.totalPage">
 
-								<!-- 前往下一页的按钮-->
-								<li class="page-item"><a class="page-link"
-									href="javascript:searchs(${bookPage.nextPageNum})"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-								</a></li>
-							</ul>
-						</nav>
-					</div>
+										<s:if test="bookPage.endPageNum+1<bookPage.totalPage">
+											<li class="page-item"><a class="page-link">....</a></li>
+										</s:if>
+										<li class="page-item"><a class="page-link"
+											href="javascript:searchs(${bookPage.totalPage})">${bookPage.totalPage}</a></li>
+									</s:if>
+
+									<!-- 前往下一页的按钮-->
+									<li class="page-item"><a class="page-link"
+										href="javascript:searchs(${bookPage.nextPageNum})"
+										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+											<span class="sr-only">Next</span>
+									</a></li>
+								</ul>
+							</nav>
+						</div>
 					</s:if>
 
 				</div>
@@ -242,13 +249,13 @@
 		<!-- Container End -->
 	</section>
 	<s:include value="jspElement/Foot.jsp" />
-	
+
 	<form action="searchBook1" id="search2" style="display: none;">
-	<input name="searchContent" value="" id="searchContent"> <input
-		name="selectSearch" value="" id="selectSearch"> <input
-		name="pageNum" value="" id="pageNum">
-</form>
-<script>
+		<input name="searchContent" value="" id="searchContent"> <input
+			name="selectSearch" value="" id="selectSearch"> <input
+			name="pageNum" value="" id="pageNum">
+	</form>
+	<script>
            function searchs(e){
         	   $("#searchContent").val('${searchContent}')
         	   $("#selectSearch").val(${selectSearch})

@@ -273,21 +273,26 @@
 		<action name="deleteBook" class="bookAction"
 			method="deleteBook">
 			<result name="success" type="chain">
+			<param name="actionName">searchBook1</param>
+
 				<param name="actionName">addRecord</param>
+
 			</result>
 		</action>
 		<!-- Librarian添加删除书籍记录 -->
 		<action name="addRecord" class="deleterecordAction"
 			method="addRecord">
 			<result name="success" type="chain">
-				<param name="actionName">displayBooks</param>
+
+			<param name="actionName">searchBooks</param>
 			</result>
 		</action>
 
 		<!-- Librarian修改书籍信息 -->
 		<action name="editBook" class="bookAction" method="editBook">
-			<result name="success">/librarian_jsp/</result>
+			<result name="success" type="chain">searchBook1</result>
 		</action>
+		
 		<!-- 跳转Librarian添加书籍界面 -->
 		<action name="addBookPage" class="bookAction"
 			method="addBookPage">
@@ -487,8 +492,8 @@
 			</result>
 		</action>
 		<!-- Librarian查看资金列表 -->
-		<action name="displayPayrecords" class="payrecordAction"
-			method="displayPayrecords">
+
+		<action name="displayPayrecords" class="payrecordAction" method="displayPayrecords">
 			<result name="success">/Payrecord.jsp</result>
 		</action>
 		

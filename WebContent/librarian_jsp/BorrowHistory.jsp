@@ -50,7 +50,9 @@
 
 
 <body>
+
 	<s:include value="/librarian_jsp/jspElement/Head.jsp" />
+
 	<script>
 		var errorMsg = "${requestScope.ErrorMessage}";
 		if (errorMsg != "") {
