@@ -273,12 +273,10 @@
 		<action name="deleteBook" class="bookAction"
 			method="deleteBook">
 			<result name="success" type="chain">
-
 			<param name="actionName">searchBook1</param>
 
 				<param name="actionName">addRecord</param>
 
-				<param name="actionName">addRecord</param>
 			</result>
 		</action>
 		<!-- Librarian添加删除书籍记录 -->
@@ -287,9 +285,6 @@
 			<result name="success" type="chain">
 
 			<param name="actionName">searchBooks</param>
-
-				
-
 			</result>
 		</action>
 
