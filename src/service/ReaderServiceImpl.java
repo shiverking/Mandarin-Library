@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Borrowrecord;
@@ -12,6 +13,7 @@ import dao.ReaderDao;
 import model.Reader;
 import util.Email;
 import util.Email_2;
+import util.PageBean;
 
 /**
  * @author
@@ -19,9 +21,9 @@ import util.Email_2;
  * 
  */
 public class ReaderServiceImpl extends BaseService<Reader> implements ReaderService {
-	
+
 	public Reader verify(String phoneNumber, String Password) {
-		Reader reader = this.getDao().getSingle("PhoneNumber",phoneNumber);
+		Reader reader = this.getDao().getSingle("PhoneNumber", phoneNumber);
 		if (reader == null) {
 			return null;
 		}
@@ -30,10 +32,12 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 		}
 		return null;
 	}
+
 	public int getReaderNum() {
 		int num = this.getDao().numOfReader();
 		return num;
 	}
+
 	public List<Reader> getReaderByName(String Name) {
 		// TODO Auto-generated method stub
 		return this.getDao().findBy("ReaderName", Name, "ReaderID desc");
@@ -54,15 +58,14 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 		int id = borrowrecord.getReaderID();
 		return this.getReaderById(id);
 	}
-	
+
 	public void register(Reader reader) {
 		// TODO Auto-generated method stub
-		if(reader.getPassword()=="") {
+		if (reader.getPassword() == "") {
 			reader.setPassword("00010001");
 		}
 		this.getDao().save(reader);
 	}
-
 
 	public void mergeReader(Reader reader) {
 		// TODO Auto-generated method stub
@@ -71,15 +74,14 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 
 	public boolean forgetReaderPassword(String email) {
 		/* System.out.println(email); */
-		if(email == null) {
+		if (email == null) {
 			return false;
 		}
 		String password = "";
 		List<Reader> readers = this.getDao().findBy("Email", email);
 		if (readers.size() == 0) {
 			return false;
-		}
-		else {
+		} else {
 			for (Reader reader : readers) {
 				password = reader.getPassword();
 			}
@@ -93,7 +95,7 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 			return true;
 		}
 	}
-<<<<<<< HEAD
+
 	public Reader getReaderbyPhone(String pString) {
 		return this.getDao().getSingle("PhoneNumber", pString);
 
@@ -123,11 +125,6 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 		PageBean<Reader> page = new PageBean<Reader>(totalRecords, Num,5);
 		page.setDataList(this.getDao().findPage(pls, vlsList, null, 0, 0, 0, page.getStartIndex(), page.getPageSize()));
 		return page;
-=======
-	@Override
-	public Reader getReaderbyPhone(String pString) {
-	return this.getDao().getSingle("PhoneNumber", pString);
-
->>>>>>> parent of a02342a... 后端注册、修改读者
 	}
+
 }

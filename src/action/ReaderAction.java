@@ -24,8 +24,10 @@ import com.opensymphony.xwork2.ActionContext;
 
 import model.Book;
 import model.Borrowrecord;
+import model.Librarian;
 import model.Reader;
 import service.ReaderService;
+import util.PageBean;
 
 public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private Reader tempReader = new Reader();
@@ -36,40 +38,77 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private int readerNum;
 	private String filename;
 	private File avatarFile;
+	private Librarian librarian;
+	private PageBean<Reader> readerPage;
+	private Integer pageNum;
 
-	public int getReaderNum() {
-		return readerNum;
-	}
-
-	public void setReaderNum(int readerNum) {
-		this.readerNum = readerNum;
-	}
 
 	// 璇昏�呮敞鍐�
 	public String register() throws Exception {
-
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String NewPassword = request.getParameter("ConfirmPassword");
+		Map<String, Object> session = ActionContext.getContext().getSession();// 检查librarian登录状态
+		librarian = (Librarian) session.get("librarian");
+		if (librarian == null) {
+			return INPUT;
+		}
 		if (this.getModel().getEmail().isEmpty()) {
 			this.errorMessage = "You must input the Email!";
 		} else if (this.getModel().getPhoneNumber().isEmpty()) {
 			this.errorMessage = "You must input the phone number!";
-		} else if (this.getModel().getPassword().isEmpty()) {
-			this.errorMessage = "You must input the Password!";
 		} else if (this.getModel().getReaderName().isEmpty()) {
 			this.errorMessage = "You must input reader's namer!";
-		} else if (!this.getModel().getPassword().equals(NewPassword)) {
-			this.errorMessage = "Both passwords must be the same!";
-		} else {
+			if (this.getModel().getPassword().isEmpty()) {
+				this.getModel().setPassword("12345678");
+			}
 			tempReader = this.getService().getReaderbyPhone(this.getModel().getPhoneNumber());
 			if (tempReader == null) {
 				this.getService().mergeReader(this.getModel());
 			}
 		}
-
 		return SUCCESS;
 	}
 
+	public String deleteReader() {
+		this.getService().deleteReader(tempReader);
+		return SUCCESS;
+	}
+	public String findReaderPage() {
+		readerPage=this.getService(). getPageBean(pageNum) ;
+		return SUCCESS;
+	}
+	public String setreader() {
+		Map<String, Object> session = ActionContext.getContext().getSession();// 检查librarian登录状态
+		librarian = (Librarian) session.get("librarian");
+		if (librarian == null) {
+			return INPUT;
+		}
+		tempReader = this.getService().getReaderById(this.getModel().getReaderID());// 读取需要修改的读者
+		if (tempReader == null) {
+			this.errorMessage = "This account does not exist";// 检查是否有此读者
+			return SUCCESS;
+		}
+		if (!this.getModel().getEmail().isEmpty()) {// 若提交的邮箱不为空且无账号绑定此邮箱，修改邮箱
+			if (this.getService().getReaderbyEmail(this.getModel().getEmail()).getReaderID() == tempReader
+					.getReaderID()) {
+				this.errorMessage = "This mailbox has been bound to another account.";
+			} else {
+				tempReader.setEmail(this.getModel().getEmail());
+			}
+		}
+		if (!this.getModel().getPassword().isEmpty())// 修改密码
+			tempReader.setPassword(this.getModel().getPassword());
+		if (!this.getModel().getReaderName().isEmpty())// 修改名字
+			tempReader.setReaderName(this.getModel().getReaderName());
+		if (!this.getModel().getPhoneNumber().isEmpty()) {// 若提交的手机号不为空，且无账号使用此手机号，修改手机号
+			if (this.getService().getReaderbyPhone(this.getModel().getPhoneNumber()).getReaderID() == tempReader
+					.getReaderID()) {
+				this.errorMessage = "This phone number has been bound to another account.";	
+			}else {
+				tempReader.setPhoneNumber(this.getModel().getPhoneNumber());
+			}
+		}
+		this.getService().mergeReader(tempReader);
+		return SUCCESS;
+	}
 	public String signin() throws Exception {
 		String phoneNumber = this.getModel().getPhoneNumber();
 		String password = this.getModel().getPassword();
@@ -262,6 +301,13 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+	public int getReaderNum() {
+		return readerNum;
+	}
+
+	public void setReaderNum(int readerNum) {
+		this.readerNum = readerNum;
 	}
 
 }

@@ -13,12 +13,14 @@
 			<result name="input">/Admin_login.jsp</result>
 		</action>
 		<!-- 注册Librarian界面 -->
-		<action name="librariansignup" class="librarianAction" method="signup">
+		<action name="librariansignup" class="librarianAction"
+			method="signup">
 			<result name="success">/Librarian_success.jsp</result>
 			<result name="input">/Admin_register.jsp</result>
 		</action>
 		<!-- Admin 修改密码 -->
-		<action name="changePassword" class="adminAction" method="changePassword">
+		<action name="changePassword" class="adminAction"
+			method="changePassword">
 			<result name="success">/Change_Success.jsp</result>
 			<result name="input">/Login_success.jsp</result>
 			<result name="login">/Admin_login.jsp</result>
@@ -33,27 +35,25 @@
 		</action>
 		<!-- Admin修改用户保障金 -->
 		<action name="modify" class="adminAction" method="modify">
-		<result name="input">/Modify_Deposit.jsp</result>
-		<result name="success">/Login_success.jsp</result>
+			<result name="input">/Modify_Deposit.jsp</result>
+			<result name="success">/Login_success.jsp</result>
 		</action>
 		<!-- 展示securityDeposit -->
 		<action name="dmodify" class="adminAction" method="dm">
-		<result name="success">/Modify_Deposit.jsp</result>
+			<result name="success">/Modify_Deposit.jsp</result>
 		</action>
 		<!-- Admin 找回Librarian 密码 -->
-		<action name="findPassword" class="librarianAction" method="findPassword">
-<<<<<<< HEAD
+		<action name="findPassword" class="librarianAction"
+			method="findPassword">
+
 			<result name="success">/Find_Success.jsp</result>
 			<result name="failure">/FindPassword.jsp</result>
-=======
-		<result name="success">/Find_Success.jsp</result>
-		<result name="failure">/FindPassword.jsp</result>
->>>>>>> parent of a02342a... 后端注册、修改读者
 		</action>
-        
+
 		<!-- Reader功能 -->
 		<!-- 登录登出 -->
-		<action name="readersignin" class="readerAction" method="signin">
+		<action name="readersignin" class="readerAction"
+			method="signin">
 			<result name="success"><!--登录成功后跳转到主页界面 -->
 				/index.jsp
 			</result>
@@ -61,13 +61,15 @@
 		</action>
 
 		<!-- Reader界面 -->
-		<action name="readersignout" class="readerAction" method="signout"><!--登出后跳转到登录界面，后期需要更改 -->
+		<action name="readersignout" class="readerAction"
+			method="signout"><!--登出后跳转到登录界面，后期需要更改 -->
 			<result name="success">/index.jsp</result>
 		</action>
 		<!-- 获取借阅记录 -->
-		
+
 		<!-- 搜索书籍 -->
-		<action name="searchBook" class="bookAction" method="searchBook">
+		<action name="searchBook" class="bookAction"
+			method="searchBook">
 			<result name="success">/category.jsp</result>
 		</action>
 
@@ -95,12 +97,13 @@
 				<param name="actionName">getBooksbyborrowing</param>
 			</result>
 		</action>
-		<action name="getBooksbyborrowing" class="bookAction" method="getBooksbyborrowPage"><!-- 
-				依赖借阅记录获取对应的书籍信息 -->
+		<action name="getBooksbyborrowing" class="bookAction"
+			method="getBooksbyborrowPage"><!-- 依赖借阅记录获取对应的书籍信息 -->
 			<result name="success">/ReaderJsp/Reader_borrowed.jsp</result><!--结束action，返回借阅记录界面 -->
 		</action>
 		<!-- 修改用户名和密码还有头像 -->
-		<action name="changeReaderName" class="readerAction" method="changeReaderName">
+		<action name="changeReaderName" class="readerAction"
+			method="changeReaderName">
 			<result name="success" type="chain">
 				<param name="actionName">getReaderStatuForCurrent</param>
 			</result>
@@ -113,12 +116,13 @@
 		</action>
 
 		<!--查询当前借阅记录和预约记录 -->
-		<action name="changeReaderAvatar" class="readerAction" method="changeReaderAvatar">
+		<action name="changeReaderAvatar" class="readerAction"
+			method="changeReaderAvatar">
 			<result name="login">/Login.jsp</result>
 			<result name="success" type="chain">
 				<param name="actionName">getReaderStatuForCurrent</param>
 			</result>
-			
+
 		</action>
 		<!-- 忘记密码 -->
 		<action name="forgetReaderPassword" class="readerAction"
@@ -149,7 +153,8 @@
 				<param name="actionName">getBookByReturn</param>
 			</result>
 		</action>
-		<action name="getBookByReturn" class="bookAction" method="getBooksbyborrowPage"><!-- 依赖借阅记录获取对应的书籍信息 -->
+		<action name="getBookByReturn" class="bookAction"
+			method="getBooksbyborrowPage"><!-- 依赖借阅记录获取对应的书籍信息 -->
 			<result name="success">/ReaderJsp/Reader_Return.jsp</result><!--结束action，返回借阅记录界面 -->
 		</action>
 		<!--查询预约记录 -->
@@ -160,8 +165,8 @@
 			</result>
 			<result name="none">/Login.jsp</result><!--若读者未登录，跳转到登录界面 -->
 		</action>
-		<action name="getCurrentRecordByReader" class="currentrecordAction"
-			method="getCurrentRecord">
+		<action name="getCurrentRecordByReader"
+			class="currentrecordAction" method="getCurrentRecord">
 			<result name="success" type="chain">
 				<param name="actionName">getBooksbycurrentRecords</param>
 			</result>
@@ -171,30 +176,33 @@
 			<result name="success">/ReaderJsp/Reader_Reservation.jsp</result><!--结束action，返回借阅记录界面 -->
 		</action>
 		<!-- Reader搜索书籍 -->
-		<action name="searchBook" class="bookAction" method="searchBook">
+		<action name="searchBook" class="bookAction"
+			method="searchBook">
 			<result name="success" type="chain">
 				<param name="actionName">isReservation</param>
 			</result>
-			
+
 		</action>
 		<action name="isReservation" class="currentrecordAction"
 			method="isReservation"><!-- 依赖借阅记录获取对应的书籍信息 -->
 			<result name="success">/ReaderJsp/category.jsp</result>
 		</action>
 		<!--librarian登陆界面 -->
-		<action name="librarianlogin" class="librarianAction" method="signin">
+		<action name="librarianlogin" class="librarianAction"
+			method="signin">
 			<result name="success">/librarian_jsp/BookManagement.jsp</result>
 			<result name="input">/Login.jsp</result>
 		</action>
 		<!-- 预约书籍 -->
-		<action name="getReaderStatuForReserveBook" class="readerAction"
-			method="getReaderStatu"><!--获取用户信息 -->
+		<action name="getReaderStatuForReserveBook"
+			class="readerAction" method="getReaderStatu"><!--获取用户信息 -->
 			<result name="success" type="chain">
 				<param name="actionName">reserveBook</param>
 			</result>
 			<result name="none">/Login.jsp</result><!--若读者未登录，跳转到登录界面 -->
 		</action>
-		<action name="reserveBook" class="bookAction" method="reserveBook">
+		<action name="reserveBook" class="bookAction"
+			method="reserveBook">
 			<result name="success" type="chain">
 				<param name="actionName">readeraddRecord</param>
 			</result>
@@ -211,7 +219,7 @@
 
 
 		<!-- Librarian Url跳转 -->
-		
+
 		<action name="BookManagement">
 			<result name="success">/librarian_jsp/BookManagement.jsp</result>
 		</action>
@@ -243,36 +251,36 @@
 		<action name="addBook" class="bookAction" method="addBook">
 			<result name="success" type="chain">searchBook1</result>
 		</action>
-		<action name="addBookISBN" class="bookAction" method="addBookISBN">
+		<action name="addBookISBN" class="bookAction"
+			method="addBookISBN">
 			<result name="success" type="chain">searchBook1</result>
 		</action>
 		<!-- 跳转Librarian添加书籍界面 -->
-		<action name="addBookPage" class="bookAction" method="addBookPage">
+		<action name="addBookPage" class="bookAction"
+			method="addBookPage">
 			<result name="success">/AddBook.jsp</result>
 		</action>
 		<!-- Librarian查看书籍列表 -->
 		<action name="displayBooks" class="bookAction" method="display">
 			<result name="success">/librarian_jsp/BookList.jsp</result>
 		</action>
-<<<<<<< HEAD
+
 		<!-- Librarian搜索书籍 -->
-		<action name="searchBook1" class="bookAction" method="searchBook">
-=======
-			<!-- Librarian搜索书籍 -->
 		<action name="searchBook1" class="bookAction"
 			method="searchBook">
->>>>>>> parent of a02342a... 后端注册、修改读者
 			<result name="success">/librarian_jsp/BookSearch.jsp</result>
 		</action><!-- Librarian删除书籍 -->
-		<action name="deleteBook" class="bookAction" method="deleteBook">
+		<action name="deleteBook" class="bookAction"
+			method="deleteBook">
 			<result name="success" type="chain">
-			<param name="actionName">addRecord</param>
+				<param name="actionName">addRecord</param>
 			</result>
 		</action>
 		<!-- Librarian添加删除书籍记录 -->
-		<action name="addRecord" class="deleterecordAction" method="addRecord">
+		<action name="addRecord" class="deleterecordAction"
+			method="addRecord">
 			<result name="success" type="chain">
-			<param name="actionName">displayBooks</param>
+				<param name="actionName">displayBooks</param>
 			</result>
 		</action>
 
@@ -281,169 +289,190 @@
 			<result name="success">/librarian_jsp/</result>
 		</action>
 		<!-- 跳转Librarian添加书籍界面 -->
-		<action name="addBookPage" class="bookAction" method="addBookPage">
+		<action name="addBookPage" class="bookAction"
+			method="addBookPage">
 			<result name="success">/AddBook.jsp</result>
 		</action>
 		<!-- 跳转Post主页界面 -->
 		<action name="getLibStatuForPostNews" class="librarianAction"
-		method="getLibstatu"><!--获取用户信息 -->
-		<result name="none">
-		/Login.jsp
-		</result>
-		<result name="success" type="chain"><!--若lib已经登录，post记录 -->
-		
-		<param name="actionName">PostNews</param>
-		</result>
-		
+			method="getLibstatu"><!--获取用户信息 -->
+			<result name="none">
+				/Login.jsp
+			</result>
+			<result name="success" type="chain"><!--若lib已经登录，post记录 -->
+
+				<param name="actionName">PostNews</param>
+			</result>
+
 		</action>
-		<action name="PostNews" class="postAction" 
-		method="PostNews">
+		<action name="PostNews" class="postAction" method="PostNews">
 			<result name="success">/index.jsp</result>
-			
+
 		</action>
-<<<<<<< HEAD
 
-
-=======
-		
-		
->>>>>>> parent of a02342a... 后端注册、修改读者
-		<action name="displayPosts" class="postAction" method="displayPosts">
+		<action name="displayPosts" class="postAction"
+			method="displayPosts">
 			<result name="success">/index.jsp</result>
 		</action>
-		<action name="displayPostItem" class="postAction" method="displayPosts">
+		<action name="displayPostItem" class="postAction"
+			method="displayPosts">
 			<result name="success">/librarian_jsp/PostNewItem.jsp</result>
 		</action>
-<!-- Librarian帮助用户完成借书操作 -->
-		<action name="borrowBookFindReader" class="readerAction" method="getReaderById">
+		<!-- Librarian帮助用户完成借书操作 -->
+		<action name="borrowBookFindReader" class="readerAction"
+			method="getReaderById">
 			<result name="success" type="chain">
 				<param name="actionName">findReaderCanBorrow</param>
 			</result>
-			<result name="error" type="chain"><param name="actionName">BookBorrow</param></result>
+			<result name="error" type="chain">
+				<param name="actionName">BookBorrow</param>
+			</result>
 		</action>
-		<action name="findReaderCanBorrow" class="borrowrecordAction" method="findReaderCanBorrow">
+		<action name="findReaderCanBorrow" class="borrowrecordAction"
+			method="findReaderCanBorrow">
 			<result name="success" type="chain">
 				<param name="actionName">borrowBookFindBook</param>
 			</result>
-			<result name="error" type="chain"><param name="actionName">BookBorrow</param></result>
+			<result name="error" type="chain">
+				<param name="actionName">BookBorrow</param>
+			</result>
 		</action>
-		<action name="borrowBookFindBook" class="bookAction" method="getBookById">
+		<action name="borrowBookFindBook" class="bookAction"
+			method="getBookById">
 			<result name="success" type="chain">
 				<param name="actionName">findBookCanBeBorrow</param>
 			</result>
-			<result name="error" type="chain"><param name="actionName">BookBorrow</param></result>
+			<result name="error" type="chain">
+				<param name="actionName">BookBorrow</param>
+			</result>
 		</action>
-		<action name="findBookCanBeBorrow" class="bookAction" method="findBookIsBorrowed">
+		<action name="findBookCanBeBorrow" class="bookAction"
+			method="findBookIsBorrowed">
 			<result name="success" type="chain">
 				<param name="actionName">borrowBookFindOrder</param>
 			</result>
-			<result name="error" type="chain"><param name="actionName">BookBorrow</param></result>
+			<result name="error" type="chain">
+				<param name="actionName">BookBorrow</param>
+			</result>
 		</action>
-		<action name="borrowBookFindOrder" class="currentrecordAction" method="findBookIsOrder">
+		<action name="borrowBookFindOrder" class="currentrecordAction"
+			method="findBookIsOrder">
 			<result name="success" type="chain">
 				<param name="actionName">borrowBook</param>
 			</result>
-			<result name="error" type="chain"><param name="actionName">BookBorrow</param></result>
+			<result name="error" type="chain">
+				<param name="actionName">BookBorrow</param>
+			</result>
 		</action>
-		<action name="borrowBook" class="bookAction" method="borrowBook">
+		<action name="borrowBook" class="bookAction"
+			method="borrowBook">
 			<result name="success" type="chain">
 				<param name="actionName">borrowBookByReaderIDBookID</param>
 			</result>
-			<result name="error" type="chain"><param name="actionName">BookBorrow</param></result>
+			<result name="error" type="chain">
+				<param name="actionName">BookBorrow</param>
+			</result>
 		</action>
-<<<<<<< HEAD
-		<action name="borrowBookByReaderIDBookID" class="borrowrecordAction"
-			method="borrowBook">
+
+		<action name="borrowBookByReaderIDBookID"
+			class="borrowrecordAction" method="borrowBook">
 			<result name="success">/librarian_jsp/Librarian_Borrow_Success.jsp
 			</result>
 			<result name="error" type="chain">
 				<param name="actionName">BookBorrow</param>
 			</result>
-=======
-		<action name="borrowBookByReaderIDBookID" class="borrowrecordAction" method="borrowBook">
-			<result name="success">/librarian_jsp/Librarian_Borrow_Success.jsp</result>
-			<result name="error" type="chain"><param name="actionName">BookBorrow</param></result>
->>>>>>> parent of a02342a... 后端注册、修改读者
 		</action>
 		<!-- Librarian帮助用户完成还书功能 -->
-		<action name="returnBookFindBook" class="bookAction" method="getBookById">
+		<action name="returnBookFindBook" class="bookAction"
+			method="getBookById">
 			<result name="success" type="chain">
 				<param name="actionName">returnBook</param>
 			</result>
-			<result name="error" type="chain"><param name="actionName">BookReturn</param></result>
+			<result name="error" type="chain">
+				<param name="actionName">BookReturn</param>
+			</result>
 		</action>
-		<action name="returnBook" class="bookAction" method="returnBook">
+		<action name="returnBook" class="bookAction"
+			method="returnBook">
 			<result name="success" type="chain">
 				<param name="actionName">getBorrowrecordbyBook</param>
 			</result>
-			<result name="error" type="chain"><param name="actionName">BookReturn</param></result>
+			<result name="error" type="chain">
+				<param name="actionName">BookReturn</param>
+			</result>
 		</action>
-		<action name="getBorrowrecordbyBook" class="borrowrecordAction" method="setReturnBorrowrecordbyBook">
+		<action name="getBorrowrecordbyBook" class="borrowrecordAction"
+			method="setReturnBorrowrecordbyBook">
 			<result name="success" type="chain">
 				<param name="actionName">getReadersbyBorrowrecords</param>
 			</result>
-			<result name="error" type="chain"><param name="actionName">BookReturn</param></result>
+			<result name="error" type="chain">
+				<param name="actionName">BookReturn</param>
+			</result>
 		</action>
 		<action name="getReadersbyBorrowrecords" class="readerAction"
 			method="getReadersbyBorrwrecords"><!-- 依赖借阅记录获取对应的读者信息 -->
-			<result name="success">/librarian_jsp/Librarian_Return_Success.jsp</result><!--结束action，返回借阅记录界面 -->
+			<result name="success">/librarian_jsp/Librarian_Return_Success.jsp
+			</result><!--结束action，返回借阅记录界面 -->
 		</action>
 		<!-- Librarian查看所有用户的借书列表 -->
-		<action name="displayBorrowrecord" class="borrowrecordAction" method="getAllBorrowrecord">
+		<action name="displayBorrowrecord" class="borrowrecordAction"
+			method="getAllBorrowrecord">
 			<result name="success" type="chain">
 				<param name="actionName">getBooksbyBorrowrecordsbyLibrarian</param>
 			</result>
 		</action>
 		<!-- Librarian查找特定用户id的借书列表 -->
-		<action name="findBRByReader" class="readerAction" method="getReaderById">
+		<action name="findBRByReader" class="readerAction"
+			method="getReaderById">
 			<result name="success" type="chain">
 				<param name="actionName">getBorrowrecordsbyReaders</param>
 			</result>
-			<result name="error" type="chain"><param name="actionName">BorrowHistory</param></result>
+			<result name="error" type="chain">
+				<param name="actionName">BorrowHistory</param>
+			</result>
 		</action>
 		<!-- Librarian查找特定名称的用户的借书列表 -->
-		<action name="findBRByReaderName" class="readerAction" method="getReaderByName">
+		<action name="findBRByReaderName" class="readerAction"
+			method="getReaderByName">
 			<result name="success" type="chain">
 				<param name="actionName">getBorrowrecordsbyReaders</param>
 			</result>
-						<result name="error" type="chain"><param name="actionName">BorrowHistory</param></result>
+			<result name="error" type="chain">
+				<param name="actionName">BorrowHistory</param>
+			</result>
 		</action>
 		<!--通过用户查找借书记录 -->
-<<<<<<< HEAD
-		<action name="getBorrowrecordsbyReaders" class="borrowrecordAction"
-			method="getBorrowrecordByReaders">
-=======
-		<action name="getBorrowrecordsbyReaders" class="borrowrecordAction" method="getBorrowrecordByReaders">
->>>>>>> parent of a02342a... 后端注册、修改读者
+
+		<action name="getBorrowrecordsbyReaders"
+			class="borrowrecordAction" method="getBorrowrecordByReaders">
 			<result name="success" type="chain">
 				<param name="actionName">getBooksbyBorrowrecordsbyLibrarian</param>
 			</result>
 		</action>
 		<!--通过记录查找书籍 -->
-		<action name="getBooksbyBorrowrecordsbyLibrarian" class="bookAction"
-			method="getBooksbyBorrwrecords"><!-- 依赖借阅记录获取对应的书籍信息 -->
+		<action name="getBooksbyBorrowrecordsbyLibrarian"
+			class="bookAction" method="getBooksbyBorrwrecords"><!-- 依赖借阅记录获取对应的书籍信息 -->
 			<result name="success" type="chain">
 				<param name="actionName">getReadersbyBorrowrecordsbyLibrarian</param>
 			</result>
 		</action>
 		<!--通过记录查找用户 -->
-		<action name="getReadersbyBorrowrecordsbyLibrarian" class="readerAction"
-			method="getReadersbyBorrwrecords"><!-- 依赖借阅记录获取对应的读者信息 -->
+		<action name="getReadersbyBorrowrecordsbyLibrarian"
+			class="readerAction" method="getReadersbyBorrwrecords"><!-- 依赖借阅记录获取对应的读者信息 -->
 			<result name="success">/librarian_jsp/BorrowHistory.jsp</result><!--结束action，返回借阅记录界面 -->
 		</action>
 		<!-- librarian 操作报错 -->
-		<action name="getErrorPage" class="borrowrecordAction" method="showError">
-<<<<<<< HEAD
+		<action name="getErrorPage" class="borrowrecordAction"
+			method="showError">
 			<result name="success">/librarian_jsp/Librarian_Borrow_Error.jsp
 			</result>
-=======
-			<result name="success">/librarian_jsp/Librarian_Borrow_Error.jsp</result>
->>>>>>> parent of a02342a... 后端注册、修改读者
 		</action>
 		<!-- Librarian加入资金记录 -->
-		<action name="addPayrecord" class="payrecordAction" method="addPayrecord">
+		<action name="addPayrecord" class="payrecordAction"
+			method="addPayrecord">
 			<result name="success" type="chain">
-			<param name="actionName">displayPayrecords</param>
+				<param name="actionName">displayPayrecords</param>
 			</result>
 		</action>
 		<!-- 加入罚金 -->
@@ -454,39 +483,64 @@
 			</result>
 		</action>
 		<!-- 加入保证金 -->
-		<action name="findReaderNum" class="readerAction" method="findReaderNum">
+		<action name="findReaderNum" class="readerAction"
+			method="findReaderNum">
 			<result name="success" type="chain">
-			<param name="actionName">getReaderFine1</param>
+				<param name="actionName">getReaderFine1</param>
 			</result>
 		</action>
-		
+
 		<!-- Librarian查看资金列表 -->
-		<action name="displayPayrecords" class="payrecordAction" method="displayPayrecords">
+		<action name="displayPayrecords" class="payrecordAction"
+			method="displayPayrecords">
 			<result name="success">/Payrecord.jsp</result>
 		</action>
+		<!-- 获取所有读者信息 -->
+		<action name="getAllReaders" class="readerAction"
+			method="getAllReader">
+			<result name="success">/librarian_jsp/ReaderRegister.jsp</result>
+			<result name="input">/Login.jsp</result>
+		</action>
 		<!-- 注册Reader界面 -->
-<<<<<<< HEAD
-		<action name="readerregister" class="readerAction" method="register">
-=======
 		<action name="readerregister" class="readerAction"
 			method="register">
->>>>>>> parent of a02342a... 后端注册、修改读者
-			<result name="success">/librarian_jsp/AddBook.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getAllReaders</param>
+			</result>
+			<result name="input">/Login.jsp</result>
+		</action>
+		<!--修改reader信息 -->
+		<action name="setreader" class="readerAction"
+			method="setreader">
+			<result name="success" type="chain">
+				<param name="actionName">getAllReaders</param>
+			</result>
+			<result name="input">/Login.jsp</result>
+		</action>
+		<action name="checkReader" class="readerAction" method="">
+			<result name="success" type="chain">
+				<param name="actionName">/checkReader</param>
+			</result>
+			<result name="input">/Login.jsp</result>
 		</action>
 		<!-- Admin删除馆员 -->
-		<action name="deleteLibrarian" class="librarianAction" method="deleteLibrarian">
+		<action name="deleteLibrarian" class="librarianAction"
+			method="deleteLibrarian">
 			<result name="success" type="chain">displayLibrarians</result>
 		</action>
 		<!-- Admin修改馆员信息 -->
-		<action name="editLibrarian" class="librarianAction" method="editLibrarian">
+		<action name="editLibrarian" class="librarianAction"
+			method="editLibrarian">
 			<result name="success">/EditLibrarian.jsp</result>
 		</action>
 		<!-- Admin查看书籍列表 -->
-		<action name="adminDisplayBooks" class="bookAction" method="display">
+		<action name="adminDisplayBooks" class="bookAction"
+			method="display">
 			<result name="success">/Admin_Display_Book.jsp</result>
 		</action>
 		<!-- Admin修改书籍逾期罚金和归还期限 -->
-		<action name="adminEditBook" class="bookAction" method="adminEditBook">
+		<action name="adminEditBook" class="bookAction"
+			method="adminEditBook">
 			<result name="success">/AdminEditBook.jsp</result>
 		</action>
 	</package>

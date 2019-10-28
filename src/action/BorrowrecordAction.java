@@ -67,7 +67,12 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 			return ERROR;
 		}		
 	}
-
+	public String checkReader() {
+		if (this.getService().checkReader(tempReader)) {
+			return INPUT;
+		}
+		return SUCCESS;
+	}
 	public String getBorrowrecordByReaders() {
 
 		borrowrecords = this.getService().getBorrowrecordsbyReaders(readers);
