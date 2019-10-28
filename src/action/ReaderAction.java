@@ -44,15 +44,13 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private PageBean<Reader> readerPage;
 	private Integer pageNum;
 
-	// 璇昏�呮敞鍐�
 	public String register() {
-		Map<String, Object> session = ActionContext.getContext().getSession();// 检查librarian登录状态
+		Map<String, Object> session = ActionContext.getContext().getSession();// 妫�鏌ibrarian鐧诲綍鐘舵��
 		librarian = (Librarian) session.get("librarian");
 		this.errorMessage = null;
 		if (librarian == null) {
 			return INPUT;
 		}
-		//判断输入是否为空
 		if (this.getModel().getEmail().isEmpty()) {
 			this.errorMessage = "You must input the Email!";
 		} else if (this.getModel().getPhoneNumber().isEmpty()) {
@@ -62,10 +60,8 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		} else if (this.getModel().getPhoneNumber().length() > 11) {
 			this.errorMessage = "Your Phone Number is to long !";
 		}
-		if (this.getModel().getPassword().isEmpty()) {
-			this.getModel().setPassword("12345678");
-		}
-		//检查邮箱和手机号是否已经注册
+		this.getModel().setPassword("12345678");
+
 		if (errorMessage == null) {
 			tempReader = this.getService().getReaderbyPhone(this.getModel().getPhoneNumber());
 
@@ -83,48 +79,65 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		return SUCCESS;
 	}
 
+	public String getReaderForDelete() {
+		Map<String, Object> session = ActionContext.getContext().getSession();//
+		librarian = (Librarian) session.get("librarian");
+		if (librarian==null) {
+			return INPUT;
+		}
+		tempReader=this.getService().getReaderById(this.getModel().getReaderID());
+		return SUCCESS;
+	}
 	public String deleteReader() {
 		this.getService().deleteReader(tempReader);
 		return SUCCESS;
 	}
 
 	public String findReaderPage() {
+		Map<String, Object> session = ActionContext.getContext().getSession();// 妫�鏌ibrarian鐧诲綍鐘舵��
+		librarian = (Librarian) session.get("librarian");
+		if (librarian == null) {
+			return INPUT;
+		}
 		readerPage = this.getService().getPageBean(pageNum);
 		return SUCCESS;
 	}
 
 	public String setreader() {
-		Map<String, Object> session = ActionContext.getContext().getSession();// 检查librarian登录状态
+		Map<String, Object> session = ActionContext.getContext().getSession();// 妫�鏌ibrarian鐧诲綍鐘舵��
 		librarian = (Librarian) session.get("librarian");
 		if (librarian == null) {
 			return INPUT;
 		}
-		tempReader = this.getService().getReaderById(this.getModel().getReaderID());// 读取需要修改的读者
+		errorMessage=null;
+		tempReader = this.getService().getReaderById(this.getModel().getReaderID());// 璇诲彇闇�瑕佷慨鏀圭殑璇昏��
 		if (tempReader == null) {
-			this.errorMessage = "This account does not exist";// 检查是否有此读者
+			this.errorMessage = "This account does not exist";// 妫�鏌ユ槸鍚︽湁姝よ鑰�
 			return SUCCESS;
 		}
-		if (!this.getModel().getEmail().isEmpty()) {// 若提交的邮箱不为空且无账号绑定此邮箱，修改邮箱
-			if (this.getService().getReaderbyEmail(this.getModel().getEmail()).getReaderID() == tempReader
-					.getReaderID()) {
+		if (!this.getModel().getEmail().isEmpty()) {// 鑻ユ彁浜ょ殑閭涓嶄负绌轰笖鏃犺处鍙风粦瀹氭閭锛屼慨鏀归偖绠�
+			if (this.getService().getReaderbyEmail(this.getModel().getEmail())==null||
+					this.getService().getReaderbyEmail(this.getModel().getEmail()).getReaderID()!=tempReader.getReaderID()) {
 				this.errorMessage = "This mailbox has been bound to another account.";
 			} else {
 				tempReader.setEmail(this.getModel().getEmail());
 			}
 		}
-		if (!this.getModel().getPassword().isEmpty())// 修改密码
+		if (!this.getModel().getPassword().isEmpty())// 淇敼瀵嗙爜
 			tempReader.setPassword(this.getModel().getPassword());
-		if (!this.getModel().getReaderName().isEmpty())// 修改名字
+		if (!this.getModel().getReaderName().isEmpty())// 淇敼鍚嶅瓧
 			tempReader.setReaderName(this.getModel().getReaderName());
-		if (!this.getModel().getPhoneNumber().isEmpty()) {// 若提交的手机号不为空，且无账号使用此手机号，修改手机号
-			if (this.getService().getReaderbyPhone(this.getModel().getPhoneNumber()).getReaderID() == tempReader
-					.getReaderID()) {
+		if (!this.getModel().getPhoneNumber().isEmpty()) {// 鑻ユ彁浜ょ殑鎵嬫満鍙蜂笉涓虹┖锛屼笖鏃犺处鍙蜂娇鐢ㄦ鎵嬫満鍙凤紝淇敼鎵嬫満鍙�
+			if (this.getService().getReaderbyPhone(this.getModel().getPhoneNumber()) == null || this.getService()
+					.getReaderbyPhone(this.getModel().getPhoneNumber()).getReaderID() != tempReader.getReaderID()) {
 				this.errorMessage = "This phone number has been bound to another account.";
 			} else {
 				tempReader.setPhoneNumber(this.getModel().getPhoneNumber());
 			}
 		}
-		this.getService().mergeReader(tempReader);
+		if (errorMessage==null) {
+			this.getService().mergeReader(tempReader);
+		}
 		return SUCCESS;
 	}
 
@@ -202,7 +215,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		return SUCCESS;
 	}
 
-	// 鑾峰彇褰撳墠璇昏�呯姸鎬�
+	// 閼惧嘲褰囪ぐ鎾冲鐠囨槒锟藉懐濮搁幀锟�
 	public String getReaderStatu() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		this.tempReader = (Reader) session.get("reader");
@@ -352,6 +365,14 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 
 	public void setPageNum(Integer pageNum) {
 		this.pageNum = pageNum;
+	}
+
+	public Date getReaderDate() {
+		return readerDate;
+	}
+
+	public void setReaderDate(Date readerDate) {
+		this.readerDate = readerDate;
 	}
 
 }

@@ -111,6 +111,14 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 
 	}
 
+	public String cancelAllReservation() {
+		this.getCurrentRecord();//获取到读者当前的借阅记录
+		for (Iterator iterator = currentRecords.iterator(); iterator.hasNext();) {
+			CurrentRecord currentRecord = (CurrentRecord) iterator.next();
+			this.getService().deleteCurrentRecordbyID(currentRecord.getCurrentRecordID());
+		}
+		return SUCCESS;
+	}
 	public void setTempReader(Reader tempReader) {
 		this.tempReader = tempReader;
 	}

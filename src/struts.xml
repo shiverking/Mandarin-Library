@@ -500,7 +500,7 @@
 
 		<!-- 获取所有读者信息 -->
 		<action name="getAllReaders" class="readerAction"
-			method="getAllReader">
+			method="findReaderPage">
 			<result name="success">/librarian_jsp/ReaderRegister.jsp</result>
 			<result name="input">/Login.jsp</result>
 		</action>
@@ -520,13 +520,14 @@
 			</result>
 			<result name="input">/Login.jsp</result>
 		</action>
-		<action name="getReaderForDelete" class="readerAction" method="">
+		<!-- 删除reader -->
+		<action name="getReaderForDelete" class="readerAction" method="getReaderForDelete">
 			<result name="success" type="chain">
-				<param name="actionName">getAllReaders</param>
+				<param name="actionName">checkReader</param>
 			</result>
 			<result name="input">/Login.jsp</result>
 		</action>
-		<action name="checkReader" class="borrowrecordAction" method="">
+		<action name="checkReader" class="borrowrecordAction" method="checkReader">
 			<result name="success" type="chain">
 				<param name="actionName">cancelReservation</param><!--若读者能删除，去取消读者的预约记录 -->
 			</result>
@@ -534,17 +535,17 @@
 				<param name="actionName">getAllReaders</param><!--若读者不能删除，结束动作 -->
 			</result>
 		</action>
-		<action name="cancelReservation" class="currentrecordAction" method="">
+		<action name="cancelReservation" class="currentrecordAction" method="cancelAllReservation">
 			<result name="success" type="chain">
-				<param name="actionName">getAllReaders</param><!--去恢复取消预约的书籍 -->
+				<param name="actionName">restoreBookStatus</param><!--去恢复取消预约的书籍 -->
 			</result>
 		</action>
-		<action name="restoreBookStatus" class="bookAction" method="">
+		<action name="restoreBookStatus" class="bookAction" method="returnBookByCurrentRecords">
 			<result name="success" type="chain">
-				<param name="actionName">getAllReaders</param><!--去最终删除读者 -->
+				<param name="actionName">deleteReader</param><!--去最终删除读者 -->
 			</result>
 		</action>
-		<action name="deleteReader" class="" method="">
+		<action name="deleteReader" class="readerAction" method="deleteReader">
 			<result name="success" type="chain">
 				<param name="actionName">getAllReaders</param><!--完成删除，跳回原界面 -->
 			</result>

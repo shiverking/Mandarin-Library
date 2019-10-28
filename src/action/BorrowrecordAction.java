@@ -69,6 +69,7 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	}
 	public String checkReader() {
 		if (this.getService().checkReader(tempReader)) {
+			this.errorMessage="This reader has borrowed books or has not paid the fine.";
 			return INPUT;
 		}
 		return SUCCESS;
@@ -216,6 +217,18 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 
 	public int getBookID3() {
 		return bookID3;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
 	}
 	
 
