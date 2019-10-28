@@ -73,6 +73,7 @@
 					</div>
 				</form>
 			</div>
+		</div>
 	</section>
 	<section class="section-sm">
 		<div class="container">

@@ -72,10 +72,10 @@ public interface BaseDao<TEntity> {
 	// ï¿½ï¿½Õ¹ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½İ¿ï¿½Ë«ï¿½ï¿½ï¿½Ô²ï¿½Ñ¯
 	List<TEntity> findByTwoProperty(String propertyName1, String propertyName2, String cond1);
 
-	// ï¿½ï¿½Õ¹ï¿½ï¿½Ë«ï¿½ï¿½ï¿½Ô¾ï¿½×¼ï¿½ï¿½Ñ¯
+	// ÍØÕ¹µÄË«ÊôĞÔ¾«×¼²éÑ¯
 	List<TEntity> getByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2);
 
-	// ï¿½ï¿½Õ¹IDï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
+	// ÍØÕ¹IDÊı×é²éÑ¯
 	List<TEntity> findByIDList(List<Integer> IDlist);
 
 	// ï¿½ï¿½Õ¹ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
@@ -93,32 +93,31 @@ public interface BaseDao<TEntity> {
 	List<TEntity> getPageByTwoProperty(String propertyName1, String propertyName2, Object Value1, Object Value2,
 			String cond, int pageStart, int pageSize);
 int numOfReader();
-	// TODO:ï¿½ï¿½ï¿½ÜµÄ·ï¿½Ò³ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ·ï¿½Ò³ï¿½ï¿½Ñ¯ï¿½ï¿½Ê½
+	// TODO:ÍòÄÜµÄ·ÖÒ³²éÑ¯£¬º­¸ÇËùÓĞ·ÖÒ³²éÑ¯·½Ê½
 	/**
 	 * 
-	 * @param propertyName Òªï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½
-	 * @param value        Òªï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Ğ±ï¿½
-	 * @param andEnd       ï¿½ÚµÚ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½andï¿½ï¿½ä£¬ï¿½ï¿½Îª0ï¿½ï¿½Ã»ï¿½ï¿½andï¿½ï¿½ï¿½
-	 * @param equalEnd     ï¿½ÚµÚ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"="ï¿½Ğ¶Ï£ï¿½ï¿½ï¿½Îª0ï¿½ï¿½Ã»ï¿½Ğ¡ï¿½=ï¿½ï¿½ï¿½ï¿½ï¿½
-	 * @return Total number of records ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Â¼ï¿½ï¿½
+	 * @param propertyName Òª²éÑ¯µÄÌõ¼şÃûÁĞ±í
+	 * @param value        Òª²éÑ¯µÄÌõ¼şÖµÁĞ±í
+	 * @param andEnd       ÔÚµÚ¼¸¸öÌõ¼ş½áÊøandÓï¾ä£¬ÈôÎª0ÔòÃ»ÓĞandÓï¾ä
+	 * @param equalEnd     ÔÚµÚ¼¸¸öÌõ¼ş½áÊø"="ÅĞ¶Ï£¬ÈôÎª0ÔòÃ»ÓĞ¡®=¡¯Óï¾ä
+	 * @return Total number of records ·µ»ØËùÓĞ·ûºÏÌõ¼şµÄ¼ÇÂ¼Êı
 	 */
 	public Integer findTotalNum(List<String> propertyName, List<String> value, Integer andEnd, Integer equalEnd);
 
 	/**
 	 * 
-	 * @param propertyName Òªï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½
-	 * @param value        Òªï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Ğ±ï¿½
-	 * @param andEnd       ï¿½ÚµÚ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½andï¿½ï¿½ä£¬ï¿½ï¿½Îª0ï¿½ï¿½Ã»ï¿½ï¿½andï¿½ï¿½ï¿½
-	 * @param equalEnd     ï¿½ÚµÚ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"="ï¿½Ğ¶Ï£ï¿½ï¿½ï¿½Îª0ï¿½ï¿½Ã»ï¿½Ğ¡ï¿½=ï¿½ï¿½ï¿½ï¿½ï¿½
-	 * @param desWhen      ï¿½ÓµÚ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	 * @param pageStart    ï¿½ï¿½Ò³ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
-	 * @param pageSize     ï¿½ï¿½Ò³ï¿½Ä´ï¿½Ğ¡
-	 * @return ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ğ±ï¿½
+	 * @param propertyName Òª²éÑ¯µÄÌõ¼şÃûÁĞ±í
+	 * @param value        Òª²éÑ¯µÄÌõ¼şÖµÁĞ±í
+	 * @param andEnd       ÔÚµÚ¼¸¸öÌõ¼ş½áÊøandÓï¾ä£¬ÈôÎª0ÔòÃ»ÓĞandÓï¾ä
+	 * @param equalEnd     ÔÚµÚ¼¸¸öÌõ¼ş½áÊø"="ÅĞ¶Ï£¬ÈôÎª0ÔòÃ»ÓĞ¡®=¡¯Óï¾ä
+	 * @param desWhen      ´ÓµÚ¼¸¸öÅÅĞòÌõ¼ş¿ªÊ¼ÄæĞò£¬Èô
+	 * @param pageStart    ·ÖÒ³ÆğÊ¼Ë÷Òı
+	 * @param pageSize     ·ÖÒ³µÄ´óĞ¡
+	 * @return ·ÖÒ³²éÑ¯µÄÁĞ±í
 	 */
-	// TODO:ï¿½ï¿½ï¿½ÜµÄ·ï¿½Ò³ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ·ï¿½Ò³ï¿½ï¿½Ñ¯ï¿½ï¿½Ê½
+	// TODO:ÍòÄÜµÄ·ÖÒ³²éÑ¯£¬º­¸ÇËùÓĞ·ÖÒ³²éÑ¯·½Ê½
 	public List<TEntity> findPage(List<String> propertyName, List<String> value, List<String> order, Integer andEnd,
 			Integer equalEnd, Integer desWhen, int pageStart, int pageSize);
-	//TODO:ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½Ö¶ÎµÄ²ï¿½Ñ¯
+	//TODO:»ñÈ¡µ¥Ò»×Ö¶ÎµÄ²éÑ¯
 	public List<String> findSingleField(List<String> propertyName, List<String> value,String name, Integer andEnd, Integer equalEnd);
-	int findAllCanByDate(String value1, String value2, String value3);
 }

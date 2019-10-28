@@ -50,7 +50,7 @@
 
 
 <body>
-	<s:include value="jspElement/Head.jsp" />
+	<s:include value="/Navbar.jsp" />
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -79,7 +79,7 @@
 										Manage Book </a></li>
 								<li><a href="BookSearch"><i class="fa fa-search"></i>
 										Search Book</a></li>
-								<li class="active"><a href=""><i
+								<li class="active"><a href="getAllReaders"><i
 										class="fa fa-user-plus"></i> Register Reader </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
@@ -104,7 +104,10 @@
 
 						<!-- 在这里写ReaderRegister展示对象 -->
 
+
 								<div class="form-group">
+
+
 
 						<form action="readerregister" method="post">
 							username<br><input type="text" name="ReaderName"><br>
@@ -123,7 +126,7 @@
 		</div>
 		<!-- Container End -->
 	</section>
-	<s:include value="jspElement/Foot.jsp" />
+	<s:include value="/footer.jsp" />
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>

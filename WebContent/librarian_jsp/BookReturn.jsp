@@ -50,6 +50,12 @@
 
 
 <body>
+	<script>
+		var errorMsg = "${requestScope.ErrorMessage}";
+		if (errorMsg != "") {
+			alert(errorMsg);
+		}
+	</script>
 	<s:include value="jspElement/Head.jsp" />
 	<!--==================================
 =            User Profile            =
@@ -115,7 +121,7 @@
 								<button type="submit" class="btn btn-primary btn-main-sm">Submit</button>
 							</div>
 						</s:form>
-						<s:property value="ErrorMessage" />
+
 
 					</div>
 				</div>

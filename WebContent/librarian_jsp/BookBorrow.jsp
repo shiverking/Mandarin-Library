@@ -50,6 +50,12 @@
 
 
 <body>
+	<script>
+		var errorMsg = "${requestScope.ErrorMessage}";
+		if (errorMsg != "") {
+			alert(errorMsg);
+		}
+	</script>
 	<s:include value="jspElement/Head.jsp" />
 	<!--==================================
 =            User Profile            =
@@ -124,16 +130,15 @@
 									placeholder="Input the BookID" name="BookID3"
 									class="form-control" style="height: 35px; width: 500px;" />
 							</div>
-							<div class="form-group" style="text-align:center">
-							<br>
-							<button type="submit" class="btn btn-primary btn-main-sm">Submit</button>
+							<div class="form-group" style="text-align: center">
+								<br>
+								<button type="submit" class="btn btn-primary btn-main-sm">Submit</button>
 							</div>
 						</s:form>
-						<s:property value="ErrorMessage"/>
+					</div>
 				</div>
 			</div>
-		</div>
-		<!-- Row End -->
+			<!-- Row End -->
 		</div>
 		<!-- Container End -->
 	</section>

@@ -50,6 +50,12 @@
 
 
 <body>
+	<script>
+		var errorMsg = "${requestScope.ErrorMessage}";
+		if (errorMsg != "") {
+			alert(errorMsg);
+		}
+	</script>
 	<s:include value="jspElement/Head.jsp" />
 	<!--==================================
 =            User Profile            =
@@ -79,8 +85,8 @@
 										Manage Book </a></li>
 								<li><a href="BookSearch"><i class="fa fa-search"></i>
 										Search Book</a></li>
-								<li><a href="ReaderRegister"><i
-										class="fa fa-user-plus"></i> Register Reader </a></li>
+								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
+										Register Reader </a></li>
 								<li class="active"><a href=""><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
@@ -100,73 +106,74 @@
 				</div>
 				<div class="col-md-12 offset-md-0 col-lg-9 offset-lg-0">
 					<!-- Recently Favorited -->
-					<div style="min-width:1000px;">
-					<div class="widget dashboard-container my-adslist">
-						<h3 class="widget-header">BorrowHistory</h3>
-						
-						<!-- 这里是BorrowHistory展示对象 -->
-						<nav class="navbar navbar-light bg-main-light">
-							<s:form class="form-inline" action="findBRByReader" method="post">
-								<input type="text" class="form-control mr-sm-2" type="search"
-									placeholder="Input the ReaderID" aria-label="Search"
-									name="ReaderID">
-								<button class="btn btn-outline-success my-2 my-sm-0"
-									type="submit">Search</button>
-							</s:form>
-							<s:form class="form-inline" action="findBRByReaderName"
-								method="post">
-								<input type="text" class="form-control mr-sm-2" type="search"
-									placeholder="Input the ReaderName" aria-label="Search"
-									name="ReaderName">
-								<button class="btn btn-outline-success my-2 my-sm-0"
-									type="submit">Search</button>
-							</s:form>
-							<div>
-								<s:form action="displayBorrowrecord" method="post">
+					<div style="min-width: 1000px;">
+						<div class="widget dashboard-container my-adslist">
+							<h3 class="widget-header">BorrowHistory</h3>
+
+							<!-- 这里是BorrowHistory展示对象 -->
+							<nav class="navbar navbar-light bg-main-light">
+								<s:form class="form-inline" action="findBRByReader"
+									method="post">
+									<input type="text" class="form-control mr-sm-2" type="search"
+										placeholder="Input the ReaderID" aria-label="Search"
+										name="ReaderID">
 									<button class="btn btn-outline-success my-2 my-sm-0"
-										type="submit">ShowAll</button>
+										type="submit">Search</button>
 								</s:form>
-							</div>
-						</nav>
-						<s:property value="ErrorMessage" />
-						<table class="table table-striped">
-							<thead class="thead-dark">
-								<tr>
-									<th>ReaderID</th>
-									<th>ReaderName</th>
-									<th>BookName</th>
-									<th>BorrowingDate</th>
-									<th>ReturnDate</th>
-									<th>IsReturn</th>
-									<th>IsPayFine</th>
-									<th>Fine</th>
-								</tr>
-							</thead>
-							<tbody>
-								<s:iterator value="borrowrecords" status="status">
-
+								<s:form class="form-inline" action="findBRByReaderName"
+									method="post">
+									<input type="text" class="form-control mr-sm-2" type="search"
+										placeholder="Input the ReaderName" aria-label="Search"
+										name="ReaderName">
+									<button class="btn btn-outline-success my-2 my-sm-0"
+										type="submit">Search</button>
+								</s:form>
+								<div>
+									<s:form action="displayBorrowrecord" method="post">
+										<button class="btn btn-outline-success my-2 my-sm-0"
+											type="submit">ShowAll</button>
+									</s:form>
+								</div>
+							</nav>
+						
+							<table class="table table-striped">
+								<thead class="thead-dark">
 									<tr>
-										<td align="center"><s:property value="ReaderID" /></td>
-										<td align="center"><s:property
-												value="%{readers[#status.index].ReaderName}" /></td>
-										<td align="center"><s:property
-												value="%{books[#status.index].BookName}" /></td>
-										<td align="center"><s:property value="BorrowingDate" /></td>
-										<td align="center"><s:property value="ReturnDate" /></td>
-										<td align="center"><s:property value="IsReturn" /></td>
-										<td align="center"><s:property value="IsPayfine" /></td>
-										<td align="center"><s:property value="Fine" /></td>
+										<th>ReaderID</th>
+										<th>ReaderName</th>
+										<th>BookName</th>
+										<th>BorrowingDate</th>
+										<th>ReturnDate</th>
+										<th>IsReturn</th>
+										<th>IsPayFine</th>
+										<th>Fine</th>
 									</tr>
+								</thead>
+								<tbody>
+									<s:iterator value="borrowrecords" status="status">
 
-								</s:iterator>
-							</tbody>
-						</table>
+										<tr>
+											<td align="center"><s:property value="ReaderID" /></td>
+											<td align="center"><s:property
+													value="%{readers[#status.index].ReaderName}" /></td>
+											<td align="center"><s:property
+													value="%{books[#status.index].BookName}" /></td>
+											<td align="center"><s:property value="BorrowingDate" /></td>
+											<td align="center"><s:property value="ReturnDate" /></td>
+											<td align="center"><s:property value="IsReturn" /></td>
+											<td align="center"><s:property value="IsPayfine" /></td>
+											<td align="center"><s:property value="Fine" /></td>
+										</tr>
+
+									</s:iterator>
+								</tbody>
+							</table>
+						</div>
+
 					</div>
-
 				</div>
 			</div>
-		</div>
-		<!-- Row End -->
+			<!-- Row End -->
 		</div>
 		<!-- Container End -->
 	</section>

@@ -105,7 +105,7 @@
 											<li class="list-inline-item "><strong>Status:</strong><strong
 												class="text-info">Available</strong></li>
 											<a class="btn-main-sm"
-												href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>&searchContent=${searchContent}&selectSearch=${selectSearch}&displayStyle=${displayStyle}&categoryString=${categoryString}&pageNum=${pageNum}'>Reserve</a>
+												href='javascript:ReserveBook(<s:property value="BookID"/>)'>Reserve</a>
 										</s:if>
 										<s:elseif test="reservations.get(#L1.index)!=0">
 											<li class="list-inline-item "><strong>Status: </strong>
@@ -145,10 +145,10 @@
 						<div class="row">
 							<div class="thumb-content col-3">
 								<!-- <div class="price">$200</div> -->
-									<a data-toggle="collapse" href="#collap2${bookID}"> <img
-											class="card-img-top img-fluid" src="${ImageAddress}"
-											alt="Card image cap" style="height: 200px; width: 150px;">
-										</a>
+								<a data-toggle="collapse" href="#collap2${bookID}"> <img
+									class="card-img-top img-fluid" src="${ImageAddress}"
+									alt="Card image cap" style="height: 200px; width: 150px;">
+								</a>
 							</div>
 							<div class=" col-8">
 								<h4 class="card-title">
@@ -167,13 +167,11 @@
 											<li class="list-inline-item "><strong>Status:</strong><strong
 												class="text-info">Available</strong></li>
 											<a class="btn-main-sm"
-												href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>&searchContent=${searchContent}&selectSearch=${selectSearch}&displayStyle=${displayStyle}&categoryString=${categoryString}&pageNum=${pageNum}'>Reserve</a>
-										</s:if>
-										<s:elseif test="reservations.get(#L2.index)!=0">
+												href='javascript:ReserveBook(<s:property value="BookID"/>)'>Reserve</a>
+										</s:if> <s:elseif test="reservations.get(#L2.index)!=0">
 											<li class="list-inline-item "><strong>Status: </strong>
 												<strong class="text-warning">Reserved</strong></li>
-										</s:elseif>
-										<s:else>
+										</s:elseif> <s:else>
 											<li class="list-inline-item "><strong>Status: </strong>
 												<strong class="text-danger">Lended</strong></li>
 										</s:else>
@@ -181,10 +179,9 @@
 							</div>
 							<div class="collapse col-12" id="collap2${bookID}">
 								<div
-									style="overflow-y: scroll; max-height: 250px; width: 100%; margin: 0 auto;text-indent: 2em">
+									style="overflow-y: scroll; max-height: 350px; width: 100%; margin: 0 auto; text-indent: 2em">
 									<strong>Introduction:</strong>
-									<div class="card card-body">${Introduction}
-									</div>
+									<div class="card card-body">${Introduction}</div>
 								</div>
 							</div>
 						</div>
@@ -239,9 +236,8 @@
 
 			<!-- 前往下一页的按钮-->
 			<li class="page-item"><a class="page-link"
-				href="javascript:javascript:searchb(${bookPage.nextPageNum})"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
-					class="sr-only">Next</span>
+				href="javascript:searchb(${bookPage.nextPageNum})" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
 			</a></li>
 		</ul>
 	</nav>
@@ -253,6 +249,15 @@
 		name="categoryString" value="" id="categoryString"> <input
 		name="displayStyle" value="" id="displayStyle"> <input
 		name="pageNum" value="" id="pageNum">
+</form>
+<form action="getReaderStatuForReserveBook" id="reservations"
+	style="display: none;">
+	<input name="searchContent" value="" id="RsearchContent"> <input
+		name="selectSearch" value="" id="RselectSearch"> <input
+		name="categoryString" value="" id="RcategoryString"> <input
+		name="displayStyle" value="" id="RdisplayStyle"> <input
+		name="pageNum" value="" id="RpageNum"> <input
+		name="book.BookID" value="" id="BookID">
 </form>
 <script>
            function searchb(e){
@@ -269,6 +274,15 @@
         	   $("#categoryString").val(e)
         	   $("#displayStyle").val(document.getElementById("home").className=="tab-pane fade active show")
         	   $("#search2").submit()
+           }
+           function ReserveBook(e){
+        	   $("#RsearchContent").val('${searchContent}')
+        	   $("#RselectSearch").val(${selectSearch})
+        	   $("#RcategoryString").val('${categoryString}')
+        	   $("#BookID").val(e)
+        	   $("#RpageNum").val(${bookPage.currentPage})
+        	   $("#RdisplayStyle").val(document.getElementById("home").className=="tab-pane fade active show")
+        	           	   $("#reservations").submit()
            }
         </script>
 </div>

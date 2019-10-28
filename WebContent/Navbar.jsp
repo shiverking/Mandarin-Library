@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF8"
 	pageEncoding="UTF8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<section class="shadow">
+<section >
 <div class="fade" id="header"></div>
 	<div class="container ">
 		<div class="row">
@@ -21,13 +21,11 @@
 							<li class="nav-item active"><a class="nav-link"
 								href="index.jsp">Home</a></li>
 							
-							<s:if test="#session.reader==null">
+							<s:if test="#session.reader!=null">
 								
-							</s:if>
-							<s:else>
 								<li class="nav-item dropdown dropdown-slide"><a
 									class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"> History <span><i
+									aria-haspopup="true" aria-expanded="false"> My profile <span><i
 											class="fa fa-angle-down"></i></span>
 								</a> <!-- Dropdown list -->
 									<div class="dropdown-menu dropdown-menu-right">
@@ -37,7 +35,9 @@
 											class="dropdown-item" href="getReaderStatuForReturn">Return
 											History</a>
 									</div></li>
-							</s:else>
+						
+							</s:if>
+							<s:else>	</s:else>
 						</ul>
 						<s:if test="#session.librarian!=null">
 							<ul class="navbar-nav ml-auto mt-10">

@@ -6,7 +6,7 @@
 	<display-name>Mandarin-Library</display-name>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
-	<!--<welcome-file>test.jsp</welcome-file>-->
+		<!--<welcome-file>test.jsp</welcome-file> -->
 
 	</welcome-file-list>
 	<filter>
@@ -27,6 +27,9 @@
 	<session-config>
 		<session-timeout>-1</session-timeout>
 	</session-config>
-	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/404.jsp</location>
+	</error-page>
 
 </web-app>

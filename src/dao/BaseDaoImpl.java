@@ -426,15 +426,4 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		List<String> list = query.list();
 		return list;
 	}
-	public int findAllCanByDate(String value1, String date1, String date2) {
-		String namString = entityClass.getSimpleName();
-		String queryString = "SELECT sum(Amount) from " + entityClass.getSimpleName() + " e ";
-		queryString += "where Type = '"+value1+ "' and Date between '"+date1+"' and '"+date2+"'";
-		Query query = this.getSession().createQuery(queryString);
-		List<Long> list = query.list();
-		int a=0;
-		if(list.get(0)!=null)
-			 a=list.get(0).intValue();
-		return a;
-	}
 }

@@ -20,9 +20,8 @@
 					<div class="row justify-content-center">
 						<input class="form-control bg-shadow col-6" type="text"
 							placeholder="Enter new book name" name="BookName">
-							<button class="btn btn-main-sm col-3 " type="submit">yes</button>
 							<input class="fade" value="${bookID}" name="book.BookID">
-						
+						<button class="btn btn-main-sm col-3 " type="submit">yes</button>
 					</div>
 				</form>
 				<form action="editBook" method="post">
@@ -30,10 +29,9 @@
 					<div class="row justify-content-center">
 						<input class="form-control bg-shadow col-6" type="number"
 							placeholder="Enter new ISBN" name="ISBN">
-							<button class="btn btn-main-sm col-3 " type="submit">yes</button>
 							<input class="fade" value="${bookID}" name="book.BookID">
 							
-						
+						<button class="btn btn-main-sm col-3 " type="submit">yes</button>
 					</div>
 				</form>
 				<form action="editBook" method="post">
@@ -41,9 +39,8 @@
 					<div class="row justify-content-center">
 						<input class="form-control bg-shadow col-6" type="text"
 							placeholder="Enter new author" name="Author">
-						<button class="btn btn-main-sm col-3 " type="submit">yes</button>
 							<input class="fade" value="${bookID}" name="book.BookID">
-						
+						<button class="btn btn-main-sm col-3 " type="submit">yes</button>
 					</div>
 				</form>
 				<form action="editBook" method="post">
@@ -63,9 +60,9 @@
 											<option value="D area">D</option>
 
 									</select></li>
-							<button class="btn btn-main-sm col-3 " type="submit">yes</button>
+					
 							<input class="fade" value="${bookID}" name="book.BookID">
-						
+						<button class="btn btn-main-sm col-3 " type="submit">yes</button>
 					</div>
 				</form>
 				<form action="changeReaderAvatar" method="post"

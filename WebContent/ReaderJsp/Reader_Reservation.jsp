@@ -58,7 +58,7 @@
 	<!--==================================
 =            User Profile            =
 ===================================-->
-	<section class="dashboard section">
+	<section class="dashboard section  bg-gray">
 		<!-- Container Start -->
 		<div class="container">
 			<!-- Row Start -->
@@ -68,16 +68,19 @@
 						<!-- User Widget -->
 						<div class="widget user-dashboard-profile">
 							<!-- User Image -->
-							<%Date Resultsdate = new Date();%>
+							<%
+								Date Resultsdate = new Date();
+							%>
 							<div class="profile-thumb">
-								<img src="upload/${tempReader.phoneNumber}.jpg?time=<%=Resultsdate%>" alt=""
-									style="max-height: 100px; max-width: 100px;">
+								<img
+									src="upload/${tempReader.phoneNumber}.jpg?time=<%=Resultsdate%>"
+									alt="" style="max-height: 100px; max-width: 100px;">
 							</div>
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>
 							<p>${tempReader.email}</p>
 							<a data-toggle="modal" data-target="#setProfile"
-								class="btn btn-main-sm" style="color:#fff;">Edit Profile</a>
+								class="btn btn-main-sm" style="color: #fff;">Edit Profile</a>
 						</div>
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
@@ -114,44 +117,50 @@
 							<thead>
 								<tr>
 									<th>Book information</th>
-
 									<th class="text-center">Category</th>
 									<th class="text-center">Action</th>
 								</tr>
 							</thead>
 							<tbody>
+								<s:if test="currentRecords.size()>0">
+									<s:iterator value="currentRecords" status="L">
+										<tr>
+											<td class="product-details">
+												<h3 class="title">
 
-								<s:iterator value="currentRecords" status="L">
+													<s:property value="books[#L.index].BookName" />
+												</h3> <span class="add-id"><strong>Book ID:</strong>
+													${BookID}</span> <span class="add-id"><strong>ISBN:</strong>
+													<s:property value="books[#L.index].ISBN" /> </span> <span><strong>Posted
+														on: </strong> <time>${BorrowingDate}</time> </span> <span class="location"><strong>Location:</strong>
+													<s:property value="books[#L.index].Location" /></span>
+											</td>
 
+											<td class="product-category"><span class="categories"><s:property
+														value="books[#L.index].category" /></span></td>
+											<td class="action" data-title="Action">
+												<div class="">
+													<ul class="list-inline justify-content-center">
+														<li class="list-inline-item"><a data-toggle="tooltip"
+															data-placement="top" title="Tooltip on top" class="view"
+															href=""> <i class="fa fa-eye"></i>
+														</a></li>
+														<li class="list-inline-item"><a class="delete"
+															href=""> <i class="fa fa-trash"></i>
+														</a></li>
+													</ul>
+												</div>
+											</td>
+										</tr>
+									</s:iterator>
+								</s:if>
+								<s:else>
 									<tr>
-										<td class="product-details">
-											<h3 class="title">
-
-												<s:property value="books[#L.index].BookName" />
-											</h3> <span class="add-id"><strong>Book ID:</strong>
-												${BookID}</span> <span class="add-id"><strong>ISBN:</strong>
-												<s:property value="books[#L.index].ISBN" /> </span> <span><strong>Posted
-													on: </strong> <time>${BorrowingDate}</time> </span> <span class="location"><strong>Location:</strong>
-												<s:property value="books[#L.index].Location" /></span>
-										</td>
-
-										<td class="product-category"><span class="categories"><s:property
-													value="books[#L.index].category" /></span></td>
-										<td class="action" data-title="Action">
-											<div class="">
-												<ul class="list-inline justify-content-center">
-													<li class="list-inline-item"><a data-toggle="tooltip"
-														data-placement="top" title="Tooltip on top" class="view"
-														href=""> <i class="fa fa-eye"></i>
-													</a></li>
-													<li class="list-inline-item"><a class="delete" href="">
-															<i class="fa fa-trash"></i>
-													</a></li>
-												</ul>
-											</div>
-										</td>
+										<td class="product-details"></td>
+										<td class="product-category"><span class="categories"></span></td>
+										<td class="action" data-title="Action"></td>
 									</tr>
-								</s:iterator>
+								</s:else>
 							</tbody>
 						</table>
 

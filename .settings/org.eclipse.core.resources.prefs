@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebContent/error/404.jsp=UTF-8
 encoding//src/action/BookAction.java=UTF-8
+encoding//src/action/ReaderAction.java=UTF-8
+encoding//src/service/BorrowrecordServiceImpl.java=UTF-8
