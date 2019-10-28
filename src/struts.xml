@@ -300,14 +300,11 @@
 				/Login.jsp
 			</result>
 			<result name="success" type="chain"><!--若lib已经登录，post记录 -->
-
 				<param name="actionName">PostNews</param>
 			</result>
-
 		</action>
 		<action name="PostNews" class="postAction" method="PostNews">
 			<result name="success">/index.jsp</result>
-
 		</action>
 
 		<action name="displayPosts" class="postAction"
@@ -489,12 +486,12 @@
 				<param name="actionName">getReaderFine1</param>
 			</result>
 		</action>
-
 		<!-- Librarian查看资金列表 -->
 		<action name="displayPayrecords" class="payrecordAction"
 			method="displayPayrecords">
 			<result name="success">/Payrecord.jsp</result>
 		</action>
+		
 		<!-- 获取所有读者信息 -->
 		<action name="getAllReaders" class="readerAction"
 			method="getAllReader">
