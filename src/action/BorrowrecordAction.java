@@ -38,34 +38,42 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 
 	public String borrowBook() {
 
-		if(this.readers == null){
+		if (this.readers == null) {
 			this.setErrorMessage("ReaderNotFoundError: method(BorrowrecordAction.borrowBook) this.reader is null");
 			System.out.println(this.getErrorMessage());
-		}else if(this.books == null){
+		} else if (this.books == null) {
 			this.setErrorMessage("BookNotFoundError: method(BorrowrecordAction.borrowBook) this.Book is null");
 			System.out.println(this.getErrorMessage());
-		}else{
+		} else {
 			borrowrecords = this.getService().borrowBook(readers, books);
 		}
 		return SUCCESS;
-		
+
 	}
-	public String setReturnBorrowrecordbyBook(){
-		if(this.books.get(0)!=null){
+
+	public String setReturnBorrowrecordbyBook() {
+		if (this.books.get(0) != null) {
 			System.out.println(this.books.get(0).getBookID());
 			borrowrecords = this.getService().setReturnBorrowrecordByBook(this.books.get(0).getBookID());
-			if(borrowrecords!=null){
+			if (borrowrecords != null) {
 				return SUCCESS;
-			}else{
+			} else {
 				this.setErrorMessage("BorrowrecordNotFoundError: Can't Find the Borrowrecord");
 				System.out.println(this.getErrorMessage());
 				return ERROR;
 			}
-		}else{
+		} else {
 			this.setErrorMessage("BorrowrecordNotFoundError: Can't Find the book");
 			System.out.println(this.getErrorMessage());
 			return ERROR;
-		}		
+		}
+	}
+
+	public String checkReader() {
+		if (this.getService().checkReader(tempReader)) {
+			return INPUT;
+		}
+		return SUCCESS;
 	}
 
 	public String getBorrowrecordByReaders() {
@@ -90,48 +98,50 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 		return SUCCESS;
 	}
 
-		
-	public String findReaderCanBorrow(){
+	public String findReaderCanBorrow() {
 		int n = this.getService().findCanBorrow(this.readers.get(0));
-		if(n < 3){
+		if (n < 3) {
 			int x = 1;
-			if(this.bookID2 != 0){
+			if (this.bookID2 != 0) {
 				x++;
 			}
-			if(this.bookID3 != 0){
+			if (this.bookID3 != 0) {
 				x++;
 			}
-			if(n + x <= 3){
+			if (n + x <= 3) {
 				return SUCCESS;
-			}else{
-				this.setErrorMessage("ReaderCan'tBorrowError: This Reader can only Borrow " + (3 - n) + " books! Reader id:" + this.readers.get(0).getReaderID());
+			} else {
+				this.setErrorMessage("ReaderCan'tBorrowError: This Reader can only Borrow " + (3 - n)
+						+ " books! Reader id:" + this.readers.get(0).getReaderID());
 				return ERROR;
 			}
-		}else{
-			this.setErrorMessage("ReaderCan'tBorrowError: This Reader has already Borrow 3 books! Reader id:" + this.readers.get(0).getReaderID());
+		} else {
+			this.setErrorMessage("ReaderCan'tBorrowError: This Reader has already Borrow 3 books! Reader id:"
+					+ this.readers.get(0).getReaderID());
 			return ERROR;
 		}
 	}
-	
-	
-	public String showError(){
-		totalFine=this.getService().getFine(tempReader.getReaderID());//TODO:增加了开销，后期可能修改算法
-		return SUCCESS;
-	}
-	public String getBorrowPageByReader() {
-		// TODO:分页查询
-		borrowPage = this.getService().getPageBean(tempReader, pageNum ,false);
-		if(totalFine==null)return "getfine";
-		return SUCCESS;
-	}
-	
-	public String getReturnPageByReader() {
-		// TODO:分页查询
-		borrowPage = this.getService().getPageBean(tempReader, pageNum ,true);
-		if(totalFine==null)return "getfine";
+
+	public String showError() {
+		totalFine = this.getService().getFine(tempReader.getReaderID());// TODO:增加了开销，后期可能修改算法
 		return SUCCESS;
 	}
 
+	public String getBorrowPageByReader() {
+		// TODO:分页查询
+		borrowPage = this.getService().getPageBean(tempReader, pageNum, false);
+		if (totalFine == null)
+			return "getfine";
+		return SUCCESS;
+	}
+
+	public String getReturnPageByReader() {
+		// TODO:分页查询
+		borrowPage = this.getService().getPageBean(tempReader, pageNum, true);
+		if (totalFine == null)
+			return "getfine";
+		return SUCCESS;
+	}
 
 	public PageBean<Borrowrecord> getBorrowPage() {
 		return borrowPage;
@@ -188,11 +198,11 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	public void setReaders(List<Reader> readers) {
 		this.readers = readers;
 	}
-	
+
 	public void setErrorMessager(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	
+
 	public String getErrorMessager() {
 		return errorMessage;
 	}
@@ -212,6 +222,5 @@ public class BorrowrecordAction extends BaseAction<Borrowrecord, BorrowrecordSer
 	public int getBookID3() {
 		return bookID3;
 	}
-	
 
 }
