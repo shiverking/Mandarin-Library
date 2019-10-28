@@ -68,6 +68,25 @@
 						
 					</div>
 				</form>
+				<form action="editBook" method="post">
+					<label>change category</label>
+					<div class="row justify-content-center">
+					<li><label>category:<br> <li><label>Floor:<br></label> <select name="Category"
+										required="required"><br>
+											<option value="Literature">Literature</option>
+											<option value="Arts">Arts</option>
+											<option value="History&Geography">History&Geography</option>
+											<option value="Science">Science</option>
+											<option value="Politics&Law">Politics&Law</option>
+											
+											<option value="Philosophy&Religion">Philosophy&Religion</option>
+									</select></li>
+					<button class="btn btn-main-sm col-3 " type="submit">yes</button>
+							<input class="fade" value="${bookID}" name="book.BookID">
+						
+					</div>
+				</form>
+				
 				<form action="changeReaderAvatar" method="post"
 					enctype="multipart/form-data">
 					<label>change your avatar</label>

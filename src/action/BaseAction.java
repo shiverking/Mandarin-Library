@@ -34,7 +34,7 @@ public class BaseAction<TEntity, TService> extends ActionSupport implements Mode
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-
+	
 //	public Post getTempPost() {
 //		return tempPost;
 //	}

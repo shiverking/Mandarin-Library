@@ -122,6 +122,7 @@
 													required="required"><br> ISBN:<br> <input
 													name="ISBN" required="required"><br> Price:<br>
 												<input name="Price" required="required" /><br>
+												
 												<li><label>Floor:<br></label> <select
 													name="Location" required="required"><br>
 														<option value="first floor">first floor</option>
@@ -135,8 +136,18 @@
 														<option value="C area">C</option>
 														<option value="D area">D</option>
 
-												</select></li> category:<br> <input name="Category"
-													required="required" /><br> Number:<br> <input
+												</select></li> 
+												<li><label>category:<br> <li><label>Floor:<br></label> <select name="Category"
+										required="required"><br>
+											<option value="Literature">Literature</option>
+											<option value="Arts">Arts</option>
+											<option value="History&Geography">History&Geography</option>
+											<option value="Science">Science</option>
+											<option value="Politics&Law">Politics&Law</option>
+											
+											<option value="Philosophy&Religion">Philosophy&Religion</option>
+									</select></li>
+												<br> Number:<br> <input
 													name="Num" required="required" /><br> Description:<br>
 												<input name="Introduction" required="required" /><br>
 												Author:<br> <input name="author" required="required" /><br>
@@ -154,6 +165,7 @@
 										<table border="2" name="AddBookisbn">
 											<form action="addBookISBN" method="post">
 												ISBN:<input name="ISBN" required="required"><br>
+									
 												<li><label>Floor</label> <select name="Location"
 													required="required">
 														<option value="first floor">first floor</option>
