@@ -45,13 +45,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private PageBean<Reader> readerPage;
 	private Integer pageNum;
 
-	public int getReaderNum() {
-		return readerNum;
-	}
-
-	public void setReaderNum(int readerNum) {
-		this.readerNum = readerNum;
-	}
 
 	// 璇昏�呮敞鍐�
 	public String register() throws Exception {
@@ -66,7 +59,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			this.errorMessage = "You must input the phone number!";
 		} else if (this.getModel().getReaderName().isEmpty()) {
 			this.errorMessage = "You must input reader's namer!";
-		} else {
 			if (this.getModel().getPassword().isEmpty()) {
 				this.getModel().setPassword("12345678");
 			}
@@ -120,7 +112,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		this.getService().mergeReader(tempReader);
 		return SUCCESS;
 	}
-
 	public String signin() throws Exception {
 		String phoneNumber = this.getModel().getPhoneNumber();
 		String password = this.getModel().getPassword();
@@ -259,12 +250,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	}
 
 	public String getAllReader() {
-		Map<String, Object> session = ActionContext.getContext().getSession();
-		librarian = (Librarian) session.get("librarian");
-		if (librarian == null) {
-			return INPUT;
-		}
-		
+		this.readers = this.getService().getAllReader();
 		return SUCCESS;
 	}
 
@@ -272,7 +258,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		this.readers = new ArrayList<Reader>();
 		int id = this.getModel().getReaderID();
 		this.readers.add(this.getService().getReaderById(id));
-		tempReader = this.readers.get(0);
 		if (this.readers.get(0) == null) {
 			this.setErrorMessage("ReaderNotFoundError: Can't Find Reader by id:" + id);
 			System.out.println(this.getErrorMessage());
@@ -319,6 +304,13 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+	public int getReaderNum() {
+		return readerNum;
+	}
+
+	public void setReaderNum(int readerNum) {
+		this.readerNum = readerNum;
 	}
 
 }
