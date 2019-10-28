@@ -79,7 +79,7 @@
 										Manage Book </a></li>
 								<li><a href="BookSearch"><i class="fa fa-search"></i>
 										Search Book</a></li>
-								<li class="active"><a href=""><i
+								<li class="active"><a href="getAllReaders"><i
 										class="fa fa-user-plus"></i> Register Reader </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
