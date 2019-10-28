@@ -1,6 +1,5 @@
 package service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.Borrowrecord;
@@ -13,7 +12,6 @@ import dao.ReaderDao;
 import model.Reader;
 import util.Email;
 import util.Email_2;
-import util.PageBean;
 
 /**
  * @author
@@ -95,6 +93,7 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 			return true;
 		}
 	}
+<<<<<<< HEAD
 	public Reader getReaderbyPhone(String pString) {
 		return this.getDao().getSingle("PhoneNumber", pString);
 
@@ -124,5 +123,11 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 		PageBean<Reader> page = new PageBean<Reader>(totalRecords, Num,5);
 		page.setDataList(this.getDao().findPage(pls, vlsList, null, 0, 0, 0, page.getStartIndex(), page.getPageSize()));
 		return page;
+=======
+	@Override
+	public Reader getReaderbyPhone(String pString) {
+	return this.getDao().getSingle("PhoneNumber", pString);
+
+>>>>>>> parent of a02342a... 后端注册、修改读者
 	}
 }

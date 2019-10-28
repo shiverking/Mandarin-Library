@@ -32,5 +32,4 @@ public List<Borrowrecord> borrowBook(List<Reader> readers, List<Book> books);
 public List<Borrowrecord> setReturnBorrowrecordByBook(int i);
 public boolean findReaderCanBorrow(Reader reader);
 public int findCanBorrow(Reader reader);
-public boolean checkReader(Reader reader) ;;
 }
