@@ -45,26 +45,40 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private PageBean<Reader> readerPage;
 	private Integer pageNum;
 
-
 	// 璇昏�呮敞鍐�
-	public String register() throws Exception {
+	public String register() {
 		Map<String, Object> session = ActionContext.getContext().getSession();// 检查librarian登录状态
 		librarian = (Librarian) session.get("librarian");
+		this.errorMessage = null;
 		if (librarian == null) {
 			return INPUT;
 		}
+		//判断输入是否为空
 		if (this.getModel().getEmail().isEmpty()) {
 			this.errorMessage = "You must input the Email!";
 		} else if (this.getModel().getPhoneNumber().isEmpty()) {
 			this.errorMessage = "You must input the phone number!";
 		} else if (this.getModel().getReaderName().isEmpty()) {
 			this.errorMessage = "You must input reader's namer!";
-			if (this.getModel().getPassword().isEmpty()) {
-				this.getModel().setPassword("12345678");
-			}
+		} else if (this.getModel().getPhoneNumber().length() > 11) {
+			this.errorMessage = "Your Phone Number is to long !";
+		}
+		if (this.getModel().getPassword().isEmpty()) {
+			this.getModel().setPassword("12345678");
+		}
+		//检查邮箱和手机号是否已经注册
+		if (errorMessage == null) {
 			tempReader = this.getService().getReaderbyPhone(this.getModel().getPhoneNumber());
+
 			if (tempReader == null) {
-				this.getService().mergeReader(this.getModel());
+				tempReader = this.getService().getReaderbyEmail(this.getModel().getEmail());
+				if (tempReader == null) {
+					this.getService().mergeReader(this.getModel());
+				} else {
+					this.errorMessage = "This email has been bound to another account!";
+				}
+			} else {
+				this.errorMessage = "This number has been bound to another account!";
 			}
 		}
 		return SUCCESS;
@@ -74,10 +88,12 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		this.getService().deleteReader(tempReader);
 		return SUCCESS;
 	}
+
 	public String findReaderPage() {
-		readerPage=this.getService(). getPageBean(pageNum) ;
+		readerPage = this.getService().getPageBean(pageNum);
 		return SUCCESS;
 	}
+
 	public String setreader() {
 		Map<String, Object> session = ActionContext.getContext().getSession();// 检查librarian登录状态
 		librarian = (Librarian) session.get("librarian");
@@ -104,14 +120,15 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		if (!this.getModel().getPhoneNumber().isEmpty()) {// 若提交的手机号不为空，且无账号使用此手机号，修改手机号
 			if (this.getService().getReaderbyPhone(this.getModel().getPhoneNumber()).getReaderID() == tempReader
 					.getReaderID()) {
-				this.errorMessage = "This phone number has been bound to another account.";	
-			}else {
+				this.errorMessage = "This phone number has been bound to another account.";
+			} else {
 				tempReader.setPhoneNumber(this.getModel().getPhoneNumber());
 			}
 		}
 		this.getService().mergeReader(tempReader);
 		return SUCCESS;
 	}
+
 	public String signin() throws Exception {
 		String phoneNumber = this.getModel().getPhoneNumber();
 		String password = this.getModel().getPassword();
@@ -305,6 +322,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
+
 	public int getReaderNum() {
 		return readerNum;
 	}

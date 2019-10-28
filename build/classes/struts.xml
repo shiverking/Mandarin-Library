@@ -273,7 +273,7 @@
 		<action name="deleteBook" class="bookAction"
 			method="deleteBook">
 			<result name="success" type="chain">
-			<param name="actionName">searchBook1</param>
+				<param name="actionName">searchBook1</param>
 
 				<param name="actionName">addRecord</param>
 
@@ -284,7 +284,7 @@
 			method="addRecord">
 			<result name="success" type="chain">
 
-			<param name="actionName">searchBooks</param>
+				<param name="actionName">searchBooks</param>
 			</result>
 		</action>
 
@@ -292,7 +292,7 @@
 		<action name="editBook" class="bookAction" method="editBook">
 			<result name="success" type="chain">searchBook1</result>
 		</action>
-		
+
 		<!-- 跳转Librarian添加书籍界面 -->
 		<action name="addBookPage" class="bookAction"
 			method="addBookPage">
@@ -493,10 +493,11 @@
 		</action>
 		<!-- Librarian查看资金列表 -->
 
-		<action name="displayPayrecords" class="payrecordAction" method="displayPayrecords">
+		<action name="displayPayrecords" class="payrecordAction"
+			method="displayPayrecords">
 			<result name="success">/Payrecord.jsp</result>
 		</action>
-		
+
 		<!-- 获取所有读者信息 -->
 		<action name="getAllReaders" class="readerAction"
 			method="getAllReader">
@@ -519,11 +520,34 @@
 			</result>
 			<result name="input">/Login.jsp</result>
 		</action>
-		<action name="checkReader" class="readerAction" method="">
+		<action name="getReaderForDelete" class="readerAction" method="">
 			<result name="success" type="chain">
-				<param name="actionName">/checkReader</param>
+				<param name="actionName">getAllReaders</param>
 			</result>
 			<result name="input">/Login.jsp</result>
+		</action>
+		<action name="checkReader" class="borrowrecordAction" method="">
+			<result name="success" type="chain">
+				<param name="actionName">cancelReservation</param><!--若读者能删除，去取消读者的预约记录 -->
+			</result>
+			<result name="input" type="chain">
+				<param name="actionName">getAllReaders</param><!--若读者不能删除，结束动作 -->
+			</result>
+		</action>
+		<action name="cancelReservation" class="currentrecordAction" method="">
+			<result name="success" type="chain">
+				<param name="actionName">getAllReaders</param><!--去恢复取消预约的书籍 -->
+			</result>
+		</action>
+		<action name="restoreBookStatus" class="bookAction" method="">
+			<result name="success" type="chain">
+				<param name="actionName">getAllReaders</param><!--去最终删除读者 -->
+			</result>
+		</action>
+		<action name="deleteReader" class="" method="">
+			<result name="success" type="chain">
+				<param name="actionName">getAllReaders</param><!--完成删除，跳回原界面 -->
+			</result>
 		</action>
 		<!-- Admin删除馆员 -->
 		<action name="deleteLibrarian" class="librarianAction"
