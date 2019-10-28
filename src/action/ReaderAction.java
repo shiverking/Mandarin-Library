@@ -34,6 +34,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private String errorMessage;
 	private int readerNum;
 	private String filename;
+	private Date readerDate;
 	public int getReaderNum() {
 		return readerNum;
 	}

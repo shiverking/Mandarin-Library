@@ -241,8 +241,9 @@
 		<action name="NewsPost">
 			<result name="success">/librarian_jsp/NewsPost.jsp</result>
 		</action>
-		<action name="Logout">
-			<result name="success">/librarian_jsp/Logout.jsp</result>
+		<action name="Logout" class="librarianAction"
+			method="signout"><!--登出后跳转到登录界面，后期需要更改 -->
+			<result name="success">/Login.jsp</result>
 		</action>
 		<!-- Librarian添加书籍 -->
 		<action name="addBook" class="bookAction" method="addBook">
@@ -442,7 +443,7 @@
 		
 		<!-- Librarian查看资金列表 -->
 		<action name="displayPayrecords" class="payrecordAction" method="displayPayrecords">
-			<result name="success">/Payrecord.jsp</result>
+			<result name="success">/librarian_jsp/IncomeHistory.jsp</result>
 		</action>
 		<!-- 注册Reader界面 -->
 		<action name="readerregister" class="readerAction"
