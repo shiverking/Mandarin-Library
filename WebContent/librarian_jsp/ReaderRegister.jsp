@@ -50,7 +50,9 @@
 
 
 <body>
+
 	<s:include value="/Navbar.jsp" />
+
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -109,6 +111,7 @@
 
 
 
+						
 						<form action="readerregister" method="post">
 							username<br><input type="text" name="ReaderName"><br>
 							password<br><input type="password" name="Password"><br>

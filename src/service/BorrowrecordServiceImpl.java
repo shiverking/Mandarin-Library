@@ -198,7 +198,6 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		}
 	}
 
-	@Override
 	public boolean checkReader(Reader reader) {
 		// TODO Auto-generated method stub
 		List<Borrowrecord> borrowrecords=this.getDao().getByTwoProperty("ReaderID", "isPayfine", reader.getReaderID(), false);

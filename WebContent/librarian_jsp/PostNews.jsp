@@ -50,7 +50,7 @@
 
 
 <body>
-	<s:include value="jspElement/Head.jsp" />
+	<s:include value="/librarian_jsp/Navbar.jsp" />
 	<!--==================================
 =            User Profile            =
 ===================================-->

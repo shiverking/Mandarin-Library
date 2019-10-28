@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Borrowrecord;
@@ -12,6 +13,7 @@ import dao.ReaderDao;
 import model.Reader;
 import util.Email;
 import util.Email_2;
+import util.PageBean;
 
 /**
  * @author
@@ -94,7 +96,33 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 		}
 	}
 	public Reader getReaderbyPhone(String pString) {
-	return this.getDao().getSingle("PhoneNumber", pString);
+		return this.getDao().getSingle("PhoneNumber", pString);
 
+	}
+
+	public void deleteReader(Reader reader) {
+		// TODO Auto-generated method stub
+		this.getDao().delete(reader);
+	}
+
+	public Reader getReaderbyEmail(String email) {
+		return this.getDao().getSingle("Email", email);
+	}
+
+	public PageBean<Reader> getPageBean(Integer pageNum) {
+		// TODO Auto-generated method stubpublic PageBean<Borrowrecord> getPageBean(Reader reader, Integer pageNum,boolean isreturn) {
+		// TODO 分页查询
+		int Num = 1;
+		if (pageNum != null) {
+			Num = pageNum;
+		}
+		List<String> pls=new ArrayList<String>();
+		List<String> vlsList=new ArrayList<String>();
+		pls.add("ReaderName");
+		vlsList.add("");
+		int totalRecords = this.getDao().findTotalNum(pls, vlsList, 0, 0);
+		PageBean<Reader> page = new PageBean<Reader>(totalRecords, Num,5);
+		page.setDataList(this.getDao().findPage(pls, vlsList, null, 0, 0, 0, page.getStartIndex(), page.getPageSize()));
+		return page;
 	}
 }

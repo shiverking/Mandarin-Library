@@ -55,7 +55,7 @@
 						<s:else>
 							<ul class="navbar-nav ml-auto mt-10">
 								<li class="nav-item"><a class="nav-link add-button"
-									href="Login.jsp"> Login <i class="fa fa-sign-in"
+									href="../Login.jsp"> Login <i class="fa fa-sign-in"
 										aria-hidden="true"></i></a></li>
 							</ul>
 						</s:else>

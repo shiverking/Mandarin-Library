@@ -260,6 +260,7 @@
 
 				<param name="actionName">addRecord</param>
 
+				<param name="actionName">addRecord</param>
 			</result>
 		</action>
 		<!-- Librarian添加删除书籍记录 -->
