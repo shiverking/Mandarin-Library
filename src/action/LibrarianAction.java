@@ -50,6 +50,10 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		this.errorMessage="Your name or password is wrong, please try again !";
 		return INPUT;
 	}
+	public String signout() throws Exception {
+		ActionContext.getContext().getSession().clear();
+		return SUCCESS;
+	}
 	public String signup() throws Exception{
 		String LibrarianName = this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName
 		String Password = this.getModel().getPassword();//閿熸枻鎷峰彇閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷

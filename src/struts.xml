@@ -245,7 +245,7 @@
 			<result name="success">/librarian_jsp/NewsPost.jsp</result>
 		</action>
 		<action name="Logout">
-			<result name="success">/librarian_jsp/Logout.jsp</result>
+			<result name="success">/Login.jsp</result>
 		</action>
 		<!-- Librarian添加书籍 -->
 		<action name="addBook" class="bookAction" method="addBook">
