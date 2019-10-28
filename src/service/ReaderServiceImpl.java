@@ -93,7 +93,6 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 			return true;
 		}
 	}
-	@Override
 	public Reader getReaderbyPhone(String pString) {
 	return this.getDao().getSingle("PhoneNumber", pString);
 
