@@ -312,4 +312,28 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		this.readerNum = readerNum;
 	}
 
+	public Librarian getLibrarian() {
+		return librarian;
+	}
+
+	public void setLibrarian(Librarian librarian) {
+		this.librarian = librarian;
+	}
+
+	public PageBean<Reader> getReaderPage() {
+		return readerPage;
+	}
+
+	public void setReaderPage(PageBean<Reader> readerPage) {
+		this.readerPage = readerPage;
+	}
+
+	public Integer getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
+	}
+
 }

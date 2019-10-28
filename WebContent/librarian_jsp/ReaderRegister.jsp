@@ -13,8 +13,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BookBorrow</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -103,15 +101,58 @@
 					<!-- Recently Favorited -->
 					<div class="widget dashboard-container my-adslist">
 						<h3 class="widget-header">Reader Register</h3>
+						<s:iterator value="bookPage.dataList" status="L2">
 
+							<!-- product card -->
+							<div class="product-item bg-light">
+								<div class="row">
+									<div class="thumb-content col-3">
+										<!-- <div class="price">$200</div> -->
+										<a data-toggle="collapse" href="#collap2${bookID}"> <img
+											class="card-img-top img-fluid" src="${ImageAddress}"
+											alt="Card image cap" style="height: 200px; width: 150px;">
+										</a>
+									</div>
+									<div class=" col-8">
+										<h4 class="card-title">
+											<a data-toggle="collapse" href="#collap2${bookID}">${bookName}</a>
+										</h4>
+										<ul class="list-inline product-meta">
+											<li class="list-inline-item"><a><i
+													class="fa fa-book"> Category:</i>${Category}</a></li>
+											<li class="list-inline-item"><a><i
+													class="fa fa-bookmark"> ISBN:</i>${ISBN}</a></li>
+											<li class="list-inline-item"><a><i
+													class="fa fa-pencil" aria-hidden="true"> Author:</i>${Author}</a></li>
+											<li class="list-inline-item"><i class="fa fa-map-marker">
+													Location:</i> &nbsp;${Location}</li>
+											<li class="list-inline-item"><s:if test="isBorrowed==0">
+													<li class="list-inline-item "><strong>Status:</strong><strong
+														class="text-info">Available</strong></li>
+													<a class="btn-main-sm"
+														href='javascript:ReserveBook(<s:property value="BookID"/>)'>Reserve</a>
+												</s:if> <s:elseif test="reservations.get(#L2.index)!=0">
+													<li class="list-inline-item "><strong>Status:
+													</strong> <strong class="text-warning">Reserved</strong></li>
+												</s:elseif> <s:else>
+													<li class="list-inline-item "><strong>Status:
+													</strong> <strong class="text-danger">Lended</strong></li>
+												</s:else>
+										</ul>
+									</div>
+									<div class="collapse col-12" id="collap2${bookID}">
+										<div
+											style="overflow-y: scroll; max-height: 350px; width: 100%; margin: 0 auto; text-indent: 2em">
+											<strong>Introduction:</strong>
+											<div class="card card-body">${Introduction}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</s:iterator>
 						<!-- 在这里写ReaderRegister展示对象 -->
 
-
-								<div class="form-group">
-
-
-
-						
 						<form action="readerregister" method="post">
 							username<br><input type="text" name="ReaderName"><br>
 							password<br><input type="password" name="Password"><br>
@@ -132,7 +173,6 @@
 	<s:include value="/footer.jsp" />
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
