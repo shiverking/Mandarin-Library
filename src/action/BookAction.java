@@ -23,7 +23,7 @@ import util.ISBNgenerator;
 import util.PageBean;
 
 public class BookAction extends BaseAction<Book, BookService> {
-	private static Book book;
+	private Book book;
 	private List<Book> books;// 鍙兘琚玝ookPage鍙栦唬锛屽缓璁皯鐢紝濡傞渶浣跨敤璇锋敼娉ㄩ噴
 	private List<Borrowrecord> borrowrecords;// 鍙兘琚垹闄�
 	private List<CurrentRecord> currentRecords;// 鎸囬绾︿功绫嶇殑淇℃伅
@@ -538,6 +538,15 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		if (this.getModel().getLocation() != null) {
 			book.setLocation(this.getModel().getLocation());
+		}
+		if (this.getModel().getISBN()!= null) {
+			book.setISBN(this.getModel().getISBN());
+		}
+		if (this.getModel().getAuthor()!= null) {
+			book.setAuthor(this.getModel().getAuthor());
+		}
+		if (this.getModel().getIntroduction()!= null) {
+			book.setIntroduction(this.getModel().getIntroduction());
 		}
 		book.setIsBorrowed(this.getModel().getIsBorrowed());
 		if (this.getModel().getCategory() != null) {

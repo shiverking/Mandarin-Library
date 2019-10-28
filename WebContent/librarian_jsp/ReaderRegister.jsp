@@ -104,17 +104,18 @@
 
 						<!-- 在这里写ReaderRegister展示对象 -->
 
-
+								<div class="form-group">
 
 						<form action="readerregister" method="post">
-							username<input type="text" name="ReaderName"><br>
-							password<input type="password" name="Password"><br>
-							confirm<input type="password" name="ConfirmPassword"><br>
-							email<input type="email" name="Email"><br>
-							phonenumber<input type="text" name="PhoneNumber"><br>
-							<button type="submit" value="signup">register</button>
+							username<br><input type="text" name="ReaderName"><br>
+							password<br><input type="password" name="Password"><br>
+							confirm your password<br><input type="password" name="ConfirmPassword"><br>
+							email<br><input type="email" name="Email"><br>
+							phone number<br><input type="text" name="PhoneNumber"><br>
+							</div>
+							<button type="submit" value="signup" class="btn btn-main-sm">register</button>
 						</form>
-
+						
 					</div>
 				</div>
 			</div>
