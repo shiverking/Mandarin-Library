@@ -9,11 +9,11 @@ import model.Admin;
 import service.AdminService;
 
 public class AdminAction extends BaseAction<Admin,AdminService> {
-	private Admin tmpAdmin;//鍒涘缓涓存椂Admin
+	private Admin tmpAdmin;//閸掓稑缂撴稉瀛樻Admin
 	private String NewSecurityDeposit;
 	private int Deposit;
 	
-	//以下为set和get方法
+	//浠ヤ笅涓簊et鍜実et鏂规硶
 	public int getDeposit() {
 		return this.getService().getDeposit();
 	}
@@ -27,48 +27,50 @@ public class AdminAction extends BaseAction<Admin,AdminService> {
 		NewSecurityDeposit = newSecurityDeposit;
 	}
 	public String signin() throws Exception{
-		String AdminName =this.getModel().getAdminName();//鑾峰彇AdminName
-		String Password  =this.getModel().getPassword();//鑾峰彇杈撳叆鐨勫瘑鐮�
+		String AdminName =this.getModel().getAdminName();//閼惧嘲褰嘇dminName
+		String Password  =this.getModel().getPassword();//閼惧嘲褰囨潏鎾冲弳閻ㄥ嫬鐦戦惍锟�
 		if(AdminName==null) {
 			this.errorMessage="You must input an AdminName!";
-			return INPUT;//杩斿洖鐧诲綍椤甸潰
+			return INPUT;//鏉╂柨娲栭惂璇茬秿妞ょ敻娼�
 		}
 		if(Password==null) {
 			this.errorMessage="You must input the Password!";
-			return INPUT;//杩斿洖鐧诲綍椤甸潰
+			return INPUT;//鏉╂柨娲栭惂璇茬秿妞ょ敻娼�
 		}
 		Admin admin = this.getService().verify(AdminName, Password);
 		if(admin!=null) {
 			Map<String, Object> session = ActionContext.getContext().getSession();
-			session.put("admin", admin);//灏哸dmin瀛樺叆session
+			session.put("admin", admin);//鐏忓摳dmin鐎涙ê鍙唖ession
 			tmpAdmin = admin ;
+			System.out.println("success");
 			return SUCCESS;
 		}
 		this.errorMessage="Your name or password is wrong, please try again !";
+		System.out.println("wrong");
 		return INPUT;
 	}
 	public String changePassword()
 	{
-		String Password  =this.getModel().getPassword();//鑾峰彇Password
+		String Password  =this.getModel().getPassword();//閼惧嘲褰嘝assword
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		this.tmpAdmin= (Admin) session.get("admin");
-		if(this.tmpAdmin==null)//纭鐢ㄦ埛鏄惁鍦ㄧ櫥褰曠姸鍐�
+		if(this.tmpAdmin==null)//绾喛顓婚悽銊﹀煕閺勵垰鎯侀崷銊ф瑜版洜濮搁崘锟�
 		{
 			return  LOGIN;
 		}
-		else if(this.getService().verify(tmpAdmin.getAdminName(), Password)!=null)//纭瀵嗙爜鏄惁涓庣敤鎴风浉绛�
+		else if(this.getService().verify(tmpAdmin.getAdminName(), Password)!=null)//绾喛顓荤�靛棛鐖滈弰顖氭儊娑撳海鏁ら幋椋庢祲缁涳拷
 		{
 			 HttpServletRequest request=ServletActionContext.getRequest();
-			 String NewPassword=request.getParameter("NewPassword");//鑾峰彇鏂扮殑瀵嗙爜
+			 String NewPassword=request.getParameter("NewPassword");//閼惧嘲褰囬弬鎵畱鐎靛棛鐖�
 			 System.out.println(this.getService().changePassword(tmpAdmin.getAdminName(),NewPassword));
 			return this.getService().changePassword(tmpAdmin.getAdminName(),NewPassword);
 		}
-		else //瀵嗙爜閿欒閲嶆柊杈撳叆
+		else //鐎靛棛鐖滈柨娆掝嚖闁插秵鏌婃潏鎾冲弳
 		{
 			return INPUT;
 		}
 	}
-	public String logout()//娉ㄩ攢璐﹀彿
+	public String logout()//濞夈劑鏀㈢拹锕�褰�
 	{
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		if(session==null)
@@ -81,7 +83,7 @@ public class AdminAction extends BaseAction<Admin,AdminService> {
 			return "success";
 		}
 	}
-	public String modify()//修改用户缴纳的保证金
+	public String modify()//
 	{
 		int money=Integer.parseInt(NewSecurityDeposit);
 		this.getService().modifyDeposity(money);

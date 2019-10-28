@@ -7,16 +7,38 @@
 	<constant name="struts.objectFactory" value="spring" />
 
 	<package name="default" extends="struts-default" namespace="/">
+	<interceptors>
+
+			<!-- 注册自定义拦截器 -->
+
+
+			<interceptor name="LoginInterceptor" class="util.LoginInterceptor"> </interceptor>
+
+			<!-- 定义拦截器栈 -->
+
+
+
+			<interceptor-stack name="myStack">
+
+			<interceptor-ref name="LoginInterceptor"> </interceptor-ref>
+
+			<interceptor-ref name="defaultStack"/>
+
+	</interceptor-stack>
+
+</interceptors>
 		<!-- Admin登录界面 -->
 		<action name="adminlogin" class="adminAction" method="signin">
-			<result name="success">/Login_success.jsp</result>
-			<result name="input">/Admin_login.jsp</result>
+			<result name="success">/AdminJsp/index.jsp</result>
+			<result name="input">/AdminJsp/pages/AdminLogin.jsp</result>
 		</action>
 		<!-- 注册Librarian界面 -->
 		<action name="librariansignup" class="librarianAction"
 			method="signup">
-			<result name="success">/Librarian_success.jsp</result>
-			<result name="input">/Admin_register.jsp</result>
+			<interceptor-ref name="LoginInterceptor"/>
+			<result name="login">/AdminJsp/pages/AdminLogin.jsp</result>
+			<result name="success" >/AdminJsp/index.jsp</result>
+			<result name="input">/AdminJsp/pages/Register.jsp</result>
 		</action>
 		<!-- Admin 修改密码 -->
 		<action name="changePassword" class="adminAction"
@@ -26,28 +48,35 @@
 			<result name="login">/Admin_login.jsp</result>
 		</action>
 		<action name="logout" class="adminAction" method="logout">
-			<result name="success">/Admin_login.jsp</result>
-			<result name="failure">/Admin_login.jsp</result>
+			<result name="success">/AdminJsp/pages/AdminLogin.jsp</result>
+			<result name="failure">/AdminJsp/pages/AdminLogin.jsp</result>
 		</action>
-		<action name="displayLibrarians" class="librarianAction"
-			method="show">
-			<result name="success">/Librarian.jsp</result>
+		<!-- 展示Librarian -->
+		<action name="displayLibrarians" class="librarianAction" method="show">
+			<interceptor-ref name="LoginInterceptor"/>
+			<result name="login">/AdminJsp/pages/AdminLogin.jsp</result>
+			<result name="success">/AdminJsp/pages/EditLibrarian.jsp</result>
 		</action>
 		<!-- Admin修改用户保障金 -->
 		<action name="modify" class="adminAction" method="modify">
-			<result name="input">/Modify_Deposit.jsp</result>
-			<result name="success">/Login_success.jsp</result>
+		<result name="input">/AdminJsp/pages/Modify_Deposit.jsp</result>
+		<result name="success">/AdminJsp/pages/Modify_Deposit.jsp</result>
 		</action>
 		<!-- 展示securityDeposit -->
 		<action name="dmodify" class="adminAction" method="dm">
-			<result name="success">/Modify_Deposit.jsp</result>
+		<interceptor-ref name="LoginInterceptor"/>
+		<result name="login">/AdminJsp/pages/AdminLogin.jsp</result>
+		<result name="success">/AdminJsp/pages/Modify_Deposit.jsp</result>
 		</action>
 		<!-- Admin 找回Librarian 密码 -->
-		<action name="findPassword" class="librarianAction"
-			method="findPassword">
-
-			<result name="success">/Find_Success.jsp</result>
-			<result name="failure">/FindPassword.jsp</result>
+		<action name="findPassword" class="librarianAction" method="findPassword">
+		<result name="success">/FindPassword.jsp</result>
+		<result name="failure">/FindPassword.jsp</result>
+		</action>
+		<!-- Admin搜索Librarian功能 -->
+		<action name="searchLibrarian" class="librarianAction" method="search">
+		<result name="success">/AdminJsp/pages/searchResult.jsp</result>
+		<result name="input">/AdminJsp/pages/fail.jsp</result>
 		</action>
 
 		<!-- Reader功能 -->
@@ -528,22 +557,37 @@
 		<!-- Admin删除馆员 -->
 		<action name="deleteLibrarian" class="librarianAction"
 			method="deleteLibrarian">
-			<result name="success" type="chain">displayLibrarians</result>
+		<result name="success">/AdminJsp/pages/EditLibrarian.jsp</result>
 		</action>
 		<!-- Admin修改馆员信息 -->
 		<action name="editLibrarian" class="librarianAction"
 			method="editLibrarian">
-			<result name="success">/EditLibrarian.jsp</result>
+			<result name="success">/AdminJsp/pages/EditLibrarian.jsp</result>
 		</action>
 		<!-- Admin查看书籍列表 -->
-		<action name="adminDisplayBooks" class="bookAction"
-			method="display">
-			<result name="success">/Admin_Display_Book.jsp</result>
+		<action name="adminDisplayBooks" class="bookAction" method="display">
+			<interceptor-ref name="LoginInterceptor"/>
+			<result name="login">/AdminJsp/pages/AdminLogin.jsp</result>
+			<result name="success">/AdminJsp/pages/Edit.jsp</result>
+		</action>
+		<!-- Admin查看书籍数量 -->
+		<action name="admindisplayBooks" class="bookAction" method="display">
+			<result name="success">/AdminJsp/index.jsp</result>
+		</action>
+		<!-- Admin查看馆员数量  -->
+		<action name="librarianNumber" class="librarianAction" method="show">
+			<result name="success">/AdminJsp/index.jsp</result>
+		</action>
+		<!-- Admin查看读者数量 -->
+		<action name="readerNumber" class="readerAction" method="show">
+			<interceptor-ref name="LoginInterceptor"/>
+			<result name="login">/AdminJsp/pages/AdminLogin.jsp</result>
+			<result name="success">/AdminJsp/index.jsp</result>
 		</action>
 		<!-- Admin修改书籍逾期罚金和归还期限 -->
-		<action name="adminEditBook" class="bookAction"
-			method="adminEditBook">
-			<result name="success">/AdminEditBook.jsp</result>
+		<action name="adminEditBook" class="bookAction" method="adminEditBook">
+			<result name="success">/AdminJsp/pages/Edit.jsp</result>
+			<result name="none">/AdminJsp/index.jsp</result>
 		</action>
 	</package>
 

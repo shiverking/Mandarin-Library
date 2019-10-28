@@ -43,11 +43,20 @@ public class LibrarianServiceImpl extends BaseService<Librarian>implements Libra
 		this.getDao().delete(librarianID);
 	}
 
-	public String findPassword(String LibrarianName) {
+	@Override
+	public int findID(String LibrarianName) {
 		if(this.getDao().getSingle("LibrarianName", LibrarianName)!=null)
 		{
-			return this.getDao().getSingle("LibrarianName", LibrarianName).getPassword();
+			return this.getDao().getSingle("LibrarianName", LibrarianName).getLibrarianID();
 		}
-		return null;
+		return 0;
 	}
+
+	@Override
+	public Librarian getLibrarianByName(String librarianName) {
+		// TODO Auto-generated method stub
+		Librarian librarian=getLibrarianByID(findID(librarianName));
+		return librarian;
+	}
+
 }

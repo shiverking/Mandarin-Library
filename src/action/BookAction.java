@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Iterator;
+import java.util.*;
 
 import model.Book;
 import model.Borrowrecord;
@@ -517,7 +519,22 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public String display() {
-		this.books = this.getService().getAllBooks();
+		 List<Book> B= this.getService().getAllBooks();
+		 Iterator<Book> BI=B.iterator();
+		 if(BI.hasNext()) {
+			 Book b=BI.next();
+			 books.add(b);
+		 }
+		 while(BI.hasNext())
+		 {
+			 Book b=BI.next();
+			 int length=books.size();
+			 if(b.getISBN().equals(books.get(length-1).getISBN())==false)
+			 {
+				 books.add(b);
+			 }
+			 
+		 }
 		return SUCCESS;
 	}
 
@@ -634,16 +651,25 @@ public class BookAction extends BaseAction<Book, BookService> {
 
 //admin娣囶喗鏁奸柅鐐埂缂冩岸鍣鹃崪灞界秺鏉╂ɑ婀￠梽锟�
 	public String adminEditBook() {
-		this.book = this.getService().getBookById(book.getBookID());
-		if (this.getModel().getReturnPeriod() > 0) {
-			book.setReturnPeriod(this.getModel().getReturnPeriod());
-		}
-		if (this.getModel().getFineValue() > 0) {
-			book.setFineValue(this.getModel().getFineValue());
-			;
-		}
-		this.getService().mergeBook(book);
-		return SUCCESS;
+
+		String i = this.getModel().getISBN();
+		int f =this.getModel().getFineValue();
+		int rp=this.getModel().getReturnPeriod();
+        List<Book> temBook = this.getService().getAllBooks();
+        Iterator<Book> iBook = temBook.iterator();
+        while(iBook.hasNext())
+        {
+        	Book b=iBook.next();
+        	if((b.getISBN().equals(i))==true)
+        	{
+        		b.setFineValue(f);
+        		b.setReturnPeriod(rp);
+        		this.getService().mergeBook(b);
+        	}
+        }
+        System.out.println(temBook.get(1).getFineValue());
+		return "none";
+//		return SUCCESS;
 	}
 
 	public Integer getSelectSearch() {

@@ -30,4 +30,5 @@ public interface ReaderService {
 	public void deleteReader(Reader reader); 
 	public boolean forgetReaderPassword(String email);
 	public PageBean<Reader> getPageBean(Integer pageNum);
+	public List<Reader> show();
 }

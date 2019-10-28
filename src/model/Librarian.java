@@ -8,11 +8,12 @@ public class Librarian {
 	public Librarian() {
 		
 	}
-	public Librarian(int librarianID, String librarianName) {
+	public Librarian(int librarianID, String librarianName, String email) {
 		//super();
 		LibrarianID = librarianID;
 		LibrarianName = librarianName;
 		Password = "123456";//��ʼ����Ϊ123456
+		Email = email;
 	}
 	public int getLibrarianID() {
 		return LibrarianID;

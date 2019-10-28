@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionContext;
 import model.Librarian;
 import model.Reader;
 import service.LibrarianService;
+import util.Email;
 
 public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	private Librarian librarian;
@@ -51,12 +52,17 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return INPUT;
 	}
 	public String signup() throws Exception{
-		String LibrarianName = this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName
-		String Password = this.getModel().getPassword();//閿熸枻鎷峰彇閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
+		String LibrarianName = this.getModel().getLibrarianName();//锟斤拷取LibrarianName
+		String Email = this.getModel().getEmail();//获取邮箱
+		String Password = this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String NewPassword=request.getParameter("ConfirmPassword");
 		if(LibrarianName.isEmpty()) {
 			this.errorMessage="You must input the Name!";
+			return INPUT;
+		}
+		if(Email.isEmpty()) {
+			this.errorMessage="You must input the Email!";
 			return INPUT;
 		}
 		Librarian librarian = this.getService().verify(LibrarianName, Password);
@@ -86,18 +92,30 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return SUCCESS;
 	}
 	public String editLibrarian() {
+		int i = this.getModel().getLibrarianID();
+		String n=this.getModel().getLibrarianName();
+		String e=this.getModel().getEmail();
+		String p=this.getModel().getPassword();
+		this.librarian=this.getService().getLibrarianByID(i);
 		this.librarian=this.getService().getLibrarianByID(librarian.getLibrarianID());
 		if(this.getModel().getLibrarianName()!=null) {
+			librarian.setLibrarianName(n);
+		}
+		if(this.getModel().getEmail()!=null)
+		{
+			librarian.setEmail(e);
 			librarian.setLibrarianName(this.getModel().getLibrarianName());
 		}
 		if(this.getModel().getPassword()!=null) {
+			librarian.setPassword(p);
 			librarian.setPassword(this.getModel().getPassword());
 		}
 		this.getService().mergeLibrarian(librarian);
 		return SUCCESS;
 	}
 	public String deleteLibrarian() {
-		this.getService().deleteLibrarianById(librarian.getLibrarianID());
+		int i = this.getModel().getLibrarianID();
+		this.getService().deleteLibrarianById(i);
 		return SUCCESS;
 	}
 	// 获取当前lib状态
@@ -111,15 +129,27 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		}
 	public String findPassword()//admin 鎵惧洖 librarian瀵嗙爜
 	{
-		if(this.getService().findPassword(librarian.getLibrarianName())==null)
+		if(this.getService().findID(librarian.getLibrarianName())==0)
 		{
 			return "failure";
 		}
 		else {
-			HttpSession session=ServletActionContext.getRequest().getSession();//灏嗗瘑鐮佸瓨鍒皊ession涓紝鍥犱负璇ユ柟娉曟瀬鏈夊彲鑳介渶瑕佽法jsp浼犻�掍俊鎭�
+			/*HttpSession session=ServletActionContext.getRequest().getSession();//将密码存到session中，因为该方法极有可能需要跨jsp传递信息
 			session.setAttribute("Password", this.getService().findPassword(librarian.getLibrarianName()));
-			return "success";
+			return "success";*/
+			this.librarian=this.getService().getLibrarianByID(this.getService().findID(librarian.getLibrarianName()));			
+			Email email=new Email(librarian.getEmail());
+			email.sendEmail(librarian.getLibrarianName(),librarian.getPassword());
+			return SUCCESS;
 		}
 	}
-	
+	public String search()
+	{
+		this.librarian=this.getService().getLibrarianByName(librarian.getLibrarianName());
+		if(librarian!=null) {
+			return SUCCESS;
+		}
+		return INPUT;
+	}
+
 }

@@ -337,4 +337,8 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		this.pageNum = pageNum;
 	}
 
+	public String show() {
+		this.readers=this.getService().show();
+		return SUCCESS;
+	}
 }

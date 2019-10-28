@@ -10,6 +10,9 @@ import org.apache.struts2.ServletActionContext;
 import org.hibernate.SessionFactory;
 
 import dao.ReaderDao;
+import java.util.List;
+
+import model.Librarian;
 import model.Reader;
 import util.Email;
 import util.Email_2;
@@ -127,4 +130,8 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 		return page;
 	}
 
+	public List<Reader> show()
+	{
+		return this.getDao().findAll();
+	}
 }
