@@ -35,7 +35,7 @@
 		<!-- 注册Librarian界面 -->
 		<action name="librariansignup" class="librarianAction"
 			method="signup">
-			<interceptor-ref name="LoginInterceptor"/>
+			<!-- <interceptor-ref name="LoginInterceptor"/> -->
 			<result name="login">/AdminJsp/pages/AdminLogin.jsp</result>
 			<result name="success" >/AdminJsp/index.jsp</result>
 			<result name="input">/AdminJsp/pages/Register.jsp</result>

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
+
+import model.Admin;
 import model.Librarian;
 import model.Reader;
 import service.LibrarianService;
@@ -52,6 +54,10 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return INPUT;
 	}
 	public String signup() throws Exception{
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		if (session.get("admin")==null) {
+			return "login";
+		};
 		String LibrarianName = this.getModel().getLibrarianName();//锟斤拷取LibrarianName
 		String Email = this.getModel().getEmail();//获取邮箱
 		String Password = this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
@@ -127,7 +133,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			}
 			return SUCCESS;
 		}
-	public String findPassword()//admin 鎵惧洖 librarian瀵嗙爜
+	public String findPassword() throws Exception//admin 鎵惧洖 librarian瀵嗙爜
 	{
 		if(this.getService().findID(librarian.getLibrarianName())==0)
 		{

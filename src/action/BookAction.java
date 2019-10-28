@@ -26,10 +26,10 @@ import util.PageBean;
 
 public class BookAction extends BaseAction<Book, BookService> {
 	private Book book;
-	private List<Book> books;// 鍙兘琚玝ookPage鍙栦唬锛屽缓璁皯鐢紝濡傞渶浣跨敤璇锋敼娉ㄩ噴
-	private List<Borrowrecord> borrowrecords;// 鍙兘琚垹闄�
-	private List<CurrentRecord> currentRecords;// 鎸囬绾︿功绫嶇殑淇℃伅
-	private PageBean<Borrowrecord> borrowPage;// 宸插綊杩樼殑涔︾睄淇℃伅
+	private List<Book> books;// 閸欘垵鍏樼悮鐜漮okPage閸欐牔鍞敍灞界紦鐠侇喖鐨悽顭掔礉婵″倿娓舵担璺ㄦ暏鐠囬攱鏁煎▔銊╁櫞
+	private List<Borrowrecord> borrowrecords;// 閸欘垵鍏樼悮顐㈠灩闂勶拷
+	private List<CurrentRecord> currentRecords;// 閹稿洭顣╃痪锔垮姛缁秶娈戞穱鈩冧紖
+	private PageBean<Borrowrecord> borrowPage;// 瀹告彃缍婃潻妯兼畱娑旓妇鐫勬穱鈩冧紖
 	private PageBean<Book> bookPage;
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
@@ -114,7 +114,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	private int bookID3;
-	// 閿熸枻鎷烽敓鏂ゆ嫹閿熻鎾呮嫹閿熸枻鎷蜂娇閿熺煫鐨勭櫢鎷烽敓鏉扮尨鎷烽敓鏂ゆ嫹
+	// 闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔活潡閹惧懏瀚归柨鐔告灮閹疯渹濞囬柨鐔虹叓閻ㄥ嫮娅㈤幏鐑芥晸閺夋壆灏ㄩ幏鐑芥晸閺傘倖瀚�
 
 	public String getIsbn1() {
 		return isbn1;
@@ -128,11 +128,11 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private Integer selectSearch;
 	private Map<String, Integer> categoryMap;
 	private Boolean displayStyle = true;
-	// 浠ヤ笅鏄叿浣撲娇鐢ㄧ殑鍔熻兘鍑芥暟
+	// 娴犮儰绗呴弰顖氬徔娴ｆ挷濞囬悽銊ф畱閸旂喕鍏橀崙鑺ユ殶
 
-	// reader閿熸枻鎷疯浣块敓鐭殑鐚存嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
+	// reader闁跨喐鏋婚幏鐤洣娴ｅ潡鏁撻惌顐ゆ畱閻氬瓨瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚�
 	public String searchBook() {
-		// TODO:鍒嗛〉鎼滅储
+		// TODO:閸掑棝銆夐幖婊呭偍
 		if (categoryString!=null&&categoryString.isEmpty()) {
 			categoryString = null;
 		}
@@ -343,7 +343,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public String getBooksbycurrentRecords() {
-		// TODO:閿熸枻鎷烽敓鏉伴潻鎷烽敓鏂ゆ嫹pagabean瀹為敓鏂ゆ嫹
+		// TODO:闁跨喐鏋婚幏鐑芥晸閺変即娼婚幏鐑芥晸閺傘倖瀚筽agabean鐎圭偤鏁撻弬銈嗗
 		books = new ArrayList<Book>();
 		for (CurrentRecord currentRecord : currentRecords) {
 			books.add(this.getService().getBookById(currentRecord.getBookID()));
@@ -351,7 +351,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
-	// reader閿熸枻鎷疯浣块敓鐭殑鐚存嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
+	// reader闁跨喐鏋婚幏鐤洣娴ｅ潡鏁撻惌顐ゆ畱閻氬瓨瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚�
 
 	public String addBook() throws Exception {
 		HttpServletRequest NumRequest = ServletActionContext.getRequest();
@@ -374,23 +374,23 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
-	// 閺嶈宓両SBN閸旂姳鍔�
-	static String BookName=null;//书名
+	// 闁哄秷顫夊畵涓BN闁告梻濮抽崝锟�
+	static String BookName=null;//涔﹀悕
 	static String ISBN=null;
-	static String Price=null;//价格
-	static String Author=null;//作者
-	static String Description=null;//书籍简介
-	static String Category=null;//种类
+	static String Price=null;//浠锋牸
+	static String Author=null;//浣滆��
+	static String Description=null;//涔︾睄绠�浠�
+	static String Category=null;//绉嶇被
 	static String isbn;
-	static String ImageAddress=null;//图片地址
-	public static String getUrl(String isbn) {//构造URL
+	static String ImageAddress=null;//鍥剧墖鍦板潃
+	public static String getUrl(String isbn) {//鏋勯�燯RL
 		StringBuilder builder= new StringBuilder();
 		builder.append("https://api.douban.com/v2/book/isbn/");
 		builder.append(isbn);
 		builder.append("?apikey=0b2bdeda43b5688921839c8ecb20399b");
 		return builder.toString();
 	}
-	public static String getContent(String urlName) {//获取网页显示的内容
+	public static String getContent(String urlName) {//鑾峰彇缃戦〉鏄剧ず鐨勫唴瀹�
 		String result="";
 		BufferedReader reader= null;
 		try {
@@ -401,8 +401,8 @@ public class BookAction extends BaseAction<Book, BookService> {
 			conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
             conn.setRequestProperty("user-agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-            conn.connect();//建立连接
-            reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));//定义输入流来读取URL的响应
+            conn.connect();//寤虹珛杩炴帴
+            reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));//瀹氫箟杈撳叆娴佹潵璇诲彇URL鐨勫搷搴�
             String line;
             while((line= reader.readLine())!=null) {
             	result+=line;
@@ -421,17 +421,17 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return result;
 	}
-	public static void seprarate(String result) {//对获取到的网页内容进行分割，获取感兴趣的数据部分,用正则表达式进行匹配
+	public static void seprarate(String result) {//瀵硅幏鍙栧埌鐨勭綉椤靛唴瀹硅繘琛屽垎鍓诧紝鑾峰彇鎰熷叴瓒ｇ殑鏁版嵁閮ㄥ垎,鐢ㄦ鍒欒〃杈惧紡杩涜鍖归厤
 		String pattern[] = new String[6];
 		Pattern patterncompile[] = new Pattern[6];
 		Matcher matcher[] =new Matcher[6];
 		String group[] = new String[6];
-		pattern[0]="<title>(.*)</title>";//匹配书籍名称
-		pattern[1]="<db:attribute name=\"price\">(.*?)</db:attribute>";//匹配价格
-		pattern[2]="<db:attribute name=\"author\">(.*?)</db:attribute>";//匹配作者
-		pattern[3]="<summary>(.*)</summary>";//匹配简介
-		pattern[4]="<db:rating(.*?)/>(.*)<gd:rating";//匹配书籍种类
-		pattern[5]="rel=\"alternate\"/>	<link href=\"(.*?)\" rel=\"image\"/>";//匹配图片
+		pattern[0]="<title>(.*)</title>";//鍖归厤涔︾睄鍚嶇О
+		pattern[1]="<db:attribute name=\"price\">(.*?)</db:attribute>";//鍖归厤浠锋牸
+		pattern[2]="<db:attribute name=\"author\">(.*?)</db:attribute>";//鍖归厤浣滆��
+		pattern[3]="<summary>(.*)</summary>";//鍖归厤绠�浠�
+		pattern[4]="<db:rating(.*?)/>(.*)<gd:rating";//鍖归厤涔︾睄绉嶇被
+		pattern[5]="rel=\"alternate\"/>	<link href=\"(.*?)\" rel=\"image\"/>";//鍖归厤鍥剧墖
 		for(int i=0;i<6;i++) {
 			patterncompile[i]=Pattern.compile(pattern[i]);
 			matcher[i]=patterncompile[i].matcher(result);
@@ -440,7 +440,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 				group[i]=matcher[i].group(1);
 				}
 				else {
-				group[i]=matcher[i].group(2);//进行二次匹配
+				group[i]=matcher[i].group(2);//杩涜浜屾鍖归厤
 				String[] splitStr = group[i].split("\"");
 				String res="";
 				for(String str:splitStr) {
@@ -456,18 +456,18 @@ public class BookAction extends BaseAction<Book, BookService> {
 		if(BookName==null||BookName.isEmpty())BookName="Default Book";
 		if(Category==null||Category.isEmpty())Category="Default Category,";
 	}
-	public static  void parseJSON(String content) {//解析从网页中获取的json格式的数据
+	public static  void parseJSON(String content) {//瑙ｆ瀽浠庣綉椤典腑鑾峰彇鐨刯son鏍煎紡鐨勬暟鎹�
 	    try
 	    {
 	            JSONObject jsonObject = new JSONObject(content);
-	            BookName = jsonObject.getString("title"); //获取图书名
-	            Price = jsonObject.getString("price"); //获取价格
-	           String description = "<p>"+jsonObject.getString("summary")+"</p>"; //获取图书简介
+	            BookName = jsonObject.getString("title"); //鑾峰彇鍥句功鍚�
+	            Price = jsonObject.getString("price"); //鑾峰彇浠锋牸
+	           String description = "<p>"+jsonObject.getString("summary")+"</p>"; //鑾峰彇鍥句功绠�浠�
 	           Description=description.replaceAll("\n", "</p><p>");
-	            ISBN = jsonObject.getString("isbn13");//获取ISBN
+	            ISBN = jsonObject.getString("isbn13");//鑾峰彇ISBN
 	            JSONArray AuthorArray = jsonObject.getJSONArray("author");
 	            Author="";Category="";
-	            for(int i=0;i<AuthorArray.length();i++) {//应对多作者的情况
+	            for(int i=0;i<AuthorArray.length();i++) {//搴斿澶氫綔鑰呯殑鎯呭喌
 	            	if(i==AuthorArray.length()-1){
 	            		Author+=AuthorArray.get(i);
 	            	}else{
@@ -475,7 +475,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	            	}
 	            }
 	            JSONObject ImageAddressObject=jsonObject.getJSONObject("images");
-	            ImageAddress = ImageAddressObject.getString("large");//获取图片链接地址
+	            ImageAddress = ImageAddressObject.getString("large");//鑾峰彇鍥剧墖閾炬帴鍦板潃
 	            JSONArray tagsArray = jsonObject.getJSONArray("tags");
 	            for(int i=0;i<tagsArray.length();i++) {
 	            	JSONObject tmpObject =new JSONObject(tagsArray.get(i).toString());
@@ -519,6 +519,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public String display() {
+		books=new ArrayList<Book>();
 		 List<Book> B= this.getService().getAllBooks();
 		 Iterator<Book> BI=B.iterator();
 		 if(BI.hasNext()) {
@@ -584,7 +585,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 	}
 
-//浠ヤ笅鏄痝et鍜宻et鍑芥暟
+//娴犮儰绗呴弰鐥漞t閸滃et閸戣姤鏆�
 	public Book getBook() {
 		return book;
 	}
@@ -649,7 +650,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		this.currentRecords = currentRecords;
 	}
 
-//admin娣囶喗鏁奸柅鐐埂缂冩岸鍣鹃崪灞界秺鏉╂ɑ婀￠梽锟�
+//admin濞ｅ浂鍠楅弫濂告焻閻愵剚鍩傜紓鍐╁哺閸ｉ箖宕仦鐣岀Ш閺夆晜蓱濠�锟犳⒔閿燂拷
 	public String adminEditBook() {
 
 		String i = this.getModel().getISBN();
