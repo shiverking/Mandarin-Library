@@ -36,7 +36,6 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	private String searchContent;
 	private List<Reader> readers;
 	private String errorMessage;
-
 	private String filename;
 	private Date readerDate;
 	private int readerNum;
