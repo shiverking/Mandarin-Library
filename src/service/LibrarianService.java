@@ -15,4 +15,5 @@ public interface LibrarianService {
 
 	public void deleteLibrarianById(int librarianID);
 	public int findID(String LibrarianName);
+	public Librarian getLibrarianByName(String librarianName);
 }

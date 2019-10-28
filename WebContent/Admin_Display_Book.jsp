@@ -13,7 +13,6 @@
     <form action="adminDisplayBooks" method="post">
     <table border="1" width="100%">
     <tr>
-      <th width="128" height="25" align="center">BookID</th>
       <th width="157" align="center">BookName</th>
       <th width="147" align="center">ISBN</th>
       <th width="281" align="center">ReturnPeriod</th>
@@ -22,7 +21,6 @@
     </tr>
     <s:iterator value="books">
     <tr>
-      <td align="center"><s:property value="BookID"/></td>
       <td align="center"><s:property value="BookName"/></td>
       <td align="center"><s:property value="ISBN"/></td>
       <td align="center"><s:property value="ReturnPeriod"/></td>

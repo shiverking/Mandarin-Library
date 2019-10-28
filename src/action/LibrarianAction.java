@@ -90,9 +90,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return SUCCESS;
 	}
 	public String editLibrarian() {
-		System.out.println("aaaa");
 		int i = this.getModel().getLibrarianID();
-		System.out.println(i);
 		String n=this.getModel().getLibrarianName();
 		String e=this.getModel().getEmail();
 		String p=this.getModel().getPassword();
@@ -115,7 +113,6 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	}
 	public String deleteLibrarian() {
 		int i = this.getModel().getLibrarianID();
-		System.out.println(i);
 		this.getService().deleteLibrarianById(i);
 		return SUCCESS;
 	}
@@ -135,4 +132,13 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			return SUCCESS;
 		}
 	}
+	public String search()
+	{
+		this.librarian=this.getService().getLibrarianByName(librarian.getLibrarianName());
+		if(librarian!=null) {
+			return SUCCESS;
+		}
+		return INPUT;
+	}
+
 }

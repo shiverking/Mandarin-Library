@@ -2,12 +2,11 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
-
 <html lang="en">
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
 </script>
-<script src="../js/edit.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/AdminJsp/js/LibrarianName.js" type="text/javascript"></script>
+<script src="../js/edit.js" type="text/javascript"></script>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -24,8 +23,8 @@
 </head>
 
 <body>
-<s:if test="Librarians==null"><s:action  name="displayLibrarians" namespace="/" executeResult="true"></s:action></s:if>
-<s:if test="Librarians!=null">
+<s:if test="books==null"><s:action  name="adminDisplayBooks" namespace="/" executeResult="true"></s:action></s:if>
+<s:if test="books!=null">
 <div class="container-scroller">
   <!-- partial:partials/_navbar.html -->
   <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -53,6 +52,7 @@
           </li>
         </ul>
       <ul class="navbar-nav navbar-nav-right">
+
       </ul>
       <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
         <span class="ti-view-list"></span>
@@ -89,12 +89,12 @@
               <span class="menu-title">Modify Deposit</span>
             </a>
           </li>
-          <li class="nav-item">
+           <li class="nav-item">
             <a class="nav-link" href="../pages/Edit.jsp">
               <i class="ti-settings menu-icon"></i>
               <span class="menu-title">Edit fines and return period</span>
             </a>
-          </li>     
+          </li>
         </ul>
       </nav>      
       <!-- partial -->
@@ -109,20 +109,20 @@
                   </p>
                   <div class="table-responsive pt-3">
                    
-                    <table class="table table-bordered">
+                    <table class="table">
                       <thead>
                         <tr>
                           <th>
-                            LibrarianID
+                            BookName
                           </th>
                           <th>
-                            LibrarianName
+                            ISBN
                           </th>
                           <th>
-                           Email
+                           Return Period
                           </th>
                           <th>
-                            Password
+                            FineValue
                           </th>
                           <th>
                             Operation
@@ -130,42 +130,38 @@
                         </tr>
                       </thead>                   
                       <tbody>
-                        <s:iterator value="Librarians">
+                        <s:iterator value="books">
                         <script>
                         $(function() { 
-                        		$(".caname${LibrarianID}").click(function() { 
-//                        				
-                        				$('#Email${LibrarianID}').removeAttr("readonly")
-                        				$('#Email${LibrarianID}').removeAttr("style")
-                        				$('#LibrarianName${LibrarianID}').removeAttr("readonly")
-                        				$('#LibrarianName${LibrarianID}').removeAttr("style")
-                        				$('#Password${LibrarianID}').removeAttr("readonly")
-                        				$('#Password${LibrarianID}').removeAttr("style")
-                        				$("#edit${LibrarianID}").hide();
-                        				$("#save${LibrarianID}").show();
+                        		$(".caname${ISBN}").click(function() {                       				
+                        				$('#ReturnPeriod${ISBN}').removeAttr("readonly")
+                        				$('#ReturnPeriod${ISBN}').removeAttr("style")
+                        				$('#FineValue${ISBN}').removeAttr("readonly")
+                        				$('#FineValue${ISBN}').removeAttr("style")
+                        				$("#edit${ISBN}").hide();
+                        				$("#save${ISBN}").show();
                         		}); 
                         	}); 
                         </script>
-                         <form name="form" action="editLibrarian" method="post">
+                         <form action="adminEditBook" method="post">
                         <tr>
                           <td>                           
-                           <input name="LibrarianID" id="LibrarianID${LibrarianID}" value=<s:property value="LibrarianID"/> style="border:none;" readonly="readonly" >
+                           <input name="BookName" id="BookName" value=<s:property value="BookName"/> style="border:none;" readonly="readonly" >
                           </td>
                           <td>                           
-                           <input name="LibrarianName" id="LibrarianName${LibrarianID}" value="<s:property value="LibrarianName"/>"  style="border:none;" readonly="readonly">
+                           <input name="ISBN" id="ISBN" value="<s:property value="ISBN"/>"  style="border:none;" readonly="readonly">
                           </td>
                           <td>
-                            <input name="Email" id="Email${LibrarianID}" value="<s:property value="Email"/>" style="border:none;" readonly="readonly">
+                            <input name="ReturnPeriod" id="ReturnPeriod${ISBN}" value="<s:property value="ReturnPeriod"/>" style="border:none;" readonly="readonly">
                           </td>
                           <td >                            
-                            <input name="Password" id="Password${LibrarianID}" value="<s:property value="Password"/>" style="border:none;" readonly="readonly">
+                            <input name="FineValue" id="FineValue${ISBN}" value="<s:property value="FineValue"/>" style="border:none;" readonly="readonly">
                           </td>
                           <td>
                             <div>
-                            <button id="edit${LibrarianID}" type="button" value="edit" class="caname${LibrarianID} btn btn-outline-success btn-icon-text btn-rounded btn-sm">edit  </button>
-                            	<div id="save${LibrarianID}" style="display:none;">
+                            <button id="edit${ISBN}" type="button" value="edit" class="caname${ISBN} btn btn-outline-success btn-icon-text btn-rounded btn-sm">edit  </button>
+                            	<div id="save${ISBN}" style="display:none;">
                             	<button type="submit"  class="btn btn-outline-primary btn-icon-text btn-rounded btn-sm">save</button>
-                            	<input type="button" value="Delete" class="btn btn-outline-danger btn-icon-text btn-rounded btn-sm" onclick="form.action='deleteLibrarian';form.submit();">
                             	</div>  
                             </div>                          
                           </td>
@@ -174,13 +170,12 @@
 						</s:iterator>
                       </tbody>
                     </table>
-               		
                   </div>
                 </div>
               </div>
             </div>
-            </div>
-            </div>
+           </div>
+           </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
@@ -209,7 +204,6 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->
-  </form>
   </div>
   </s:if>
 </body>

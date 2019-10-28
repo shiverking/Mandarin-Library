@@ -83,7 +83,7 @@ public class AdminAction extends BaseAction<Admin,AdminService> {
 			return "success";
 		}
 	}
-	public String modify()//淇敼鐢ㄦ埛缂寸撼鐨勪繚璇侀噾
+	public String modify()//
 	{
 		int money=Integer.parseInt(NewSecurityDeposit);
 		this.getService().modifyDeposity(money);

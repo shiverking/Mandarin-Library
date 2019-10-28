@@ -3,7 +3,9 @@
  <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+</script>
+<script src="../js/Login.js" type="text/javascript"></script>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -29,7 +31,7 @@
           <div class="col-lg-6 d-flex align-items-center justify-content-center">
             <div class="auth-form-transparent text-left p-3">
               <div class="brand-logo">
-                <img src="../images/MLA_logo_tagline.png" alt="logo">
+                <img src="../images/gen.svg" alt="logo">
               </div>
               <h4>Welcome back!</h4>
               <h6 class="font-weight-light">Happy to see you again!</h6>
@@ -57,7 +59,7 @@
                   </div>
                 </div>
                 <div class="my-3">
-                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="login">LOGIN</button>
+                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" class="login" value="login">LOGIN</button>
                 </div>
               </form>
             </div>
