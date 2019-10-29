@@ -123,21 +123,17 @@ public class BackThread extends Thread {
 			Date date = new Date();
 			int h = (int) ((date.getTime() - borrowingDate.getTime()) / (3600 * 1000));
 			if (h >= 2) {
-				List<CurrentRecord> currentRecords2 = currentRecordDao.findBy("CurrentRecordID", currentRecordID);
-				for (CurrentRecord c : currentRecords2) {
-					currentRecordID = c.getCurrentRecordID();
-					bookID = c.getBookID();
-				}
+				currentRecordDao.delete(currentRecord);
 				try {
 					Book bb = bookDao.get(bookID);
 					if (bb != null) {
 						bb.setIsBorrowed(false);
 						bookDao.merge(bb);
 					}
-					currentRecordDao.delete(currentRecordID);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		}
 	}

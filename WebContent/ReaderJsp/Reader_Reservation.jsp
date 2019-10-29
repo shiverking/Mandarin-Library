@@ -128,7 +128,7 @@
 										<tr>
 											<td class="action" data-title="Action"><img
 												class="card-img-top img-fluid" src="<s:property value="books[#L.index].ImageAddress" />"
-												alt="Card image cap" style="height: 200px; width: auto;">
+												alt="Card image cap" style="height: 200px; width: auto;" onerror="{this.src='images/noImage.jpg'}">
 											</td>
 											<td class="product-details">
 												<h3 class="title">
