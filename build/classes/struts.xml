@@ -495,7 +495,7 @@
 
 		<action name="displayPayrecords" class="payrecordAction"
 			method="displayPayrecords">
-			<result name="success">/Payrecord.jsp</result>
+			<result name="success">/librarian_jsp/IncomeHistory.jsp</result>
 		</action>
 
 		<!-- 获取所有读者信息 -->

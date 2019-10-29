@@ -51,12 +51,7 @@
 
 <body>
 	<s:include value="/librarian_jsp/jspElement/Head.jsp" />
-	<script>
-		var errorMsg = "${requestScope.ErrorMessage}";
-		if (errorMsg != "") {
-			alert(errorMsg);
-		}
-	</script>
+	
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -105,6 +100,16 @@
 				</div>
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
+					<s:if test="errorMessage!=null">
+						<div class="alert alert-danger" role="alert">
+							<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+							${errorMessage}
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					</s:if>
 					<div class="widget dashboard-container my-adslist">
 						<h3 class="widget-header">BookBorrow</h3>
 						<!-- 在这里写BookBorrow展示对象 -->

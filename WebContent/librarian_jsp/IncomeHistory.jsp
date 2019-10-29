@@ -13,8 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BookBorrow</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -44,13 +43,15 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
+<link rel="stylesheet" href="css/calendar.css">
+<script src="js/z.src.js"></script>
+<script src="js/ui.js"></script>
 </head>
 
 
 
 <body>
-<s:include value="/librarian_jsp/jspElement/Head.jsp" />
+	<s:include value="jspElement/Head.jsp" />
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -81,17 +82,20 @@
 										Search Book</a></li>
 								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
 										Register Reader </a></li>
-								<li><a href="BorrowHistory"><i class="fa fa-history"></i> 
+								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
-								<li><a href="BookBorrow"><i class="fa fa-share"></i> 
-										Borrow Book</a></li>				
-								<li><a href="BookReturn"><i class="fa fa-reply"></i> 
-										Return Book</a></li>				
-								<li class="active"><a href="IncomeHistory"><i class="fa fa-money"></i> 
-										Income History</a></li>				
-								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i> 
+								<li><a href="BookBorrow"><i class="fa fa-share"></i>
+										Borrow Book</a></li>
+								<li><a href="BookReturn"><i class="fa fa-reply"></i>
+										Return Book</a></li>
+								<li class="active"><a href="IncomeHistory"><i
+										class="fa fa-money"></i>
+										<form action="findReaderNum" method="post">Income
+											History</form></a></li>
+								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i>
 										Post News</a></li>
-								<li><a href="Logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+								<li><a href="Logout"><i class="fa fa-sign-out"></i>
+										Logout</a></li>
 							</ul>
 						</div>
 					</div>
@@ -100,34 +104,52 @@
 					<!-- Recently Favorited -->
 					<div class="widget dashboard-container my-adslist">
 						<h3 class="widget-header">IncomeHistory</h3>
-						在这里写IncomeHistory展示对象
-						<!-- 在这里写IncomeHistory展示对象 -->
 
-					</div>
-				</div>
-			</div>
-			<!-- Row End -->
-		</div>
-		<!-- Container End -->
-	</section>
-<s:include value="jspElement/Foot.jsp"/>
-	<!-- JAVASCRIPTS -->
-	<script src="plugins/jquery/dist/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-	<script src="plugins/tether/js/tether.min.js"></script>
-	<script src="plugins/raty/jquery.raty-fa.js"></script>
-	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
-	<script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script
-		src="plugins/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
-	<script src="plugins/slick-carousel/slick/slick.min.js"></script>
-	<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-	<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
-	<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-	<script src="js/scripts.js"></script>
+						<form action="displayPayrecords" method="post">
+							begin day：<input id="date1" type="text" name="date1"><br />
+							end day：<input id="date2" type="text" name="date2"><br />
+							<button type="submit" value="submit">submit</button>
+						</form>
+
+						<p>Deposit : ${sessionScope.Deposit}</p>
+						<p>Fine : ${sessionScope.Fine}</p>
+
+						<script>
+	var calendar1 = Z.ui.Calendar('#date1', {
+		chosenDate : '2019-10-25'
+	})
+
+	var calendar2 = Z.ui.Calendar('#date2', {
+		chosenDate : '2019-10-25'
+	})
+</script>
+
+<!-- 在这里写IncomeHistory展示对象 -->
+
+
+
+<!-- Row End -->
+
+<!-- Container End -->
+</section>
+<s:include value="jspElement/Foot.jsp" />
+
+<!-- JAVASCRIPTS -->
+<script src="plugins/jquery/dist/jquery.min.js"></script>
+<script src="plugins/tether/js/tether.min.js"></script>
+<script src="plugins/raty/jquery.raty-fa.js"></script>
+<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
+<script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<script
+	src="plugins/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+<script src="plugins/slick-carousel/slick/slick.min.js"></script>
+<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
+<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script src="js/scripts.js"></script>
+
 
 </body>
-
 </html>
