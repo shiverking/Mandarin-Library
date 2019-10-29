@@ -12,7 +12,7 @@ import util.PageBean;
 
 /**
  * @author
- * @version 閿熸枻鎷烽敓鏂ゆ嫹鏃堕敓鎴掞細2019閿熸枻鎷�9閿熸枻鎷�24閿熸枻鎷� 閿熸枻鎷烽敓鏂ゆ嫹2:16:23
+ * @version 闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归弮鍫曟晸閹存帪绱�2019闁跨喐鏋婚幏锟�9闁跨喐鏋婚幏锟�24闁跨喐鏋婚幏锟� 闁跨喐鏋婚幏鐑芥晸閺傘倖瀚�2:16:23
  * 
  */
 public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implements BorrowrecordService {
@@ -64,7 +64,7 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 	}
 
 	public PageBean<Borrowrecord> getPageBean(Reader reader, Integer pageNum,boolean isreturn) {
-		// TODO 鍒嗛〉鏌ヨ
+		// TODO 閸掑棝銆夐弻銉嚄
 		int Num = 1;
 		if (pageNum != null) {
 			Num = pageNum;
@@ -88,7 +88,7 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 	}
 
 	public List<Borrowrecord> borrowBook(List<Reader> readers, List<Book> books) {
-		// 閸掓繂顫愰崠鏍у棘閺侊拷
+		// 闁告帗绻傞～鎰板礌閺嵮冩闁轰緤鎷�
 		Book book;
 		long returnPeriod;
 		Date returnDate;
@@ -100,7 +100,7 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 		book = iterator.next();
 		returnPeriod = book.getReturnPeriod();
 		returnDate = new Date(currentTime + returnPeriod * 24 * 60 * 60 * 1000);
-		// 鐎电orrowrecord閺佺増宓侀幙宥勭稊
+		// 閻庣數顒rrowrecord闁轰胶澧楀畵渚�骞欏鍕▕
 		Borrowrecord borrowrecord = new Borrowrecord();
 		borrowrecord.setBookID(book.getBookID());
 		borrowrecord.setReaderID(reader.getReaderID());
@@ -200,7 +200,7 @@ public class BorrowrecordServiceImpl extends BaseService<Borrowrecord> implement
 	public boolean checkReader(Reader reader) {
 		// TODO Auto-generated method stub
 		List<Borrowrecord> borrowrecords=this.getDao().getByTwoProperty("ReaderID", "isPayfine", reader.getReaderID(), false);
-		if (borrowrecords!=null&&borrowrecords.size()>0) {
+		if (borrowrecords!=null&&borrowrecords.size()>0) {//若读者有未付钱的书籍，返回真
 		return true;	
 		}
 		return false;
