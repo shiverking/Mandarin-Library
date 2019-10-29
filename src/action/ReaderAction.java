@@ -89,6 +89,12 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		return SUCCESS;
 	}
 	public String deleteReader() {
+		String realPath = ServletActionContext.getServletContext().getRealPath("upload");
+		try {
+			FileUtils.deleteDirectory(new File(realPath + "\\" + tempReader.getReaderID() + ".jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.getService().deleteReader(tempReader);
 		return SUCCESS;
 	}
@@ -116,7 +122,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			return SUCCESS;
 		}
 		if (!this.getModel().getEmail().isEmpty()) {// 鑻ユ彁浜ょ殑閭涓嶄负绌轰笖鏃犺处鍙风粦瀹氭閭锛屼慨鏀归偖绠�
-			if (this.getService().getReaderbyEmail(this.getModel().getEmail())==null||
+			if (this.getService().getReaderbyEmail(this.getModel().getEmail())!=null&&
 					this.getService().getReaderbyEmail(this.getModel().getEmail()).getReaderID()!=tempReader.getReaderID()) {
 				this.errorMessage = "This mailbox has been bound to another account.";
 			} else {
@@ -128,7 +134,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		if (!this.getModel().getReaderName().isEmpty())// 淇敼鍚嶅瓧
 			tempReader.setReaderName(this.getModel().getReaderName());
 		if (!this.getModel().getPhoneNumber().isEmpty()) {// 鑻ユ彁浜ょ殑鎵嬫満鍙蜂笉涓虹┖锛屼笖鏃犺处鍙蜂娇鐢ㄦ鎵嬫満鍙凤紝淇敼鎵嬫満鍙�
-			if (this.getService().getReaderbyPhone(this.getModel().getPhoneNumber()) == null || this.getService()
+			if (this.getService().getReaderbyPhone(this.getModel().getPhoneNumber()) != null &&this.getService()
 					.getReaderbyPhone(this.getModel().getPhoneNumber()).getReaderID() != tempReader.getReaderID()) {
 				this.errorMessage = "This phone number has been bound to another account.";
 			} else {
@@ -201,14 +207,13 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			return SUCCESS;
 		}
 		String suffix = filename.substring(filename.lastIndexOf(".") + 1);
-		System.out.println(suffix + "sssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 		if (!suffix.equals("png") && !suffix.equals("gif")) {
 			this.errorMessage = "Please select an image.";
 			return SUCCESS;
 		}
 		String realPath = ServletActionContext.getServletContext().getRealPath("upload");
 		try {
-			FileUtils.copyFile(avatarFile, new File(realPath + "\\" + tempReader.getPhoneNumber() + ".jpg"));
+			FileUtils.copyFile(avatarFile, new File(realPath + "\\" + tempReader.getReaderID() + ".jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

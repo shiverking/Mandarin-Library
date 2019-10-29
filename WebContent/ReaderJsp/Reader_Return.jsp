@@ -69,7 +69,7 @@
 							%>
 							<div class="profile-thumb">
 								<img
-									src="upload/${tempReader.phoneNumber}.jpg?time=<%=Resultsdate%>"
+									src="upload/${tempReader.readerID}.jpg?time=<%=Resultsdate%>" onerror="{this.src='images/avatar1.jpg'}"
 									alt="" style="max-height: 100px; max-width: 100px;">
 							</div>
 							</div>
