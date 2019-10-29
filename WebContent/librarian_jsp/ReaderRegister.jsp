@@ -80,7 +80,7 @@
 								<li><a href="BookSearch"><i class="fa fa-search"></i>
 										Search Book</a></li>
 								<li class="active"><a href="getAllReaders"><i
-										class="fa fa-user-plus"></i> Register Reader </a></li>
+										class="fa fa-user-plus"></i> Managing readers </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
@@ -91,7 +91,7 @@
 										Income History</a></li>
 								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i>
 										Post News</a></li>
-								<li><a href="Logout"><i class="fa fa-sign-out"></i>
+								<li><a href="librarianLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
 							</ul>
 						</div>
@@ -132,10 +132,10 @@
 											<a>${ReaderName}</a>
 										</h4>
 										<ul class="list product-meta">
-											<li class="list-item"><a><i class="fa fa-book">
-														Email:</i>${Email}</a></li>
-											<li class="list-item"><a><i class="fa fa-bookmark">
-														Phone Number:</i>${PhoneNumber}</a></li>
+											<li class="list-item"><a><i class="fa fa-envelope-square fa-fw ">
+														</i>Email: ${Email}</a></li>
+											<li class="list-item"><a><i class="fa fa-phone fa-fw">
+														</i>Phone Number: ${PhoneNumber}</a></li>
 										</ul>
 									</div>
 									<div class=" col-1 m-auto">

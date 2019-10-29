@@ -82,12 +82,13 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	public String getReaderForDelete() {
 		Map<String, Object> session = ActionContext.getContext().getSession();//
 		librarian = (Librarian) session.get("librarian");
-		if (librarian==null) {
+		if (librarian == null) {
 			return INPUT;
 		}
-		tempReader=this.getService().getReaderById(this.getModel().getReaderID());
+		tempReader = this.getService().getReaderById(this.getModel().getReaderID());
 		return SUCCESS;
 	}
+
 	public String deleteReader() {
 		String realPath = ServletActionContext.getServletContext().getRealPath("upload");
 		try {
@@ -115,33 +116,40 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		if (librarian == null) {
 			return INPUT;
 		}
-		errorMessage=null;
+		errorMessage = null;
 		tempReader = this.getService().getReaderById(this.getModel().getReaderID());// 璇诲彇闇�瑕佷慨鏀圭殑璇昏��
 		if (tempReader == null) {
 			this.errorMessage = "This account does not exist";// 妫�鏌ユ槸鍚︽湁姝よ鑰�
 			return SUCCESS;
 		}
+
 		if (!this.getModel().getEmail().isEmpty()) {// 鑻ユ彁浜ょ殑閭涓嶄负绌轰笖鏃犺处鍙风粦瀹氭閭锛屼慨鏀归偖绠�
-			if (this.getService().getReaderbyEmail(this.getModel().getEmail())!=null&&
-					this.getService().getReaderbyEmail(this.getModel().getEmail()).getReaderID()!=tempReader.getReaderID()) {
+			if (this.getService().getReaderbyEmail(this.getModel().getEmail()) != null && this.getService()
+					.getReaderbyEmail(this.getModel().getEmail()).getReaderID() != tempReader.getReaderID()) {
 				this.errorMessage = "This mailbox has been bound to another account.";
 			} else {
 				tempReader.setEmail(this.getModel().getEmail());
 			}
 		}
-		if (!this.getModel().getPassword().isEmpty())// 淇敼瀵嗙爜
+		if (!this.getModel().getPassword().isEmpty()) {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			String NewPassword = request.getParameter("ConfirmPassword");
+			if (!this.getModel().getPassword().equals(NewPassword)) {
+				this.errorMessage = "Both passwords must be the same!";
+			}
 			tempReader.setPassword(this.getModel().getPassword());
+		}
 		if (!this.getModel().getReaderName().isEmpty())// 淇敼鍚嶅瓧
 			tempReader.setReaderName(this.getModel().getReaderName());
 		if (!this.getModel().getPhoneNumber().isEmpty()) {// 鑻ユ彁浜ょ殑鎵嬫満鍙蜂笉涓虹┖锛屼笖鏃犺处鍙蜂娇鐢ㄦ鎵嬫満鍙凤紝淇敼鎵嬫満鍙�
-			if (this.getService().getReaderbyPhone(this.getModel().getPhoneNumber()) != null &&this.getService()
+			if (this.getService().getReaderbyPhone(this.getModel().getPhoneNumber()) != null && this.getService()
 					.getReaderbyPhone(this.getModel().getPhoneNumber()).getReaderID() != tempReader.getReaderID()) {
 				this.errorMessage = "This phone number has been bound to another account.";
 			} else {
 				tempReader.setPhoneNumber(this.getModel().getPhoneNumber());
 			}
 		}
-		if (errorMessage==null) {
+		if (errorMessage == null) {
 			this.getService().mergeReader(tempReader);
 		}
 		return SUCCESS;
@@ -171,7 +179,8 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 	}
 
 	public String signout() throws Exception {
-		ActionContext.getContext().getSession().clear();
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		session.put("reader", null);
 		return SUCCESS;
 	}
 

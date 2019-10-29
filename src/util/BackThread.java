@@ -33,15 +33,12 @@ public class BackThread extends Thread {
 
 	public void run() {
 
-		int a;
-
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
 			currentRecordDao = new CurrentRecordDao();
 			bookDao = new BookDao();
 			readerDao = new ReaderDao();
 			borrowrecordDao = new BorrowrecordDao();
-
 			currentRecordDao.setSessionFactory(factory);
 			bookDao.setSessionFactory(factory);
 			readerDao.setSessionFactory(factory);
@@ -55,6 +52,7 @@ public class BackThread extends Thread {
 		int eh = 0;
 		while (!this.isInterrupted()) {
 			if (eh == 0 && ei == 0) {
+				refrushFine();
 				Remind();
 			}
 			ei++;
@@ -63,7 +61,7 @@ public class BackThread extends Thread {
 				Thread.sleep(60000);
 				System.out.println(todayDate.toString() + this.getName());
 				autoCancel();
-				refrushFine();
+				
 			} catch (InterruptedException e) {
 				System.err.println("try出问题了");
 			}
