@@ -80,7 +80,7 @@
 								<li><a href="BookSearch"><i class="fa fa-search"></i>
 										Search Book</a></li>
 								<li class="active"><a href="getAllReaders"><i
-										class="fa fa-user-plus"></i> Register Reader </a></li>
+										class="fa fa-user-plus"></i> Managing readers </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
@@ -91,7 +91,7 @@
 										Income History</a></li>
 								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i>
 										Post News</a></li>
-								<li><a href="Logout"><i class="fa fa-sign-out"></i>
+								<li><a href="librarianLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
 							</ul>
 						</div>
@@ -110,10 +110,21 @@
 						</div>
 					</s:if>
 					<div class="widget dashboard-container my-adslist">
-						<div class="text-right">
-							<a data-toggle="modal" data-target="#addReader"
-								class="btn btn-main-sm" style="color: #fff;"><i
-								class="fa fa-user-plus"></i> Reader Register</a>
+						<div class="row">
+							<form action="getAllReaders" class="col-10">
+								<div class="input-group margin-bottom-sm ">
+									<span class="input-group-addon"><i
+										class="fa fa-user-o fa-fw"></i></span> <input class="form-control "
+										type="email" name="searchContent" placeholder="Search By Reader Email">
+									<button type="submit" value="search"
+										class="btn btn-main-sm input-group-addon">search</button>
+								</div>
+							</form>
+							<div class="col-2">
+								<a data-toggle="modal" data-target="#addReader"
+									class="btn btn-main form-control" style="color: #fff;"><i
+									class="fa fa-user-plus"></i></a>
+							</div>
 						</div>
 						<hr>
 						<s:iterator value="readerPage.dataList" status="L">
@@ -123,7 +134,8 @@
 									<div class="thumb-content col-3">
 										<!-- <div class="price">$200</div> -->
 										<a> <img class="card-img-top img-fluid"
-											src="upload/${PhoneNumber}.jpg" alt="Reader Avatar"
+											src="upload/${ReaderID}.jpg" alt="Reader Avatar"
+											onerror="{this.src='images/avatar1.jpg'}"
 											style="height: 80px; width: AUTO;">
 										</a>
 									</div>
@@ -132,70 +144,164 @@
 											<a>${ReaderName}</a>
 										</h4>
 										<ul class="list product-meta">
-											<li class="list-item"><a><i class="fa fa-book">
-														Email:</i>${Email}</a></li>
-											<li class="list-item"><a><i class="fa fa-bookmark">
-														Phone Number:</i>${PhoneNumber}</a></li>
+											<li class="list-item"><a><i
+													class="fa fa-envelope-square fa-fw "> </i>Email: ${Email}</a></li>
+											<li class="list-item"><a><i
+													class="fa fa-phone fa-fw"> </i>Phone Number: ${PhoneNumber}</a></li>
 										</ul>
 									</div>
 									<div class=" col-1 m-auto">
-										<a data-toggle="modal" data-target="#editReader${ReaderID}"><i class="fa fa-wrench  fa-flip-horizontal"></i></a>
-										 <a href="getReaderForDelete?ReaderID=${ReaderID}"><i
+										<a data-toggle="modal" data-target="#editReader${ReaderID}"><i
+											class="fa fa-wrench  fa-flip-horizontal"></i></a> <a
+											href="getReaderForDelete?ReaderID=${ReaderID}"><i
 											class="fa fa-trash"></i></a>
 									</div>
 								</div>
 							</div>
-				<!--editReader模态框-->
-						<div class="modal fade" id="editReader${ReaderID}" tabindex="-1"
-							role="dialog">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<form action="setreader" method="post">
-										<input value="${ReaderID}" name="ReaderID" style="display:none">
-											username <input type="text" name="ReaderName"><br>
-											password <input type="password" name="Password">
-											confirm your password<input type="password"
-												name="ConfirmPassword">email<input
-												type="email" name="Email"> phone number
-											<input type="text" name="PhoneNumber"><br>
-											<button type="submit" value="signup" class="btn btn-main-sm">register</button>
-										</form>
-									</div>
-									<div class="modal-body"></div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
-											data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save
-											changes</button>
+							<!--editReader模态框-->
+							<form action="setreader" method="post">
+								<div class="modal fade" id="editReader${ReaderID}" tabindex="-1"
+									role="dialog">
+									<div class="modal-dialog modal-lg" role="document">
+										<div class="modal-content ">
+											<div class="modal-header ">
+												<h2 class="m-auto">Edit Reader</h2>
+											</div>
+											<div class="modal-body row justify-content-center">
+												<div class="input-group margin-bottom-sm col-10 mb-2">
+													<span class="input-group-addon"><i
+														class="fa fa-user-o fa-fw"></i></span> <input
+														class="form-control " type="text" name="ReaderName"
+														value="${ReaderName}" placeholder="username ">
+												</div>
+												<div class="input-group margin-bottom-sm col-5  mb-2">
+													<span class="input-group-addon "><i
+														class="fa fa-key fa-fw"></i></span> <input class="form-control"
+														type="password" name="Password" placeholder="Password">
+												</div>
+												<div class="input-group margin-bottom-sm col-5 mb-2">
+													<span class="input-group-addon "><i
+														class="fa fa-key fa-fw"></i></span> <input class="form-control"
+														type="password" name="ConfirmPassword"
+														placeholder="confirm your password">
+												</div>
+												<div class="input-group margin-bottom-sm col-10 mb-2">
+													<span class="input-group-addon "><i
+														class="fa fa-envelope-o fa-fw"></i></span> <input
+														value="${Email}" class="form-control" type="email"
+														name="Email" placeholder="Email">
+												</div>
+												<div class="input-group margin-bottom-sm col-10 mb-2">
+													<span class="input-group-addon "><i
+														class="fa fa-phone fa-fw"></i></span> <input class="form-control"
+														type="text" name="PhoneNumber" maxlength="11"
+														value="${PhoneNumber}" placeholder="phone number">
+												</div>
+												<input value="${ReaderID}" name="ReaderID"
+													style="display: none">
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">Close</button>
+												<button type="submit" class="btn btn-primary">changes</button>
+											</div>
+										</div>
 									</div>
 								</div>
-							</div>
-						</div>
+							</form>
 						</s:iterator>
+						<s:if test="readerPage.datalist.size()>0">
+							<div class="pagination justify-content-center">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
+										<!--前往上一页的按钮-->
+										<li class="page-item"><a class="page-link"
+											href="getAllReaders?pageNum=${readerPage.prePageNum}"
+											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+												<span class="sr-only">Previous</span>
+										</a></li>
+										<!--显示前往第一页的按钮-->
+										<s:if test="readerPage.beginPageNum>1">
+											<li class="page-item"><a class="page-link"
+												href="getAllReaders?pageNum=1">1</a></li>
+											<s:if test="readerPage.beginPageNum>2">
+												<li class="page-item"><a class="page-link">....</a></li>
+											</s:if>
+										</s:if>
+										<!-- 显示以当前页为中心的7页 -->
+										<s:iterator begin="%{readerPage.beginPageNum}"
+											end="%{readerPage.endPageNum}" var="snum">
+											<s:if test="#snum == readerPage.currentPage">
+												<li class="page-item active"><a class="page-link"
+													href="getAllReaders?pageNum=${snum}">${snum}</a></li>
+											</s:if>
+											<s:else>
+												<li class="page-item"><a class="page-link"
+													href="getAllReaders?pageNum=${snum}">${snum}</a></li>
+											</s:else>
+										</s:iterator>
+										<!-- 显示最后一页 -->
+										<s:if test="readerPage.endPageNum<readerPage.totalPage">
+
+											<s:if test="readerPage.endPageNum+1<readerPage.totalPage">
+												<li class="page-item"><a class="page-link">....</a></li>
+											</s:if>
+											<li class="page-item"><a class="page-link"
+												href="getAllReaders?&pageNum=${readerPage.totalPage}">${readerPage.totalPage}</a></li>
+										</s:if>
+										<!-- 前往下一页的按钮-->
+										<li class="page-item"><a class="page-link"
+											href="getAllReaders?pageNum=${readerPage.nextPageNum}"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+												<span class="sr-only">Next</span>
+										</a></li>
+									</ul>
+								</nav>
+							</div>
+						</s:if>
 						<!--addReader模态框-->
-						<div class="modal fade" id="addReader" tabindex="-1" role="dialog">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<form action="readerregister" method="post">
-											username<input type="text" name="ReaderName">email <input
-												type="email" name="Email">phone number <input
-												type="text" name="PhoneNumber">
-											<button type="submit" value="signup" class="btn btn-main-sm">register</button>
-										</form>
-									</div>
-									<div class="modal-body"></div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
-											data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save
-											changes</button>
+
+						<form action="readerregister" method="post">
+							<div class="modal fade" id="addReader" tabindex="-1"
+								role="dialog" style="position: fixed; top: 18%">
+								<div class="modal-dialog " role="document">
+									<div class="modal-content">
+										<div class="modal-header ">
+											<h2 class="m-auto">Reader Register</h2>
+										</div>
+										<div class="modal-body">
+											<div class="modal-body row justify-content-center">
+												<div class="input-group margin-bottom-sm col-10 mb-2">
+													<span class="input-group-addon"><i
+														class="fa fa-user-o fa-fw"></i></span> <input
+														class="form-control " type="text" name="ReaderName"
+														placeholder="username ">
+												</div>
+												<div class="input-group margin-bottom-sm col-10 mb-2">
+													<span class="input-group-addon "><i
+														class="fa fa-envelope-o fa-fw"></i></span> <input
+														class="form-control" type="email" name="Email"
+														placeholder="Email">
+												</div>
+												<div class="input-group margin-bottom-sm col-10 mb-2">
+													<span class="input-group-addon "><i
+														class="fa fa-phone fa-fw"></i></span> <input class="form-control"
+														type="text" name="PhoneNumber" maxlength="11"
+														placeholder="phone number">
+												</div>
+												<input value="${ReaderID}" name="ReaderID"
+													style="display: none">
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">submit</button>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-		
+						</form>
 					</div>
 				</div>
 			</div>

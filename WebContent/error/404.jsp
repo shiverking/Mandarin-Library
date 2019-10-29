@@ -30,7 +30,7 @@
 		</div>
 		<div id="Layer1">
 			<nav class="codrops-demos">
-				<a href="../index.jsp">Return Index</a>
+				<a href="index.jsp">Return Index</a>
 			</nav>
 		</div>
 	</div>

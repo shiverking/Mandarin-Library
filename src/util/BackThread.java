@@ -33,15 +33,12 @@ public class BackThread extends Thread {
 
 	public void run() {
 
-		int a;
-
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
 			currentRecordDao = new CurrentRecordDao();
 			bookDao = new BookDao();
 			readerDao = new ReaderDao();
 			borrowrecordDao = new BorrowrecordDao();
-
 			currentRecordDao.setSessionFactory(factory);
 			bookDao.setSessionFactory(factory);
 			readerDao.setSessionFactory(factory);
@@ -55,6 +52,7 @@ public class BackThread extends Thread {
 		int eh = 0;
 		while (!this.isInterrupted()) {
 			if (eh == 0 && ei == 0) {
+				refrushFine();
 				Remind();
 			}
 			ei++;
@@ -63,7 +61,7 @@ public class BackThread extends Thread {
 				Thread.sleep(60000);
 				System.out.println(todayDate.toString() + this.getName());
 				autoCancel();
-				refrushFine();
+				
 			} catch (InterruptedException e) {
 				System.err.println("try出问题了");
 			}
@@ -125,21 +123,17 @@ public class BackThread extends Thread {
 			Date date = new Date();
 			int h = (int) ((date.getTime() - borrowingDate.getTime()) / (3600 * 1000));
 			if (h >= 2) {
-				List<CurrentRecord> currentRecords2 = currentRecordDao.findBy("CurrentRecordID", currentRecordID);
-				for (CurrentRecord c : currentRecords2) {
-					currentRecordID = c.getCurrentRecordID();
-					bookID = c.getBookID();
-				}
+				currentRecordDao.delete(currentRecord);
 				try {
 					Book bb = bookDao.get(bookID);
 					if (bb != null) {
 						bb.setIsBorrowed(false);
 						bookDao.merge(bb);
 					}
-					currentRecordDao.delete(currentRecordID);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		}
 	}
