@@ -13,8 +13,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BookBorrow</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -44,13 +42,15 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
+	<script src="webapp/ckeditor.js"></script>
 </head>
 
 
 
 <body>
-	<s:include value="jspElement/Head.jsp" />
+
+	<s:include value="/Navbar.jsp" />
+	<s:include value="/librarian_jsp/PostSingleNews.jsp"></s:include>
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -77,10 +77,10 @@
 							<ul>
 								<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
-								<li><a href="BookSearch"><i class="fa fa-search"></i>
+								<li><a href="searchBook1"><i class="fa fa-search"></i>
 										Search Book</a></li>
-								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
-										Register Reader </a></li>
+								<li><a href="getAllReaders"><i class="fa fa-user-plus"></i>
+										Managing readers </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
@@ -89,9 +89,9 @@
 										Return Book</a></li>
 								<li><a href="IncomeHistory"><i class="fa fa-money"></i>
 										Income History</a></li>
-								<li class="active"><a href=""><i
+								<li class="active"><a href="displayPosts"><i
 										class="fa fa-paper-plane"></i> Post News</a></li>
-								<li><a href="sLogout"><i class="fa fa-sign-out"></i>
+								<li><a href="librarianLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
 							</ul>
 						</div>
@@ -100,39 +100,117 @@
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
 					<div class="widget dashboard-container my-adslist">
-					<div class="form-group">
-						<label>NewsPost</label>
-						</div>
-						<table border="1" name="AddBook">
-							<form action="PostNews" method="post" textarea rows="10"
-								cols="30">
-								<div class="form-group">
-								<label>Title</label>
-								<input name="Title" required="required" class="form-control">
-								</div>
-								<div class="form-group">
-								<label>Content</label><br>
-								<textarea class="form-main-control" rows="10" cols="45" name="Content" required="required" /></textarea>
-								</div>
-								<div class="form-group">
-								<button type="submit" class="btn btn-primary">Submit</button>
-								</div>
-							</form>
-						</table>
-						</div>
+						<a data-toggle="modal" data-target="#PostSingleNews"
+							class="btn btn-outline-success my-2 my-sm-0"
+							style="color: #228B22;">Post News</a>
+						<p></p>
+						<table class="table table-striped ">
+							<tr>
+								<th class="text-center">Title</th>
+								<th class="text-center">Content</th>
+								<th class="text-center">Librarian</th>
+								<th class="text-center">Operation</th>
+							</tr>
+							</thead>
+							<tbody>
+								<s:iterator value="posts" status="status">
+									<div class="modal fade"
+										id="EditSingleNews<s:property value="PostID"/>" tabindex="-1"
+										role="dialog" style=""
+										aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+										<div class="modal-dialog " role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">Post
+														News</h5>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
 
+												<div class="modal-body">
+													<div class="form-group"></div>
+													
+													<form action="editPost" method="post">
+
+														<div class="form-group">
+															<label>Title</label> <input name="Title"
+																required="required" class="form-control"
+																value="<s:property value="Title"/>">
+														</div>
+														<div class="form-group ">
+															<label>Content</label><br>
+															<textarea class="form-main-control " rows="10" cols="50"
+																id="p${PostID}" name="Content" required="required">${Content}</textarea>
+														</div>
+														<div class="form-group">
+															<input class="fade" value="${PostID}" name="post.PostID">
+															<button type="submit" class="btn btn-primary"
+																style="float: right">Submit</button>
+														</div>
+													</form>
+													<script type="text/javascript">
+														(function() {
+
+															CKEDITOR
+																	.replace(
+																			'p${PostID}',
+																			{
+																				width : '100%',
+																				height : '150px',
+																				tabSpaces : 4
+																			});
+														})();
+													</script>
+												</div>
+											</div>
+										</div>
+									</div>
+									<tr>
+										<td><s:property value="Title" /></td>
+										<td
+											><div style="overflow: hidden; text-overflow: ellipsis; max-width: 20em;max-height:3em;">${Content}</div></td>
+										<td class="text-center"><s:property
+												value="librarian.LibrarianName" /></td>
+										<td class="text-center">
+											<ul>
+												<li class="list-inline-item"><a data-toggle="modal"
+													data-target="#EditSingleNews<s:property value="PostID"/>">
+														<i class="fa fa-pencil"></i>
+												</a></li>
+												<li class="list-inline-item"><a class="delete"
+													href="deletePost?post.PostID=<s:property value="PostID"/>">
+														<i class="fa fa-trash"></i>
+												</a></li>
+											</ul>
+										</td>
+									</tr>
+								</s:iterator>
+							</tbody>
+						</table>
 					</div>
-					
 				</div>
 			</div>
-			<!-- Row End -->
 		</div>
-		<!-- Container End -->
 	</section>
-	<s:include value="jspElement/Foot.jsp" />
+
+	<!-- Row End -->
+	<!-- Container End -->
+	<s:include value="/footer.jsp" />
 	<!-- JAVASCRIPTS -->
+
+	<script type="text/javascript">
+		(function() {
+
+			CKEDITOR.replace('T2', {
+				width : '100%',
+				height : '150px',
+				tabSpaces : 4
+			});
+		})();
+	</script>
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
@@ -143,8 +221,7 @@
 	<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
 	<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+
 	<script src="js/scripts.js"></script>
 
 </body>

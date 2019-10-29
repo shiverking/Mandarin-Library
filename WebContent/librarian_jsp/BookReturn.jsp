@@ -13,8 +13,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BookBorrow</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -50,7 +48,7 @@
 
 
 <body>
-	<s:include value="/librarian_jsp/jspElement/Head.jsp" />
+	<s:include value="/Navbar.jsp" />
 	<script>
 		var errorMsg = "${requestScope.ErrorMessage}";
 		if (errorMsg != "") {
@@ -83,21 +81,21 @@
 							<ul>
 								<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
-								<li><a href="BookSearch"><i class="fa fa-search"></i>
+								<li><a href="searchBook1"><i class="fa fa-search"></i>
 										Search Book</a></li>
-								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
-										Register Reader </a></li>
+								<li><a href="getAllReaders"><i class="fa fa-user-plus"></i>
+										Managing readers </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
 										Borrow Book</a></li>
-								<li class="active"><a href=""><i class="fa fa-reply"></i>
-										Return Book</a></li>
+								<li class="active"><a href="BookReturn"><i
+										class="fa fa-reply"></i> Return Book</a></li>
 								<li><a href="IncomeHistory"><i class="fa fa-money"></i>
 										Income History</a></li>
-								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i>
+								<li><a href="displayPosts"><i class="fa fa-paper-plane"></i>
 										Post News</a></li>
-								<li><a href="Logout"><i class="fa fa-sign-out"></i>
+								<li><a href="librarianLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
 							</ul>
 						</div>
@@ -130,7 +128,7 @@
 		</div>
 		<!-- Container End -->
 	</section>
-	<s:include value="jspElement/Foot.jsp" />
+	<s:include value="/footer.jsp" />
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>

@@ -128,7 +128,7 @@
 										<tr>
 											<td class="action" data-title="Action"><img
 												class="card-img-top img-fluid" src="<s:property value="books[#L.index].ImageAddress" />"
-												alt="Card image cap" style="height: 200px; width: auto;" onerror="{this.src='images/noImage.jpg'}">
+												alt="Card image cap" style="height: 200px; width: auto;" onerror="{this.src='images/book-default-lpic.gif'}">
 											</td>
 											<td class="product-details">
 												<h3 class="title">
@@ -150,10 +150,10 @@
 									</s:iterator>
 								</s:if>
 								<s:else>
-									<tr>
-										<td class="product-details"></td>
-										<td class="product-category"><span class="categories"></span></td>
-										<td class="action" data-title="Action"></td>
+									<tr >
+									<td class="action" style="width: 300;" > </td>
+									<td class="product-details " style="width: 500"> </td>
+										
 									</tr>
 								</s:else>
 							</tbody>

@@ -12,8 +12,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Calssimax</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -119,7 +117,7 @@
 											<td class="action" data-title="Action"><img
 												class="card-img-top img-fluid"
 												src="<s:property value="books[#L.index].ImageAddress" />"
-												onerror="{this.src='images/noImage.jpg'}"
+												onerror="{this.src='images/book-default-lpic.gif'}"
 												alt="Card image cap" style="height: 200px; width: auto;">
 											</td>
 											<td class="product-details">

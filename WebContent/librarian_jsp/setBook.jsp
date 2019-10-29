@@ -71,8 +71,8 @@
 				<form action="editBook" method="post">
 					<label>change category</label>
 					<div class="row justify-content-center">
-					<li><label>category:<br> <li><label>Floor:<br></label> <select name="Category"
-										required="required"><br>
+					<li class="col-6"><label>category:<br></label> <select name="Category"
+										required="required">
 											<option value="Literature">Literature</option>
 											<option value="Arts">Arts</option>
 											<option value="History&Geography">History&Geography</option>

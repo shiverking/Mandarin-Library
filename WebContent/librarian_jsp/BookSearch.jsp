@@ -13,8 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BookSearch</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -50,7 +49,7 @@
 
 
 <body>
-	<s:include value="/librarian_jsp/jspElement/Head.jsp" />
+	<s:include value="/Navbar.jsp" />
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -75,23 +74,23 @@
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
 							<ul>
-								<li><a href="BookManagement"><i class="fa fa-book"></i>
+							<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
-								<li class="active"><a href=""><i class="fa fa-search"></i>
+								<li class="active"><a href="searchBook1"><i class="fa fa-search"></i>
 										Search Book</a></li>
-								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
-										Register Reader </a></li>
+								<li><a href="getAllReaders"><i class="fa fa-user-plus"></i>
+										Managing readers </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
 										Borrow Book</a></li>
-								<li><a href="BookReturn"><i class="fa fa-reply"></i>
-										Return Book</a></li>
+								<li ><a href="BookReturn"><i
+										class="fa fa-reply"></i> Return Book</a></li>
 								<li><a href="IncomeHistory"><i class="fa fa-money"></i>
 										Income History</a></li>
-								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i>
+								<li><a href="displayPosts"><i class="fa fa-paper-plane"></i>
 										Post News</a></li>
-								<li><a href="Logout"><i class="fa fa-sign-out"></i>
+								<li><a href="librarianLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
 							</ul>
 						</div>
@@ -134,7 +133,7 @@
 												<div class="thumb-content col-3">
 													<!-- <div class="price">$200</div> -->
 													<a data-toggle="collapse" href="#collap2${bookID}"> <img
-														class="card-img-top img-fluid" src="${ImageAddress}"
+														class="card-img-top img-fluid" src="${ImageAddress}" onerror="{this.src='images/book-default-lpic.gif'}"
 														alt="Card image cap" style="height: 200px; width: 150px;">
 													</a>
 												</div>
@@ -157,10 +156,10 @@
 																	class="text-info">Available</strong></li>
 																<br>
 																<a data-toggle="modal" data-target="#setBook${bookID}"
-																	class="btn-main-sm" style="color: #fff;">Edit
+																	class="btn btn-main-sm" style="color: #fff;">Edit
 																	</a>
 															
-																<a class="btn-sm btn-danger"
+																<a class="btn btn-main-sm" style="background-color: red;"
 																	href='deleteBook?book.BookID=<s:property value="BookID"/>'>Delete</a>
 
 															</s:if> <s:elseif test="reservations.get(#L2.index)!=0">
@@ -248,7 +247,7 @@
 		</div>
 		<!-- Container End -->
 	</section>
-	<s:include value="jspElement/Foot.jsp" />
+	<s:include value="/footer.jsp" />
 
 	<form action="searchBook1" id="search2" style="display: none;">
 		<input name="searchContent" value="" id="searchContent"> <input
@@ -261,12 +260,10 @@
         	   $("#selectSearch").val(${selectSearch})
         	   $("#pageNum").val(e)
         	   $("#search2").submit()
-        	            }
-
+        	            };
         </script>
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
@@ -277,8 +274,7 @@
 	<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
 	<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+
 	<script src="js/scripts.js"></script>
 
 </body>

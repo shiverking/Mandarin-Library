@@ -11,10 +11,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="never">
 <title>BookBorrow</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -38,23 +37,13 @@
 <!-- FAVICON -->
 <link href="img/favicon.png" rel="shortcut icon">
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-<link rel="stylesheet"
-	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script
-	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 
 
 <body>
-	<s:include value="/librarian_jsp/jspElement/Head.jsp" />
+	<s:include value="/Navbar.jsp" />
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -79,12 +68,12 @@
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
 							<ul>
-								<li class="active"><a href=""><i class="fa fa-book"></i>
-										Manage Book </a></li>
-								<li><a href="BookSearch"><i class="fa fa-search"></i>
+								<li class="active"><a href="BookManagement"><i
+										class="fa fa-book"></i> Manage Book </a></li>
+								<li><a href="searchBook1"><i class="fa fa-search"></i>
 										Search Book</a></li>
-								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
-										Register Reader </a></li>
+								<li><a href="getAllReaders"><i class="fa fa-user-plus"></i>
+										Managing readers </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
@@ -93,112 +82,138 @@
 										Return Book</a></li>
 								<li><a href="IncomeHistory"><i class="fa fa-money"></i>
 										Income History</a></li>
-								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i>
+								<li><a href="displayPosts"><i class="fa fa-paper-plane"></i>
 										Post News</a></li>
-								<li><a href="Logout"><i class="fa fa-sign-out"></i>
+								<li><a href="librarianLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
+
+
 							</ul>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 					<!-- Recently Favorited -->
-					<div class="widget dashboard-container my-adslist row">
+					<s:if test="errorMessage!=null">
+						<div class="alert alert-danger" role="alert">
+							<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+							${errorMessage}
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					</s:if>
+					<form action="addBook" method="post">
 
-						<ul id="myTab" class="nav nav-tabs">
-							<li class="active"><a href="#home" data-toggle="tab">
-									Add book by BookID </a></li>
-							<li><a href="#ios" data-toggle="tab">Add book by ISBN</a></li>
-						</ul>
-						<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
-							<br> <br>
-							<div id="myTabContent" class="tab-content">
-								<div class="tab-pane fade in active" id="home">
-									<div class="col">
-
-										<table border="1" name="AddBook">
-											<form action="addBook" method="post">
-												BookName:<br> <input name="BookName"
-													required="required"><br> ISBN:<br> <input
-													name="ISBN" required="required"><br> Price:<br>
-												<input name="Price" required="required" /><br>
-												
-												<li><label>Floor:<br></label> <select
-													name="Location" required="required"><br>
-														<option value="first floor">first floor</option>
-														<option value="second floor">second floor</option>
-														<option value="third floor">third floor</option>
-												</select></li>
-												<li><label>Area:</label> <select name="Location"
-													required="required"><br>
-														<option value="A area">A</option>
-														<option value="B area">B</option>
-														<option value="C area">C</option>
-														<option value="D area">D</option>
-
-												</select></li> 
-												<li><label>category:<br> <li><label>Floor:<br></label> <select name="Category"
-										required="required"><br>
-											<option value="Literature">Literature</option>
-											<option value="Arts">Arts</option>
-											<option value="History&Geography">History&Geography</option>
-											<option value="Science">Science</option>
-											<option value="Politics&Law">Politics&Law</option>
-											
-											<option value="Philosophy&Religion">Philosophy&Religion</option>
-									</select></li>
-												<br> Number:<br> <input
-													name="Num" required="required" /><br> Description:<br>
-												<input name="Introduction" required="required" /><br>
-												Author:<br> <input name="author" required="required" /><br>
-												<br>
-												<button type="submit" value="add" class="btn btn-main-sm">Add
-													Book</button>
-											</form>
-
-										</table>
-										<br>
-									</div>
+						<div
+							class="widget dashboard-container my-adslist row justify-content-center">
+							<div class="col-4">
+								<img src="${ImageAddress}"
+									onerror="{this.src='images/book-default-lpic.gif'}"
+									style="max-height: 350px; width: 100%">
+							</div>
+							<div class="col-8">
+								<div class="input-group margin-bottom-sm col-12 mb-2">
+									<span class="input-group-addon"><i
+										class="fa fa-book fa-fw" aria-hidden="true"></i></span> <input
+										class="form-control" type="text" placeholder="BookName"
+										value="${BookName}" id="ink" name="BookName"
+										required="required">
 								</div>
-								<div class="tab-pane fade" id="ios">
-									<div class="col">
-										<table border="2" name="AddBookisbn">
-											<form action="addBookISBN" method="post">
-												ISBN:<input name="ISBN" required="required"><br>
-									
-												<li><label>Floor</label> <select name="Location"
-													required="required">
-														<option value="first floor">first floor</option>
-														<option value="second floor">second floor</option>
-														<option value="third floor">third floor</option>
-												</select></li>
-												<li><label>Area</label> <select name="Location"
-													required="required">
-														<option value="A area">A</option>
-														<option value="B area">B</option>
-														<option value="C area">C</option>
-														<option value="D area">D</option>
-
-												</select></li> <br> number:<input name="Number" required="required"><br>
-												<br>
-												<button type="submit" value="add" class="btn btn-main-sm">Add
-													Book BY ISBN</button>
-											</form>
-
-										</table>
-									</div>
+								<div class="input-group margin-bottom-sm col-12 mb-2">
+									<span class="input-group-addon"><i
+										class="fa fa-barcode fa-fw" aria-hidden="true"></i></span> <input
+										class="form-control" type="text" placeholder="ISBN"
+										name="ISBN" id="isbnk" required="required" value="${ISBN}">
+									<span class="input-group-addon"><a
+										href="javascript:findbyisbn()"><i
+											class="fa fa-search fa-fw" aria-hidden="true"></i></a></span>
+								</div>
+								<script type="text/javascript">
+									function findbyisbn() {
+										var key = $('#isbnk').val();
+										window.location.href = "findBookByISBNinWeb?ISBN="
+												+ key;
+									}
+								</script>
+								<div class="input-group margin-bottom-sm col-12 mb-2">
+									<span class="input-group-addon"><i
+										class="fa fa-money fa-fw" aria-hidden="true"></i></span> <input
+										class="form-control" type="text" placeholder="Price"
+										value="${Price}" name="Price" required="required">
+								</div>
+								<div class="input-group margin-bottom-sm col-12 mb-2">
+									<span class="input-group-addon"><i
+										class="fa fa-user-o fa-fw" aria-hidden="true"></i></span> <input
+										class="form-control" type="text" placeholder="Author"
+										value="${Author}" name="author" required="required">
+								</div>
+								<div class="input-group margin-bottom-sm col-12 mb-2">
+									<span class="input-group-addon"><i
+										class="fa fa-plus fa-fw" aria-hidden="true"></i></span> <input
+										class="form-control" placeholder="Number" name="Num"
+										required="required">
+								</div>
+								<div class="input-group margin-bottom-sm col-12 mb-2">
+									<span class="input-group-addon">category:</span> <select
+										name="Category" required="required" class="form-control">
+										<option value="Literature">Literature</option>
+										<option value="Arts">Arts</option>
+										<option value="History&Geography">History&Geography</option>
+										<option value="Science">Science</option>
+										<option value="Politics&Law">Politics&Law</option>
+										<option value="Philosophy&Religion">Philosophy&Religion</option>
+									</select>
 								</div>
 							</div>
+
+							<div class="input-group margin-bottom-sm col-12 mb-2">
+								<span class="input-group-addon">Floor:</span> <label><br></label>
+								<select name="Location" required="required" class="form-control">
+									<option value="first floor">first floor</option>
+									<option value="second floor">second floor</option>
+									<option value="third floor">third floor</option>
+								</select> <span class="input-group-addon">Area:</span><select
+									name="Location" required="required" class="form-control">
+									<option value="A area">A</option>
+									<option value="B area">B</option>
+									<option value="C area">C</option>
+									<option value="D area">D</option>
+								</select>
+							</div>
+							<div class="input-group margin-bottom-sm col-12">
+								<span class="input-group-addon">Description:</span>
+								<textarea id="T1" class="form-control"
+									placeholder="Description:" name="Introduction"
+									required="required">${Introduction}</textarea>
+							</div>
+							<input style="display: none" name="ImageAddress"
+								value="${ImageAddress}">
+							<button type="submit" value="add" class="btn btn-main-sm">Add
+								Book</button>
 						</div>
-					</div>
+					</form>
 				</div>
 			</div>
-			<!-- Row End -->
 		</div>
+
 		<!-- Container End -->
 	</section>
-	<s:include value="jspElement/Foot.jsp" />
+	<s:include value="/footer.jsp" />
 	<!-- JAVASCRIPTS -->
+	<script src="webapp/ckeditor.js"></script>
+	<script type="text/javascript">
+	    (function()
+	    {
+	       
+	        CKEDITOR.replace('T1',{
+	        		width:'100%',
+	        		height:'150px',
+	        		tabSpaces: 4
+	        });
+	    })();
+	</script>
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
@@ -210,12 +225,7 @@
 	<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
 	<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
 	<script src="js/scripts.js"></script>
-	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-	<script
-		src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>

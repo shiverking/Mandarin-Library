@@ -68,6 +68,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			if (tempReader == null) {
 				tempReader = this.getService().getReaderbyEmail(this.getModel().getEmail());
 				if (tempReader == null) {
+					readerDate=new Date();
 					this.getService().mergeReader(this.getModel());
 				} else {
 					this.errorMessage = "This email has been bound to another account!";

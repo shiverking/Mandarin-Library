@@ -120,7 +120,7 @@
 										<tr>
 											<td class="action" data-title="Action"><img
 												class="card-img-top img-fluid"
-												onerror="{this.src='images/noImage.jpg'}"
+												onerror="{this.src='images/book-default-lpic.gif'}"
 												src="<s:property value="books[#L.index].ImageAddress" />"
 												alt="Card image cap" style="height: 200px; width: auto;">
 											</td>

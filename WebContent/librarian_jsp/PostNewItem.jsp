@@ -12,34 +12,18 @@
 					<div class="card">
 						<div class="thumb-content">
 							<!-- <div class="price">$200</div> -->
-							<a href=""> <img class="card-img-top img-fluid"
-								src="images/products/products-1.jpg" alt="Card image cap">
-							</a>
+
 						</div>
 						<div class="card-body">
-							<h4 class="card-title">
+							<h4 class="card-title text-center">
 								<a href=""><s:property value="Title" /></a>
 							</h4>
-							<ul class="list-inline product-meta">
-								<li class="list-inline-item"><a href=""><i
-										class="fa fa-folder-open-o"></i><s:property value="librarian.LibrarianName" /></a></li>
-								<li class="list-inline-item"><a href=""><i
-										class="fa fa-calendar"></i>26th December</a></li>
-							</ul>
-							<p class="card-text"><s:property value="Content" /></p>
-							<div class="product-ratings">
-								<ul class="list-inline">
-									<li class="list-inline-item selected"><i
-										class="fa fa-star"></i></li>
-									<li class="list-inline-item selected"><i
-										class="fa fa-star"></i></li>
-									<li class="list-inline-item selected"><i
-										class="fa fa-star"></i></li>
-									<li class="list-inline-item selected"><i
-										class="fa fa-star"></i></li>
-									<li class="list-inline-item"><i class="fa fa-star"></i></li>
-								</ul>
+							<hr>
+							<div class="card-text"
+								style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;max-height:7em">
+								${Content}
 							</div>
+							<div class="product-ratings"></div>
 						</div>
 					</div>
 				</div>

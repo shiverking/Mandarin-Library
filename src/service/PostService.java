@@ -10,4 +10,7 @@ public interface PostService {
 	
 	public List<Post> getAllPosts();
 	public void savePost(Post post);
+	public void deletePostByID(int ID);
+	public void editPostByID(Post post);
+	public Post getPostByID(int ID);
 }

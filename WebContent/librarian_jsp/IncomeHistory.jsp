@@ -51,7 +51,7 @@
 
 
 <body>
-	<s:include value="jspElement/Head.jsp" />
+	<s:include value="/Navbar.jsp" />
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -78,10 +78,10 @@
 							<ul>
 								<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
-								<li><a href="BookSearch"><i class="fa fa-search"></i>
+								<li><a href="searchBook1"><i class="fa fa-search"></i>
 										Search Book</a></li>
-								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
-										Register Reader </a></li>
+								<li><a href="getAllReaders"><i class="fa fa-user-plus"></i>
+										Managing readers </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
@@ -89,13 +89,12 @@
 								<li><a href="BookReturn"><i class="fa fa-reply"></i>
 										Return Book</a></li>
 								<li class="active"><a href="IncomeHistory"><i
-										class="fa fa-money"></i>
-										<form action="findReaderNum" method="post">Income
-											History</form></a></li>
-								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i>
+										class="fa fa-money"></i> Income History</a></li>
+								<li><a href="displayPosts"><i class="fa fa-paper-plane"></i>
 										Post News</a></li>
-								<li><a href="Logout"><i class="fa fa-sign-out"></i>
+								<li><a href="librarianLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
+
 							</ul>
 						</div>
 					</div>
@@ -115,40 +114,43 @@
 						<p>Fine : ${sessionScope.Fine}</p>
 
 						<script>
-	var calendar1 = Z.ui.Calendar('#date1', {
-		chosenDate : '2019-10-25'
-	})
+							var calendar1 = Z.ui.Calendar('#date1', {
+								chosenDate : '2019-10-25'
+							})
 
-	var calendar2 = Z.ui.Calendar('#date2', {
-		chosenDate : '2019-10-25'
-	})
-</script>
+							var calendar2 = Z.ui.Calendar('#date2', {
+								chosenDate : '2019-10-25'
+							})
+						</script>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 在这里写IncomeHistory展示对象 -->
 
-<!-- 在这里写IncomeHistory展示对象 -->
 
 
+		<!-- Row End -->
 
-<!-- Row End -->
+		<!-- Container End -->
+	</section>
+	<s:include value="/footer.jsp" />
 
-<!-- Container End -->
-</section>
-<s:include value="jspElement/Foot.jsp" />
-
-<!-- JAVASCRIPTS -->
-<script src="plugins/jquery/dist/jquery.min.js"></script>
-<script src="plugins/tether/js/tether.min.js"></script>
-<script src="plugins/raty/jquery.raty-fa.js"></script>
-<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
-<script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-<script
-	src="plugins/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
-<script src="plugins/slick-carousel/slick/slick.min.js"></script>
-<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
-<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-<script src="js/scripts.js"></script>
+	<!-- JAVASCRIPTS -->
+	<script src="plugins/jquery/dist/jquery.min.js"></script>
+	<script src="plugins/tether/js/tether.min.js"></script>
+	<script src="plugins/raty/jquery.raty-fa.js"></script>
+	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
+	<script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="plugins/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+	<script src="plugins/slick-carousel/slick/slick.min.js"></script>
+	<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+	<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
+	<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+	<script src="js/scripts.js"></script>
 
 
 </body>

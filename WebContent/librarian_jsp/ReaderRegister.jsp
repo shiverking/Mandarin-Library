@@ -77,7 +77,7 @@
 							<ul>
 								<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
-								<li><a href="BookSearch"><i class="fa fa-search"></i>
+								<li><a href="searchBook1"><i class="fa fa-search"></i>
 										Search Book</a></li>
 								<li class="active"><a href="getAllReaders"><i
 										class="fa fa-user-plus"></i> Managing readers </a></li>
@@ -89,7 +89,7 @@
 										Return Book</a></li>
 								<li><a href="IncomeHistory"><i class="fa fa-money"></i>
 										Income History</a></li>
-								<li><a href="NewsPost"><i class="fa fa-paper-plane"></i>
+								<li><a href="displayPosts"><i class="fa fa-paper-plane"></i>
 										Post News</a></li>
 								<li><a href="librarianLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
