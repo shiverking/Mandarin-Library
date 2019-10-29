@@ -64,14 +64,15 @@
 						<div class="widget user-dashboard-profile">
 							<!-- User Image -->
 							<div class="profile-thumb">
-									<%
-								Date Resultsdate = new Date();
-							%>
-							<div class="profile-thumb">
-								<img
-									src="upload/${tempReader.readerID}.jpg?time=<%=Resultsdate%>" onerror="{this.src='images/avatar1.jpg'}"
-									alt="" style="max-height: 100px; max-width: 100px;">
-							</div>
+								<%
+									Date Resultsdate = new Date();
+								%>
+								<div class="profile-thumb">
+									<img
+										src="upload/${tempReader.readerID}.jpg?time=<%=Resultsdate%>"
+										onerror="{this.src='images/avatar1.jpg'}" alt=""
+										style="max-height: 100px; max-width: 100px;">
+								</div>
 							</div>
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>
@@ -105,9 +106,9 @@
 						<table class="table table-responsive product-dashboard-table">
 							<thead>
 								<tr>
+									<th class="text-center">Cover</th>
 									<th>BOOK INFORMATION</th>
 									<th class="text-center">Due Date</th>
-									<th class="text-center">Category</th>
 
 								</tr>
 							</thead>
@@ -115,20 +116,27 @@
 								<s:if test="borrowPage.datalist.size()>0">
 									<s:iterator value="borrowPage.datalist" status="L">
 										<tr>
+											<td class="action" data-title="Action"><img
+												class="card-img-top img-fluid"
+												src="<s:property value="books[#L.index].ImageAddress" />"
+												alt="Card image cap" style="height: 200px; width: auto;">
+											</td>
 											<td class="product-details">
 												<h3 class="title">
 													<s:property value="books[#L.index].BookName" />
-												</h3> <span class="add-id"><strong>Book ID:</strong>${BookID}</span>
-												<span><strong>ISBN:</strong>
-												<s:property value="books[#L.index].ISBN" /></span> <span><strong>Posted
-														on: </strong> <time>${BorrowingDate}</time> </span> <span
-												class="location "><strong>Location:</strong> <s:property
+												</h3> <span class="add-id"><strong>Book ID:</strong>
+													${BookID}</span> <span class="add-id"><strong>ISBN:</strong>
+													<s:property value="books[#L.index].ISBN" /> </span> <span
+												class="add-id"><strong>Category:</strong> <s:property
+														value="books[#L.index].category" /> </span><span><strong>
+														Reserve on: </strong> <time>${BorrowingDate}</time> </span> <span
+												class="location"><strong>Location:</strong> <s:property
 														value="books[#L.index].Location" /></span>
 											</td>
 											<td class="product-thumb text-center"><s:property
 													value="ReturnDate" /></td>
-											<td class="product-category"><span class="categories"><s:property
-														value="books[#L.index].category" /></span></td>
+											<%-- <td class="product-category"><span class="categories"><s:property
+														value="books[#L.index].category" /></span></td> --%>
 
 										</tr>
 									</s:iterator>

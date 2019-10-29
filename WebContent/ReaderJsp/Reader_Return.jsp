@@ -64,14 +64,15 @@
 						<div class="widget user-dashboard-profile">
 							<!-- User Image -->
 							<div class="profile-thumb ">
-									<%
-								Date Resultsdate = new Date();
-							%>
-							<div class="profile-thumb">
-								<img
-									src="upload/${tempReader.readerID}.jpg?time=<%=Resultsdate%>" onerror="{this.src='images/avatar1.jpg'}"
-									alt="" style="max-height: 100px; max-width: 100px;">
-							</div>
+								<%
+									Date Resultsdate = new Date();
+								%>
+								<div class="profile-thumb">
+									<img
+										src="upload/${tempReader.readerID}.jpg?time=<%=Resultsdate%>"
+										onerror="{this.src='images/avatar1.jpg'}" alt=""
+										style="max-height: 100px; max-width: 100px;">
+								</div>
 							</div>
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>
@@ -106,9 +107,10 @@
 						<table class="table table-responsive product-dashboard-table">
 							<thead>
 								<tr>
+									<th class="text-center">Cover</th>
 									<th>BOOK INFORMATION</th>
 									<th>Return Date</th>
-									<th class="text-center">Category</th>
+
 									<th class="text-center">Fine</th>
 								</tr>
 							</thead>
@@ -116,22 +118,32 @@
 								<s:if test="borrowPage.datalist.size()>0">
 									<s:iterator value="borrowPage.datalist" status="L">
 										<tr>
+											<td class="action" data-title="Action"><img
+												class="card-img-top img-fluid"
+												src="<s:property value="books[#L.index].ImageAddress" />"
+												alt="Card image cap" style="height: 200px; width: auto;">
+											</td>
 											<td class="product-details">
 												<h3 class="title">
 													<s:property value="books[#L.index].BookName" />
 												</h3> <span class="add-id"><strong>Book ID:</strong>${BookID}</span>
-												<span><strong>ISBN:</strong>
-												<s:property value="books[#L.index].ISBN" /></span> <span><strong>Posted
+												<span><strong>ISBN:</strong> <s:property
+														value="books[#L.index].ISBN" /></span> <span><strong>Posted
 														on: </strong> <time>${BorrowingDate}</time> </span> <span class="location"><strong>Location:</strong>
 													<s:property value="books[#L.index].Location" /></span>
 											</td>
 											<td class="product-thumb"><s:property value="ReturnDate" /></td>
-											<td class="product-category"><span class="categories"><s:property
-														value="books[#L.index].category" /></span></td>
+
 
 											<td class="product-category"><s:if test="Fine>0">
-													<span class="categories"><s:property value="Fine" />
-														<i class="fa fa-jpy" aria-hidden="true"></i></span>
+													<s:if test="!isPayfine">
+														<span class="categories" style="color: red"><s:property
+																value="Fine" /> <i class="fa fa-jpy"></i></span>
+													</s:if>
+													<s:else>
+														<span class="categories" style="color: green"><s:property
+																value="Fine" /> <i class="fa fa-jpy"></i></span>
+													</s:else>
 												</s:if></td>
 
 										</tr>
@@ -148,54 +160,54 @@
 							</tbody>
 						</table>
 						<s:if test="borrowPage.datalist.size()>0">
-						<div class="pagination justify-content-center">
-							<nav aria-label="Page navigation example">
-								<ul class="pagination">
-									<!--前往上一页的按钮-->
-									<li class="page-item"><a class="page-link"
-										href="getReaderStatuForReturn?pageNum=${borrowPage.prePageNum}"
-										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-											<span class="sr-only">Previous</span>
-									</a></li>
-									<!--显示前往第一页的按钮-->
-									<s:if test="borrowPage.beginPageNum>1">
+							<div class="pagination justify-content-center">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
+										<!--前往上一页的按钮-->
 										<li class="page-item"><a class="page-link"
-											href="getReaderStatuForReturn?pageNum=1">1</a></li>
-										<s:if test="borrowPage.beginPageNum>2">
-											<li class="page-item"><a class="page-link">....</a></li>
-										</s:if>
-									</s:if>
-									<!-- 显示以当前页为中心的7页 -->
-									<s:iterator begin="%{borrowPage.beginPageNum}"
-										end="%{borrowPage.endPageNum}" var="snum">
-										<s:if test="#snum == borrowPage.currentPage">
-											<li class="page-item active"><a class="page-link"
-												href="getReaderStatuForReturn?pageNum=${snum}">${snum}</a></li>
-										</s:if>
-										<s:else>
+											href="getReaderStatuForReturn?pageNum=${borrowPage.prePageNum}"
+											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+												<span class="sr-only">Previous</span>
+										</a></li>
+										<!--显示前往第一页的按钮-->
+										<s:if test="borrowPage.beginPageNum>1">
 											<li class="page-item"><a class="page-link"
-												href="getReaderStatuForReturn?pageNum=${snum}">${snum}</a></li>
-										</s:else>
-									</s:iterator>
-									<!-- 显示最后一页 -->
-									<s:if test="borrowPage.endPageNum<borrowPage.totalPage">
-
-										<s:if test="borrowPage.endPageNum+1<borrowPage.totalPage">
-											<li class="page-item"><a class="page-link">....</a></li>
+												href="getReaderStatuForReturn?pageNum=1">1</a></li>
+											<s:if test="borrowPage.beginPageNum>2">
+												<li class="page-item"><a class="page-link">....</a></li>
+											</s:if>
 										</s:if>
+										<!-- 显示以当前页为中心的7页 -->
+										<s:iterator begin="%{borrowPage.beginPageNum}"
+											end="%{borrowPage.endPageNum}" var="snum">
+											<s:if test="#snum == borrowPage.currentPage">
+												<li class="page-item active"><a class="page-link"
+													href="getReaderStatuForReturn?pageNum=${snum}">${snum}</a></li>
+											</s:if>
+											<s:else>
+												<li class="page-item"><a class="page-link"
+													href="getReaderStatuForReturn?pageNum=${snum}">${snum}</a></li>
+											</s:else>
+										</s:iterator>
+										<!-- 显示最后一页 -->
+										<s:if test="borrowPage.endPageNum<borrowPage.totalPage">
+
+											<s:if test="borrowPage.endPageNum+1<borrowPage.totalPage">
+												<li class="page-item"><a class="page-link">....</a></li>
+											</s:if>
+											<li class="page-item"><a class="page-link"
+												href="getReaderStatuForReturn?&pageNum=${borrowPage.totalPage}">${borrowPage.totalPage}</a></li>
+										</s:if>
+										<!-- 前往下一页的按钮-->
 										<li class="page-item"><a class="page-link"
-											href="getReaderStatuForReturn?&pageNum=${borrowPage.totalPage}">${borrowPage.totalPage}</a></li>
-									</s:if>
-									<!-- 前往下一页的按钮-->
-									<li class="page-item"><a class="page-link"
-										href="getReaderStatuForReturn?pageNum=${borrowPage.nextPageNum}"
-										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-											<span class="sr-only">Next</span>
-									</a></li>
-								</ul>
-							</nav>
-						</div>
-					</s:if>
+											href="getReaderStatuForReturn?pageNum=${borrowPage.nextPageNum}"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+												<span class="sr-only">Next</span>
+										</a></li>
+									</ul>
+								</nav>
+							</div>
+						</s:if>
 					</div>
 				</div>
 			</div>

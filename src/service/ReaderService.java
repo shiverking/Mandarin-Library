@@ -29,5 +29,5 @@ public interface ReaderService {
 	public void mergeReader(Reader reader);
 	public void deleteReader(Reader reader); 
 	public boolean forgetReaderPassword(String email);
-	public PageBean<Reader> getPageBean(Integer pageNum);
+	public PageBean<Reader> getPageBean(String condString,Integer pageNum);
 }

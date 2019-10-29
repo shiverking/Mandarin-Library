@@ -110,10 +110,21 @@
 						</div>
 					</s:if>
 					<div class="widget dashboard-container my-adslist">
-						<div class="text-right">
-							<a data-toggle="modal" data-target="#addReader"
-								class="btn btn-main-sm" style="color: #fff;"><i
-								class="fa fa-user-plus"></i> Reader Register</a>
+						<div class="row">
+							<form action="getAllReaders" class="col-10">
+								<div class="input-group margin-bottom-sm ">
+									<span class="input-group-addon"><i
+										class="fa fa-user-o fa-fw"></i></span> <input class="form-control "
+										type="email" name="searchContent" placeholder="Search By Reader Email">
+									<button type="submit" value="search"
+										class="btn btn-main-sm input-group-addon">search</button>
+								</div>
+							</form>
+							<div class="col-2">
+								<a data-toggle="modal" data-target="#addReader"
+									class="btn btn-main form-control" style="color: #fff;"><i
+									class="fa fa-user-plus"></i></a>
+							</div>
 						</div>
 						<hr>
 						<s:iterator value="readerPage.dataList" status="L">
@@ -123,7 +134,8 @@
 									<div class="thumb-content col-3">
 										<!-- <div class="price">$200</div> -->
 										<a> <img class="card-img-top img-fluid"
-											src="upload/${ReaderID}.jpg" alt="Reader Avatar" onerror="{this.src='images/avatar1.jpg'}"
+											src="upload/${ReaderID}.jpg" alt="Reader Avatar"
+											onerror="{this.src='images/avatar1.jpg'}"
 											style="height: 80px; width: AUTO;">
 										</a>
 									</div>
@@ -132,10 +144,10 @@
 											<a>${ReaderName}</a>
 										</h4>
 										<ul class="list product-meta">
-											<li class="list-item"><a><i class="fa fa-envelope-square fa-fw ">
-														</i>Email: ${Email}</a></li>
-											<li class="list-item"><a><i class="fa fa-phone fa-fw">
-														</i>Phone Number: ${PhoneNumber}</a></li>
+											<li class="list-item"><a><i
+													class="fa fa-envelope-square fa-fw "> </i>Email: ${Email}</a></li>
+											<li class="list-item"><a><i
+													class="fa fa-phone fa-fw"> </i>Phone Number: ${PhoneNumber}</a></li>
 										</ul>
 									</div>
 									<div class=" col-1 m-auto">
@@ -199,54 +211,54 @@
 							</form>
 						</s:iterator>
 						<s:if test="readerPage.datalist.size()>0">
-						<div class="pagination justify-content-center">
-							<nav aria-label="Page navigation example">
-								<ul class="pagination">
-									<!--前往上一页的按钮-->
-									<li class="page-item"><a class="page-link"
-										href="getAllReaders?pageNum=${readerPage.prePageNum}"
-										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-											<span class="sr-only">Previous</span>
-									</a></li>
-									<!--显示前往第一页的按钮-->
-									<s:if test="readerPage.beginPageNum>1">
+							<div class="pagination justify-content-center">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
+										<!--前往上一页的按钮-->
 										<li class="page-item"><a class="page-link"
-											href="getAllReaders?pageNum=1">1</a></li>
-										<s:if test="readerPage.beginPageNum>2">
-											<li class="page-item"><a class="page-link">....</a></li>
-										</s:if>
-									</s:if>
-									<!-- 显示以当前页为中心的7页 -->
-									<s:iterator begin="%{readerPage.beginPageNum}"
-										end="%{readerPage.endPageNum}" var="snum">
-										<s:if test="#snum == readerPage.currentPage">
-											<li class="page-item active"><a class="page-link"
-												href="getAllReaders?pageNum=${snum}">${snum}</a></li>
-										</s:if>
-										<s:else>
+											href="getAllReaders?pageNum=${readerPage.prePageNum}"
+											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+												<span class="sr-only">Previous</span>
+										</a></li>
+										<!--显示前往第一页的按钮-->
+										<s:if test="readerPage.beginPageNum>1">
 											<li class="page-item"><a class="page-link"
-												href="getAllReaders?pageNum=${snum}">${snum}</a></li>
-										</s:else>
-									</s:iterator>
-									<!-- 显示最后一页 -->
-									<s:if test="readerPage.endPageNum<readerPage.totalPage">
-
-										<s:if test="readerPage.endPageNum+1<readerPage.totalPage">
-											<li class="page-item"><a class="page-link">....</a></li>
+												href="getAllReaders?pageNum=1">1</a></li>
+											<s:if test="readerPage.beginPageNum>2">
+												<li class="page-item"><a class="page-link">....</a></li>
+											</s:if>
 										</s:if>
+										<!-- 显示以当前页为中心的7页 -->
+										<s:iterator begin="%{readerPage.beginPageNum}"
+											end="%{readerPage.endPageNum}" var="snum">
+											<s:if test="#snum == readerPage.currentPage">
+												<li class="page-item active"><a class="page-link"
+													href="getAllReaders?pageNum=${snum}">${snum}</a></li>
+											</s:if>
+											<s:else>
+												<li class="page-item"><a class="page-link"
+													href="getAllReaders?pageNum=${snum}">${snum}</a></li>
+											</s:else>
+										</s:iterator>
+										<!-- 显示最后一页 -->
+										<s:if test="readerPage.endPageNum<readerPage.totalPage">
+
+											<s:if test="readerPage.endPageNum+1<readerPage.totalPage">
+												<li class="page-item"><a class="page-link">....</a></li>
+											</s:if>
+											<li class="page-item"><a class="page-link"
+												href="getAllReaders?&pageNum=${readerPage.totalPage}">${readerPage.totalPage}</a></li>
+										</s:if>
+										<!-- 前往下一页的按钮-->
 										<li class="page-item"><a class="page-link"
-											href="getAllReaders?&pageNum=${readerPage.totalPage}">${readerPage.totalPage}</a></li>
-									</s:if>
-									<!-- 前往下一页的按钮-->
-									<li class="page-item"><a class="page-link"
-										href="getAllReaders?pageNum=${readerPage.nextPageNum}"
-										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-											<span class="sr-only">Next</span>
-									</a></li>
-								</ul>
-							</nav>
-						</div>
-					</s:if>
+											href="getAllReaders?pageNum=${readerPage.nextPageNum}"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+												<span class="sr-only">Next</span>
+										</a></li>
+									</ul>
+								</nav>
+							</div>
+						</s:if>
 						<!--addReader模态框-->
 
 						<form action="readerregister" method="post">

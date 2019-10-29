@@ -106,7 +106,7 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 		if (librarian == null) {
 			return INPUT;
 		}
-		readerPage = this.getService().getPageBean(pageNum);
+		readerPage = this.getService().getPageBean(searchContent,pageNum);
 		return SUCCESS;
 	}
 
