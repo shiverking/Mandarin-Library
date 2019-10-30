@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>Mandarin-Library</display-name>
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>Login.jsp</welcome-file>
 
 		
 
@@ -29,9 +29,8 @@
 	<session-config>
 		<session-timeout>-1</session-timeout>
 	</session-config>
-	<!-- <error-page>
+	<error-page>
 		<error-code>404</error-code>
 		<location>/error/404.jsp</location>
 	</error-page>
- -->
 </web-app>

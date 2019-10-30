@@ -5,22 +5,22 @@
 <html lang="en">
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
 </script>
-<script src="../js/Login.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/AdminJsp/js/Login.js" type="text/javascript"></script>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>mandarin admin</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/AdminJsp/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/AdminJsp/vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/AdminJsp/css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../images/favicon.png" />
+  <link rel="shortcut icon" href="<%=request.getContextPath()%>/AdminJsp/images/favicon.png" />
 </head>
 
 <body>
@@ -31,7 +31,7 @@
           <div class="col-lg-6 d-flex align-items-center justify-content-center">
             <div class="auth-form-transparent text-left p-3">
               <div class="brand-logo">
-                <img src="../images/gen.svg" alt="logo">
+                <img src="<%=request.getContextPath()%>/images/MLA_logo_tagline.png" alt="logo">
               </div>
               <h4>Welcome back!</h4>
               <h6 class="font-weight-light">Happy to see you again!</h6>
@@ -75,13 +75,13 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="../vendors/base/vendor.bundle.base.js"></script>
+  <script src="<%=request.getContextPath()%>/AdminJsp/vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- inject:js -->
-  <script src="../js/off-canvas.js"></script>
-  <script src="../js/hoverable-collapse.js"></script>
-  <script src="../js/template.js"></script>
-  <script src="../js/todolist.js"></script>
+  <script src="<%=request.getContextPath()%>/AdminJsp/js/off-canvas.js"></script>
+  <script src="<%=request.getContextPath()%>/AdminJsp/js/hoverable-collapse.js"></script>
+  <script src="<%=request.getContextPath()%>/AdminJsp/js/template.js"></script>
+  <script src="<%=request.getContextPath()%>/AdminJsp/js/todolist.js"></script>
   <!-- endinject -->
 </body>
 

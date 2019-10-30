@@ -70,7 +70,7 @@
 									class="rounded-circle">
 							</div>
 							<!-- User Name -->
-							<h5 class="text-center">Samanta Doe</h5>
+							<h5 class="text-center"><s:property value="#session.librarian.librarianName" /></h5>
 							<p>Joined February 06, 2017</p>
 						</div>
 						<!-- Dashboard Links -->
