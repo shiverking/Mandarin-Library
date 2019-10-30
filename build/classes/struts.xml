@@ -367,6 +367,9 @@
 			method="displayPosts">
 			<result name="success">/librarian_jsp/PostNewItem.jsp</result>
 		</action>
+		<action name="displaySingleNews" class="postAction" method="displaySingleNews">
+			<result name="success">librarian_jsp/SingleNews.jsp</result>
+		</action>
 		<!-- Librarian帮助用户完成借书操作 -->
 		<action name="borrowBookFindReader" class="readerAction"
 			method="getReaderById">

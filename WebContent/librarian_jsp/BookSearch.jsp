@@ -68,24 +68,26 @@
 									class="rounded-circle">
 							</div>
 							<!-- User Name -->
-							<h5 class="text-center"><s:property value="#session.librarian.librarianName" /></h5>
+							<h5 class="text-center">
+								<s:property value="#session.librarian.librarianName" />
+							</h5>
 							<p>Joined February 06, 2017</p>
 						</div>
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
 							<ul>
-							<li><a href="BookManagement"><i class="fa fa-book"></i>
+								<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
-								<li class="active"><a href="searchBook1"><i class="fa fa-search"></i>
-										Search Book</a></li>
+								<li class="active"><a href="searchBook1"><i
+										class="fa fa-search"></i> Search Book</a></li>
 								<li><a href="getAllReaders"><i class="fa fa-user-plus"></i>
 										Managing readers </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
 										Borrow Book</a></li>
-								<li ><a href="BookReturn"><i
-										class="fa fa-reply"></i> Return Book</a></li>
+								<li><a href="BookReturn"><i class="fa fa-reply"></i>
+										Return Book</a></li>
 								<li><a href="IncomeHistory"><i class="fa fa-money"></i>
 										Income History</a></li>
 								<li><a href="displayPosts"><i class="fa fa-paper-plane"></i>
@@ -126,14 +128,16 @@
 							<div class="accordion col-12" ID="VIEW2">
 								<div class="row ">
 									<s:iterator value="bookPage.dataList" status="L2">
-												<s:include value="setBook.jsp" />
+									
+										<s:include value="setBook.jsp" />
 										<!-- product card -->
 										<div class="product-item bg-light">
 											<div class="row">
 												<div class="thumb-content col-3">
 													<!-- <div class="price">$200</div> -->
 													<a data-toggle="collapse" href="#collap2${bookID}"> <img
-														class="card-img-top img-fluid" src="${ImageAddress}" onerror="{this.src='images/book-default-lpic.gif'}"
+														class="card-img-top img-fluid" src="${ImageAddress}"
+														onerror="{this.src='images/book-default-lpic.gif'}"
 														alt="Card image cap" style="height: 200px; width: 150px;">
 													</a>
 												</div>
@@ -156,10 +160,10 @@
 																	class="text-info">Available</strong></li>
 																<br>
 																<a data-toggle="modal" data-target="#setBook${bookID}"
-																	class="btn btn-main-sm" style="color: #fff;">Edit
-																	</a>
-															
-																<a class="btn btn-main-sm" style="background-color: red;"
+																	class="btn btn-main-sm" style="color: #fff;">Edit </a>
+
+																<a class="btn btn-main-sm"
+																	style="background-color: red;"
 																	href='deleteBook?book.BookID=<s:property value="BookID"/>'>Delete</a>
 
 															</s:if> <s:elseif test="reservations.get(#L2.index)!=0">
@@ -169,6 +173,8 @@
 																<li class="list-inline-item "><strong>Status:
 																</strong> <strong class="text-danger">Lended</strong></li>
 															</s:else>
+														<li class="mt-2"><img alt="" id="imd${BookID}"   style="height:5em"
+															src=""></li>
 													</ul>
 												</div>
 												<div class="collapse col-12" id="collap2${bookID}">
@@ -180,8 +186,13 @@
 												</div>
 											</div>
 										</div>
-
+										<script type="text/javascript">
+									(function PrefixInteger() {
+										document.getElementById("imd${BookID}").setAttribute('src',
+										"https://barcode.tec-it.com/barcode.ashx?data="+(${BookID}/Math.pow(10,8)).toFixed(8).substr(2)+"&code=Code128&dpi=96&dataseparator=")
+										})();</script>
 									</s:iterator>
+
 								</div>
 							</div>
 						</div>
