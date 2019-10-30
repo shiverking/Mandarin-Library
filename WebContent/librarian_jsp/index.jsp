@@ -158,7 +158,7 @@
 =            Popular deals section            =
 ============================================-->
 
-	<section class="popular-deals section bg-gray">
+	<section class=" section bg-gray">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">

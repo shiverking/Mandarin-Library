@@ -86,12 +86,21 @@
 					</div>
 				</s:if>
 				<form action="readersignin" id="loginform" method="post">
-					<label id="uName">Mobile number:</label> <input
-						class="form-control bg-shadow" type="text"
-						placeholder="Input Your mobile number" Id="User"
-						name="PhoneNumber"> <label>Password</label> <input
-						class="form-control bg-shadow" type="password"
-						placeholder="Input Your Password" id="Password" name="Password">
+					<label id="uName">Mobile number:</label>
+					<div class="input-group margin-bottom-sm ">
+						<span class="input-group-addon"><i
+							class="fa fa-user-o fa-fw"></i></span> <input
+							class="form-control bg-shadow" type="text"
+							placeholder="Input Your mobile number" Id="User"
+							name="PhoneNumber">
+					</div>
+
+					<label>Password</label>
+					<div class="input-group margin-bottom-sm ">
+						<span class="input-group-addon "><i class="fa fa-key fa-fw"></i></span>
+						<input class="form-control bg-shadow" type="password"
+							placeholder="Input Your Password" id="Password" name="Password">
+					</div>
 					<label></label>
 					<div class="row justify-content-center">
 						<select class="form-control form-control-lg col-4 bg-shadow"
@@ -117,7 +126,7 @@
 =            Forget Password           =
 =============================-->
 
-	<!-- Modal -->
+	<!-- reader 找回密码的Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
@@ -133,9 +142,13 @@
 				</div>
 				<form action="forgetReaderPassword" id="getPassword" method="post">
 					<div class="modal-body">
+						<div class="input-group margin-bottom-sm ">
+							<span class="input-group-addon "><i
+								class="fa fa-envelope-o fa-fw"></i></span><input
+								class="form-control bg-shadow" type="email"
+								placeholder="Input Your Email" name="Email">
+						</div>
 
-						<input class="form-control bg-shadow" type="email"
-							placeholder="Input Your Email" name="Email">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
@@ -149,89 +162,7 @@
 	<!--============================
 =            Footer            =
 =============================-->
-
-	<footer class="footer section section-sm">
-		<!-- Container Start -->
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-7 offset-md-1 offset-lg-0">
-					<!-- About -->
-					<div class="block about">
-						<!-- footer logo -->
-						<img src="images/MLA_logo_tagline.png" width="300px" alt="">
-						<!-- description -->
-						<p class="alt-color"></p>
-					</div>
-				</div>
-				<!-- Link list -->
-				<div class="col-lg-2 offset-lg-1 col-md-3">
-					<div class="block">
-						<h4>Site Pages</h4>
-						<ul>
-							<li><a href="#">Boston</a></li>
-							<li><a href="#">How It works</a></li>
-							<li><a href="#">Deals & Coupons</a></li>
-							<li><a href="#">Articls & Tips</a></li>
-							<li><a href="#">Terms of Services</a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- Link list -->
-				<div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0">
-					<div class="block">
-						<h4>Admin Pages</h4>
-						<ul>
-							<li><a href="#">Boston</a></li>
-							<li><a href="#">How It works</a></li>
-							<li><a href="#">Deals & Coupons</a></li>
-							<li><a href="#">Articls & Tips</a></li>
-							<li><a href="#">Terms of Services</a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- Promotion -->
-				<div class="col-lg-4 col-md-7">
-					<!-- App promotion -->
-					<div class="block-2 app-promotion">
-						<a href=""> <!-- Icon --> <img
-							src="images/footer/phone-icon.png" alt="mobile-icon">
-						</a>
-						<p>Get the Dealsy Mobile App and Save more</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Container End -->
-	</footer>
-	<!-- Footer Bottom -->
-	<footer class="footer-bottom">
-		<!-- Container Start -->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-12">
-					<!-- Copyright -->
-					<div class="copyright">
-						<p>Copyright Â© 2019. All Rights Reserved</p>
-					</div>
-				</div>
-				<div class="col-sm-6 col-12">
-					<!-- Social Icons -->
-					<ul class="social-media-icons text-right">
-						<li><a class="fa fa-facebook" href=""></a></li>
-						<li><a class="fa fa-twitter" href=""></a></li>
-						<li><a class="fa fa-pinterest-p" href=""></a></li>
-						<li><a class="fa fa-vimeo" href=""></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- Container End -->
-		<!-- To Top -->
-		<div class="top-to">
-			<a id="top" class="" href=""><i class="fa fa-angle-up"></i></a>
-		</div>
-	</footer>
-
+	<s:include value="/footer.jsp"></s:include>
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>

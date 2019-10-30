@@ -14,6 +14,7 @@ import java.util.*;
 import model.Book;
 import model.Borrowrecord;
 import model.CurrentRecord;
+import model.Librarian;
 import service.BookService;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
@@ -61,58 +62,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 		this.bookID3 = bookID3;
 	}
 
-	public static String getBookName() {
-		return BookName;
-	}
-
-	public static void setBookName(String bookName) {
-		BookName = bookName;
-	}
-
-	public static String getISBN() {
-		return ISBN;
-	}
-
-	public static void setISBN(String iSBN) {
-		ISBN = iSBN;
-	}
-
-	public static String getPrice() {
-		return Price;
-	}
-
-	public static void setPrice(String price) {
-		Price = price;
-	}
-
-	public static String getAuthor() {
-		return Author;
-	}
-
-	public static void setAuthor(String author) {
-		Author = author;
-	}
-
-	public static String getDescription() {
-		return Description;
-	}
-
-	public static void setDescription(String description) {
-		Description = description;
-	}
-
-	public static void setCategory(String category) {
-		Category = category;
-	}
-
-	public static String getIsbn() {
-		return isbn;
-	}
-
-	public static void setIsbn(String isbn) {
-		BookAction.isbn = isbn;
-	}
-
+	
 	private int bookID3;
 	// 闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔活潡閹惧懏瀚归柨鐔告灮閹疯渹濞囬柨鐔虹叓閻ㄥ嫮娅㈤幏鐑芥晸閺夋壆灏ㄩ幏鐑芥晸閺傘倖瀚�
 
@@ -133,11 +83,11 @@ public class BookAction extends BaseAction<Book, BookService> {
 	// reader闁跨喐鏋婚幏鐤洣娴ｅ潡鏁撻惌顐ゆ畱閻氬瓨瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚�
 	public String searchBook() {
 		// TODO:閸掑棝銆夐幖婊呭偍
-		if (categoryString!=null&&categoryString.isEmpty()) {
+		if (categoryString != null && categoryString.isEmpty()) {
 			categoryString = null;
 		}
-		if (searchContent==null||searchContent.isEmpty()) {
-			searchContent="";
+		if (searchContent == null || searchContent.isEmpty()) {
+			searchContent = "";
 		}
 		if (selectSearch != null) {
 			switch (selectSearch) {
@@ -157,7 +107,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 				bookPage = this.getService().getPageBean(searchContent, categoryString, pageNum);
 			}
 		} else {
-			selectSearch=1;
+			selectSearch = 1;
 			bookPage = this.getService().getPageBean(searchContent, categoryString, pageNum);
 		}
 		this.getsCategory();
@@ -351,12 +301,20 @@ public class BookAction extends BaseAction<Book, BookService> {
 		return SUCCESS;
 	}
 
+	public String returnBookByCurrentRecords() {
+		this.getBooksbycurrentRecords();
+		for (Iterator iterator = books.iterator(); iterator.hasNext();) {
+			Book book = (Book) iterator.next();
+			book.setIsBorrowed(false);
+			this.getService().mergeBook(book);
+		}
+		return SUCCESS;
+	}
 	// reader闁跨喐鏋婚幏鐤洣娴ｅ潡鏁撻惌顐ゆ畱閻氬瓨瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚�
 
 	public String addBook() throws Exception {
 		HttpServletRequest NumRequest = ServletActionContext.getRequest();
 		String BookName = this.getModel().getBookName();
-
 		String Location = this.getModel().getLocation();
 		String Category = this.getModel().getCategory();
 		int Number = Integer.parseInt(NumRequest.getParameter("Num"));
@@ -373,145 +331,70 @@ public class BookAction extends BaseAction<Book, BookService> {
 		}
 		return SUCCESS;
 	}
-
 	// 闁哄秷顫夊畵涓BN闁告梻濮抽崝锟�
-	static String BookName=null;//涔﹀悕
-	static String ISBN=null;
-	static String Price=null;//浠锋牸
-	static String Author=null;//浣滆��
-	static String Description=null;//涔︾睄绠�浠�
-	static String Category=null;//绉嶇被
-	static String isbn;
-	static String ImageAddress=null;//鍥剧墖鍦板潃
-	public static String getUrl(String isbn) {//鏋勯�燯RL
-		StringBuilder builder= new StringBuilder();
+
+	public  String getUrl(String isbn) {// 鏋勯�燯RL
+		StringBuilder builder = new StringBuilder();
 		builder.append("https://api.douban.com/v2/book/isbn/");
 		builder.append(isbn);
 		builder.append("?apikey=0b2bdeda43b5688921839c8ecb20399b");
 		return builder.toString();
 	}
-	public static String getContent(String urlName) {//鑾峰彇缃戦〉鏄剧ず鐨勫唴瀹�
-		String result="";
-		BufferedReader reader= null;
-		try {
+
+	public String getContent(String urlName) throws IOException {// 鑾峰彇缃戦〉鏄剧ず鐨勫唴瀹�
+		String result = "";
+		BufferedReader reader = null;
+	
 			URL url = new URL(urlName);
 			URLConnection conn = url.openConnection();
 			conn.setDoInput(true);
 			conn.setDoInput(true);
 			conn.setRequestProperty("accept", "*/*");
-            conn.setRequestProperty("connection", "Keep-Alive");
-            conn.setRequestProperty("user-agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-            conn.connect();//寤虹珛杩炴帴
-            reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));//瀹氫箟杈撳叆娴佹潵璇诲彇URL鐨勫搷搴�
-            String line;
-            while((line= reader.readLine())!=null) {
-            	result+=line;
-            }
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			if(reader!=null)
-			try {
-				reader.close();
-			}catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
+			conn.setRequestProperty("connection", "Keep-Alive");
+			conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+			conn.connect();// 寤虹珛杩炴帴
+			reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));// 瀹氫箟杈撳叆娴佹潵璇诲彇URL鐨勫搷搴�
+			String line;
+			while ((line = reader.readLine()) != null) {
+				result += line;
 			}
-		}
+			if (reader != null)
+				try {
+					reader.close();
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+	
 		return result;
 	}
-	public static void seprarate(String result) {//瀵硅幏鍙栧埌鐨勭綉椤靛唴瀹硅繘琛屽垎鍓诧紝鑾峰彇鎰熷叴瓒ｇ殑鏁版嵁閮ㄥ垎,鐢ㄦ鍒欒〃杈惧紡杩涜鍖归厤
-		String pattern[] = new String[6];
-		Pattern patterncompile[] = new Pattern[6];
-		Matcher matcher[] =new Matcher[6];
-		String group[] = new String[6];
-		pattern[0]="<title>(.*)</title>";//鍖归厤涔︾睄鍚嶇О
-		pattern[1]="<db:attribute name=\"price\">(.*?)</db:attribute>";//鍖归厤浠锋牸
-		pattern[2]="<db:attribute name=\"author\">(.*?)</db:attribute>";//鍖归厤浣滆��
-		pattern[3]="<summary>(.*)</summary>";//鍖归厤绠�浠�
-		pattern[4]="<db:rating(.*?)/>(.*)<gd:rating";//鍖归厤涔︾睄绉嶇被
-		pattern[5]="rel=\"alternate\"/>	<link href=\"(.*?)\" rel=\"image\"/>";//鍖归厤鍥剧墖
-		for(int i=0;i<6;i++) {
-			patterncompile[i]=Pattern.compile(pattern[i]);
-			matcher[i]=patterncompile[i].matcher(result);
-			if(matcher[i].find()) {
-				if(i<=3||i==5) {
-				group[i]=matcher[i].group(1);
-				}
-				else {
-				group[i]=matcher[i].group(2);//杩涜浜屾鍖归厤
-				String[] splitStr = group[i].split("\"");
-				String res="";
-				for(String str:splitStr) {
-					if(Pattern.matches("[\\u4E00-\\u9FA5]+", str))
-						res+=str+",";
-					
-				}
-				group[i]=res;
+
+	@SuppressWarnings("finally")
+	public  String findByISBNinWeb() {// 瑙ｆ瀽浠庣綉椤典腑鑾峰彇鐨刯son鏍煎紡鐨勬暟鎹�
+		try {
+			JSONObject jsonObject = new JSONObject(this.getContent(this.getUrl(this.getModel().getISBN().strip())));
+			this.getModel().setBookName(jsonObject.getString("title")); // 获取书名
+			this.getModel().setPrice(jsonObject.getString("price")); // 获取价格
+			String description = "<p>" + jsonObject.getString("summary") + "</p>"; // 获取描述
+			this.getModel().setIntroduction(description.replaceAll("\n", "</p><p>"));
+			this.getModel().setISBN(jsonObject.getString("isbn13"));// 获取isbn
+			JSONArray AuthorArray = jsonObject.getJSONArray("author");
+			String Author = "";
+			for (int i = 0; i < AuthorArray.length(); i++) {// 
+				if (i == AuthorArray.length() - 1) {
+					Author += AuthorArray.get(i);
+				} else {
+					Author += AuthorArray.get(i) + "/";
 				}
 			}
+			this.getModel().setAuthor(Author);//获取作者
+			JSONObject ImageAddressObject = jsonObject.getJSONObject("images");
+			this.getModel().setImageAddress( ImageAddressObject.getString("large"));// 鑾峰彇鍥剧墖閾炬帴鍦板潃
+		} catch (Exception e) {
+			this.errorMessage="Unable to find this book";
+		}finally {
+			return SUCCESS;
 		}
-		BookName=group[0];Price=group[1];Author=group[2];Description=group[3];Category=group[4];ImageAddress=group[5];
-		if(BookName==null||BookName.isEmpty())BookName="Default Book";
-		if(Category==null||Category.isEmpty())Category="Default Category,";
-	}
-	public static  void parseJSON(String content) {//瑙ｆ瀽浠庣綉椤典腑鑾峰彇鐨刯son鏍煎紡鐨勬暟鎹�
-	    try
-	    {
-	            JSONObject jsonObject = new JSONObject(content);
-	            BookName = jsonObject.getString("title"); //鑾峰彇鍥句功鍚�
-	            Price = jsonObject.getString("price"); //鑾峰彇浠锋牸
-	           String description = "<p>"+jsonObject.getString("summary")+"</p>"; //鑾峰彇鍥句功绠�浠�
-	           Description=description.replaceAll("\n", "</p><p>");
-	            ISBN = jsonObject.getString("isbn13");//鑾峰彇ISBN
-	            JSONArray AuthorArray = jsonObject.getJSONArray("author");
-	            Author="";Category="";
-	            for(int i=0;i<AuthorArray.length();i++) {//搴斿澶氫綔鑰呯殑鎯呭喌
-	            	if(i==AuthorArray.length()-1){
-	            		Author+=AuthorArray.get(i);
-	            	}else{
-	            		Author+=AuthorArray.get(i)+"/";
-	            	}
-	            }
-	            JSONObject ImageAddressObject=jsonObject.getJSONObject("images");
-	            ImageAddress = ImageAddressObject.getString("large");//鑾峰彇鍥剧墖閾炬帴鍦板潃
-	            JSONArray tagsArray = jsonObject.getJSONArray("tags");
-	            for(int i=0;i<tagsArray.length();i++) {
-	            	JSONObject tmpObject =new JSONObject(tagsArray.get(i).toString());
-	            	Category += tmpObject.getString("name")+",";
-	            }
-	    }
-	    catch (Exception e)
-	    {
-	        e.printStackTrace();
-	    }
-	}	
-	
-
-	public String addBookISBN() throws Exception {
-		String isbn = this.getModel().getISBN();
-		HttpServletRequest NumRequest = ServletActionContext.getRequest();
-		String Location = this.getModel().getLocation();
-		int Number = Integer.parseInt(NumRequest.getParameter("Number"));
-		parseJSON(getContent(getUrl(isbn.strip())));
-
-		for (int i = 0; i < Number; i++) {
-			this.getModel().setBookName(BookName);
-			this.getModel().setAuthor(Author);
-			this.getModel().setIntroduction(Description);
-			this.getModel().setCategory(Category);
-			this.getModel().setISBN(isbn);
-			this.getModel().setPrice(Price);
-			this.getModel().setLocation(Location);
-			this.getModel().setReturnPeriod(30);
-			this.getModel().setFineValue(1);
-			this.getModel().setIsBorrowed(false);
-			this.getModel().setCategory(Category);
-			this.getModel().setImageAddress(ImageAddress);
-			this.getService().saveBook(this.getModel());
-		}
-		return SUCCESS;
 	}
 
 	public String addBookPage() {
@@ -540,6 +423,11 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 	public String deleteBook() {
+		Map<String, Object> session = ActionContext.getContext().getSession();//
+		Librarian librarian = (Librarian) session.get("librarian");
+		if (librarian == null) {
+			return INPUT;
+		}
 		isbn1 = this.getService().getBookById(book.getBookID()).getISBN();
 		this.getService().deleteBookById(book.getBookID());
 		return SUCCESS;
@@ -557,13 +445,13 @@ public class BookAction extends BaseAction<Book, BookService> {
 		if (this.getModel().getLocation() != null) {
 			book.setLocation(this.getModel().getLocation());
 		}
-		if (this.getModel().getISBN()!= null) {
+		if (this.getModel().getISBN() != null) {
 			book.setISBN(this.getModel().getISBN());
 		}
-		if (this.getModel().getAuthor()!= null) {
+		if (this.getModel().getAuthor() != null) {
 			book.setAuthor(this.getModel().getAuthor());
 		}
-		if (this.getModel().getIntroduction()!= null) {
+		if (this.getModel().getIntroduction() != null) {
 			book.setIntroduction(this.getModel().getIntroduction());
 		}
 		book.setIsBorrowed(this.getModel().getIsBorrowed());

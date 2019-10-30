@@ -18,5 +18,12 @@ public class PayrecordServiceImpl extends BaseService<Payrecord>implements Payre
 		List<Payrecord> payrecord = this.getDao().findAll();
 		return payrecord;
 	}
-
+	public int getNumOfDeposit(String date1,String date2) {
+		int num = this.getDao().findAllCanByDate("Deposit", date1, date2);
+		return num;
+	}
+	public int getSumOfFine(String date1,String date2) {
+		int num = this.getDao().findAllCanByDate("Fine", date1, date2);
+		return num;
+	}
 }

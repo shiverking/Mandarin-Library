@@ -81,7 +81,7 @@
 									<div class="thumb-content" style="text-align: center">
 										<!-- <div class="price">$200</div> -->
 										<a data-toggle="collapse" href="#collap${bookID}"> <img
-											class="card-img-top img-fluid" src="${ImageAddress}"
+											class="card-img-top img-fluid" src="${ImageAddress}" onerror="{this.src='images/book-default-lpic.gif'}"
 											alt="Card image cap" style="height: 200px; width: auto;">
 										</a>
 									</div>

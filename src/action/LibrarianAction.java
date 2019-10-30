@@ -30,10 +30,10 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	public void setLibrarians(List<Librarian> librarians) {
 		Librarians = librarians;
 	}
-	/*閿熸枻鎷烽檰*/
+	/*闁跨喐鏋婚幏鐑芥*/
 	public String signin() throws Exception{
-		String LibrarianName =this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName
-		String Password  =this.getModel().getPassword();//閿熸枻鎷峰彇閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
+		String LibrarianName =this.getModel().getLibrarianName();//闁跨喐鏋婚幏宄板絿LibrarianName
+		String Password  =this.getModel().getPassword();//闁跨喐鏋婚幏宄板絿闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨噦鎷�
 		if(LibrarianName.isEmpty()) {
 			System.out.println(LibrarianName);
 			this.errorMessage="You must input the Name!";
@@ -52,6 +52,11 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		}
 		this.errorMessage="Your name or password is wrong, please try again !";
 		return INPUT;
+	}
+	public String signout() throws Exception {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		session.put("librarian", null);
+		return SUCCESS;
 	}
 	public String signup() throws Exception{
 		Map<String, Object> session = ActionContext.getContext().getSession();
@@ -124,7 +129,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		this.getService().deleteLibrarianById(i);
 		return SUCCESS;
 	}
-	// 获取当前lib状态
+	// 鑾峰彇褰撳墠lib鐘舵��
 		public String getLibstatu() {
 			Map<String, Object> session = ActionContext.getContext().getSession();
 			librarian = (Librarian) session.get("librarian");

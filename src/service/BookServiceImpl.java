@@ -74,7 +74,7 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 		List<String> pnList = new ArrayList<String>();
 		List<String> vList = new ArrayList<String>();
 		if (categoryString != null) {
-			categoryString += ",";
+			
 			pnList.add("category");
 			vList.add(categoryString);
 		}
@@ -106,7 +106,7 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 		List<String> pnList = new ArrayList<String>();
 		List<String> vList = new ArrayList<String>();
 		if (categoryString != null) {
-			categoryString += ",";
+			
 			pnList.add("category");
 			vList.add(categoryString);
 		}
@@ -136,7 +136,7 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 		List<String> pnList = new ArrayList<String>();
 		List<String> vList = new ArrayList<String>();
 		if (categoryString != null) {
-			categoryString += ",";
+			
 			pnList.add("category");
 			vList.add(categoryString);
 		}
@@ -166,7 +166,7 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 		List<String> pnList = new ArrayList<String>();
 		List<String> vList = new ArrayList<String>();
 		if (categoryString != null) {
-			categoryString += ",";
+			
 			pnList.add("category");
 			vList.add(categoryString);
 		}

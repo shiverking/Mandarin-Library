@@ -113,7 +113,7 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 		return this.getDao().getSingle("Email", email);
 	}
 
-	public PageBean<Reader> getPageBean(Integer pageNum) {
+	public PageBean<Reader> getPageBean(String searString, Integer pageNum) {
 		// TODO Auto-generated method stubpublic PageBean<Borrowrecord> getPageBean(Reader reader, Integer pageNum,boolean isreturn) {
 		// TODO 分页查询
 		int Num = 1;
@@ -122,11 +122,16 @@ public class ReaderServiceImpl extends BaseService<Reader> implements ReaderServ
 		}
 		List<String> pls=new ArrayList<String>();
 		List<String> vlsList=new ArrayList<String>();
+	
+		if (searString!=null&&!searString.isEmpty()) {
+			pls.add("Email");
+			vlsList.add("'"+searString+"'");
+		}
 		pls.add("ReaderName");
 		vlsList.add("");
-		int totalRecords = this.getDao().findTotalNum(pls, vlsList, 0, 0);
+		int totalRecords = this.getDao().findTotalNum(pls, vlsList,  pls.size()-1, vlsList.size()-1);
 		PageBean<Reader> page = new PageBean<Reader>(totalRecords, Num,5);
-		page.setDataList(this.getDao().findPage(pls, vlsList, null, 0, 0, 0, page.getStartIndex(), page.getPageSize()));
+		page.setDataList(this.getDao().findPage(pls, vlsList, null, pls.size()-1, vlsList.size()-1, 0, page.getStartIndex(), page.getPageSize()));
 		return page;
 	}
 
