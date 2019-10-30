@@ -59,7 +59,6 @@ public class LibrarianServicelmpl extends BaseService<Librarian>implements Libra
 
 	@Override
 	public Librarian getLibrarianByName(String librarianName) {
-		// TODO Auto-generated method stub
 		Librarian librarian=getLibrarianByID(findID(librarianName));
 		return librarian;
 	}

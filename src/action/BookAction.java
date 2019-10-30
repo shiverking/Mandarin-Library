@@ -190,7 +190,7 @@ public class BookAction extends BaseAction<Book, BookService> {
 	public String adminEditBook() {
 
 		String i = this.getModel().getISBN();
-		int f =this.getModel().getFineValue();
+		try{int f =this.getModel().getFineValue();
 		int rp=this.getModel().getReturnPeriod();
         List<Book> temBook = this.getService().getAllBooks();
         Iterator<Book> iBook = temBook.iterator();
@@ -206,6 +206,11 @@ public class BookAction extends BaseAction<Book, BookService> {
         }
         System.out.println(temBook.get(1).getFineValue());
 		return "none";
+		}catch(Exception E)
+		{
+			this.errorMessage="Please enter integer";
+			return INPUT;
+		}
 //		return SUCCESS;
 	}
 

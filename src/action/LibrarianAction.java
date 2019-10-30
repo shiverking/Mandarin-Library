@@ -29,9 +29,15 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	}
 	/*锟斤拷陆*/
 	public String signin() throws Exception{
+<<<<<<< Updated upstream
 		String LibrarianName =this.getModel().getLibrarianName();//锟斤拷取LibrarianName
 		String Password  =this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
 		if(LibrarianName==null) {
+=======
+		String LibrarianName =this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName
+		String Password  =this.getModel().getPassword();//閿熸枻鎷峰彇閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
+		if(LibrarianName.isEmpty()) {
+>>>>>>> Stashed changes
 			this.errorMessage="You must input the Name!";
 			return INPUT;
 		}
@@ -47,6 +53,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			return SUCCESS;
 		}
 		this.errorMessage="Your name or password is wrong, please try again !";
+		
 		return INPUT;
 	}
 	public String signup() throws Exception{
@@ -63,7 +70,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			this.errorMessage="You must input the Email!";
 			return INPUT;
 		}
-		Librarian librarian = this.getService().verify(LibrarianName, Password);
+		Librarian librarian = this.getService().getLibrarianByName(LibrarianName);
 		if(!NewPassword.equals(Password)) {
 			this.errorMessage="Both passwords must be the same!";
 			return INPUT;
@@ -81,7 +88,11 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		    	return SUCCESS;
 			}
 		}
-		this.errorMessage="Your name or password is wrong, please try again !";
+		if(librarian!=null)
+		{
+			this.errorMessage="The user name has been registered";
+			return INPUT;
+		}
 		return INPUT;
 	}
 	public String show()
@@ -90,24 +101,35 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return SUCCESS;
 	}
 	public String editLibrarian() {
-		int i = this.getModel().getLibrarianID();
+
 		String n=this.getModel().getLibrarianName();
 		String e=this.getModel().getEmail();
 		String p=this.getModel().getPassword();
-		this.librarian=this.getService().getLibrarianByID(i);
-		this.librarian=this.getService().getLibrarianByID(librarian.getLibrarianID());
-		if(this.getModel().getLibrarianName()!=null) {
-			librarian.setLibrarianName(n);
-		}
-		if(this.getModel().getEmail()!=null)
+
+		System.out.print("p="+p);
+		if(n.isEmpty())
 		{
-			librarian.setEmail(e);
-			librarian.setLibrarianName(this.getModel().getLibrarianName());
+			this.errorMessage="Please input the Librarian Name";
+			System.out.print(errorMessage);
+			return INPUT;
 		}
-		if(this.getModel().getPassword()!=null) {
-			librarian.setPassword(p);
-			librarian.setPassword(this.getModel().getPassword());
+		if(e.isEmpty())
+		{
+			this.errorMessage="Please input the Librarian Email";
+			System.out.print(errorMessage);
+			return INPUT;
 		}
+		if(this.getModel().getPassword().isEmpty())
+		{
+			this.errorMessage="Please input the Librarian Password";
+			System.out.print(errorMessage);
+			return INPUT;
+		}
+		int i = this.getModel().getLibrarianID();
+		this.librarian=this.getService().getLibrarianByID(i);
+		librarian.setLibrarianName(n);
+		librarian.setEmail(e);
+		librarian.setPassword(p);
 		this.getService().mergeLibrarian(librarian);
 		return SUCCESS;
 	}
@@ -116,6 +138,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		this.getService().deleteLibrarianById(i);
 		return SUCCESS;
 	}
+<<<<<<< Updated upstream
 	public String findPassword() throws Exception//admin 找回 librarian密码
 	{
 		if(this.getService().findID(librarian.getLibrarianName())==0)
@@ -130,8 +153,33 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			Email email=new Email(librarian.getEmail());
 			email.sendEmail(librarian.getLibrarianName(),librarian.getPassword());
 			return SUCCESS;
+=======
+	// 获取当前lib状态
+		public String getLibstatu() {
+			Map<String, Object> session = ActionContext.getContext().getSession();
+			librarian = (Librarian) session.get("librarian");
+			if (librarian == null) {
+				return NONE;
+			}
+			return SUCCESS;
 		}
-	}
+		public String findPassword() throws Exception//admin 找回 librarian密码
+		{	
+			if(this.getService().findID(librarian.getLibrarianName())==0)
+			{
+				this.errorMessage="This Librarian is not exist";
+				return INPUT;
+			}
+			else {
+				this.librarian=this.getService().getLibrarianByID(this.getService().findID(librarian.getLibrarianName()));			
+				Email email=new Email(librarian.getEmail());
+				email.sendEmail(librarian.getLibrarianName(),librarian.getPassword());
+				this.errorMessage="Send successfully!";
+				System.out.println(this.errorMessage);
+				return SUCCESS;
+			}
+>>>>>>> Stashed changes
+		}
 	public String search()
 	{
 		this.librarian=this.getService().getLibrarianByName(librarian.getLibrarianName());

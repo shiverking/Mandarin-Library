@@ -92,6 +92,12 @@
               <span class="menu-title">Edit fines and return period</span>
             </a>
           </li>
+                    <li class="nav-item">
+            <a class="nav-link" href="logout">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Log out</span>
+            </a>
+          </li>
         </ul>
       </nav>
 

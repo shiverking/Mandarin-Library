@@ -70,8 +70,8 @@
 		</action>
 		<!-- Admin 找回Librarian 密码 -->
 		<action name="findPassword" class="librarianAction" method="findPassword">
-		<result name="success">/FindPassword.jsp</result>
-		<result name="failure">/FindPassword.jsp</result>
+		<result name="success">/AdminJsp/index.jsp</result>
+		<result name="INPUT">/AdminJsp/index.jsp</result>
 		</action>
 		<!-- Admin搜索Librarian功能 -->
 		<action name="searchLibrarian" class="librarianAction" method="search">
@@ -197,6 +197,7 @@
 		<action name="editLibrarian" class="librarianAction"
 			method="editLibrarian">
 			<result name="success">/AdminJsp/pages/EditLibrarian.jsp</result>
+			<result name="input">/AdminJsp/pages/EditLibrarian.jsp</result>
 		</action>
 		<!-- Admin查看书籍列表 -->
 		<action name="adminDisplayBooks" class="bookAction" method="display">

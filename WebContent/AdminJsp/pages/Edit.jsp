@@ -3,10 +3,28 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
-</script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/AdminJsp/js/LibrarianName.js" type="text/javascript"></script>
 <script src="../js/edit.js" type="text/javascript"></script>
+<script>
+function lll()
+{
+	var	Rp = document.getElementByid("ReturnPeriod${ISBN}").value;
+	var f =document.getElementByid("FineValue${ISBN}").value;
+	alert(Rp)
+	if(isNaN(Rp))
+	{
+		${errorMessage}="The Return Period must to be a number";
+		launch_toast();
+		return false
+		
+	}
+	
+	
+	
+}
+
+</script>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -20,6 +38,7 @@
   <link rel="stylesheet" href="../css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/favicon.png" />
+   <link rel="stylesheet" href="<%=request.getContextPath()%>/style/style.css">  
 </head>
 
 <body>
@@ -95,6 +114,12 @@
               <span class="menu-title">Edit fines and return period</span>
             </a>
           </li>
+            <li class="nav-item">
+            <a class="nav-link" href="logout">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Log out</span>
+            </a>
+          </li>
         </ul>
       </nav>      
       <!-- partial -->
@@ -161,7 +186,7 @@
                             <div>
                             <button id="edit${ISBN}" type="button" value="edit" class="caname${ISBN} btn btn-outline-success btn-icon-text btn-rounded btn-sm">edit  </button>
                             	<div id="save${ISBN}" style="display:none;">
-                            	<button type="submit"  class="btn btn-outline-primary btn-icon-text btn-rounded btn-sm">save</button>
+                            	<input type="button"  class="btn btn-outline-primary btn-icon-text btn-rounded btn-sm" value="save" onclick="lll">
                             	</div>  
                             </div>                          
                           </td>
@@ -175,7 +200,32 @@
               </div>
             </div>
            </div>
-           </div>
+            		<div id="toast" style="position: absolute;margin-bottom:50px;">
+					<div id="img">
+					<i class="fas fa-exclamation-circle"></i>
+					</div>
+					<p id="desc"></p>
+					</div>
+        </div>
+        <script>
+		function launch_toast() {
+			var x = document.getElementById("toast")
+			x.className = "show";
+			var desc = document.getElementById("desc");
+			desc.innerHTML = "<s:property value="errorMessage"></s:property>";
+			setTimeout(function() {
+				x.className = x.className.replace("show", "");
+			}, 2900);
+		};
+
+		(function() {
+			if ("<s:property value="errorMessage"></s:property>" == "") {
+				console.log("no error");
+			} else {
+				launch_toast();
+			}
+		})();
+		</script>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
