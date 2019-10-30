@@ -24,10 +24,10 @@ import util.PageBean;
 public class DeleterecordAction extends BaseAction<Deleterecord, DeleterecordService> {
 
 	private Reader tempReader;
-	private List<Book> books;// ¿ÉÄÜ±»É¾³ý
+	private List<Book> books;// ï¿½ï¿½ï¿½Ü±ï¿½É¾ï¿½ï¿½
 	private Integer pageNum;
 	private String isbn1;
-	
+	private List<model.Deleterecord> Deleterecords;
 	public String addRecord() throws Exception {
 		int deleterecordID = this.getModel().getDeleterecordID();
 		Date date = new Date();
@@ -49,6 +49,41 @@ public class DeleterecordAction extends BaseAction<Deleterecord, DeleterecordSer
 	public void setIsbn1(String isbn1) {
 		this.isbn1 = isbn1;
 	}
+	public String displayDeleteRecords() {
+		this.Deleterecords = this.getService().getDeleteRecord();
+		return SUCCESS;
+	}
 
+	public Reader getTempReader() {
+		return tempReader;
+	}
+
+	public void setTempReader(Reader tempReader) {
+		this.tempReader = tempReader;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
+	public Integer getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	public List<model.Deleterecord> getDeleterecords() {
+		return Deleterecords;
+	}
+
+	public void setDeleterecords(List<model.Deleterecord> deleterecords) {
+		Deleterecords = deleterecords;
+	}
 
 }

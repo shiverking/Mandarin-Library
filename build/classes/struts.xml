@@ -294,7 +294,10 @@
 		<action name="displayBooks" class="bookAction" method="display">
 			<result name="success">/librarian_jsp/BookList.jsp</result>
 		</action>
-
+		<!-- Librarian查看删除书籍列表 -->
+		<action name="displayDeleteRecords" class="deleterecordAction" method="displayDeleteRecords">
+			<result name="success">/librarian_jsp/DeleteRecord.jsp</result>
+		</action>
 		<!-- Librarian搜索书籍 -->
 		<action name="searchBook1" class="bookAction"
 			method="searchBook">

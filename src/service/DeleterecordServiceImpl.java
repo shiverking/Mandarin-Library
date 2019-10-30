@@ -11,6 +11,9 @@ public class DeleterecordServiceImpl extends BaseService<Deleterecord> implement
 		// TODO Auto-generated method stub
 		this.getDao().save(model);
 	}
-
+	public List<Deleterecord> getDeleteRecord() {
+		List<Deleterecord> DeleteRecord = this.getDao().findAll();
+		return DeleteRecord;
+	}
 
 }
