@@ -13,8 +13,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BookBorrow</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -44,13 +42,15 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
+	<script src="webapp/ckeditor.js"></script>
 </head>
 
 
 
 <body>
-	<s:include value="/librarian_jsp/Navbar.jsp" />
+
+	<s:include value="/Navbar.jsp" />
+	<s:include value="/librarian_jsp/PostSingleNews.jsp"></s:include>
 	<!--==================================
 =            User Profile            =
 ===================================-->
@@ -77,10 +77,10 @@
 							<ul>
 								<li><a href="BookManagement"><i class="fa fa-book"></i>
 										Manage Book </a></li>
-								<li><a href="BookSearch"><i class="fa fa-search"></i>
+								<li><a href="searchBook1"><i class="fa fa-search"></i>
 										Search Book</a></li>
-								<li><a href="ReaderRegister"><i class="fa fa-user-plus"></i>
-										Register Reader </a></li>
+								<li><a href="getAllReaders"><i class="fa fa-user-plus"></i>
+										Managing readers </a></li>
 								<li><a href="BorrowHistory"><i class="fa fa-history"></i>
 										Borrow History</a></li>
 								<li><a href="BookBorrow"><i class="fa fa-share"></i>
@@ -89,50 +89,45 @@
 										Return Book</a></li>
 								<li><a href="IncomeHistory"><i class="fa fa-money"></i>
 										Income History</a></li>
-								<li class="active"><a href=""><i
+								<li ><a href="displayPosts"><i
 										class="fa fa-paper-plane"></i> Post News</a></li>
-								<li><a href="sLogout"><i class="fa fa-sign-out"></i>
+								<li class="active"><a href="displayDeleteRecords"><i class="fa fa-trash-o" aria-hidden="true"></i>
+										Deleted Records</a></li>
+								<li><a href="librarianLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
-					<!-- Recently Favorited -->
-					<div class="widget dashboard-container my-adslist">
-					<div class="form-group">
-						<label>NewsPost</label>
-						</div>
-						<table border="1" name="AddBook">
-							<form action="getLibStatuForPostNews" method="post" textarea rows="10"
-								cols="30">
-								<div class="form-group">
-								<label>Title</label>
-								<input name="Title" required="required" class="form-control">
-								</div>
-								<div class="form-group">
-								<label>Content</label><br>
-								<textarea class="form-main-control" rows="10" cols="45" name="Content" required="required" /></textarea>
-								</div>
-								<div class="form-group">
-								<button type="submit" class="btn btn-primary">Submit</button>
-								</div>
-							</form>
-						</table>
-						</div>
-
-					</div>
-					
-				</div>
-			</div>
-			<!-- Row End -->
-		</div>
-		<!-- Container End -->
+			<form action="displayDeleteRecords " method="post">
+    <table class="table table-striped">
+    <tr>
+      <th>DeleterecordID</th>
+      <th>ISBN</th>
+      <th>Date</th>
+      <th>librarian</th>
+    </tr>
+    <s:iterator value="Deleterecords">
+    <tr>
+      <td align="center"><s:property value="DeleterecordID"/></td>
+      <td align="center"><s:property value="ISBN"/></td>
+      <td align="center"><s:property value="Date"/></td>
+      <td align="center"><s:property value="librarian.getLibrarianName()"/></td>
+    </tr>
+   </s:iterator>
+ 
+   </table>
+   </form>
+		
 	</section>
-	<s:include value="jspElement/Foot.jsp" />
+
+	<!-- Row End -->
+	<!-- Container End -->
+	<s:include value="/footer.jsp" />
 	<!-- JAVASCRIPTS -->
+
+	</script>
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
@@ -143,8 +138,7 @@
 	<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
 	<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+
 	<script src="js/scripts.js"></script>
 
 </body>

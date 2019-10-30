@@ -95,6 +95,8 @@
 										Income History</a></li>
 								<li><a href="displayPosts"><i class="fa fa-paper-plane"></i>
 										Post News</a></li>
+									<li><a href="displayDeleteRecords"><i class="fa fa-trash-o" aria-hidden="true"></i>
+										Deleted Records</a></li>
 								<li><a href="librarianLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
 							</ul>

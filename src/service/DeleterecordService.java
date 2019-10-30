@@ -8,11 +8,11 @@ import util.PageBean;
 
 /**
 * @author 
-* @version ´´½¨Ê±¼ä£º2019Äê10ÔÂ6ÈÕ ÏÂÎç3:35:28
+* @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½10ï¿½ï¿½6ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½3:35:28
 * 
 */
 public interface DeleterecordService {
 
 	void saveDeleterecord(Deleterecord model);
-
+	public List<Deleterecord> getDeleteRecord();
 }
