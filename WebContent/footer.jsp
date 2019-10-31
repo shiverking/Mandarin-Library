@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<footer class="footer section section-sm">
+<footer class="footer " style="padding:30px">
 	<!-- Container Start -->
-	<div class="container">
-		<div class="row">
+	<div class="container justify-content-center">
+		<div class="row ">
 			<div class="col-lg-3 col-md-7 offset-md-1 offset-lg-0">
 				<!-- About -->
 				<div class="block about">
@@ -15,69 +15,38 @@
 			<!-- Link list -->
 			<div class="col-lg-2 offset-lg-1 col-md-3">
 				<div class="block">
-					<h4>Site Pages</h4>
+					<h4>Group-B8</h4>
 					<ul>
-						<li><a href="#">Boston</a></li>
-						<li><a href="#">How It works</a></li>
-						<li><a href="#">Deals & Coupons</a></li>
-						<li><a href="#">Articls & Tips</a></li>
-						<li><a href="#">Terms of Services</a></li>
+						<li>PM</li>
+						<li>Admin-TL</li>
+						<li>Librarian-TL</li>
+						<li>Reader-TL</li>			
 					</ul>
 				</div>
 			</div>
 			<!-- Link list -->
 			<div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0">
 				<div class="block">
-					<h4>Admin Pages</h4>
+					<br>
+					<br>
 					<ul>
-						<li><a href="#">Boston</a></li>
-						<li><a href="#">How It works</a></li>
-						<li><a href="#">Deals & Coupons</a></li>
-						<li><a href="#">Articls & Tips</a></li>
-						<li><a href="#">Terms of Services</a></li>
+						<li>Yan Chongao</li>
+						<li>Zhang Kaiye</li>
+						<li>Wang Jingyu</li>
+						<li>Liu Dehao</li>
 					</ul>
 				</div>
 			</div>
 			<!-- Promotion -->
-			<div class="col-lg-4 col-md-7">
-				<!-- App promotion -->
-				<div class="block-2 app-promotion">
-					<a href=""> <!-- Icon --> <img
-						src="images/footer/phone-icon.png" alt="mobile-icon">
-					</a>
-					<p>Get the Dealsy Mobile App and Save more</p>
-				</div>
-			</div>
 		</div>
+		<div class="copyright">
+					<p>Copyright © 2019. All Rights Reserved</p>
+				</div>
+				<div class="top-to">
+		<a id="top" style="position: fixed; right: 5px; bottom: 5px;"
+			href="#header"><i class="fa fa-angle-up"></i></a>
+	</div>
 	</div>
 	<!-- Container End -->
 </footer>
 <!-- Footer Bottom -->
-<footer class="footer-bottom">
-	<!-- Container Start -->
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 col-12">
-				<!-- Copyright -->
-				<div class="copyright">
-					<p>Copyright © 2019. All Rights Reserved</p>
-				</div>
-			</div>
-			<div class="col-sm-6 col-12">
-				<!-- Social Icons -->
-				<ul class="social-media-icons text-right">
-					<li><a class="fa fa-facebook" href=""></a></li>
-					<li><a class="fa fa-twitter" href=""></a></li>
-					<li><a class="fa fa-pinterest-p" href=""></a></li>
-					<li><a class="fa fa-vimeo" href=""></a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- Container End -->
-	<!-- To Top -->
-	<div class="top-to">
-		<a id="top" style="position: fixed; right: 5px; bottom: 5px;"
-			href="#header"><i class="fa fa-angle-up"></i></a>
-	</div>
-</footer>

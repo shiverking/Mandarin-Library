@@ -71,7 +71,7 @@
 							<h5 class="text-center">
 								<s:property value="#session.librarian.librarianName" />
 							</h5>
-							<p>Joined February 06, 2017</p>
+							<p>Time Now:<span id="time"></span></p>
 						</div>
 						<!-- Dashboard Links -->
 						<div class="widget user-dashboard-menu">
@@ -296,7 +296,7 @@
   	var seco=date.getSeconds()<10?"0"+date.getSeconds().toString():date.getSeconds();
   	var timeInfo = date.getFullYear()+"."+(date.getMonth()+1)+"."+date.getDate()+"."+hour+":"+minu+":"+seco;
   	var spanObj = document.getElementById("time");
-  	spanObj.innerHTML = timeInfo.fontcolor("red");
+  	spanObj.innerHTML = timeInfo.fontcolor("gray");
   }
   getCurrentTime();//页面加载时执行
   window.setInterval("getCurrentTime()", 1000); // 每1000毫秒执行一次

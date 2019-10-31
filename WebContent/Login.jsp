@@ -60,6 +60,8 @@
 				document.getElementById("User").name = "PhoneNumber";
 				document.getElementById("User").setAttribute('placeholder',
 						"Input Your Email");
+				document.getElementById("fgp").setAttribute('data-target',
+						"#ReaderFg");
 			} else {
 				document.getElementById("loginform").action = "librarianlogin";
 				document.getElementById("getPassword").action = "#";
@@ -67,12 +69,14 @@
 				document.getElementById("User").name = "LibrarianName";
 				document.getElementById("User").setAttribute('placeholder',
 						"Input Your UserName");
+				document.getElementById("fgp").setAttribute('data-target',
+						"#lbinfo");
 			}
 		};
 	</script>
 	<!--登录的输入表单-->
 	<section class="popular-deals section "
-		style="background-image: url(http://tushuguan.nwpu.edu.cn/images/2019/20191010A.jpg); background-position: center; background-repeat: no-repeat; background-size: cover;">
+		style="background-image: url(images/home/timg.jpg); background-position: center; background-repeat: no-repeat; background-size: cover;">
 		<div class="row justify-content-center">
 			<div class="container form-group col-3 bg-shadow bg-white rounded ">
 				<s:if test="errorMessage!=null">
@@ -115,8 +119,8 @@
 				</form>
 
 				<div class="blockquote text-right">
-					<label><a href="#" data-toggle="modal"
-						data-target="#exampleModalCenter">Forget Password?</a></label>
+					<label><a href="#" data-toggle="modal" id="fgp"
+						data-target="#ReaderFg">Forget Password?</a></label>
 				</div>
 			</div>
 		</div>
@@ -126,10 +130,23 @@
 =            Forget Password           =
 =============================-->
 
+	<div class="modal fade" id="lbinfo" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog " role="document">
+			<div class="modal-content">
+				<div class="modal-header"></div>
+
+				<div class="modal-body">
+				Please contact the Admin to retrieve the password!
+				</div>
+				<div class="modal-footer"></div>
+
+			</div>
+		</div>
+	</div>
 	<!-- reader 找回密码的Modal -->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalCenterTitle"
-		aria-hidden="true">
+	<div class="modal fade" id="ReaderFg" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog " role="document">
 			<div class="modal-content">
 				<div class="modal-header">

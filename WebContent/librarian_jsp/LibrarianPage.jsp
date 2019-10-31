@@ -50,9 +50,8 @@
 
 
 <body>
-<s:include value="jspElement/Head.jsp"/>
 
-<s:include value="jspElement/Foot.jsp"/>
+<s:include value="/Foot.jsp"/>
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
