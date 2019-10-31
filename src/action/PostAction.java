@@ -64,4 +64,8 @@ public class PostAction extends BaseAction<Post, PostService> {
 		this.getService().editPostByID(tmpPost);
 		return SUCCESS;
 	}
+	public String displaySingleNews() {
+		post=this.getService().getPostByID(post.getPostID());
+		return SUCCESS;
+	}
 }
