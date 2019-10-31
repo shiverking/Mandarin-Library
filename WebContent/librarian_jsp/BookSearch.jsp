@@ -276,6 +276,7 @@
         	            };
         </script>
 	<!-- JAVASCRIPTS -->
+
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
@@ -287,7 +288,19 @@
 	<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
 	<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
-
+<script type="text/javascript">
+  function getCurrentTime() {
+  	var date = new Date();
+  	var hour = date.getHours()<10?"0"+date.getHours().toString():date.getHours();
+  	var minu = date.getMinutes()<10?"0"+date.getMinutes().toString():date.getMinutes();
+  	var seco=date.getSeconds()<10?"0"+date.getSeconds().toString():date.getSeconds();
+  	var timeInfo = date.getFullYear()+"."+(date.getMonth()+1)+"."+date.getDate()+"."+hour+":"+minu+":"+seco;
+  	var spanObj = document.getElementById("time");
+  	spanObj.innerHTML = timeInfo.fontcolor("red");
+  }
+  getCurrentTime();//页面加载时执行
+  window.setInterval("getCurrentTime()", 1000); // 每1000毫秒执行一次
+  </script>
 	<script src="js/scripts.js"></script>
 
 </body>
