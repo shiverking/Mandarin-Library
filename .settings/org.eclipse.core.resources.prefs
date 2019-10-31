@@ -3,6 +3,7 @@ eclipse.preferences.version=1
 encoding//WebContent/Admin_login.jsp=UTF-8
 encoding//WebContent/help.jsp=UTF-8
 encoding//src/action/BookAction.java=UTF-8
+
 encoding//src/action/LibrarianAction.java=UTF-8
 encoding//src/action/ReaderAction.java=UTF-8
 encoding//src/dao/CurrentRecordDao.java=UTF-8

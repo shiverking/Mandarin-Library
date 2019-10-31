@@ -43,9 +43,10 @@
 		<!-- Admin 修改密码 -->
 		<action name="changePassword" class="adminAction"
 			method="changePassword">
-			<result name="success">/Change_Success.jsp</result>
-			<result name="input">/Login_success.jsp</result>
-			<result name="login">/Admin_login.jsp</result>
+			<result name="success">/AdminJsp/pages/ChangePassword.jsp</result>
+			<result name="input">/AdminJsp/pages/ChangePassword.jsp</result>
+			<result name="login">/AdminJsp/pages/AdminLogin.jsp</result>
+			<result name="none">/AdminJsp/pages/ChangePassword.jsp</result>
 		</action>
 		<action name="logout" class="adminAction" method="logout">
 			<result name="success">/AdminJsp/pages/AdminLogin.jsp</result>
@@ -67,16 +68,17 @@
 		<interceptor-ref name="LoginInterceptor"/>
 		<result name="login">/AdminJsp/pages/AdminLogin.jsp</result>
 		<result name="success">/AdminJsp/pages/Modify_Deposit.jsp</result>
+		
 		</action>
 		<!-- Admin 找回Librarian 密码 -->
 		<action name="findPassword" class="librarianAction" method="findPassword">
-		<result name="success">/FindPassword.jsp</result>
-		<result name="failure">/FindPassword.jsp</result>
+		<result name="success">/AdminJsp/index.jsp</result>
+		<result name="failure">/AdminJsp/index.jsp</result>
 		</action>
 		<!-- Admin搜索Librarian功能 -->
 		<action name="searchLibrarian" class="librarianAction" method="search">
 		<result name="success">/AdminJsp/pages/searchResult.jsp</result>
-		<result name="input">/AdminJsp/pages/fail.jsp</result>
+		<result name="input">/AdminJsp/index.jsp</result>
 		</action>
 
 		<!-- Reader功能 -->
@@ -604,6 +606,7 @@
 		<action name="editLibrarian" class="librarianAction"
 			method="editLibrarian">
 			<result name="success">/AdminJsp/pages/EditLibrarian.jsp</result>
+			<result name="input">/AdminJsp/pages/EditLibrarian.jsp</result>
 		</action>
 		<!-- Admin查看书籍列表 -->
 		<action name="adminDisplayBooks" class="bookAction" method="display">
@@ -628,7 +631,7 @@
 		<!-- Admin修改书籍逾期罚金和归还期限 -->
 		<action name="adminEditBook" class="bookAction" method="adminEditBook">
 			<result name="success">/AdminJsp/pages/Edit.jsp</result>
-			<result name="none">/AdminJsp/index.jsp</result>
+			<result name="input">/AdminJsp/pages/Edit.jsp</result>
 		</action>
 	</package>
 

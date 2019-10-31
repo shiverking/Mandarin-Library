@@ -41,6 +41,8 @@ public class BookAction extends BaseAction<Book, BookService> {
 	public ISBNgenerator getiSBNgenerator() {
 		return iSBNgenerator;
 	}
+	private String FineValues;
+	private String ReturnPeriods;
 
 	public void setiSBNgenerator(ISBNgenerator iSBNgenerator) {
 		this.iSBNgenerator = iSBNgenerator;
@@ -81,6 +83,23 @@ public class BookAction extends BaseAction<Book, BookService> {
 	// 娴犮儰绗呴弰顖氬徔娴ｆ挷濞囬悽銊ф畱閸旂喕鍏橀崙鑺ユ殶
 
 	// reader闁跨喐鏋婚幏鐤洣娴ｅ潡鏁撻惌顐ゆ畱閻氬瓨瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚�
+	public String getFineValues() {
+		return FineValues;
+	}
+
+	public void setFineValues(String fineValues) {
+		FineValues = fineValues;
+	}
+
+	public String getReturnPeriods() {
+		return ReturnPeriods;
+	}
+
+	public void setReturnPeriods(String returnPeriods) {
+		ReturnPeriods = returnPeriods;
+	}
+
+	// 
 	public String searchBook() {
 		// TODO:閸掑棝銆夐幖婊呭偍
 		if (categoryString != null && categoryString.isEmpty()) {
@@ -542,8 +561,28 @@ public class BookAction extends BaseAction<Book, BookService> {
 	public String adminEditBook() {
 
 		String i = this.getModel().getISBN();
-		int f =this.getModel().getFineValue();
-		int rp=this.getModel().getReturnPeriod();
+		String f = this.FineValues;
+		String rp =this.ReturnPeriods;
+		if(f.isEmpty())
+		{
+			this.errorMessage="Please enter number";
+			this.display();
+			System.out.println(this.errorMessage);
+			return INPUT;
+		}
+		if(rp.isEmpty())
+		{
+			this.errorMessage="Please enter number";
+			this.display();
+			System.out.println(this.errorMessage);
+			return INPUT;
+		}
+		else 
+		try {
+		int f1 =Integer.parseInt(f);
+		int rp1=Integer.parseInt(rp);
+		if(f1>=0&rp1>=0)
+		{
         List<Book> temBook = this.getService().getAllBooks();
         Iterator<Book> iBook = temBook.iterator();
         while(iBook.hasNext())
@@ -551,14 +590,28 @@ public class BookAction extends BaseAction<Book, BookService> {
         	Book b=iBook.next();
         	if((b.getISBN().equals(i))==true)
         	{
-        		b.setFineValue(f);
-        		b.setReturnPeriod(rp);
+        		b.setFineValue(f1);
+        		b.setReturnPeriod(rp1);
         		this.getService().mergeBook(b);
         	}
         }
-        System.out.println(temBook.get(1).getFineValue());
-		return "none";
-//		return SUCCESS;
+		return this.display();
+		}
+		else
+		{
+			this.errorMessage="Please enter the correct number";
+			this.display();
+			System.out.println(this.errorMessage);
+			return INPUT;
+		}
+		
+		}catch(Exception e)
+		{
+			this.errorMessage="Please enter the correct number";
+			this.display();
+			System.out.println(this.errorMessage);
+			return INPUT;
+		}
 	}
 
 	public Integer getSelectSearch() {
@@ -594,3 +647,4 @@ public class BookAction extends BaseAction<Book, BookService> {
 	}
 
 }
+

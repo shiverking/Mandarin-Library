@@ -12,6 +12,7 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/style/style.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -79,7 +80,7 @@
           <li class="nav-item">
             <a class="nav-link" href="../pages/EditLibrarian.jsp">
               <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Librarian</span>
+              <span class="menu-title">Librarians</span>
             </a>
           </li>
           <li class="nav-item">
@@ -89,9 +90,21 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/Mandarin-Library/AdminJsp/pages/ChangePassword.jsp">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Change Password</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="../pages/Edit.jsp">
               <i class="ti-settings menu-icon"></i>
               <span class="menu-title">Edit fines and return period</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Log out</span>
             </a>
           </li>
         </ul>
@@ -119,7 +132,32 @@
               </div>
             </div>         
           </div>
+          <div id="toast" style="position: absolute;margin-bottom:50px;">
+					<div id="img">
+					<i class="fas fa-exclamation-circle"></i>
+					</div>
+					<p id="desc"></p>
+					</div>
         </div>
+        <script>
+		function launch_toast() {
+			var x = document.getElementById("toast")
+			x.className = "show";
+			var desc = document.getElementById("desc");
+			desc.innerHTML = "<s:property value="errorMessage"></s:property>";
+			setTimeout(function() {
+				x.className = x.className.replace("show", "");
+			}, 2900);
+		};
+
+		(function() {
+			if ("<s:property value="errorMessage"></s:property>" == "") {
+				console.log("no error");
+			} else {
+				launch_toast();
+			}
+		})();
+		</script>        
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
