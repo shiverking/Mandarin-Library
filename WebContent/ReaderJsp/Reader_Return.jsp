@@ -76,7 +76,11 @@
 							</div>
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>
-							<p>${tempReader.email}</p>
+							<div class="text-left ml-5">
+							<p><i class="fa fa-money" ></i> Money: ${tempReader.money}￥</p>
+							<p><i class="fa fa-phone" ></i> Phone: ${tempReader.phoneNumber}</p>
+							<p><i class="fa fa-envelope" ></i> Email: ${tempReader.email}</p>
+							</div>
 							<a data-toggle="modal" data-target="#setProfile"
 								class="btn btn-main-sm" style="color: #fff;">Edit Profile</a>
 						</div>
@@ -84,14 +88,14 @@
 						<div class="widget user-dashboard-menu">
 							<ul>
 								<li><a href="getReaderStatuForCurrent"><i
-										class="fa fa-user"></i> My Reservation</a></li>
+										class="fa fa-heart-o"></i> My Reservation</a></li>
 								<li><a href="getReaderStatuForBorrowPage"><i
-										class="fa fa-bookmark-o"></i> Current Record </a></li>
+										class="fa fa-th-list"></i> Current Record </a></li>
 								<li class="active"><a
 									href="getReaderStatuForReturn?pageNum=1"><i
-										class="fa fa-file-archive-o"></i> Return History </a></li>
+										class="fa fa-history"></i> Return History </a></li>
 
-								<li><a href="readersignout"><i class="fa fa-cog"></i>
+								<li><a href="readersignout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
 
 							</ul>

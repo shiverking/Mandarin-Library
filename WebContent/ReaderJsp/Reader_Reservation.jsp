@@ -79,7 +79,11 @@
 							</div>
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>
-							<p>${tempReader.email}</p>
+							<div class="text-left ml-5">
+							<p><i class="fa fa-money" ></i> Money: ${tempReader.money}￥</p>
+							<p><i class="fa fa-phone" ></i> Phone: ${tempReader.phoneNumber}</p>
+							<p><i class="fa fa-envelope" ></i> Email: ${tempReader.email}</p>
+							</div>
 							<a data-toggle="modal" data-target="#setProfile"
 								class="btn btn-main-sm" style="color: #fff;">Edit Profile</a>
 						</div>
@@ -87,13 +91,13 @@
 						<div class="widget user-dashboard-menu">
 							<ul>
 								<li class="active"><a href="getReaderStatuForCurrent"><i
-										class="fa fa-user"></i> My Reservation</a></li>
+										class="fa fa-heart-o"></i> My Reservation</a></li>
 								<li><a href="getReaderStatuForBorrowPage"><i
-										class="fa fa-bookmark-o"></i> Current Record </a></li>
+										class="fa fa-th-list"></i> Current Record </a></li>
 								<li><a href="getReaderStatuForReturn?pageNum=1"><i
-										class="fa fa-file-archive-o"></i> Return History </a></li>
+										class="fa fa-history"></i> Return History </a></li>
 
-								<li><a href="readersignout"><i class="fa fa-cog"></i>
+								<li><a href="readersignout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
 
 							</ul>
@@ -119,7 +123,7 @@
 								<tr>
 									<th class="text-center">Cover</th>
 									<th>Book information</th>
-							
+
 								</tr>
 							</thead>
 							<tbody>
@@ -127,20 +131,22 @@
 									<s:iterator value="currentRecords" status="L">
 										<tr>
 											<td class="action" data-title="Action"><img
-												class="card-img-top img-fluid" src="<s:property value="books[#L.index].ImageAddress" />"
-												alt="Card image cap" style="height: 200px; width: auto;" onerror="{this.src='images/book-default-lpic.gif'}">
-											</td>
+												class="card-img-top img-fluid"
+												src="<s:property value="books[#L.index].ImageAddress" />"
+												alt="Card image cap" style="height: 200px; width: auto;"
+												onerror="{this.src='images/book-default-lpic.gif'}"></td>
 											<td class="product-details">
 												<h3 class="title">
 
 													<s:property value="books[#L.index].BookName" />
 												</h3> <span class="add-id"><strong>Book ID:</strong>
 													${BookID}</span> <span class="add-id"><strong>ISBN:</strong>
-													<s:property value="books[#L.index].ISBN" /> </span> 
-													<span class="add-id"><strong>Category:</strong>
-													<s:property value="books[#L.index].category" /> </span><span><strong>
-													Reserve on: </strong> <time>${BorrowingDate}</time> </span> <span class="location"><strong>Location:</strong>
-													<s:property value="books[#L.index].Location" /></span>
+													<s:property value="books[#L.index].ISBN" /> </span> <span
+												class="add-id"><strong>Category:</strong> <s:property
+														value="books[#L.index].category" /> </span><span><strong>
+														Reserve on: </strong> <time>${BorrowingDate}</time> </span> <span
+												class="location"><strong>Location:</strong> <s:property
+														value="books[#L.index].Location" /></span>
 											</td>
 
 											<%-- <td class="product-category"><span class="categories"><s:property
@@ -150,10 +156,10 @@
 									</s:iterator>
 								</s:if>
 								<s:else>
-									<tr >
-									<td class="action" style="width: 300;" > </td>
-									<td class="product-details " style="width: 500"> </td>
-										
+									<tr>
+										<td class="action" style="width: 300;"></td>
+										<td class="product-details " style="width: 500"></td>
+
 									</tr>
 								</s:else>
 							</tbody>

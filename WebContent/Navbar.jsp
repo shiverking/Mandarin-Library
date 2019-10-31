@@ -24,37 +24,41 @@
 							<s:if test="#session.librarian!=null">
 								<li class="nav-item dropdown dropdown-slide"><a href=""
 									class="nav-link dropdown-toggle">Manage the library <i
-										class="fa fa-angle-down fa-fw"></i></a> <a data-toggle="dropdown"> </a>
-									<!-- Dropdown list -->
+										class="fa fa-angle-down fa-fw"></i></a> <a data-toggle="dropdown">
+								</a> <!-- Dropdown list -->
 									<div class="dropdown-menu dropdown-menu-right">
 										<a class="dropdown-item" href="BookManagement"><i
-											class="fa fa-book fa-fw"></i> Manage Book </a> <a class="dropdown-item"
-											href="searchBook1"><i class="fa fa-search fa-fw"></i> Search
-											Book</a> <a class="dropdown-item" href="getAllReaders"><i
+											class="fa fa-book fa-fw"></i> Manage Book </a> <a
+											class="dropdown-item" href="searchBook1"><i
+											class="fa fa-search fa-fw"></i> Search Book</a> <a
+											class="dropdown-item" href="getAllReaders"><i
 											class="fa fa-user-plus fa-fw"></i> Managing readers </a> <a
 											class="dropdown-item" href="BorrowHistory"><i
 											class="fa fa-history fa-fw"></i> Borrow History</a> <a
 											class="dropdown-item" href="BookBorrow"><i
-											class="fa fa-share fa-fw"></i> Borrow Book</a> <a class="dropdown-item"
-											href="BookReturn"><i class="fa fa-reply fa-fw"></i> Return Book</a>
-										<a class="dropdown-item" href="IncomeHistory"><i
-											class="fa fa-money fa-fw"></i> Income History</a> <a href="displayPosts"><i
-											class="fa fa-paper-plane fa-fw"></i> Post News</a>
+											class="fa fa-share fa-fw"></i> Borrow Book</a> <a
+											class="dropdown-item" href="BookReturn"><i
+											class="fa fa-reply fa-fw"></i> Return Book</a> <a
+											class="dropdown-item" href="IncomeHistory"><i
+											class="fa fa-money fa-fw"></i> Income History</a> <a
+											href="displayPosts"><i class="fa fa-paper-plane fa-fw"></i>
+											Post News</a>
 
 									</div></li>
 							</s:if>
 							<s:if test="#session.reader!=null">
 								<li class="nav-item dropdown dropdown-slide"><a
 									href="getReaderStatuForCurrent"
-									class="nav-link dropdown-toggle">My profile <i
+									class="nav-link dropdown-toggle"><i class="fa fa-user-o" ></i> Reader<i
 										class="fa fa-angle-down"></i></a> <a data-toggle="dropdown"> </a>
 									<!-- Dropdown list -->
 									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="getReaderStatuForCurrent">Reservation
-											record</a> <a class="dropdown-item"
-											href="getReaderStatuForBorrowPage">Current Borrowing</a> <a
-											class="dropdown-item" href="getReaderStatuForReturn">Return
-											History</a>
+										<a class="dropdown-item" href="getReaderStatuForCurrent"><i
+											class="fa fa-heart-o"></i> Reservation record</a> <a
+											class="dropdown-item" href="getReaderStatuForBorrowPage"><i
+											class="fa fa-th-list"></i> Current Borrowing</a> <a
+											class="dropdown-item" href="getReaderStatuForReturn"><i
+											class="fa fa-history"></i> Return History</a>
 									</div></li>
 
 							</s:if>
