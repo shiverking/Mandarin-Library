@@ -13,8 +13,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BookBorrow</title>
 
-<!-- PLUGINS CSS STYLE -->
-<link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!-- Bootstrap -->
 <link href="plugins/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -48,7 +46,6 @@
 </head>
 
 
-
 <body>
 	<s:include value="/Navbar.jsp" />
 
@@ -70,7 +67,9 @@
 									class="rounded-circle">
 							</div>
 							<!-- User Name -->
-							<h5 class="text-center"><s:property value="#session.librarian.librarianName" /></h5>
+							<h5 class="text-center">
+								<s:property value="#session.librarian.librarianName" />
+							</h5>
 							<p>Joined February 06, 2017</p>
 						</div>
 						<!-- Dashboard Links -->
@@ -92,8 +91,8 @@
 										Income History</a></li>
 								<li><a href="displayPosts"><i class="fa fa-paper-plane"></i>
 										Post News</a></li>
-										<li><a href="displayDeleteRecords"><i class="fa fa-trash-o" aria-hidden="true"></i>
-										Deleted Records</a></li>
+								<li><a href="displayDeleteRecords"><i
+										class="fa fa-trash-o" aria-hidden="true"></i> Deleted Records</a></li>
 								<li><a href="librarianLogout"><i class="fa fa-sign-out"></i>
 										Logout</a></li>
 							</ul>
@@ -116,7 +115,7 @@
 						<h3 class="widget-header">BookBorrow</h3>
 						<!-- 在这里写BookBorrow展示对象 -->
 
-						<s:form action="borrowBookFindReader" method="post">
+						<form action="borrowBookFindReader" method="post" id="fo">
 							<div class="form-group">
 								<label>ReaderID</label> <input type="text"
 									placeholder="Input the ReaderID" name="ReaderID"
@@ -139,9 +138,11 @@
 							</div>
 							<div class="form-group" style="text-align: center">
 								<br>
-								<button type="submit" class="btn btn-primary btn-main-sm">Submit</button>
+
+								<a  class="btn btn-primary btn-main-sm"
+									href="javascript:stttt()">Submit</a>
 							</div>
-						</s:form>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -149,10 +150,15 @@
 		</div>
 		<!-- Container End -->
 	</section>
-<s:include value="/footer.jsp" />
+
+<script type="text/javascript">
+	function stttt(){
+		$("#fo").submit()
+	}
+	</script>
+	<s:include value="/footer.jsp" />
 	<!-- JAVASCRIPTS -->
 	<script src="plugins/jquery/dist/jquery.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 	<script src="plugins/tether/js/tether.min.js"></script>
 	<script src="plugins/raty/jquery.raty-fa.js"></script>
 	<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
@@ -163,8 +169,7 @@
 	<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
 	<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+
 	<script src="js/scripts.js"></script>
 
 </body>

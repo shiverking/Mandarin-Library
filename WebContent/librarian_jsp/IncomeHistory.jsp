@@ -105,16 +105,14 @@
 					<!-- Recently Favorited -->
 					<div class="widget dashboard-container my-adslist">
 						<h3 class="widget-header">IncomeHistory</h3>
-
 						<form action="displayPayrecords" method="post">
-							begin day：<input id="date1" type="text" name="date1"><br />
-							end day：<input id="date2" type="text" name="date2"><br />
-							<button type="submit" value="submit">submit</button>
+							begin day：<input id="date1" type="text" name="date1" class="form-control" autocomplete=”off”><br />
+							end day：<input id="date2" type="text" name="date2" class="form-control" autocomplete=”off”><br />
+							<button type="submit" value="submit" class="btn btn-main">submit</button>
 						</form>
-
-						<p>Deposit : ${sessionScope.Deposit}</p>
-						<p>Fine : ${sessionScope.Fine}</p>
-
+						<p></p>
+						<p class="h3">Deposit : ${sessionScope.Deposit}</p>
+						<p class="h3">Fine : ${sessionScope.Fine}</p>
 						<script>
 							var calendar1 = Z.ui.Calendar('#date1', {
 								chosenDate : '2019-10-25'
