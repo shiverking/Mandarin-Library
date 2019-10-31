@@ -87,13 +87,19 @@ function check()
           <li class="nav-item">
             <a class="nav-link" href="../pages/EditLibrarian.jsp">
               <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Librarian</span>
+              <span class="menu-title">Librarians</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../pages/EditLibrarian.jsp">
               <i class="ti-settings menu-icon"></i>
               <span class="menu-title">Modify Deposit</span>
+            </a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="/Mandarin-Library/AdminJsp/pages/ChangePassword.jsp">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Change Password</span>
             </a>
           </li>
           <li class="nav-item">

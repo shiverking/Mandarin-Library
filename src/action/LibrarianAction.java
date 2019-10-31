@@ -2,6 +2,7 @@ package action;
 
 import java.util.*;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -29,15 +30,9 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	}
 	/*锟斤拷陆*/
 	public String signin() throws Exception{
-<<<<<<< Updated upstream
 		String LibrarianName =this.getModel().getLibrarianName();//锟斤拷取LibrarianName
 		String Password  =this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
-		if(LibrarianName==null) {
-=======
-		String LibrarianName =this.getModel().getLibrarianName();//閿熸枻鎷峰彇LibrarianName
-		String Password  =this.getModel().getPassword();//閿熸枻鎷峰彇閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
 		if(LibrarianName.isEmpty()) {
->>>>>>> Stashed changes
 			this.errorMessage="You must input the Name!";
 			return INPUT;
 		}
@@ -105,24 +100,27 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		String n=this.getModel().getLibrarianName();
 		String e=this.getModel().getEmail();
 		String p=this.getModel().getPassword();
-
-		System.out.print("p="+p);
+		System.out.println("ERROE MESSAGE: "+errorMessage);
 		if(n.isEmpty())
 		{
+			HttpServletRequest request= ServletActionContext.getRequest();
+			request.setAttribute("errorMessage","Please input the Librarian Name");
 			this.errorMessage="Please input the Librarian Name";
-			System.out.print(errorMessage);
 			return INPUT;
 		}
 		if(e.isEmpty())
 		{
+			HttpServletRequest request= ServletActionContext.getRequest();
+			request.setAttribute("errorMessage","Please input the Librarian Email");
 			this.errorMessage="Please input the Librarian Email";
-			System.out.print(errorMessage);
 			return INPUT;
 		}
 		if(this.getModel().getPassword().isEmpty())
 		{
+			HttpServletRequest request= ServletActionContext.getRequest();
+			request.setAttribute("errorMessage","Please input the Librarian Password");
 			this.errorMessage="Please input the Librarian Password";
-			System.out.print(errorMessage);
+
 			return INPUT;
 		}
 		int i = this.getModel().getLibrarianID();
@@ -138,7 +136,24 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		this.getService().deleteLibrarianById(i);
 		return SUCCESS;
 	}
-<<<<<<< Updated upstream
+
+	// 获取当前lib状态
+		public String getLibstatu() {
+			Map<String, Object> session = ActionContext.getContext().getSession();
+			librarian = (Librarian) session.get("librarian");
+			if (librarian == null) {
+				return NONE;
+			}
+			return SUCCESS;
+		}
+	public String search()
+	{
+		this.librarian=this.getService().getLibrarianByName(librarian.getLibrarianName());
+		if(librarian!=null) {
+			return SUCCESS;
+		}
+		return INPUT;
+	}
 	public String findPassword() throws Exception//admin 找回 librarian密码
 	{
 		if(this.getService().findID(librarian.getLibrarianName())==0)
@@ -152,41 +167,9 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			this.librarian=this.getService().getLibrarianByID(this.getService().findID(librarian.getLibrarianName()));			
 			Email email=new Email(librarian.getEmail());
 			email.sendEmail(librarian.getLibrarianName(),librarian.getPassword());
-			return SUCCESS;
-=======
-	// 获取当前lib状态
-		public String getLibstatu() {
-			Map<String, Object> session = ActionContext.getContext().getSession();
-			librarian = (Librarian) session.get("librarian");
-			if (librarian == null) {
-				return NONE;
-			}
+			this.errorMessage="Send successfully!";
 			return SUCCESS;
 		}
-		public String findPassword() throws Exception//admin 找回 librarian密码
-		{	
-			if(this.getService().findID(librarian.getLibrarianName())==0)
-			{
-				this.errorMessage="This Librarian is not exist";
-				return INPUT;
-			}
-			else {
-				this.librarian=this.getService().getLibrarianByID(this.getService().findID(librarian.getLibrarianName()));			
-				Email email=new Email(librarian.getEmail());
-				email.sendEmail(librarian.getLibrarianName(),librarian.getPassword());
-				this.errorMessage="Send successfully!";
-				System.out.println(this.errorMessage);
-				return SUCCESS;
-			}
->>>>>>> Stashed changes
-		}
-	public String search()
-	{
-		this.librarian=this.getService().getLibrarianByName(librarian.getLibrarianName());
-		if(librarian!=null) {
-			return SUCCESS;
-		}
-		return INPUT;
 	}
 
 }

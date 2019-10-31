@@ -90,6 +90,12 @@
               <span class="menu-title">Modify Deposit</span>
             </a>
           </li>
+           <li class="nav-item">
+            <a class="nav-link" href="/Mandarin-Library/AdminJsp/pages/ChangePassword.jsp">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Change Password</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="../pages/Edit.jsp">
               <i class="ti-settings menu-icon"></i>
@@ -109,14 +115,6 @@
         <div class="content-wrapper">
        
           <div class="row">         
-					<div class="alert alert-danger" role="alert">
-						<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-						llllll ${errorMessage}
-						<button type="button" class="close" data-dismiss="alert"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">

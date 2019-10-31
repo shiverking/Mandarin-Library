@@ -25,8 +25,26 @@ public class BookAction extends BaseAction<Book, BookService> {
 	private Integer pageNum;
 	private ISBNgenerator iSBNgenerator;
 	private String searchContent;
+	private String FineValues;
+	private String ReturnPeriods;
 
 	//
+
+	public String getFineValues() {
+		return FineValues;
+	}
+
+	public void setFineValues(String fineValues) {
+		FineValues = fineValues;
+	}
+
+	public String getReturnPeriods() {
+		return ReturnPeriods;
+	}
+
+	public void setReturnPeriods(String returnPeriods) {
+		ReturnPeriods = returnPeriods;
+	}
 
 	// 
 	public String searchBook() {
@@ -190,8 +208,28 @@ public class BookAction extends BaseAction<Book, BookService> {
 	public String adminEditBook() {
 
 		String i = this.getModel().getISBN();
-		try{int f =this.getModel().getFineValue();
-		int rp=this.getModel().getReturnPeriod();
+		String f = this.FineValues;
+		String rp =this.ReturnPeriods;
+		if(f.isEmpty())
+		{
+			this.errorMessage="Please enter number";
+			this.display();
+			System.out.println(this.errorMessage);
+			return INPUT;
+		}
+		if(rp.isEmpty())
+		{
+			this.errorMessage="Please enter number";
+			this.display();
+			System.out.println(this.errorMessage);
+			return INPUT;
+		}
+		else 
+		try {
+		int f1 =Integer.parseInt(f);
+		int rp1=Integer.parseInt(rp);
+		if(f1>=0&rp1>=0)
+		{
         List<Book> temBook = this.getService().getAllBooks();
         Iterator<Book> iBook = temBook.iterator();
         while(iBook.hasNext())
@@ -199,19 +237,27 @@ public class BookAction extends BaseAction<Book, BookService> {
         	Book b=iBook.next();
         	if((b.getISBN().equals(i))==true)
         	{
-        		b.setFineValue(f);
-        		b.setReturnPeriod(rp);
+        		b.setFineValue(f1);
+        		b.setReturnPeriod(rp1);
         		this.getService().mergeBook(b);
         	}
         }
-        System.out.println(temBook.get(1).getFineValue());
-		return "none";
-		}catch(Exception E)
+		return this.display();
+		}
+		else
 		{
-			this.errorMessage="Please enter integer";
+			this.errorMessage="Please enter the correct number";
+			this.display();
+			System.out.println(this.errorMessage);
 			return INPUT;
 		}
-//		return SUCCESS;
+		
+		}catch(Exception e)
+		{
+			this.errorMessage="Please enter the correct number";
+			this.display();
+			System.out.println(this.errorMessage);
+			return INPUT;
+		}
 	}
-
 }

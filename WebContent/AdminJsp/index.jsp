@@ -93,6 +93,12 @@
               <span class="menu-title">Modify Deposit</span>
             </a>
           </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/Mandarin-Library/AdminJsp/pages/ChangePassword.jsp">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Change Password</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="/Mandarin-Library/AdminJsp/pages/Edit.jsp">
               <i class="ti-settings menu-icon"></i>
@@ -159,9 +165,11 @@
               <div class="card">
                 <div class="card-body">
                 	<form action="findPassword" method="post">
-						Username  <input type="text"  class="form-control" name="librarian.LibrarianName"><br>
-						<button type="submit" value="find">Find</button>
+                	<h4 class="card-title">Find Librarians' password</h4>
+						  <input type="text"  class="form-control" placeholder="username"name="librarian.LibrarianName"><br>
+						<button type="submit" class="btn btn-primary mr-2" value="find">Find</NOtton>
 					</form>
+
                 </div>
               </div>
             </div>

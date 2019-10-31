@@ -13,6 +13,7 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="<%=request.getContextPath()%>/style/style.css">  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
   <link rel="stylesheet" href="<%=request.getContextPath()%>/AdminJsp/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/AdminJsp/vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
