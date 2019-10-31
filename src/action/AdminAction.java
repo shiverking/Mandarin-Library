@@ -30,13 +30,14 @@ public class AdminAction extends BaseAction<Admin,AdminService> {
 		NewSecurityDeposit = newSecurityDeposit;
 	}
 	public String signin() throws Exception{
-		String AdminName =this.getModel().getAdminName();//閼惧嘲褰嘇dminName
-		String Password  =this.getModel().getPassword();//閼惧嘲褰囨潏鎾冲弳閻ㄥ嫬鐦戦惍锟�
-		if(AdminName==null) {
+		String AdminName =this.getModel().getAdminName();
+		String Password  =this.getModel().getPassword();
+		System.out.println(AdminName);
+		if(AdminName.isEmpty()) {
 			this.errorMessage="You must input an AdminName!";
 			return INPUT;//鏉╂柨娲栭惂璇茬秿妞ょ敻娼�
 		}
-		if(Password==null) {
+		if(Password.isEmpty()) {
 			this.errorMessage="You must input the Password!";
 			return INPUT;//鏉╂柨娲栭惂璇茬秿妞ょ敻娼�
 		}
@@ -48,9 +49,10 @@ public class AdminAction extends BaseAction<Admin,AdminService> {
 			System.out.println("success");
 			return SUCCESS;
 		}
-		this.errorMessage="Your name or password is wrong, please try again !";
-		System.out.println("wrong");
-		return INPUT;
+		else{
+			this.errorMessage="Your name or password is wrong, please try again !";
+			return INPUT;
+		}
 	}
 	public String changePassword()
 	{
@@ -88,14 +90,26 @@ public class AdminAction extends BaseAction<Admin,AdminService> {
 	}
 	public String modify()//
 	{
-		int money=Integer.parseInt(NewSecurityDeposit);
-		this.getService().modifyDeposity(money);
-		System.out.println(Deposit);
-		return "success";
+		try{
+			int money=Integer.parseInt(NewSecurityDeposit);
+			if(money>=0)
+			{
+			this.getService().modifyDeposity(money);
+			return "success";
+			}
+			else
+			{
+				this.errorMessage="The SecurityDeposit must to be greater than 0  ";
+				return INPUT;
+			}
+		}catch(NumberFormatException e)
+		{
+			this.errorMessage="Please enter integer"; 
+			return INPUT;
+		}
 	}
 	public String dm() {
 		NewSecurityDeposit=this.getService().getDeposit()+"";
-		System.out.println("s");
 		return "success";
 	}
 }

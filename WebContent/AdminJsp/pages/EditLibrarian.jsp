@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF8"
+    pageEncoding="UTF8" isELIgnored="false"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 
@@ -15,6 +15,7 @@
   <title>Mandarin-Linbrary</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- inject:css -->
@@ -89,10 +90,22 @@
               <span class="menu-title">Modify Deposit</span>
             </a>
           </li>
+           <li class="nav-item">
+            <a class="nav-link" href="/Mandarin-Library/AdminJsp/pages/ChangePassword.jsp">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Change Password</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="../pages/Edit.jsp">
               <i class="ti-settings menu-icon"></i>
               <span class="menu-title">Edit fines and return period</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Log out</span>
             </a>
           </li>     
         </ul>
@@ -100,16 +113,16 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="row">
+       
+          <div class="row">         
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Librarian table</h4>
-                  <p class="card-description">
-                  </p>
+                  
+                  <p class="card-description"></p>
                   <div class="table-responsive pt-3">
-                   
-                    <table class="table table-bordered">
+                    <table class="table table-bordered">                    
                       <thead>
                         <tr>
                           <th>
@@ -155,7 +168,7 @@
                            <input name="LibrarianName" id="LibrarianName${LibrarianID}" value="<s:property value="LibrarianName"/>"  style="border:none;" readonly="readonly">
                           </td>
                           <td>
-                            <input name="Email" id="Email${LibrarianID}" value="<s:property value="Email"/>" style="border:none;" readonly="readonly">
+                            <input type="email" name="Email" id="Email${LibrarianID}" value="<s:property value="Email"/>" style="border:none;" readonly="readonly">
                           </td>
                           <td >                            
                             <input name="Password" id="Password${LibrarianID}" value="<s:property value="Password"/>" style="border:none;" readonly="readonly">
@@ -174,7 +187,6 @@
 						</s:iterator>
                       </tbody>
                     </table>
-               		
                   </div>
                 </div>
               </div>
@@ -185,7 +197,7 @@
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.templatewatch.com/" target="_blank">TTT</a>. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright Â© 2018 <a href="https://www.templatewatch.com/" target="_blank">TTT</a>. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>

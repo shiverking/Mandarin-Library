@@ -2,6 +2,7 @@ package action;
 
 import java.util.*;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -32,10 +33,9 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	}
 	/*闁跨喐鏋婚幏鐑芥*/
 	public String signin() throws Exception{
-		String LibrarianName =this.getModel().getLibrarianName();//闁跨喐鏋婚幏宄板絿LibrarianName
-		String Password  =this.getModel().getPassword();//闁跨喐鏋婚幏宄板絿闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨噦鎷�
+		String LibrarianName =this.getModel().getLibrarianName();//锟斤拷取LibrarianName
+		String Password  =this.getModel().getPassword();//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟�
 		if(LibrarianName.isEmpty()) {
-			System.out.println(LibrarianName);
 			this.errorMessage="You must input the Name!";
 			return INPUT;
 		}
@@ -51,6 +51,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			return SUCCESS;
 		}
 		this.errorMessage="Your name or password is wrong, please try again !";
+		
 		return INPUT;
 	}
 	public String signout() throws Exception {
@@ -76,7 +77,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			this.errorMessage="You must input the Email!";
 			return INPUT;
 		}
-		Librarian librarian = this.getService().verify(LibrarianName, Password);
+		Librarian librarian = this.getService().getLibrarianByName(LibrarianName);
 		if(!NewPassword.equals(Password)) {
 			this.errorMessage="Both passwords must be the same!";
 			return INPUT;
@@ -94,7 +95,11 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		    	return SUCCESS;
 			}
 		}
-		this.errorMessage="Your name or password is wrong, please try again !";
+		if(librarian!=null)
+		{
+			this.errorMessage="The user name has been registered";
+			return INPUT;
+		}
 		return INPUT;
 	}
 	public String show()
@@ -103,24 +108,38 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		return SUCCESS;
 	}
 	public String editLibrarian() {
-		int i = this.getModel().getLibrarianID();
+
 		String n=this.getModel().getLibrarianName();
 		String e=this.getModel().getEmail();
 		String p=this.getModel().getPassword();
-		this.librarian=this.getService().getLibrarianByID(i);
-		this.librarian=this.getService().getLibrarianByID(librarian.getLibrarianID());
-		if(this.getModel().getLibrarianName()!=null) {
-			librarian.setLibrarianName(n);
-		}
-		if(this.getModel().getEmail()!=null)
+		System.out.println("ERROE MESSAGE: "+errorMessage);
+		if(n.isEmpty())
 		{
-			librarian.setEmail(e);
-			librarian.setLibrarianName(this.getModel().getLibrarianName());
+			HttpServletRequest request= ServletActionContext.getRequest();
+			request.setAttribute("errorMessage","Please input the Librarian Name");
+			this.errorMessage="Please input the Librarian Name";
+			return INPUT;
 		}
-		if(this.getModel().getPassword()!=null) {
-			librarian.setPassword(p);
-			librarian.setPassword(this.getModel().getPassword());
+		if(e.isEmpty())
+		{
+			HttpServletRequest request= ServletActionContext.getRequest();
+			request.setAttribute("errorMessage","Please input the Librarian Email");
+			this.errorMessage="Please input the Librarian Email";
+			return INPUT;
 		}
+		if(this.getModel().getPassword().isEmpty())
+		{
+			HttpServletRequest request= ServletActionContext.getRequest();
+			request.setAttribute("errorMessage","Please input the Librarian Password");
+			this.errorMessage="Please input the Librarian Password";
+
+			return INPUT;
+		}
+		int i = this.getModel().getLibrarianID();
+		this.librarian=this.getService().getLibrarianByID(i);
+		librarian.setLibrarianName(n);
+		librarian.setEmail(e);
+		librarian.setPassword(p);
 		this.getService().mergeLibrarian(librarian);
 		return SUCCESS;
 	}
@@ -129,7 +148,8 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 		this.getService().deleteLibrarianById(i);
 		return SUCCESS;
 	}
-	// 鑾峰彇褰撳墠lib鐘舵��
+
+	// 获取当前lib状态
 		public String getLibstatu() {
 			Map<String, Object> session = ActionContext.getContext().getSession();
 			librarian = (Librarian) session.get("librarian");
@@ -138,7 +158,15 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			}
 			return SUCCESS;
 		}
-	public String findPassword() throws Exception//admin 鎵惧洖 librarian瀵嗙爜
+	public String search()
+	{
+		this.librarian=this.getService().getLibrarianByName(librarian.getLibrarianName());
+		if(librarian!=null) {
+			return SUCCESS;
+		}
+		return INPUT;
+	}
+	public String findPassword() throws Exception//admin 找回 librarian密码
 	{
 		if(this.getService().findID(librarian.getLibrarianName())==0)
 		{
@@ -151,16 +179,9 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			this.librarian=this.getService().getLibrarianByID(this.getService().findID(librarian.getLibrarianName()));			
 			Email email=new Email(librarian.getEmail());
 			email.sendEmail(librarian.getLibrarianName(),librarian.getPassword());
+			this.errorMessage="Send successfully!";
 			return SUCCESS;
 		}
-	}
-	public String search()
-	{
-		this.librarian=this.getService().getLibrarianByName(librarian.getLibrarianName());
-		if(librarian!=null) {
-			return SUCCESS;
-		}
-		return INPUT;
 	}
 
 }

@@ -4,6 +4,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="<%=request.getContextPath()%>/AdminJsp/js/LibrarianName.js" type="text/javascript"></script>
+<script type="text/javascript">
+function check()
+{
+		document.forms['Register'].action="librariansignup";
+		document.forms['Register'].submit();
+	
+}
+</script>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -11,6 +19,7 @@
   <title>RoyalUI Admin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="<%=request.getContextPath()%>/AdminJsp/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/style/style.css">  
   <link rel="stylesheet" href="<%=request.getContextPath()%>/AdminJsp/vendors/base/vendor.bundle.base.css">
   <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -78,7 +87,7 @@
           <li class="nav-item">
             <a class="nav-link" href="../pages/EditLibrarian.jsp">
               <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Librarian</span>
+              <span class="menu-title">Librarians</span>
             </a>
           </li>
           <li class="nav-item">
@@ -87,10 +96,22 @@
               <span class="menu-title">Modify Deposit</span>
             </a>
           </li>
+             <li class="nav-item">
+            <a class="nav-link" href="/Mandarin-Library/AdminJsp/pages/ChangePassword.jsp">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Change Password</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="../pages/Edit.jsp">
               <i class="ti-settings menu-icon"></i>
               <span class="menu-title">Edit fines and return period</span>
+            </a>
+          </li>
+                    <li class="nav-item">
+            <a class="nav-link" href="logout">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Log out</span>
             </a>
           </li>
         </ul>
@@ -104,7 +125,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Register a librarian</h4>
-                  <form class="forms-sample" action="librariansignup" method="post">
+                  <form action="librariansignup" name="Register" class="forms-sample" method="post">
                     <div class="form-group">
                       <label for="exampleInputUsername1">Username</label>
                       <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username" name="LibrarianName">
@@ -115,13 +136,13 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="Password">
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password, the default password is 00010001" name="Password">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputConfirmPassword1">Confirm Password</label>
                       <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password" name="ConfirmPassword">
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2" value="signup">Submit</button>
+                    <input type="submit" class="btn btn-primary mr-2" value="signup">
                   </form>
                   	
                   </div>
@@ -147,8 +168,6 @@
 		};
 
 		(function() {
-			// your page initialization code here
-			// the DOM will be available here
 			if ("<s:property value="errorMessage"></s:property>" == "") {
 				console.log("no error");
 			} else {
