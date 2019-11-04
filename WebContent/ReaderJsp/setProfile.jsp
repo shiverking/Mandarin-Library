@@ -41,7 +41,7 @@
 						<input class=" input form-control  bg-shadow col-6 " name="filename"
 							value="Select a picture to upload" readonly id="display"
 							onclick="upimg()"> <input style="display: none;"
-							id="file" type="file" accept="image/png ,image/gif "
+							id="file" type="file" accept="image/png , image/gif "
 							name="avatarFile" onChange="flashdp()">
 						<button class="btn btn-main-sm col-3 " type="submit">yes</button>
 					</div>

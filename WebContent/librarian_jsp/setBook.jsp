@@ -86,31 +86,7 @@
 						
 					</div>
 				</form>
-				
-				<form action="changeReaderAvatar" method="post"
-					enctype="multipart/form-data">
-					<label>change your avatar</label>
-					<div class="row justify-content-center">
-						<input class=" input form-control  bg-shadow col-6 " name="filename"
-							value="Select a picture to upload" readonly id="display"
-							onclick="upimg()"> <input style="display: none;"
-							id="file" type="file" accept="image/png ,image/gif "
-							name="avatarFile" onChange="flashdp()">
-						<button class="btn btn-main-sm col-3 " type="submit">yes</button>
-					</div>
-										<script>
-						function upimg() {
-							$("#file").trigger("click");
-						}
-						function flashdp() {
-	
-							var str = $("#file").val();
-							var arr = str.split('\\');//注split可以用字符或字符串分割
-							var my = arr[arr.length - 1];//这就是要取得的图片名称
-							$("#display").val(my);
-						}
-					</script>
-				</form>
+		
 			</div>
 
 			<div class="modal-footer">

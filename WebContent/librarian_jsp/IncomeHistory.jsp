@@ -106,8 +106,8 @@
 					<div class="widget dashboard-container my-adslist">
 						<h3 class="widget-header">IncomeHistory</h3>
 						<form action="displayPayrecords" method="post">
-							begin day：<input id="date1" type="text" name="date1" class="form-control" autocomplete=”off”><br />
-							end day：<input id="date2" type="text" name="date2" class="form-control" autocomplete=”off”><br />
+							begin day：<input id="date1" type="text" name="date1" class="form-control" required="required" autocomplete=”off”><br />
+							end day：<input id="date2" type="text" name="date2" class="form-control" required="required" autocomplete=”off”><br />
 							<button type="submit" value="submit" class="btn btn-main">submit</button>
 						</form>
 						<p></p>

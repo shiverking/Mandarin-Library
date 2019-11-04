@@ -127,7 +127,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-barcode fa-fw" aria-hidden="true"></i></span> <input
 										class="form-control" type="text" placeholder="ISBN"
-										name="ISBN" id="isbnk" required="required" value="${ISBN}">
+										name="ISBN" id="isbnk"  value="${ISBN}">
 									<span class="input-group-addon"><a
 										href="javascript:findbyisbn()"><i
 											class="fa fa-search fa-fw" aria-hidden="true"></i></a></span>

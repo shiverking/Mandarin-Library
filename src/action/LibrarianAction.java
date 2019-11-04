@@ -15,6 +15,7 @@ import model.Librarian;
 import model.Reader;
 import service.LibrarianService;
 import util.Email;
+import util.Mail3;
 
 public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 	private Librarian librarian;
@@ -177,7 +178,7 @@ public class LibrarianAction extends BaseAction<Librarian,LibrarianService> {
 			session.setAttribute("Password", this.getService().findPassword(librarian.getLibrarianName()));
 			return "success";*/
 			this.librarian=this.getService().getLibrarianByID(this.getService().findID(librarian.getLibrarianName()));			
-			Email email=new Email(librarian.getEmail());
+			Mail3 email=new Mail3(librarian.getEmail());
 			email.sendEmail(librarian.getLibrarianName(),librarian.getPassword());
 			this.errorMessage="Send successfully!";
 			return SUCCESS;

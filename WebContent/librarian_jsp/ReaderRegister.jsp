@@ -133,12 +133,12 @@
 							<!-- product card -->
 							<div class="product-item bg-light">
 								<div class="row">
-									<div class="thumb-content col-3">
+									<div class="thumb-content col-3 m-auto">
 										<!-- <div class="price">$200</div> -->
 										<a> <img class="card-img-top img-fluid"
 											src="upload/${ReaderID}.jpg" alt="Reader Avatar"
 											onerror="{this.src='images/avatar1.jpg'}"
-											style="height: 80px; width: AUTO;">
+											style="max-height: 80px; max-width: 100px;">
 										</a>
 									</div>
 									<div class=" col-7">
@@ -264,6 +264,7 @@
 						<!--addReader模态框-->
 
 						<form action="readerregister" method="post">
+						<input name="money" value="${Deposit}" style="display: none">
 							<div class="modal fade" id="addReader" tabindex="-1"
 								role="dialog" style="position: fixed; top: 18%">
 								<div class="modal-dialog " role="document">
@@ -291,8 +292,7 @@
 														type="text" name="PhoneNumber" maxlength="11"
 														placeholder="phone number">
 												</div>
-												<input value="${ReaderID}" name="ReaderID"
-													style="display: none">
+												<div class="input-group margin-bottom-sm col-10 mb-2">The reader is required to pay: ￥ ${Deposit}</div>
 											</div>
 										</div>
 										<div class="modal-footer">

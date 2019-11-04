@@ -543,8 +543,15 @@
 		<!-- 获取所有读者信息 -->
 		<action name="getAllReaders" class="readerAction"
 			method="findReaderPage">
-			<result name="success">/librarian_jsp/ReaderRegister.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getMoney</param>
+			</result>
+			<!-- <result name="success">/librarian_jsp/ReaderRegister.jsp</result> -->
 			<result name="input">/Login.jsp</result>
+		</action>
+		<action name="getMoney" class="adminAction"
+			method="getMoney">
+			<result name="success">/librarian_jsp/ReaderRegister.jsp</result> 
 		</action>
 		<!-- 注册Reader界面 -->
 		<action name="readerregister" class="readerAction"

@@ -5,20 +5,20 @@
 <html lang="en">
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/AdminJsp/js/LibrarianName.js" type="text/javascript"></script>
-<script src="../js/edit.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/AdminJsp/js/edit.js" type="text/javascript"></script>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Mandarin-Linbrary</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/AdminJsp/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/AdminJsp/vendors/base/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/AdminJsp/css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../images/favicon.png" />
+  <link rel="shortcut icon" href="<%=request.getContextPath()%>/AdminJsp/images/favicon.png" />
 
 </head>
 
@@ -29,28 +29,35 @@
   <!-- partial:partials/_navbar.html -->
   <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-      <a class="navbar-brand brand-logo mr-5" href="../index.jsp"><img src="../images/gen.svg" class="mr-2" alt="logo"/></a>
+      <a class="navbar-brand brand-logo mr-5" href="<%=request.getContextPath()%>/AdminJsp/index.jsp"><img src="<%=request.getContextPath()%>/AdminJsp/images/gen.svg" class="mr-2" alt="logo"/></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
       <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
         <span class="ti-view-list"></span>
       </button>
-       <ul class="navbar-nav mr-lg-2">
-          <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-             
-                <span class="input-group-text" id="search">
-                   <a id="a1" href="" onclick="doTest()">
-                  <i class="ti-search"></i>
-                  </a>
-                </span>
-                
-              </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" name="LibrarianName" onclick="doTest()">
-            </div>
-          </li>
-        </ul>
+       <script>
+function sh(){
+ $("#a1").submit()
+}</script>
+							<form action="searchLibrarian" id="a1">
+								<ul class="navbar-nav mr-lg-2">
+									<li class="nav-item nav-search d-none d-lg-block">
+										<div class="input-group">
+											<div class="input-group-prepend hover-cursor"
+												id="navbar-search-icon">
+												<span class="input-group-text" id="search"> <a
+													onclick="sh()"> <i class="ti-search"></i>
+												</a>
+												</span>
+											</div>
+											<input name="librarian.LibrarianName" type="text"
+												class="form-control" id="navbar-search-input"
+												placeholder="Search now" aria-label="search"
+												aria-describedby="search">
+										</div>
+									</li>
+								</ul>
+							</form>
       <ul class="navbar-nav navbar-nav-right">
 
       </ul>
@@ -61,30 +68,30 @@
   </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:../../partials/_sidebar.html -->
+      <!-- partial:<%=request.getContextPath()%>/AdminJsp/<%=request.getContextPath()%>/AdminJsp/partials/_sidebar.html -->
       
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../index.jsp">
+            <a class="nav-link" href="<%=request.getContextPath()%>/AdminJsp/index.jsp">
               <i class="ti-shield menu-icon"></i>
               <span class="menu-title">HomePage</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Register.jsp">
+            <a class="nav-link" href="<%=request.getContextPath()%>/AdminJsp/pages/Register.jsp">
               <i class="ti-layout-list-post menu-icon"></i>
               <span class="menu-title">Librarian_Register</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/EditLibrarian.jsp">
+            <a class="nav-link" href="<%=request.getContextPath()%>/AdminJsp/pages/EditLibrarian.jsp">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Librarians</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Modify_Deposit.jsp">
+            <a class="nav-link" href="<%=request.getContextPath()%>/AdminJsp/pages/Modify_Deposit.jsp">
               <i class="ti-settings menu-icon"></i>
               <span class="menu-title">Modify Deposit</span>
             </a>
@@ -96,7 +103,7 @@
             </a>
           </li>
            <li class="nav-item">
-            <a class="nav-link" href="../pages/Edit.jsp">
+            <a class="nav-link" href="<%=request.getContextPath()%>/AdminJsp/pages/Edit.jsp">
               <i class="ti-settings menu-icon"></i>
               <span class="menu-title">Edit fines and return period</span>
             </a>
@@ -196,11 +203,11 @@
            </div>
         </div>
         <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
+        <!-- partial:<%=request.getContextPath()%>/AdminJsp/<%=request.getContextPath()%>/AdminJsp/partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.templatewatch.com/" target="_blank">TTT</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 <a href="https://www.templatewatch.com/" target="_blank">TTT</a>. All rights reserved.</span>
+          
           </div>
         </footer>
         <!-- partial -->
@@ -211,15 +218,15 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="../vendors/base/vendor.bundle.base.js"></script>
+  <script src="<%=request.getContextPath()%>/AdminJsp/vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->
   <!-- End plugin js for this page-->
   <!-- inject:js -->
-  <script src="../js/off-canvas.js"></script>
-  <script src="../js/hoverable-collapse.js"></script>
-  <script src="../js/template.js"></script>
-  <script src="../js/todolist.js"></script>
+  <script src="<%=request.getContextPath()%>/AdminJsp/js/off-canvas.js"></script>
+  <script src="<%=request.getContextPath()%>/AdminJsp/js/hoverable-collapse.js"></script>
+  <script src="<%=request.getContextPath()%>/AdminJsp/js/template.js"></script>
+  <script src="<%=request.getContextPath()%>/AdminJsp/js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->

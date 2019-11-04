@@ -11,7 +11,6 @@
 .carousel-indicators li {
 	background-color: #ccc;
 }
-
 .carousel-indicators .active {
 	background-color: #26aeb5;
 	height: 4px;
@@ -28,7 +27,7 @@
 	<div class="carousel-inner">
 		<div class="carousel-item active ">
 			<div class="container">
-				<div class="row">
+				<div class="row ">
 					<s:if test="posts!=null">
 						<s:iterator value="posts" status="L">
 							<s:if test="#L.index<3">
@@ -82,7 +81,7 @@
 													</h4>
 													<hr>
 													<div class="card-text post"
-														style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; max-height: 7em; width: 3000px">
+														style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; max-height: 7em; width: 300px">
 														${Content}</div>
 													<div class="product-ratings"></div>
 												</div>
@@ -118,7 +117,7 @@
 													</h4>
 													<hr>
 													<div class="card-text post"
-														style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; max-height: 7em;  width: 3000px">
+														style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; max-height: 7em;  width: 300px">
 														${Content}</div>
 													<div class="product-ratings"></div>
 												</div>

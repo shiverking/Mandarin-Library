@@ -213,12 +213,12 @@ public class ReaderAction extends BaseAction<Reader, ReaderService> {
 			return LOGIN;
 		}
 		if (avatarFile == null) {
-			this.errorMessage = "Please select an image.";
+			this.errorMessage = "Only supports images in png and gif format.";
 			return SUCCESS;
 		}
 		String suffix = filename.substring(filename.lastIndexOf(".") + 1);
 		if (!suffix.equals("png") && !suffix.equals("gif")) {
-			this.errorMessage = "Please select an image.";
+			this.errorMessage = "Only supports images in png and gif format.";
 			return SUCCESS;
 		}
 		String realPath = ServletActionContext.getServletContext().getRealPath("upload");

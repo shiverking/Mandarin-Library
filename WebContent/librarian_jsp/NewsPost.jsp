@@ -107,6 +107,7 @@
 							style="color: #228B22;">Post News</a>
 						<p></p>
 						<table class="table table-striped ">
+						<thead>
 							<tr>
 								<th class="text-center">Title</th>
 								<th class="text-center">Content</th>
