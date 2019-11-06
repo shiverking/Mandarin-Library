@@ -1,25 +1,27 @@
 package model;
 
 public class Post {
-	private String PostID;
+	private int PostID;
 	private String Title;
 	private String Content;
 	private Librarian librarian;//post
 	public Post() {
+		PostID=1;
 		// TODO Auto-generated constructor stub
 	}
 	
 	public Post(String title, String content) {
 		// super();
+		PostID=1;
 		Title = title;
 		Content = content;
 	}
 	
-	public String getPostID() {
+	public int getPostID() {
 		return PostID;
 	}
-	
-	public void setPostID(String postID) {
+
+	public void setPostID(int postID) {
 		PostID = postID;
 	}
 

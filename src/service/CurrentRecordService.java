@@ -9,7 +9,7 @@ import util.PageBean;
 
 /**
 * @author 
-* @version ´´½¨Ê±¼ä£º2019Äê10ÔÂ6ÈÕ ÏÂÎç3:35:28
+* @version ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2019ï¿½ï¿½10ï¿½ï¿½6ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½3:35:28
 * 
 */
 public interface CurrentRecordService {
@@ -21,6 +21,11 @@ public interface CurrentRecordService {
 
 	public void saveCurrentRecord(CurrentRecord currentRecord);
 	public void mergeCurrentRecord(CurrentRecord currentRecord);
+	public boolean isOrder(Book book, Reader reader);
+	public boolean isOrder(Book book);
+	public CurrentRecord getCurrentRecordbyBookbyReader(Book book, Reader reader);
+	public CurrentRecord getCurrentRecordbyBook(Book book);
+	public void deleteCurrentRecordbyID(int id);
 	List<CurrentRecord> getCurrentRecordByBook(Book book);
 
 	

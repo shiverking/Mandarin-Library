@@ -8,11 +8,9 @@
 <!-- SITE TITTLE -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
 <meta http-equiv="expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="referrer" content="never">
 
 <title>Calssimax</title>
 
@@ -71,7 +69,7 @@
 							<!-- User Image -->
 							<div class="profile-thumb">
 								<img src="upload/${tempReader.phoneNumber}.jpg" alt=""
-									style="max-height: 100px">
+									style="max-height: 100px;max-width: 100px;">
 							</div>
 							<!-- User Name -->
 							<h5 class="text-center">${tempReader.readerName}</h5>
@@ -86,7 +84,7 @@
 										class="fa fa-user"></i> My Reservation</a></li>
 								<li><a href="getReaderStatuForBorrowPage"><i
 										class="fa fa-bookmark-o"></i> Current Record </a></li>
-								<li><a href="getReaderStatuForReturn"><i
+								<li><a href="getReaderStatuForReturn?pageNum=1"><i
 										class="fa fa-file-archive-o"></i> Return History </a></li>
 
 								<li><a href="readersignout"><i class="fa fa-cog"></i>

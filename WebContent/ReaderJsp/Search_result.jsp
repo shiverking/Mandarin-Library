@@ -6,19 +6,25 @@
 	<div class="col-md-3">
 		<div class="category-sidebar">
 			<div class="widget category-list">
-				<h4 class="widget-header">All Category</h4>
+				<h4 class="widget-header">
+					<a href="javascript:searcha('')">All Category</a>
+				</h4>
 				<ul class="category-list">
 
 					<s:iterator value="categoryMap" status="st">
 						<s:if test="%{categoryString ==key}">
 							<li><a style="color: #5672f9;"
-								href="javascript:searcha(<s:property value='key' />)"><s:property
-										value='key' /> <span> <s:property value='value' /></span></a></li>
+								href="javascript:searcha('<s:property value='key'/>')"><s:property
+										value='key' /> <span
+									style="color: #fff; background: #5672f9;"> <s:property
+											value='value' /></span></a></li>
 						</s:if>
 						<s:else>
-							<li><a href="javascript:searcha(<s:property value='key' />)"><s:property
+							<li><a
+								href="javascript:searcha('<s:property value='key'/>')"><s:property
 										value='key' /> <span> <s:property value='value' /></span></a></li>
 						</s:else>
+
 					</s:iterator>
 				</ul>
 			</div>
@@ -67,16 +73,16 @@
 			</s:else>
 			<div class="product-grid-list col-12" ID="VIEW1">
 				<div class="row mt-30">
-					<s:iterator value="bookPage.dataList" status="L">
+					<s:iterator value="bookPage.dataList" status="L1">
 						<div class="col-sm-12 col-lg-4 col-md-6">
 							<!-- product card -->
 							<div class="product-item bg-light">
 								<div class="card">
-									<div class="thumb-content">
+									<div class="thumb-content" style="text-align: center">
 										<!-- <div class="price">$200</div> -->
 										<a data-toggle="collapse" href="#collap${bookID}"> <img
-											class="card-img-top img-fluid"
-											src="images/products/products-1.jpg" alt="Card image cap">
+											class="card-img-top img-fluid" src="${ImageAddress}"
+											alt="Card image cap" style="height: 200px; width: auto;">
 										</a>
 									</div>
 									<div class="card-body">
@@ -101,19 +107,20 @@
 											<a class="btn-main-sm"
 												href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>&searchContent=${searchContent}&selectSearch=${selectSearch}&displayStyle=${displayStyle}&categoryString=${categoryString}&pageNum=${pageNum}'>Reserve</a>
 										</s:if>
+										<s:elseif test="reservations.get(#L1.index)!=0">
+											<li class="list-inline-item "><strong>Status: </strong>
+												<strong class="text-warning">Reserved</strong></li>
+										</s:elseif>
 										<s:else>
-											<s:if test="%{reservation.get(#L.index)!=0}">
-												<li class="list-inline-item "><strong>Status:
-												</strong> <strong class="text-warning">Reserved</strong></li>
-											</s:if>
-											<s:else>
-												<li class="list-inline-item "><strong>Status:
-												</strong> <strong class="text-danger">Lended</strong></li>
-											</s:else>
+											<li class="list-inline-item "><strong>Status: </strong>
+												<strong class="text-danger">Lended</strong></li>
 										</s:else>
-										<div class="collapse" id="collap${bookID}">
-											<strong>Introduction:</strong>
-											<div class="card card-body">${Introduction}</div>
+										<div class=" collapse" id="collap${bookID}">
+											<div
+												style="overflow-y: scroll; max-height: 250px; width: 110%; margin: 0 auto;">
+												<strong>Introduction:</strong>
+												<div class="card card-body">${Introduction}</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -131,7 +138,7 @@
 		</s:else>
 		<div class="accordion col-12" ID="VIEW2">
 			<div class="row ">
-				<s:iterator value="bookPage.dataList" status="L">
+				<s:iterator value="bookPage.dataList" status="L2">
 
 					<!-- product card -->
 					<div class="product-item bg-light">
@@ -139,8 +146,8 @@
 							<div class="thumb-content col-3">
 								<!-- <div class="price">$200</div> -->
 								<a data-toggle="collapse" href="#collap2${bookID}"> <img
-									class="card-img-top img-fluid"
-									src="images/products/products-1.jpg" alt="Card image cap">
+									class="card-img-top img-fluid" src="${ImageAddress}"
+									alt="Card image cap" style="height: 250px">
 								</a>
 							</div>
 							<div class=" col-8">
@@ -157,27 +164,28 @@
 									<li class="list-inline-item"><i class="fa fa-map-marker">
 											Location:</i> &nbsp;${Location}</li>
 									<li class="list-inline-item"><s:if test="isBorrowed==0">
-											<li class="list-inline-item "><strong>Status: </strong><strong
+											<li class="list-inline-item "><strong>Status:</strong><strong
 												class="text-info">Available</strong></li>
-										<div><a class="btn-main-sm"
+											<a class="btn-main-sm"
 												href='getReaderStatuForReserveBook?book.BookID=<s:property value="BookID"/>&searchContent=${searchContent}&selectSearch=${selectSearch}&displayStyle=${displayStyle}&categoryString=${categoryString}&pageNum=${pageNum}'>Reserve</a>
-										</div>
-										</s:if> <s:else>
-											<s:if test="%{reservation.get(#L.index)!=0}">
-												<li class="list-inline-item "><strong>Status:
-												</strong> <strong class="text-warning">Reserved</strong></li>
-											</s:if>
-											<s:else>
-												<li class="list-inline-item "><strong>Status:
-												</strong> <strong class="text-danger">Lended</strong></li>
-											</s:else>
-										</s:else></li>
+										</s:if>
+										<s:elseif test="reservations.get(#L2.index)!=0">
+											<li class="list-inline-item "><strong>Status: </strong>
+												<strong class="text-warning">Reserved</strong></li>
+										</s:elseif>
+										<s:else>
+											<li class="list-inline-item "><strong>Status: </strong>
+												<strong class="text-danger">Lended</strong></li>
+										</s:else>
 								</ul>
 							</div>
 							<div class="collapse col-12" id="collap2${bookID}">
-								<strong>Introduction:</strong>
-								<div class="card card-body">
-									<blockquote>${Introduction}</blockquote>
+								<div
+									style="overflow-y: scroll; max-height: 250px; width: 100%; margin: 0 auto;">
+									<strong>Introduction:</strong>
+									<div class="card card-body">
+										<blockquote>${Introduction}</blockquote>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -249,19 +257,19 @@
 </form>
 <script>
            function searchb(e){
-        	   $("#searchContent").val(${searchContent})
+        	   $("#searchContent").val('${searchContent}')
         	   $("#selectSearch").val(${selectSearch})
-        	   $("#categoryString").val(${categoryString})
+        	   $("#categoryString").val('${categoryString}')
         	   $("#pageNum").val(e)
         	   $("#displayStyle").val(document.getElementById("home").className=="tab-pane fade active show")
-        	   $("#search2").submit();
+        	   $("#search2").submit()
         	            }
            function searcha(e){
-        	   $("#searchContent").val(${searchContent})
+        	   $("#searchContent").val('${searchContent}')
         	   $("#selectSearch").val(${selectSearch})
         	   $("#categoryString").val(e)
         	   $("#displayStyle").val(document.getElementById("home").className=="tab-pane fade active show")
-        	   $("#search2").submit();
+        	   $("#search2").submit()
            }
         </script>
 </div>

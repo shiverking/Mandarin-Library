@@ -1,7 +1,8 @@
 package service;
+import java.util.*;
+
 import model.Admin;
 public class AdminServiceImpl extends BaseService<Admin>implements AdminService{
-	@Override
 	public Admin verify(String AdminName, String Password) {
 		Admin admin = this.getDao().getSingle("AdminName", AdminName);//获取用户名为AdminName的对象
 		if(admin == null) {
@@ -19,5 +20,19 @@ public class AdminServiceImpl extends BaseService<Admin>implements AdminService{
 		admin.setPassword(NewPassword);
 		this.getDao().merge(admin);
 		return "success";
+	}
+	public void modifyDeposity(int NewDeposit) {
+		List<Admin> admins=this.getDao().findAll();
+		Iterator<Admin> a=admins.iterator();
+		while(a.hasNext())
+		{
+			Admin n=a.next();
+			n.setSecurityDeposite(NewDeposit);
+			this.getDao().merge(n);
+		}
+	}
+	public int getDeposit() {
+		List<Admin> admins=this.getDao().findAll();
+		return admins.get(0).getSecurityDeposite();
 	}
 }

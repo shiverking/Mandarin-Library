@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF8"
 	pageEncoding="UTF8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<section>
+<section class="shadow">
 <div class="fade" id="header"></div>
-	<div class="container">
+	<div class="container ">
 		<div class="row">
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg  navigation">

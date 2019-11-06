@@ -8,7 +8,7 @@ import util.PageBean;
 
 /**
 * @author 
-* @version 创建时间：2019年9月24日 上午2:14:15
+* @version 锟斤拷锟斤拷时锟戒：2019锟斤拷9锟斤拷24锟斤拷 锟斤拷锟斤拷2:14:15
 * 
 */
 public interface BookService {

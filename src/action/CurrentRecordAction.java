@@ -1,3 +1,4 @@
+
 package action;
 
 import java.text.SimpleDateFormat;
@@ -23,11 +24,12 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 	private CurrentRecord currentRecord;
 	private Book book;
 	private PageBean<Book> bookPage;
-	private List<Boolean> reservation;
+	private List<Boolean> reservations;
+	private List<Book> books;
+	private List<Reader> readers;
+	// �����Ǿ���ʹ�õĹ��ܺ���
 
-//�����Ǿ���ʹ�õĹ��ܺ���
-
-//ȡ�ö��ߵ�ǰ���ĵ��鼮��ԤԼ���鼮��¼
+	// ȡ�ö��ߵ�ǰ���ĵ��鼮��ԤԼ���鼮��¼
 	public String getCurrentRecord() {
 		currentRecords = this.getService().getCurrentRecordsbyReader(tempReader);
 		return SUCCESS;
@@ -43,21 +45,71 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 	}
 
 	public String isReservation() {
-		reservation = new ArrayList<Boolean>();
+		reservations = new ArrayList<Boolean>();
 		for (int i = 0; i < bookPage.getDataList().size(); i++) {
 			if (this.getService().getCurrentRecordByBook(bookPage.getDataList().get(i)).isEmpty()) {
-				reservation.add(false);
+				reservations.add(false);
 			} else {
-				reservation.add(true);
+				reservations.add(true);
 			}
 		}
-		
 		return SUCCESS;
 	}
 
 //�����Ǹ������Ե�get��set����
 	public Reader getTempReader() {
 		return tempReader;
+	}
+
+	public String findBookIsOrder() {
+		CurrentRecord currentRecord1 = null, currentRecord2 = null, currentRecord3 = null;
+		if (this.getService().isOrder(this.books.get(0), this.readers.get(0))) {
+			System.out.println("this book1 is ordered by this reader");
+			currentRecord1 = this.getService().getCurrentRecordbyBookbyReader(this.books.get(0), this.readers.get(0));
+		} else if (this.getService().isOrder(this.books.get(0))) {
+			System.out.println("this book is ordered by other reader");
+			this.errorMessage = "BookCannotBorrowedError:this Book has been Ordered--Book id:"
+					+ this.books.get(0).getBookID();
+			System.out.println(this.errorMessage);
+			return ERROR;
+		}
+		if (this.books.size() >= 2 && this.books.get(1) != null) {
+			System.out.println("this book2 is not null");
+			if (this.getService().isOrder(this.books.get(1), this.readers.get(0))) {
+				System.out.println("this book2 is ordered by this reader");
+				currentRecord2 = this.getService().getCurrentRecordbyBookbyReader(this.books.get(1),
+						this.readers.get(0));
+			} else if (this.getService().isOrder(this.books.get(1))) {
+				System.out.println("this book2 is ordered by other reader");
+				this.errorMessage = "BookCannotBorrowedError:this Book has been Ordered--Book id2:"
+						+ this.books.get(1).getBookID();
+				System.out.println(this.errorMessage);
+				return ERROR;
+			}
+		}
+		if (this.books.size() >= 3 && this.books.get(2) != null) {
+			System.out.println("this book3 is not null");
+			if (this.getService().isOrder(this.books.get(2), this.readers.get(0))) {
+				System.out.println("this book3 is ordered by this reader");
+				currentRecord3 = this.getService().getCurrentRecordbyBookbyReader(this.books.get(2),
+						this.readers.get(0));
+			} else if (this.getService().isOrder(this.books.get(2))) {
+				System.out.println("this book3 is ordered by other reader");
+				this.errorMessage = "BookCannotBorrowedError:this Book has been Ordered--Book id3:"
+						+ this.books.get(2).getBookID();
+				System.out.println(this.errorMessage);
+				return ERROR;
+			}
+		}
+		if (currentRecord1 != null)
+			this.getService().deleteCurrentRecordbyID(currentRecord1.getCurrentRecordID());
+		if (currentRecord2 != null)
+			this.getService().deleteCurrentRecordbyID(currentRecord2.getCurrentRecordID());
+		if (currentRecord3 != null)
+			this.getService().deleteCurrentRecordbyID(currentRecord3.getCurrentRecordID());
+		System.out.println("this book is not ordered by any reader");
+		return SUCCESS;
+
 	}
 
 	public void setTempReader(Reader tempReader) {
@@ -80,6 +132,22 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 		this.currentRecords = currentRecords;
 	}
 
+	public List<Reader> getReaders() {
+		return readers;
+	}
+
+	public void setReaders(List<Reader> readers) {
+		this.readers = readers;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
 	/**
 	 * @param currentRecord the currentRecord to set
 	 */
@@ -95,12 +163,12 @@ public class CurrentRecordAction extends BaseAction<CurrentRecord, CurrentRecord
 		this.bookPage = bookPage;
 	}
 
-	public List<Boolean> getReservation() {
-		return reservation;
+	public List<Boolean> getReservations() {
+		return reservations;
 	}
 
-	public void setReservation(List<Boolean> reservation) {
-		this.reservation = reservation;
+	public void setReservations(List<Boolean> reservations) {
+		this.reservations = reservations;
 	}
 
 }

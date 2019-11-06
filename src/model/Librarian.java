@@ -4,7 +4,7 @@ public class Librarian {
 	private int LibrarianID;
 	private String LibrarianName;
 	private String Password;
-	
+	private String Email;
 	public Librarian() {
 		
 	}
@@ -12,7 +12,7 @@ public class Librarian {
 		//super();
 		LibrarianID = librarianID;
 		LibrarianName = librarianName;
-		Password = "123456";//³õÊ¼ÃÜÂëÎª123456
+		Password = "123456";//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Îª123456
 	}
 	public int getLibrarianID() {
 		return LibrarianID;
@@ -31,5 +31,11 @@ public class Librarian {
 	}
 	public void setPassword(String password) {
 		Password = password;
+	}
+	public String getEmail() {
+		return Email;
+	}
+	public void setEmail(String email) {
+		Email = email;
 	}
 }

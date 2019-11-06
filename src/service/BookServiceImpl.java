@@ -8,40 +8,34 @@ import util.PageBean;
 
 public class BookServiceImpl extends BaseService<Book> implements BookService {
 
-	@Override
 	public List<Book> getAllBooks() {
 		// TODO Auto-generated method stub
 		List<Book> books = this.getDao().findAll();
 		return books;
 	}
 
-	@Override
 	public List<Book> getAllBooks(String cond) {
 		// TODO Auto-generated method stub
 		List<Book> books = this.getDao().findAll(cond);
 		return books;
 	}
 
-	@Override
 	public void saveBook(Book book) {
 		// TODO Auto-generated method stub
 		this.getDao().save(book);
 	}
 
-	@Override
 	public void mergeBook(Book book) {
 		// TODO Auto-generated method stub
 		this.getDao().merge(book);
 	}
 
-	@Override
 	public Book getBookById(int id) {
 		// TODO Auto-generated method stub
 		Book book = this.getDao().get(id);
 		return book;
 	}
 
-	@Override
 	public Book getBookByBorrowrecord(Borrowrecord borrowrecord) {
 		int id = borrowrecord.getBookID();
 		return this.getBookById(id);
@@ -61,19 +55,16 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 
 	}
 
-	@Override
 	public void deleteBookById(int id) {
 		// TODO Auto-generated method stub
 		this.getDao().delete(id);
 	}
 
-	@Override
 	public List<Book> getBookByNameOrISBN(String cond) {
 		// TODO Auto-generated method stub
 		return this.getDao().findByTwoProperty("BookName", "ISBN", cond);
 	}
 
-	@Override
 	public PageBean<Book> getPageBean(String cond, String categoryString, Integer pageNum) {
 		// TODO:·ÖÒ³ËÑË÷
 		int current = 1;
@@ -107,7 +98,6 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 		return bookPageBean;
 	}
 
-	@Override
 	public PageBean<Book> getPageBeanbyISBN(String isbn, String categoryString, Integer pageNum) {
 		int current = 1;
 		if (pageNum != null) {
@@ -138,7 +128,6 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 		return bookPageBean;
 	}
 
-	@Override
 	public PageBean<Book> getPageBeanbyTitle(String title, String categoryString, Integer pageNum) {
 		int current = 1;
 		if (pageNum != null) {
@@ -169,7 +158,6 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 		return bookPageBean;
 	}
 
-	@Override
 	public PageBean<Book> getPageBeanbyAuthor(String author, String categoryString, Integer pageNum) {
 		int current = 1;
 		if (pageNum != null) {
@@ -201,7 +189,6 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 
 	}
 
-	@Override
 	public List<String> getCategory(String cond, Integer select) {
 		List<String> pnList = new ArrayList<String>();
 		List<String> vList = new ArrayList<String>();
